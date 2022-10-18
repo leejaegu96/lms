@@ -9,9 +9,9 @@
 <body>
 <h1>
 	Hello world!  commit test
-</h1>
+</h1> 
 
 <P>  The time on the server is ${serverTime}. </P>
-<h2>Hello world</h2>
+<h2>Hello LMS</h2>
 </body>
 </html>
