@@ -10,12 +10,8 @@
 <h1>
 	Hello world!  commit test2
 </h1>
-sdvsdvs TEst!
 
 <P>  The time on the server is ${serverTime}. test </P>
-
-
-
 
 </body>
 </html>
