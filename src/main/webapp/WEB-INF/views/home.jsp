@@ -12,6 +12,6 @@
 </h1> 
 
 <P>  The time on the server is ${serverTime}. </P>
-<h2>Hello LMS0  0</h2>
+<h2>Hello LMS</h2>
 </body>
 </html>
