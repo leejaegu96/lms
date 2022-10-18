@@ -11,7 +11,7 @@
 	Hello world!  commit test
 </h1> 
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  현재 시간은 ${serverTime}. </P>
 
 </body>
 </html>
