@@ -8,10 +8,14 @@
 </head>
 <body>
 <h1>
-	Hello world!  commit test
+	Hello world!  commit test2
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+
+<P>  The time on the server is ${serverTime}. test </P>
+
+
 <h2>Hello world</h2>
+
 </body>
 </html>
