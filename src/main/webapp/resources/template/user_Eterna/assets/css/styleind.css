@@ -1,0 +1,95 @@
+#title{
+    font-size: 1rem;
+    color: #454545;
+    font-weight: 700;
+    line-height: 1.5em;
+    margin-bottom: 0;
+}
+
+#name{
+    padding-bottom: 25px;
+    font-size: .9rem;
+    color: #7d7d7d;
+    line-height: 1.5em;
+}
+
+#star{
+    color: #fdcc11;
+    width: 0.5rem;
+    height: 0.9rem;
+}
+
+#reviewnum{
+    font-size: .6rem;
+    position:relative; 
+    bottom: 2px;
+    color: #4a4a4a;
+}
+
+#homepirce{
+    font-size: 1rem;
+    color: #e96b56;
+    font-weight: 400;
+    font-family: "Open Sans", sans-serif;
+    margin-bottom: 25px;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+#totalstudent{
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: "Open Sans", sans-serif;
+}
+
+#box1{
+    font-family: "Open Sans", sans-serif;
+    display: inline-block;
+    margin-left: 10px;
+    text-align: center;
+    border: 1px solid hsl(321,63%,90%);
+    background-color: hsl(321,63%,90%);
+    align-items: center;
+    font-size: .75rem;
+    border-radius: 4px;
+    color: #454545;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    font-weight: inherit;
+    font-style: inherit;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+#box1span{
+    align-items: center;
+    position:relative;
+    top: 2px;
+}
+
+
+/* 인풋박스 */
+.search {
+    width: 300px;
+  }
+  
+  .inputx {
+    width: 580px;
+    border: 1px solid #e79f93;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  
+  
+  .imgx {
+    position : relative;
+    width: 17px;
+    top: 0px;
+    right: 40px;
+    margin: 0;
+    color: #e96b56;
+  }
