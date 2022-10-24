@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+<title>Blog - Eterna Bootstrap Template</title>
+<meta content="" name="description" />
+<meta content="" name="keywords" />
+
+<!-- Favicons -->
+<link href="assets/img/favicon.png" rel="icon" />
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+
+<!-- Vendor CSS Files -->
+<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+<!-- 추가 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!-- Template Main CSS File -->
+<link href="assets/css/style.css" rel="stylesheet" />
+<link href="assets/css/styleind.css" rel="stylesheet" />
+
+<style>
+.pie-chart {
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+
+span.center {
+	background: #fff;
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	transform: translate(-50%, -50%);
+}
+
+.topTitle {
+	font-weight: bold;
+	font-size: 14px;
+	float: left;
+}
+
+.subTitle {
+	font-weight: bold;
+	font-size: 12px;
+	color: gray;
+	float: right;
+}
+
+#cardSize {
+	height: 220px;
+}
+
+#colPad {
+	padding-bottom: 10px;
+}
+
+.cardContents {
+	font-size: 13px;
+}
+
+.cardNoContents {
+	text-align: center;
+	font-size: 13px;
+	color: gray;
+}
+
+.progressDetailL {
+	font-size: 10px;
+	float: left;
+}
+
+.progressDetailR {
+	font-size: 10px;
+	float: right;
+}
+
+#stTitle {
+	font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#stContents {
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.lectureL {
+	font-size: 13px;
+	float: left;
+}
+
+.lectureR {
+	font-size: 10px;
+	float: right;
+}
+</style>
+
+<!-- =======================================================
+  * Template Name: Eterna - v4.9.1
+  * Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+	<!-- ======= Header ======= -->
+	<header id="header" class="d-flex align-items-center">
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="logo">
+				<h1>
+					<a href="index.html">NEXTLEVEL</a>
+				</h1>
+				<!-- Uncomment below if you prefer to use an image logo -->
+				<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			</div>
+
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li>
+						<div class="input-group mb-3" style="margin-top: 15px">
+							<input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2" />
+							<button class="btn btn-outline-secondary" type="button" id="button-addon2">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+					</li>
+					<li><a class="active" href="index.html">Home</a></li>
+					<li><a href="mypage.html">MYpage</a></li>
+					<li><a href="login.html">Login</a></li>
+				</ul>
+			</nav>
+			<!-- .navbar -->
+		</div>
+	</header>
+	<!-- End Header -->
+
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container">
+				<ol>
+					<li><a href="index.html">Home</a></li>
+					<li>MyPage</li>
+				</ol>
+				<h2>MyPage</h2>
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
+
+		<!-- ======= Blog Section ======= -->
+		<section id="blog" class="blog">
+			<div class="container" data-aos="fade-up">
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="sidebar">
+							<h3 class="sidebar-title"><a href="dashboard.html" style="color:black;">Mypage</a></h3>
+							<div class="sidebar-item categories">
+								<ul>
+									<li><a href="mypage.html">
+											구매목록
+											<span>(25)</span>
+										</a></li>
+									<li><a href="cart.html">
+											찜 목록
+											<span>(12)</span>
+										</a></li>
+									<li><a href="printPage.html">
+											수료증 출력
+											<span>(22)</span>
+										</a></li>
+									<li><a href="profile.html">프로필</a></li>
+									<li><a href="modpwd.html">비밀번호 수정</a></li>
+								</ul>
+							</div>
+							<!-- End sidebar categories-->
+
+							<h3 class="sidebar-title">Recent Posts</h3>
+							<div class="sidebar-item recent-posts">
+								<div class="post-item clearfix">
+									<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" />
+									<h4>
+										<a href="blog-single.html">권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리</a>
+									</h4>
+									<time datetime="2020-01-01">Jan 1, 2020</time>
+								</div>
+
+								<div class="post-item clearfix">
+									<img src="https://cdn.class101.net/images/37d8a757-0f38-4424-a58f-b71444a712f8/960xauto.webp" alt="" />
+									<h4>
+										<a href="blog-single.html">아이패드 하나로 기록하는 키츠의 아날로그 텍스처 일상</a>
+									</h4>
+									<time datetime="2020-01-01">Jan 1, 2020</time>
+								</div>
+
+								<div class="post-item clearfix">
+									<img src="https://cdn.class101.net/images/10c624cc-522e-4408-9bcf-ba802596eba5/960xauto.webp" alt="" />
+									<h4>
+										<a href="blog-single.html">(2022년 전면개정판) 가장 빠르게 돈 버는 유튜브 채널 만드는 방법</a>
+									</h4>
+									<time datetime="2020-01-01">Jan 1, 2020</time>
+								</div>
+
+								<div class="post-item clearfix">
+									<img src="https://cdn.class101.net/images/c019f819-4c73-4255-a194-913107e681a8/960xauto.webp" alt="" />
+									<h4>
+										<a href="blog-single.html">[미니클래스] 내 몸은 내가 관리한다! 홈 메이드 건강 차(혈액 순환과 피로 회복)</a>
+									</h4>
+									<time datetime="2020-01-01">Jan 1, 2020</time>
+								</div>
+
+								<div class="post-item clearfix">
+									<img src="https://cdn.class101.net/images/d0b5915e-c227-484e-a0d3-16dc2c808a1a/960xauto.webp" alt="" />
+									<h4>
+										<a href="blog-single.html">20년 경력자가 알려주는 미드 번역으로 배우는 영상 번역 실무</a>
+									</h4>
+									<time datetime="2020-01-01">Jan 1, 2020</time>
+								</div>
+							</div>
+							<!-- End sidebar recent posts-->
+						</div>
+						<!-- End sidebar -->
+					</div>
+					<!-- End blog sidebar -->
+
+					<div class="col-lg-8">
+						<div class="sidebar">
+							<div class="row">
+								<div class="col-6" id="colPad">
+									<div class="card">
+										<div class="card-body pt-3" id="cardSize">
+											<div class="topTitle">😀 &nbsp;홍길동님의 프로필</div>
+											<div class="subTitle">수정하기</div>
+											<br> <br>
+											<span class="cardContents">홍길동님, 안녕하세요!👋🏼</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-6" id="colPad">
+									<div class="card">
+										<div class="card-body pt-3" id="cardSize">
+											<div class="topTitle">📖 &nbsp;최근 학습 강의</div>
+											<div class="subTitle">전체 보기</div>
+											<br> <br>
+											<span class="cardContents">자바(Java) 알고리즘 문제풀이 입문: 코딩테스트 대비</span>
+											<br>
+											<div class="progressDetailL">진도율: 28강/104강 (28%)</div>
+											<div class="progressDetailR">23분전</div>
+											<br>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 28%;" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100">28%</div>
+											</div>
+											<br>
+											<span id="nextBtn">이어서 학습하기</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-6" id="colPad">
+									<div class="card">
+										<div class="card-body pt-3" id="cardSize">
+											<div class="topTitle">📝 &nbsp;최근 내 노트</div>
+											<div class="subTitle">전체보기</div>
+											<br> <br>
+											<div class="cardNoContents">
+												작성한 노트가 없습니다.<br> 강의를 수강하고 나만의 노트를 작성해 보세요!
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-6" id="colPad">
+									<div class="card">
+										<div class="card-body pt-3" id="cardSize">
+											<div class="topTitle">🏃🏻 &nbsp;학습 통계</div>
+											<br> <br>
+											<div class="row">
+												<div class="col-4">
+													<div id="stTitle">0</div>
+													<br>
+													<div id="stContents">완료 강의수</div>
+												</div>
+												<div class="col-4">
+													<div id="stTitle">0</div>
+													<br>
+													<div id="stContents">완료 수업수</div>
+												</div>
+												<div class="col-4">
+													<div id="stTitle">0</div>
+													<br>
+													<div id="stContents">획득 수료증</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-6" id="colPad">
+									<div class="card">
+										<div class="card-body pt-3" id="cardSize">
+											<div class="topTitle">🏆 &nbsp;수료증</div>
+											<div class="subTitle">전체보기</div>
+											<br> <br>
+											<div class="cardNoContents">
+												수료증이 없습니다.<br> 수료증이 발급되는 강의를 수강해 보세요!
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-6" id="colPad">
+									<div class="card">
+										<div class="card-body pt-3" id="cardSize">
+											<div class="topTitle">📚 &nbsp;최근 학습중인 강의</div>
+											<div class="subTitle">전체보기</div>
+											<br>
+											<br>
+											<div class="lectureL">자바(Java) 알고리즘 문제풀이 입문: 코딩테스트</div>
+											<div class="lectureR">23분 전</div>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<!-- 
+                        <div class="col-lg-8">
+                            <section id="team" class="team">
+                                <div class="container">
+                                    <div class="row" style="padding: 20px">
+                                        <h4 style="font-weight: bold">📒 구매 목록</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                            <div class="member">
+                                                <img
+                                                    src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp"
+                                                    alt=""
+                                                    style="width: 150px; height: 150px"
+                                                />
+                                                <h4>물리치료사 권도수</h4>
+                                                <p style="font-weight: bold; padding-top: 5px; font-style: normal">
+                                                    권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리
+                                                </p>
+                                                <div class="css-f01xj1" style="justify-content: center">
+                                                    <div class="css-58su99">
+                                                        <p class="css-1bksh2n" style="color: #fd3049">23%</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <p class="css-1fx0mvf">월 56,300원</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <div top="0" right="4" bottom="0" left="0" class="sc-9054e612-0 kpBA"></div>
+                                                    </div>
+                                                    <p class="css-1289afo">(5개월)</p>
+                                                </div>
+                                                <br />
+                                                <button id="like1" onclick="liked1()">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                            <div class="member">
+                                                <img
+                                                    src="https://cdn.class101.net/images/37d8a757-0f38-4424-a58f-b71444a712f8/960xauto.webp"
+                                                    alt=""
+                                                    style="width: 150px; height: 150px"
+                                                />
+                                                <h4>일러스트 · 키츠 (kits.)</h4>
+                                                <p style="font-weight: bold; padding-top: 5px; font-style: normal">
+                                                    아이패드 하나로 기록하는 키츠의 아날로그 텍스처 일상
+                                                </p>
+                                                <div class="css-f01xj1" style="justify-content: center">
+                                                    <div class="css-58su99">
+                                                        <p class="css-1bksh2n" style="color: #fd3049">23%</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <p class="css-1fx0mvf">월 56,300원</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <div top="0" right="4" bottom="0" left="0" class="sc-9054e612-0 kpBA"></div>
+                                                    </div>
+                                                    <p class="css-1289afo">(5개월)</p>
+                                                </div>
+                                                <br />
+                                                <button id="like2" onclick="liked2()">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                            <div class="member">
+                                                <img
+                                                    src="https://cdn.class101.net/images/10c624cc-522e-4408-9bcf-ba802596eba5/960xauto.webp"
+                                                    alt=""
+                                                    style="width: 150px; height: 150px"
+                                                />
+                                                <h4>유튜브 · 주언규PD</h4>
+                                                <p style="font-weight: bold; padding-top: 5px; font-style: normal">
+                                                    (2022년 전면개정판) 가장 빠르게 돈 버는 유튜브 채널 만드는 방법
+                                                </p>
+                                                <div class="css-f01xj1" style="justify-content: center">
+                                                    <div class="css-58su99">
+                                                        <p class="css-1bksh2n" style="color: #fd3049">23%</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <p class="css-1fx0mvf">월 56,300원</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <div top="0" right="4" bottom="0" left="0" class="sc-9054e612-0 kpBA"></div>
+                                                    </div>
+                                                    <p class="css-1289afo">(5개월)</p>
+                                                </div>
+                                                <br />
+                                                <button id="like3" onclick="liked3()">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                            <div class="member">
+                                                <img
+                                                    src="https://cdn.class101.net/images/c019f819-4c73-4255-a194-913107e681a8/960xauto.webp"
+                                                    alt=""
+                                                    style="width: 150px; height: 150px"
+                                                />
+                                                <h4>더 새로운 요리 · 음료 · 태이린</h4>
+                                                <p style="font-weight: bold; padding-top: 5px; font-style: normal">
+                                                    [미니클래스] 내 몸은 내가 관리한다! 홈 메이드 건강 차(혈액 순환과 피로 회복)
+                                                </p>
+                                                <div class="css-f01xj1" style="justify-content: center">
+                                                    <div class="css-58su99">
+                                                        <p class="css-1bksh2n" style="color: #fd3049">23%</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <p class="css-1fx0mvf">월 56,300원</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <div top="0" right="4" bottom="0" left="0" class="sc-9054e612-0 kpBA"></div>
+                                                    </div>
+                                                    <p class="css-1289afo">(5개월)</p>
+                                                </div>
+                                                <br />
+                                                <button id="like4" onclick="liked4()">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                            <div class="member">
+                                                <img
+                                                    src="https://cdn.class101.net/images/d0b5915e-c227-484e-a0d3-16dc2c808a1a/960xauto.webp"
+                                                    alt=""
+                                                    style="width: 150px; height: 150px"
+                                                />
+                                                <h4>통역 · 번역 · 영상번역가 함혜숙</h4>
+                                                <p style="font-weight: bold; padding-top: 5px; font-style: normal">
+                                                    20년 경력자가 알려주는 미드 번역으로 배우는 영상 번역 실무
+                                                </p>
+                                                <div class="css-f01xj1" style="justify-content: center">
+                                                    <div class="css-58su99">
+                                                        <p class="css-1bksh2n" style="color: #fd3049">23%</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <p class="css-1fx0mvf">월 56,300원</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <div top="0" right="4" bottom="0" left="0" class="sc-9054e612-0 kpBA"></div>
+                                                    </div>
+                                                    <p class="css-1289afo">(5개월)</p>
+                                                </div>
+                                                <br />
+                                                <button id="like5" onclick="liked5()">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                            <div class="member">
+                                                <img
+                                                    src="https://cdn.class101.net/images/2a9f608c-64b7-44ac-8f10-33cf752166bd/1440xauto.webp"
+                                                    alt=""
+                                                    style="width: 150px; height: 150px"
+                                                />
+                                                <h4>더 새로운 금융 · 재테크 · 백하나</h4>
+                                                <p style="font-weight: bold; padding-top: 5px; font-style: normal">
+                                                    NFT 이론부터 발행까지 한번에! NFT 작가되기
+                                                </p>
+                                                <div class="css-f01xj1" style="justify-content: center">
+                                                    <div class="css-58su99">
+                                                        <p class="css-1bksh2n" style="color: #fd3049">23%</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <p class="css-1fx0mvf">월 10,000원</p>
+                                                        <div class="css-jvrg49"></div>
+                                                        <div top="0" right="4" bottom="0" left="0" class="sc-9054e612-0 kpBA"></div>
+                                                    </div>
+                                                    <p class="css-1289afo">(5개월)</p>
+                                                </div>
+                                                <br />
+                                                <button id="like6" onclick="liked6()">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                <div class="social">
+                                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            End Team Section
+                        </div>
+                         -->
+				</div>
+			</div>
+		</section>
+		<!-- End Blog Section -->
+	</main>
+	<!-- End #main -->
+
+	<!-- ======= Footer ======= -->
+	<footer id="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Useful Links</h4>
+						<ul>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Our Services</h4>
+						<ul>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-contact">
+						<h4>Contact Us</h4>
+						<p>
+							A108 Adam Street <br /> New York, NY 535022<br /> United States <br /> <br /> <strong>Phone:</strong> +1 5589 55488 55<br /> <strong>Email:</strong> info@example.com<br />
+						</p>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-info">
+						<h3>About Eterna</h3>
+						<p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+						<div class="social-links mt-3">
+							<a href="#" class="twitter">
+								<i class="bx bxl-twitter"></i>
+							</a>
+							<a href="#" class="facebook">
+								<i class="bx bxl-facebook"></i>
+							</a>
+							<a href="#" class="instagram">
+								<i class="bx bxl-instagram"></i>
+							</a>
+							<a href="#" class="google-plus">
+								<i class="bx bxl-skype"></i>
+							</a>
+							<a href="#" class="linkedin">
+								<i class="bx bxl-linkedin"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="copyright">
+				&copy; Copyright <strong><span>Eterna</span></strong>. All Rights Reserved
+			</div>
+			<div class="credits">
+				<!-- All the links in the footer should remain intact. -->
+				<!-- You can delete the links only if you purchased the pro version. -->
+				<!-- Licensing information: https://bootstrapmade.com/license/ -->
+				<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/ -->
+				Designed by
+				<a href="https://bootstrapmade.com/">BootstrapMade</a>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+		<i class="bi bi-arrow-up-short"></i>
+	</a>
+
+	<!-- Vendor JS Files -->
+	<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+	<script src="assets/vendor/php-email-form/validate.js"></script>
+	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+
+	<!-- Template Main JS File -->
+	<script src="assets/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+	<script>
+		$(window).ready(function() {
+			draw(80, '.pie-chart1', '#ccc');
+			draw(50, '.pie-chart2', '#8b22ff');
+			draw(30, '.pie-chart3', '#ff0');
+		});
+
+		function draw(max, classname, colorname) {
+			var i = 1;
+			var func1 = setInterval(function() {
+				if (i < max) {
+					color1(i, classname, colorname);
+					i++;
+				} else {
+					clearInterval(func1);
+				}
+			}, 10);
+		}
+		function color1(i, classname, colorname) {
+			$(classname).css(
+					{
+						"background" : "conic-gradient(" + colorname + " 0% "
+								+ i + "%, #ffffff " + i + "% 100%)"
+					});
+		}
+	</script>
+</body>
+</html>

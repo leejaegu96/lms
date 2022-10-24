@@ -129,3 +129,34 @@
   	padding: 3px;
   	cursor: pointer;
   }
+  #cartBtn{
+  	font-size: 11px;
+  	border: 1px solid blue; 
+  	border-radius: 4px;
+  	padding: 3px;
+  	cursor: pointer;
+  	background-color: blue;
+  	color:white;
+  	font-weight: bold;
+  }
+  #printBtn{
+  	font-size: 11px;
+  	border: 1px solid gray; 
+  	border-radius: 4px;
+  	padding: 3px;
+  	cursor: pointer;
+  	background-color: Gray;
+  	color:white;
+  	font-weight: bold;
+  }
+  #nextBtn{
+  	font-size: 11px;
+  	border: 1px solid green; 
+  	border-radius: 4px;
+  	padding: 3px;
+  	cursor: pointer;
+  	background-color: green;
+  	color:white;
+  	font-weight: bold;
+  	float: right;
+  }
