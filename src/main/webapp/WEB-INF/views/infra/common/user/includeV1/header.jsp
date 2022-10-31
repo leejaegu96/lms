@@ -8,7 +8,7 @@
 	<div class="container d-flex justify-content-between align-items-center">
 		<div class="logo">
 			<h1>
-				<a href="index.html">NEXTLEVEL</a>
+				<a href="../index/">NEXTLEVEL</a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -16,8 +16,8 @@
 
 		<nav id="navbar" class="navbar">
 			<ul>
-				<li><a href="about.html">마이페이지</a></li>
-				<li><a href="services.html">로그인</a></li>
+				<li><a href="../member/dashboard">마이페이지</a></li>
+				<li><a href="../index/login">로그인</a></li>
 			</ul>
 		</nav>
 		<!-- .navbar -->
