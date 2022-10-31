@@ -57,7 +57,7 @@ span.center {
 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container">
 				<ol>
-					<li><a href="../index/">Home</a></li>
+					<li><a href="../index/home">Home</a></li>
 					<li>MyPage</li>
 				</ol>
 				<h2>MyPage</h2>
