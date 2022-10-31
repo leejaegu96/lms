@@ -1,5 +1,7 @@
 package com.sumcofw.infra.modules.index;
 
-public class IndexVo {
+import com.sumcofw.infra.common.base.BaseVo;
+
+public class IndexVo extends BaseVo {
 
 }
