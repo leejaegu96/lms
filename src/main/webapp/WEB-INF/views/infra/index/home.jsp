@@ -35,7 +35,7 @@
 
 				<div class="carousel-inner" role="listbox">
 					<!-- Slide 1 -->
-					<div class="carousel-item active" style="background-image: url(assets/img/slide/javascript.png);">
+					<div class="carousel-item active" style="background-image: url(../../../../resources/template/user_Eterna/assets/img/slide/javascript.png);">
 						<div class="carousel-container">
 							<div class="carousel-content">
 								<h2 class="animate__animated animate__fadeInDown" style="margin-top: 100px; position: relative; right: 150px;">
@@ -48,7 +48,7 @@
 					</div>
 
 					<!-- Slide 2 -->
-					<div class="carousel-item" style="background-image: url(assets/img/slide/use2.png)">
+					<div class="carousel-item" style="background-image: url(../../../../resources/template/user_Eterna/assets/img/slide/use2.png)">
 						<div class="carousel-container">
 							<div class="carousel-content">
 								<h2 class="animate__animated fanimate__adeInDown" style="position: relative; top: 20px;">
@@ -64,7 +64,7 @@
 					</div>
 
 					<!-- Slide 3 -->
-					<div class="carousel-item" style="background-image: url(assets/img/slide/use3.png)">
+					<div class="carousel-item" style="background-image: url(../../../../resources/template/user_Eterna/assets/img/slide/use3.png)">
 						<div class="carousel-container">
 							<div class="carousel-content">
 								<h2 class="animate__animated animate__fadeInDown" style="color: white; position: relative; top: 25px; right: 250px;">
