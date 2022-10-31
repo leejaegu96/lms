@@ -9,9 +9,9 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:mysql://myproject-1.cvslhmvgf71o.ap-northeast-2.rds.amazonaws.com:33066/bigbang" />
-		<property name="username" value="xdmin" />
-		<property name="password" value="dl35050443!^^" />
+		<property name="url" value="jdbc:log4jdbc:mysql://myproject-1.cvslhmvgf71o.ap-northeast-2.rds.amazonaws.com:33066/omygirl" />
+		<property name="username" value="omygirl" />
+		<property name="password" value="passwd12!" />
 	</bean>
 	    
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
