@@ -7,5 +7,20 @@
 <mapper namespace="com.sumcofw.infra.modules.index.IndexMapper">
 
 	<resultMap id="resultMapObj" type="com.sumcofw.infra.modules.index.Index"></resultMap>
+	
+	<!-- 강의 상세보기 페이지에서 강의 정보 불러오기  -->
+	<select id = "lecturedetail" resultMap="resultMapObj">
+		select
+			iltSeq
+			,iltTitle
+			,iltBody
+			,iltPrice
+		from
+			idLecture
+		where 
+			1=1
+			AND iltSeq = #{iltSeq}
+		    ;
+	</select>
 
 </mapper>

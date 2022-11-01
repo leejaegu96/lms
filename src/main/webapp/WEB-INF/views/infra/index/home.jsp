@@ -24,6 +24,7 @@
 
 <body>
 <form name="form" method="post">
+	<input type="hidden" id="iltSeq" name="iltSeq" value="0"/>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->

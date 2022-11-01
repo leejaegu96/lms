@@ -1,16 +1,20 @@
 package com.sumcofw.infra.modules.index;
 
+import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/index/")
 public class IndexController {
-    
+	
+	@Autowired
+    IndexServiceImpl service;
+	
     @RequestMapping(value = "home")
     public String home(Model model) {
         
@@ -42,8 +46,14 @@ public class IndexController {
     }
     
     @RequestMapping(value = "lectureDetail")
-    public String lectureDetail(Locale locale, Model model) {
+    public String lectureDetail(Index dto, Model model) throws Exception {
         
+    	System.out.println("@@@@@@@@@@@ + " + dto.getIltSeq());
+    	
+    	Index result = service.lecturedetail(dto);
+    	
+    	model.addAttribute("lecturedetail",result);
+    	
         return "infra/index/lectureDetail";
     }
     

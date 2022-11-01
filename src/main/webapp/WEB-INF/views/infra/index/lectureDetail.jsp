@@ -35,7 +35,7 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a href="blog.html">Blog</a></li>
 				</ol>
-				<h2>너도 네카라쿠배! 개쩌는 웹 프로그램 강의</h2>
+				<h2>${lecturedetail.iltTitle}</h2>
 			</div>
 		</section>
 		<!-- End Breadcrumbs -->
@@ -51,7 +51,7 @@
 							</div>
 
 							<h2 class="entry-title">
-								<a href="blog-single.html">너도 네카라쿠배! 개쩌는 웹 프로그램 강의</a>
+								<a href="blog-single.html">${lecturedetail.iltTitle}</a>
 							</h2>
 
 							<div class="entry-meta">
@@ -63,8 +63,7 @@
 							</div>
 
 							<div class="entry-content">
-								<p>파이썬 문법 쬬큼 알면 중학생도 쉽게 이해가능한 Tensorflow 딥러닝 기초강좌입니다. 머신러닝 같은거 대학원에서 최소 2년은 구른 사람이 할 수 있는 어려운 건줄 아는 분들이 많은데 실은 아닙니다. 특히 딥러닝은 중고등학교 수학만 조금 알면 집에서 붕알긁고 있는 우리도 포함 누구나 할 수 있습니다. 딥러닝으로 사물자동인식, 가격 예측 등 이런 흔히말하는 AI를 쉽게 만들어서 실생활에 사용해보도록 합시다. 실은 시중 교재와 강좌들이 너무 어렵게 가르치는 부분이 많아 직접 강의를 만들게 되었습니다. 딥러닝을 바닥부터 직접 구현하는 원리학습과 Tensorflow 2버전을 이용해 데이터 파이프라인 만들고 모델만들고 훈련시키고 최적화하고 최종예측모델뽑는 작업을 혼자서도 할 수 있도록 상세히 알려드립니다.</p>
-
+								${lecturedetail.iltBody}
 
 							</div>
 
@@ -216,12 +215,12 @@
 
 					<div class="col-lg-4 box">
 						<div class="sidebar">
-							<h3 class="sidebar-title">너도 네카라쿠배! 개쩌는 웹 프로그램 강의</h3>
+							<h3 class="sidebar-title">${lecturedetail.iltTitle}</h3>
 
 							<br />
 
-							<h3 class="sidebar-title">지금 신청하면</h3>
-							<h3 class="sidebar-title" style="text-align: right">120,000 원</h3>
+							
+							<h3 class="sidebar-title" style="text-align: right">${lecturedetail.iltPrice } <span>원</span></h3>
 
 							<input type="button" value="신청하기" class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
 						</div>
