@@ -37,4 +37,10 @@ public class LecturerController {
 		
 		return "infra/lecturer/lecturerProfile";
 	}
+	
+	@RequestMapping(value = "/lecturerDetail")
+	public String lecturerDetail() throws Exception {
+		
+		return "infra/lecturer/lecturerDetail";
+	}
 }
