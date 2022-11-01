@@ -47,7 +47,7 @@
 					<div class="col-lg-8 entries">
 						<article class="entry entry-single">
 							<div class="entry-img">
-								<img src="../template/user_Eterna/assets/img/blog/blog-1.jpg" alt="" class="img-fluid" />
+								<img src="../../../../resources/template/user_Eterna/assets/img/blog/blog-1.jpg" alt="" class="img-fluid" />
 							</div>
 
 							<h2 class="entry-title">
@@ -65,19 +65,10 @@
 							<div class="entry-content">
 								<p>파이썬 문법 쬬큼 알면 중학생도 쉽게 이해가능한 Tensorflow 딥러닝 기초강좌입니다. 머신러닝 같은거 대학원에서 최소 2년은 구른 사람이 할 수 있는 어려운 건줄 아는 분들이 많은데 실은 아닙니다. 특히 딥러닝은 중고등학교 수학만 조금 알면 집에서 붕알긁고 있는 우리도 포함 누구나 할 수 있습니다. 딥러닝으로 사물자동인식, 가격 예측 등 이런 흔히말하는 AI를 쉽게 만들어서 실생활에 사용해보도록 합시다. 실은 시중 교재와 강좌들이 너무 어렵게 가르치는 부분이 많아 직접 강의를 만들게 되었습니다. 딥러닝을 바닥부터 직접 구현하는 원리학습과 Tensorflow 2버전을 이용해 데이터 파이프라인 만들고 모델만들고 훈련시키고 최적화하고 최종예측모델뽑는 작업을 혼자서도 할 수 있도록 상세히 알려드립니다.</p>
 
-								<h3>[필요지식]</h3>
 
-								<p>파이썬 기초 지식이 필요합니다 - 숫자, 문자 자료형과 사칙연산을 할 수 있다 - 반복문으로 리스트/딕셔너리 자료를 하나씩 꺼내는 법을 안다 - num = [1,2,3] 이라는 리스트를 반복문을 이용해 [2,3,4] 로 변하게 만들 수 있다 - 나는 name = [ ['park', 'kim'] , 'john'] 에서 kim 이라는 자료를 출력할 수 있다 - 함수 & 파라미터 만들어 쓸 수 있다 - 중학교 수학시간에 배운 1차함수, 2차함수, 기울기가 뭔지 안다 는 분들에게 추천드립니다.</p>
-
-								<h3>[커리큘럼]</h3>
-
-								<p>- 딥러닝에 필요한 기초 이론 (perceptron, 머신러닝 개념 등) - Neural Network 만드는 법 (node, weight, 행렬 곱연산, gradient, 경사하강법, loss함수 등) - 가끔 필요한 Numpy, Pandas 문법 - 텐서플로우 기본 자료형과 문법 - Tensorboard 시각화 & 모델 최적화 - 프로젝트0. 텐서로 밑바닥부터 만드는 linear regression 모델 - 프로젝트1. 학점과 영어성적으로 대학원 입학확률 예측하기 - 프로젝트2. 이 사진이 바지인지 셔츠인지 구분해보자 (이미지 분류와 CNN) - 프로젝트2.5. 개/고양이를 구분하는 AI 만들기 & 이미지 전처리 (이미지 분류와 CNN) - 프로젝트3. 혼자 작곡하는 AI 만들기 (RNN) - 프로젝트4. 악플 필터링 AI 만들기 & 자연어처리 (RNN) - 프로젝트5. 이 사람이 죽을 확률을 예측하려면? (csv 카테고리 데이터 다루기) - 프로젝트6. 사람얼굴을 그려주는 이미지 생성기 (GAN)</p>
-
-								<h3>[업데이트사항]</h3>
-								<p>- 머신러닝이란 / 뉴럴네트워크 강의 새롭게 업데이트</p>
 							</div>
 
-							<div class="entry-footer">
+							<!-- <div class="entry-footer">
 								<i class="bi bi-folder"></i>
 								<ul class="cats">
 									<li><a href="#">Business</a></li>
@@ -89,7 +80,7 @@
 									<li><a href="#">Tips</a></li>
 									<li><a href="#">Marketing</a></li>
 								</ul>
-							</div>
+							</div> -->
 						</article>
 						<!-- End blog entry -->
 
@@ -106,13 +97,13 @@
 									<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 										<div class="accordion-body">
 											<div class="list-group">
-												<a href="#" class="list-group-item list-group-item-action"> The current link item </a> <a href="#" class="list-group-item list-group-item-action">A second link item</a> <a href="#" class="list-group-item list-group-item-action">A third link item</a> <a href="#" class="list-group-item list-group-item-action">A fourth link item</a> <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
+												<a href="#" class="list-group-item list-group-item-action"> The current link item </a>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<div class="accordion-item">
+								<!-- <div class="accordion-item">
 									<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
 										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">Chapter #2</button>
 									</h2>
@@ -123,8 +114,8 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="accordion-item">
+								</div> -->
+								<!-- <div class="accordion-item">
 									<h2 class="accordion-header" id="panelsStayOpen-headingThree">
 										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">Chapter #3</button>
 									</h2>
@@ -135,7 +126,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</article>
 						<!-- End blog entry -->

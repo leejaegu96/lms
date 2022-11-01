@@ -13,6 +13,11 @@
     line-height: 1.5em;
 }
 
+#name:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 #star{
     color: #fdcc11;
     width: 0.5rem;
@@ -160,3 +165,5 @@
   	font-weight: bold;
   	float: right;
   }
+  
+ 

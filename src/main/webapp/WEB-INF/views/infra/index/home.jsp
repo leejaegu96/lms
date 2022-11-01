@@ -23,6 +23,7 @@
 </head>
 
 <body>
+<form name="form" method="post">
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -111,11 +112,11 @@
 					<p id="totalstudent">누적 수강생 TOP 3</p>
 					<div class="col-lg-4 col-md-6 d-flex ">
 						<div class="border" style="width: 100%;">
-							<div class="border" style="text-align: center; background-color: green;">
+							<div id="clickimg"class="border" style="text-align: center; background-color: green; cursor: pointer; ">
 								<img src="https://cdn.class101.net/images/325b62f3-e531-425f-b9b8-e53fdadfc9b2/original" alt="" style="width: 80%;" />
 							</div>
-							<p id="name" style="padding-left: 10px; margin-bottom: 0;">주언규PD</p>
-							<h4 id="title" style="padding-left: 10px;">최신 개정판! 스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드는 비법</h4>
+							<p id="name" style="padding-left: 10px; margin-bottom: 0;" >생활코딩 </p>
+							<h4 id="title" style="padding-left: 10px;">수준 높은 백엔드 개발자가 되고 싶은 당신을 위해 </h4>
 							<p style="padding-left: 10px">
 								<i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <span id="reviewnum" style="margin-left: 3px">(63)</span>
 							</p>
@@ -265,6 +266,17 @@
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
-	
+	<script>
+		var form = $("form[name=form]");
+		
+		$("#name").click(function(){
+			form.attr("action", "/index/home").submit();
+		});
+		
+		$("#clickimg").click(function(){
+			form.attr("action", "/index/lectureDetail").submit();
+		});
+	</script>
+</form>
 </body>
 </html>
