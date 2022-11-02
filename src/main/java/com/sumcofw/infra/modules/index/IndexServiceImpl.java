@@ -1,5 +1,7 @@
 package com.sumcofw.infra.modules.index;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,10 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public Index lecturedetail(Index dto) throws Exception {
         return dao.lecturedetail(dto);
+    }
+    
+    @Override
+    public List<Index> chapterlist(Index dto) throws Exception {
+        return dao.chapterlist(dto);
     }
 }

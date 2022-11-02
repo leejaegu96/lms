@@ -1,11 +1,29 @@
 package com.sumcofw.infra.modules.index;
 
 public class Index {
+	
+	// idLecture table
     private String iltSeq;
 
     private String iltTitle;
     private String iltBody;
     private String iltPrice;
+    
+    // idChapterHeader
+    
+    private String ichSeq;
+    private String ichIltSeq;
+    private String ichTitle;
+    
+    // idChapter
+    private String ictSort;
+    private String ictSeq;
+    private String ictTitle;
+    
+    //ifraTeacher
+    private String iftcName;
+    private String iftcSeq;
+ 
 
     /* Member DTO */
     private String ifmmSeq;
@@ -19,8 +37,75 @@ public class Index {
     private String ifmmRegDateTime;
     private String ifmmModDateTime;
     private String ifmmType;
+    
+    
+    
+    
+    public String getIftcSeq() {
+		return iftcSeq;
+	}
 
-    public String getIltSeq() {
+	public void setIftcSeq(String iftcSeq) {
+		this.iftcSeq = iftcSeq;
+	}
+
+	public String getIftcName() {
+		return iftcName;
+	}
+
+	public void setIftcName(String iftcName) {
+		this.iftcName = iftcName;
+	}
+
+	public String getIchSeq() {
+		return ichSeq;
+	}
+
+	public void setIchSeq(String ichSeq) {
+		this.ichSeq = ichSeq;
+	}
+
+	public String getIchIltSeq() {
+		return ichIltSeq;
+	}
+
+	public void setIchIltSeq(String ichIltSeq) {
+		this.ichIltSeq = ichIltSeq;
+	}
+
+	public String getIchTitle() {
+		return ichTitle;
+	}
+
+	public void setIchTitle(String ichTitle) {
+		this.ichTitle = ichTitle;
+	}
+
+	public String getIctSort() {
+		return ictSort;
+	}
+
+	public void setIctSort(String ictSort) {
+		this.ictSort = ictSort;
+	}
+
+	public String getIctSeq() {
+		return ictSeq;
+	}
+
+	public void setIctSeq(String ictSeq) {
+		this.ictSeq = ictSeq;
+	}
+
+	public String getIctTitle() {
+		return ictTitle;
+	}
+
+	public void setIctTitle(String ictTitle) {
+		this.ictTitle = ictTitle;
+	}
+
+	public String getIltSeq() {
         return iltSeq;
     }
 

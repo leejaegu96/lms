@@ -1,6 +1,7 @@
 package com.sumcofw.infra.modules.index;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -122,10 +123,16 @@ public class IndexController {
     @RequestMapping(value = "lectureDetail")
     public String lectureDetail(Index dto, Model model) throws Exception {
 
-        System.out.println("@@@@@@@@@@@ + " + dto.getIltSeq());
+        System.out.println("강의 상세보기 페이지 (강의 시퀀스) == " + dto.getIltSeq());
+        
         Index result = service.lecturedetail(dto);
+        
+        // 렉처 시퀀스, 렉처 제목,챕터 시퀀스, 챕터 제목, 강의명
+        List<Index> chapters = service.chapterlist(dto);
+        
         model.addAttribute("lecturedetail", result);
-
+        model.addAttribute("chapterlist",chapters);
+        
         return "infra/index/lectureDetail";
     }
 

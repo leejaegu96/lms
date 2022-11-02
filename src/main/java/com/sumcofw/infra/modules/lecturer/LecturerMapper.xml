@@ -9,4 +9,16 @@
     <resultMap id="resultMapObj" type="com.sumcofw.infra.modules.lecturer.Lecturer"></resultMap>
 	
 	
+	<select id = "selectOneLecturer" resultMap="resultMapObj">
+		select
+			a.`iftcSeq`
+		    , a.`iftcName`
+		    , a.`iftcProfile`
+		from
+			infrTeacher a
+		where
+			1=1
+		    AND a.`iftcSeq` = #{iftcSeq}
+	</select>
+	
 </mapper>

@@ -23,6 +23,8 @@
 </head>
 
 <body>
+<form method= "post" name="form">
+<input type="hidden" name="iftcSeq" id="iftcSeq"/>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -56,7 +58,7 @@
 
 							<div class="entry-meta">
 								<ul>
-									<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">김진범</a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="javascript:goTeacher(${lecturedetail.iftcSeq })" >${lecturedetail.iftcName}</a></li>
 									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
 									<li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
 								</ul>
@@ -91,12 +93,16 @@
 							<div class="accordion" id="accordionPanelsStayOpenExample">
 								<div class="accordion-item">
 									<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-										<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">Chapter #1</button>
+										<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+											챕터 1
+										</button>
 									</h2>
 									<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 										<div class="accordion-body">
 											<div class="list-group">
-												<a href="#" class="list-group-item list-group-item-action"> The current link item </a>
+												<c:forEach var="chapterlist" items="${chapterlist}" varStatus ="status"> 
+													<a href="#" class="list-group-item list-group-item-action">${chapterlist.ictSort}. &nbsp; ${chapterlist.ictTitle}</a>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
@@ -230,11 +236,21 @@
 		</section>
 		<!-- End Blog Single Section -->
 	</main>
+</form>
 	<!-- End #main -->
 
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
+	<script>
+		var form = $("form[name=form]");
+		
+		goTeacher = function(seq){
+			$("#iftcSeq").val(seq);
+			
+			form.attr("action", "/lecturer/lecturerDetail").submit();
+		}
+	</script>
 
 </body>
 </html>

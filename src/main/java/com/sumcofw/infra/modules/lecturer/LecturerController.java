@@ -4,6 +4,7 @@ package com.sumcofw.infra.modules.lecturer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/lecturer")
 public class LecturerController {
 	
+	@Autowired
+	LecturerServiceImpl service;
 	
 	
 	@RequestMapping(value = "/lectureList")
@@ -39,7 +42,10 @@ public class LecturerController {
 	}
 	
 	@RequestMapping(value = "/lecturerDetail")
-	public String lecturerDetail() throws Exception {
+	public String lecturerDetail(Lecturer dto, Model model) throws Exception {
+		
+		Lecturer result = service.selectOneLecturer(dto);
+		model.addAttribute("ltinfo",result);
 		
 		return "infra/lecturer/lecturerDetail";
 	}

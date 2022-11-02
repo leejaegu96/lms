@@ -1,5 +1,7 @@
 package com.sumcofw.infra.modules.index;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -24,9 +26,15 @@ public class IndexDao {
     public int signUpProc(Index dto) {
         return sqlSession.insert(namespace + ".signUpProc", dto);
     }
-
+    
+    //강의 상세 
     public Index lecturedetail(Index dto) {
         return sqlSession.selectOne(namespace + ".lecturedetail", dto);
+    }
+    
+    //강의 챕터
+    public List<Index> chapterlist(Index dto) {
+        return sqlSession.selectList(namespace + ".chapterlist", dto);
     }
 
 }

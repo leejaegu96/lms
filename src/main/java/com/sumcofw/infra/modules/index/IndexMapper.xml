@@ -11,15 +11,41 @@
 	<!-- 강의 상세보기 페이지에서 강의 정보 불러오기  -->
 	<select id = "lecturedetail" resultMap="resultMapObj">
 		select
-			iltSeq
-			,iltTitle
-			,iltBody
-			,iltPrice
+			a.iltSeq
+            ,a.iltIftcSeq
+			,a.iltTitle
+			,a.iltBody
+			,a.iltPrice
+            ,b.iftcName
+            ,b.iftcSeq   
 		from
-			idLecture
-		where 
+			idLecture a
+		 left join infrTeacher b on a.iltIftcSeq = b.iftcSeq
+		where
 			1=1
-			AND iltSeq = #{iltSeq}
+			AND a.iltSeq = #{iltSeq}
+            ;
+	</select>
+	
+	<!-- 강의 챕터  -->
+	<select id="chapterlist" resultMap="resultMapObj">
+		select
+			a.ichSeq
+			,a.ichIltSeq
+		    , c.iltTitle
+		    , a.ichTitle
+		    , b.ictSort
+		    , b.ictSeq
+		    , b. ictTitle
+		
+		from idChapterHeader a
+		left join idChapter b on a.ichSeq = b.ictIchSeq
+		left join idLecture c on a.ichIltSeq = c.iltSeq
+		where
+			1=1
+		    AND c.iltSeq = #{iltSeq}
+		order by b.ictSort asc
+		    ;
 	</select>
 
 	<!-- 사용자 회원가입 -->
