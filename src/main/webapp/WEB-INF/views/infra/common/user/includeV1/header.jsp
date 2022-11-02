@@ -16,9 +16,20 @@
 
 		<nav id="navbar" class="navbar">
 			<ul>
-				<li><a href="/index/signUp">회원가입 </a></li>
-				<li><a href="../member/dashboard">마이페이지</a></li>
-				<li><a href="../index/login">로그인</a></li>
+				<c:choose>
+					<c:when test="${sessSeq eq null }">
+						<li><a href="/index/signUp">회원가입 </a></li>
+						<li><a href="../index/login">로그인</a></li>
+					</c:when>
+					
+					<c:otherwise>
+						<li><a href="../member/dashboard">마이페이지</a></li>
+						<li><a href="../index/login">로그아웃 </a></li>	
+					</c:otherwise>
+				</c:choose>
+				
+				
+				
 			</ul>
 		</nav>
 		<!-- .navbar -->
