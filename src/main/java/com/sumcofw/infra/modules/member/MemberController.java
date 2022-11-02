@@ -40,5 +40,15 @@ public class MemberController {
 		
 		return "infra/main/modPassword";
 	}
+	@RequestMapping(value = "orderView")
+	public String orderView(Locale locale, Model model) {
+		
+		return "infra/main/orderView";
+	}
+	@RequestMapping(value = "purchased")
+	public String purchased(Locale locale, Model model) {
+		
+		return "infra/main/purchased";
+	}
 	
 }
