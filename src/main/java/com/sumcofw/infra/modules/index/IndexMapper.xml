@@ -8,6 +8,7 @@
 
 	<resultMap id="resultMapObj" type="com.sumcofw.infra.modules.index.Index"></resultMap>
 	
+<<<<<<< HEAD
 	<!-- 강의 상세보기 페이지에서 강의 정보 불러오기  -->
 	<select id = "lecturedetail" resultMap="resultMapObj">
 		select
@@ -23,4 +24,46 @@
 		    ;
 	</select>
 
+=======
+	<!-- 사용자 회원가입 -->
+	<insert id="signUpProc">
+		INSERT INTO `infrMember` (
+			ifmmId
+			,ifmmName
+			,ifmmPassword
+			,ifmmEmail
+			,ifmmDomain
+			,ifmmMobile
+			,ifmmCarrier
+			,ifmmRegDateTime
+			,ifmmModDateTime
+			,ifmmType	
+		) VALUES (
+			#{ifmmId}
+			,#{ifmmName}
+			,#{ifmmPassword}
+			,#{ifmmEmail}
+			,(select ifnull(ifcdSeq, 31) from infraCode where ifcdNameEng = #{ifmmDomain})
+			,#{ifmmMobile}
+			,#{ifmmCarrier}
+			,now()
+			,now()
+			,#{ifmmType}
+		)
+	</insert>
+	
+	<!-- 사용자 로그인 -->
+	<select id="loginProc" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmId
+			,a.ifmmPassword
+			,a.ifmmName
+		FROM infrMember a
+		WHERE 1=1
+			AND a.ifmmId = #{ifmmId}
+			AND a.ifmmPassword = #{ifmmPassword}
+	</select>
+	
+>>>>>>> refs/heads/jin
 </mapper>
