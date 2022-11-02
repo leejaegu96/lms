@@ -40,17 +40,17 @@
 								<h2 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">로그인</h2>
 
 								<div class="form-outline mb-4">
-									<label class="form-label" for="form2Example18">이메일</label>
-									<input type="email" id="form2Example18" class="form-control form-control-lg" placeholder="example@naver.com" style="color: gray; font-size: 12px" />
+									<label class="form-label" for="ifmmId">ID</label>
+									<input type="email" id="ifmmId" name="ifmmId" class="form-control form-control-lg" style="color: gray; font-size: 12px" />
 								</div>
 
 								<div class="form-outline mb-4">
-									<label class="form-label" for="form2Example28">비밀번호</label>
-									<input type="password" id="form2Example28" class="form-control form-control-lg" placeholder="******" style="color: gray; font-size: 12px" />
+									<label class="form-label" for="ifmmPassword">PW</label>
+									<input type="password" id="ifmmPassword" name="ifmmPassword" class="form-control form-control-lg" style="color: gray; font-size: 12px" />
 								</div>
 
 								<div class="d-grid gap-2 col-12 mx-auto">
-									<button class="btn" type="button" style="background-color: orange; color: white">로그인</button>
+									<button class="btn" type="button" style="background-color: orange; color: white" onClick="onLogin()">로그인</button>
 								</div>
 								<hr />
 								<div class="d-grid gap-2 col-12 mx-auto">
@@ -82,6 +82,29 @@
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
+
+	<script>
+	function onLogin() {
+		$.ajax({
+			url:'./loginProc',
+			type:'post',
+			data:{
+				"ifmmId" : $("#ifmmId").val(),
+				"ifmmPassword" : $("#ifmmPassword").val(),
+			},
+			success:(res) => {
+				if (res.rt == "success") {
+					alert("로그인 성공!");
+				} else {
+					alert("회원가입 실패");
+				}
+			},
+			error:(jqXHR) => {
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	};
+	</script>
 
 </body>
 </html>

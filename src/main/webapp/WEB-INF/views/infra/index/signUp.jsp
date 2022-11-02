@@ -34,36 +34,63 @@
 					<div class="col-4 text-black"></div>
 					<div class="col-4">
 						<div class="d-flex align-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-							<form style="width: 27rem" style="justify-content: center">
+							<form id="form" name="form" style="width: 27rem" style="justify-content: center">
 								<div class="row">
-									<h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">회원가입</h3>
-									<div class="col">
-										<h5 style="float: right; color: gray">수강생</h5>
-										<h5 style="float: right; color: gray">강사 &nbsp;&nbsp;</h5>
-									</div>
-								</div>
-								<div class="form-outline mb-4">
-									<label class="form-label" for="form2Example18">이름 </label>
-									<input type="text" id="form2Example8" class="form-control form-control-lg" placeholder="홍길동" style="color: gray; font-size: 12px" />
-								</div>
-								<div class="form-outline mb-4">
-									<label class="form-label" for="form2Example18">이메일</label>
-									<input type="email" id="form2Example18" class="form-control form-control-lg" placeholder="example@naver.com" style="color: gray; font-size: 12px" />
+									<h3 class="fw-normal mb-3 pb-3">회원가입</h3>
+									<div class="col"></div>
 								</div>
 
+								<!-- ifmmName -->
 								<div class="form-outline mb-4">
-									<label class="form-label" for="form2Example28">비밀번호</label>
-									<input type="password" id="form2Example28" class="form-control form-control-lg" placeholder="******" style="color: gray; font-size: 12px" />
-									<h6 style="color: gray; font-size: 13px">영문 대소문/숫자/특수문자 중 2가지 이상 조합, 8자 이상</h6>
+									<label class="form-label" for="ifmmName">이름 </label>
+									<input type="text" id="ifmmName" name="ifmmName" class="form-control form-control" placeholder="홍길동" />
 								</div>
 
+								<!-- ifmmId -->
 								<div class="form-outline mb-4">
-									<label class="form-label" for="form2Example28">비밀번호 확인 </label>
-									<input type="password" id="form2Example28" class="form-control form-control-lg" placeholder="******" style="color: gray; font-size: 12px" />
+									<label class="form-label" for="ifmmId">ID </label>
+									<input type="text" id="ifmmId" name="ifmmId" class="form-control form-control" />
 								</div>
 
+								<!-- ifmmEmail -->
+								<div class="form-outline mb-4">
+									<label class="form-label" for="mailPreview">이메일</label>
+									<input type="email" id="mailPreview" name="mailPreview" class="form-control form-control" placeholder="example@naver.com" />
+									<input type="hidden" id="ifmmEmail" name="ifmmEmail" />
+									<input type="hidden" id="ifmmDoamin" name="ifmmDoamin" />
+								</div>
+
+								<!-- ifmmMobile -->
+								<div class="form-outline mb-4">
+									<label class="form-label" for="ifmmMobile">모바일</label>
+									<input type="email" id="ifmmMobile" name="ifmmMobile" class="form-control form-control" />
+								</div>
+								
+								<!-- ifmmCarrier -->
+								<div class="form-outline mb-4">
+									<select class="form-select" id="ifmmCarrier" name="ifmmCarrier">
+										<option selected>통신사</option>
+										<option value="1">SKT</option>
+										<option value="2">KT</option>
+										<option value="3">LGT</option>
+									</select>
+								</div>
+								
+								<!-- ifmmPassword -->
+								<div class="form-outline mb-4">
+									<label class="form-label" for="ifmmPassword">비밀번호</label>
+									<input type="password" id="ifmmPassword" name="ifmmPassword" class="form-control form-control" />
+								</div>
+								<div class="form-outline mb-4">
+									<label class="form-label" for="confirmPw">비밀번호 확인 </label>
+									<input type="password" id="confirmPw" class="form-control form-control"/>
+								</div>
+
+								<!-- Submit -->
 								<div class="d-grid gap-2 col-12 mx-auto">
-									<button class="btn" type="button" style="background-color: orange; color: white">동의하고 회원가입</button>
+									<button class="btn" type="button" style="background-color: orange; color: white" onClick="onSubmit()">
+										동의하고 회원가입
+									</button>
 								</div>
 								<hr />
 								<div class="d-grid gap-2 col-12 mx-auto">
@@ -71,7 +98,6 @@
 									<button type="button" class="btn btn-success" style="font-weight: bold; color: white; height: 40px">네이버로 시작하기</button>
 									<button type="button" class="btn btn-primary" style="font-weight: bold; color: white; height: 40px">페이스북으로 시작하기</button>
 									<button type="button" class="btn btn-light" style="font-weight: bold; height: 40px">구글로 시작하기</button>
-									<button type="button" class="btn btn-dark" style="font-weight: bold; height: 40px">애플로 시작하기</button>
 								</div>
 							</form>
 						</div>
@@ -86,6 +112,41 @@
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
+	
+	<script>
+		function onSubmit() {
+			const form = $("form[name=form]");
+			const str = $("#mailPreview").val().split('@')
+			console.log(str[0])
+			console.log(str[1])
+				
+			$.ajax({
+				url:'./signUpProc',
+				type:'post',
+				data:{
+					"ifmmId" : $("#ifmmId").val(),
+					"ifmmName" : $("#ifmmName").val(),
+					"ifmmPassword" : $("#ifmmPassword").val(),
+					"ifmmEmail" : str[0],
+					"ifmmDomain" : str[1],
+					"ifmmMobile" : $("#ifmmMobile").val(),
+					"ifmmCarrier" : $("#ifmmCarrier").val(),
+					"ifmmType" : "31"
+				},
+				success:(res) => {
+					if (res.rt == "success") {
+						alert("회원가입을 축하합니다!");
+						location.href = "/index/login";
+					} else {
+						alert("회원가입 실패");
+					}
+				},
+				error:(jqXHR) => {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		};
+	</script>
 
 </body>
 </html>
