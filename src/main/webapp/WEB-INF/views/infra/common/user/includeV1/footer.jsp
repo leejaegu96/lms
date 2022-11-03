@@ -76,3 +76,6 @@
 <!-- Template Main JS File -->
 <script src="../../../../resources/template/user_Eterna/assets/js/main.js"></script>
 <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+<script>
+	var form = $("form[name=form]");
+</script>

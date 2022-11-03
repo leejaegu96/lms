@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 
+
+
 <!-- ======= Header ======= -->
 <header id="header" class="d-flex align-items-center">
 	<div class="container d-flex justify-content-between align-items-center">

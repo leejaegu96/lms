@@ -13,7 +13,7 @@ public class LecturerServiceImpl implements LecturerService{
 	@Autowired
 	LecturerDao dao;
 	
-	//@Override
+	@Override
 	public Lecturer selectOneLecturer(Lecturer dto) throws Exception {
         return dao.selectOneLecturer(dto);
     }

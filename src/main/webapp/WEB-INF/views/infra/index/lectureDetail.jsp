@@ -24,7 +24,9 @@
 
 <body>
 <form method= "post" name="form">
-<input type="hidden" name="iftcSeq" id="iftcSeq"/>
+
+<input type="hidden" name="iltSeq" id="iltSeq" value="${lecturedetail.iltSeq}"/>
+<input type="hidden" name="iftcSeq" id="iftcSeq" value="${lecturedetail.iftcSeq}"/>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -229,6 +231,19 @@
 							<h3 class="sidebar-title" style="text-align: right">${lecturedetail.iltPrice } <span>원</span></h3>
 
 							<input type="button" value="신청하기" class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
+							<div style="display: table; width: 100%; margin-top: 5px;">
+								<div style="display:table-row; text-align: center;">
+									<div style="display: table-cell; padding-right: 5px;">
+										<input id="buynow" type="button" value="구매하기 " class="btn btn-danger" style="width: 100%; color: black; background-color: white;" />
+									</div>
+									<div style="display: table-cell; padding-right: 5px;">
+										<input type="button" value="찜하기 " class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
+									</div>
+									<div style="display: table-cell">
+										<input id="cart" type="button" value="장바구니 " class="btn btn-danger" style="width: 100%" />
+									</div>
+								</div>
+							</div>	
 						</div>
 					</div>
 				</div>
@@ -250,6 +265,10 @@
 			
 			form.attr("action", "/lecturer/lecturerDetail").submit();
 		}
+		
+		$("#buynow").click(function(){
+			form.attr("action", "/member/orderView").submit();
+		});
 	</script>
 
 </body>

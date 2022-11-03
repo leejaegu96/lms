@@ -37,6 +37,10 @@
 </head>
 
 <body>
+<form method = "post" name = "form">
+
+<input type="hidden" name="iltSeq" id="iltSeq" value="${lecturedetail.iltSeq}"/>
+<input type="hidden" name="iftcSeq" id="iftcSeq" value="${lecturedetail.iftcSeq}"/>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -58,34 +62,12 @@
 										<div class="post-item clearfix">
 											<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" />
 											<h4>
-												<a href="blog-single.html">권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리</a>
+												<a href="blog-single.html">${oneItem.iltTitle}</a>
 											</h4>
-											<h3 style="float: right">220,000 원</h3>
+											<h3 style="float: right">${oneItem.iltPrice }<span>원</span></h3>
 											<time datetime="2020-01-01">Jan 1, 2020</time>
 										</div>
-									</div>
-
-									<div class="sidebar-item recent-posts">
-										<div class="post-item clearfix">
-											<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" />
-											<h4>
-												<a href="blog-single.html">권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리</a>
-											</h4>
-											<h3 style="float: right">220,000 원</h3>
-											<time datetime="2020-01-01">Jan 1, 2020</time>
-										</div>
-									</div>
-
-									<div class="sidebar-item recent-posts">
-										<div class="post-item clearfix">
-											<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" />
-											<h4>
-												<a href="blog-single.html">권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리</a>
-											</h4>
-											<h3 style="float: right">220,000 원</h3>
-											<time datetime="2020-01-01">Jan 1, 2020</time>
-										</div>
-									</div>
+									</div>					
 								</div>
 							</div>
 						</article>
@@ -100,12 +82,12 @@
 								<ul>
 									<li>
 										상품 금액
-										<p style="float: right">660,000 원</p>
+										<p style="float: right"> ${oneItem.iltPrice }<span>원</span></p>
 									</li>
 									<hr />
 									<li>
 										총 결제 금액
-										<p style="float: right">660,000 원</p>
+										<p style="float: right"> ${oneItem.iltPrice }<span>원</span> </p>
 									</li>
 								</ul>
 							</div>
@@ -127,7 +109,7 @@
 									</li>
 									<li>모든 약관에 동의합니다.</li>
 									<li>
-										<input type="button" value="결제하기" class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
+										<input id="payNow" type="button" value="결제하기" class="btn btn-danger" style="width: 100%"  />
 									</li>
 								</ul>
 							</div>
@@ -141,11 +123,45 @@
 		</section>
 		<!-- End Blog Section -->
 	</main>
+</form>
 	<!-- End #main -->
 
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
-
+	<script>
+		$("#payNow").click(function(){
+			
+			$.ajax({ 
+				url : "/member/orderInsert",
+				 
+				type : 'post',
+				
+				data : {
+					iltSeq : $("#iltSeq").val()
+				},
+				
+				success : function(data) {
+		
+				 	if(data.rt == "success"){			 		
+						alert("아작스 성공 ");
+					 } else {
+						 // by pass
+					 }
+					
+			     },
+			          
+				error : function(request, status, error){ 
+								
+					  	console.log("code: " + request.status)	
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+					 }	     
+			});	
+			
+			return false;
+			form.attr("action", "/member/purchased").submit();
+		});
+	</script>
 </body>
 </html>
