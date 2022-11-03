@@ -95,6 +95,7 @@
 			success:(res) => {
 				if (res.rt == "success") {
 					alert("로그인 성공!");
+					location.href="/index/home";
 				} else {
 					alert("회원가입 실패");
 				}
