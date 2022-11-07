@@ -22,4 +22,9 @@ public class MemberDao {
     public int orderInsert(Member dto) {
         return sqlSession.insert(namespace + ".orderInsert", dto);
     }
+    
+    //idOrder에 추가 
+    public int orderDetailInsert(Member dto) {
+    	return sqlSession.insert(namespace + ".orderDetailInsert", dto);
+    }
 }

@@ -75,12 +75,33 @@ public class MemberController {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
+		System.out.println(dto.getIfmmSeq());
 		int result = service.orderInsert(dto);
-		System.out.println("컨트롤러 실행!");
+		System.out.println("orderInsert 실행!");
 		
+		System.out.println(dto.getIodNumber());
 		
-		returnMap.put("rt", "success");			
+		returnMap.put("rt", "success");
+		returnMap.put("iodNumber", dto.getIodNumber());
+
 		
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "orderDetailInsert")
+	public Map<String, Object> orderDetailInsert(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("orderDetailInsert 실행 ");
+		System.out.println(dto.getIpmIltSeq());
+		System.out.println(dto.getIltSeq());
+		
+		int result = service.orderDetailInsert(dto);
+		
+		returnMap.put("rt", "success");
+			
 		return returnMap;
 	}
 	

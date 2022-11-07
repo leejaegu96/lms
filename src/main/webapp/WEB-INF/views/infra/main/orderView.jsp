@@ -39,8 +39,11 @@
 <body>
 <form method = "post" name = "form">
 
-<input type="hidden" name="iltSeq" id="iltSeq" value="${lecturedetail.iltSeq}"/>
-<input type="hidden" name="iftcSeq" id="iftcSeq" value="${lecturedetail.iftcSeq}"/>
+<input type="hidden" name="iltSeq" id="iltSeq" value="${oneItem.iltSeq}"/>
+<input type="hidden" name="iftcSeq" id="iftcSeq" value="${oneItem.iftcSeq}"/>
+<input type="hidden" name="ifmmSeq" id="ifmmSeq" value="${sessSeq}"/>
+
+
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -87,7 +90,7 @@
 									<hr />
 									<li>
 										총 결제 금액
-										<p style="float: right"> ${oneItem.iltPrice }<span>원</span> </p>
+										<p style="float: right"> <span id="iodTotalPrice"> ${oneItem.iltPrice }</span>	<span>원</span> </p>
 									</li>
 								</ul>
 							</div>
@@ -131,6 +134,7 @@
 	<!-- include footer-->
 	<script>
 		$("#payNow").click(function(){
+		
 			
 			$.ajax({ 
 				url : "/member/orderInsert",
@@ -139,12 +143,45 @@
 				
 				data : {
 					iltSeq : $("#iltSeq").val()
+					,ifmmSeq : $("#ifmmSeq").val()
+					,iodTotalPrice : $("#iodTotalPrice").text()
 				},
 				
 				success : function(data) {
 		
 				 	if(data.rt == "success"){			 		
-						alert("아작스 성공 ");
+						alert(data.iodNumber);	
+						
+							$.ajax({ 
+								url : "/member/orderDetailInsert",
+								 
+								type : 'post',
+								
+								data : {
+									iltSeq : $("#iltSeq").val()
+									,ipmIltSeq : data.iodNumber
+								},
+								
+								success : function(data) {
+						
+								 	if(data.rt == "success"){			 		
+										
+										alert('okay');
+										return false;	
+										form.attr("action", "/member/purchased").submit();
+									 } else {
+										 // by pass
+									 }
+									
+							     },
+							          
+								error : function(request, status, error){ 
+												
+									  	console.log("code: " + request.status)	
+								        console.log("message: " + request.responseText)
+								        console.log("error: " + error);
+									 }	     
+							});							
 					 } else {
 						 // by pass
 					 }

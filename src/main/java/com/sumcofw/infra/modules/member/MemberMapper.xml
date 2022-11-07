@@ -16,13 +16,15 @@
 		    ,iodTotalPrice
 		    ,iodPayDateTime
 		    ,iodPayMethod
+		    ,iodNumber
 		)
 		
 		values(
 			#{ifmmSeq}
 		    ,#{iodTotalPrice}
 		    ,#{iodPayDateTime}
-		    ,#{iodPayMethod}
+		    , 1 
+		    ,#{iodNumber}
 		)
 			
 		<selectKey resultType ="String" keyProperty = "iodSeq" order ="AFTER">
@@ -31,4 +33,21 @@
         
 	</insert>
 	
+	<insert id = "orderDetailInsert" > 
+		
+		insert into idPayment(
+			ipmIodSeq
+			,ipmIltSeq
+		)
+		
+		values(
+			#{iltSeq}
+			,#{ipmIltSeq}
+		)
+			
+		<selectKey resultType ="String" keyProperty = "ipmSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        </selectKey>
+        
+	</insert>
 </mapper>

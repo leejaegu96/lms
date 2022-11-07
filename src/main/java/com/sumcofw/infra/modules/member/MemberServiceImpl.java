@@ -1,7 +1,12 @@
 package com.sumcofw.infra.modules.member;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sumcofw.infra.common.util.UtilDateTime;
 
 
 
@@ -13,6 +18,21 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public int orderInsert(Member dto) throws Exception {
+		
+		Date now = UtilDateTime.nowDate();
+		
+		SimpleDateFormat sdf0;
+		sdf0 = new SimpleDateFormat(dto.getIfmmSeq()+"-yyyyMMddHHmmss");
+		System.out.println(sdf0.format(now));
+		
+		dto.setIodNumber(sdf0.format(now));
+		dto.setIodPayDateTime(now);
         return dao.orderInsert(dto);
+    }
+	
+	@Override
+	public int orderDetailInsert(Member dto) throws Exception {
+				
+        return dao.orderDetailInsert(dto);
     }
 }
