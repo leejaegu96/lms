@@ -16,27 +16,16 @@
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
-<!-- Favicons -->
-<link href="../../../../resources/template/user_Eterna/assets/img/favicon.png" rel="icon" />
-<link href="../../../../resources/template/user_Eterna/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
-
-<!-- Vendor CSS Files -->
-<link href="../../../../resources/template/user_Eterna/assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
-<link href="../../../../resources/template/user_Eterna/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../../../../resources/template/user_Eterna/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../../../resources/template/user_Eterna/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-<link href="../../../../resources/template/user_Eterna/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-<link href="../../../../resources/template/user_Eterna/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-
+<!-- include link -->
+<%@include file=".././common/user/includeV1/link.jsp"%>
+<!-- include link -->
 
 <!-- 추가 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<!-- Template Main CSS File -->
-<link href="../../../../resources/template/user_Eterna/assets/css/style.css" rel="stylesheet" />
+<!-- toast css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
 <style>
 #btn-upload {
@@ -90,6 +79,18 @@
 #rowPad {
 	padding-top: 10px;
 }
+#editor {
+    /* border : 1px solid; */
+    width : 100%;
+    margin : 0 auto;
+}
+/* !!여기!! 새로운 div태그 스타일 추가해줫습니다. */
+#contents {
+    width:100%;
+    height: 100px;
+    margin : 30px auto;
+    border : 1px solid;
+}
 </style>
 
 <!-- =======================================================
@@ -101,49 +102,11 @@
 </head>
 
 <body>
-	<!-- ======= Header ======= -->
-	<header id="header" class="d-flex align-items-center">
-		<div class="container d-flex justify-content-between align-items-center">
-			<div class="logo">
-				<h1>
-					<a href="index.html">NEXTLEVEL</a>
-				</h1>
-				<!-- Uncomment below if you prefer to use an image logo -->
-				<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-			</div>
-
-			<nav id="navbar" class="navbar">
-				<ul>
-					<li>
-						<div class="input-group mb-3" style="margin-top: 15px">
-							<input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2" />
-							<button class="btn btn-outline-secondary" type="button" id="button-addon2">
-								<i class="fa-solid fa-magnifying-glass"></i>
-							</button>
-						</div>
-					</li>
-					<li><a class="active" href="index.html">Home</a></li>
-					<li><a href="about.html">MYpage</a></li>
-					<li><a href="services.html">Login</a></li>
-				</ul>
-			</nav>
-			<!-- .navbar -->
-		</div>
-	</header>
-	<!-- End Header -->
+	<!-- include header -->
+	<%@include file=".././common/user/includeV1/header.jsp"%>
+	<!-- include header -->
 
 	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container">
-				<ol>
-					<li><a href="index.html">Home</a></li>
-					<li>Blog</li>
-				</ol>
-				<h2>Blog</h2>
-			</div>
-		</section>
-		<!-- End Breadcrumbs -->
 
 		<!-- ======= Blog Section ======= -->
 		<section id="blog" class="blog">
@@ -231,7 +194,7 @@
 
 												<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 													<!-- Profile Edit Form -->
-													<form>
+													<form name="form">
 														<div class="row mb-3">
 															<div class="col-md-4 col-lg-3 col-form-label" id="labelCen">프로필 사진</div>
 															<div class="col-lg-9 col-md-8 text-center">
@@ -255,12 +218,17 @@
 																<span>크리에이터 소개&nbsp;</span> <span style="color: white; font-weight: bold; background-color: black; border-radius: 30%;">필수</span>
 															</div>
 															<div class="col-md-8 col-lg-9">
-																<textarea name="" type="text" class="form-control" id="" cols="100" rows="10">
-페이스북의 경우 국내 개발자 커뮤니티 중 접근성이 좋고 다양한 사람이 많이 포진되어 있다. 
+																<!-- TOAST UI Editor가 들어갈 div태그 -->
+															    <div id="editor"></div>
+															    <!-- !!여기!! 에디터 내용을 받을 div태그-->
+															    <div id="viewer" style="background-color: white"></div>
+																<!-- 
+																<textarea name="" type="text" class="form-control" id="" cols="100" rows="10">페이스북의 경우 국내 개발자 커뮤니티 중 접근성이 좋고 다양한 사람이 많이 포진되어 있다. 
 																기본적인 설립목적이 누구나 접근하기 쉬운 코딩, 생활코딩이라는 의미처럼 취미로 하는 사람도, 회사에서 개발하고 있는 사람도 다양한 사람이 모여있다.
 																오픈 튜토리얼스 사이트는 일종의 강의 사이트로 외국의 codecademy, code.org와 같은 사이트지만 일반 유저가 직접 강의를 제작하여 만들 수 있다.
 																코딩과 네트워킹 등 소프트웨어 기술 뿐 아니라 개발자 영어, 독일어 등과 같은 외국어, 심지어 육아에 요리까지 넓은 분야의 강의가 올라온다.
 																</textarea>
+																 -->
 															</div>
 														</div>
 
@@ -340,9 +308,34 @@
 		<!-- End Blog Section -->
 	</main>
 	<!-- End #main -->
-
+	
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
+	<!-- toast javascript -->
+	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+	
+	<script>
+		let intro = '<div id="info">'+ '<h2>들어가는말</h2>    <p>    생활코딩의 세계에 오신 것을 환영합니다. 생활코딩은 <strong>일반인들에게 프로그래밍을 알려주는 무료 온라인, 오프라인 수업입니다. </strong>&nbsp;어떻게 공부할 것인가를 생각해보기 전에 왜&nbsp;프로그래밍을 공부하는 이유에 대한 이유를 함께 생각해보면 좋을 것 같습니다. 아래 영상을 한번 보시죠.</p>	<p>   입문자의 가장 큰 고충은 &#39;무엇을 모르는지 모르는 상태&#39;일 겁니다.   온라인에는 프로그래밍을 익히는 데 필요한 거의 모든 정보가 있지만, 이 지식들은 게시판이나 블로그 또는 커뮤니티에 포스팅 단위로 파편화되어 있습니다.	    그래서 최소한 무엇을 검색해야 하는지를 아는 사람들을 위해서는 더 없이 좋은 공간이지만, &#39;무엇을 모르는지 모르는 상태&#39;의 입문자에게는 그림의 떡으로 남아 있습니다.     다시말해서 전문가를 더욱 전문가답게 만드는 혁신에 머물고 있는 것이죠.</p>	<p> 생활코딩은 컴퓨터와 인터넷이 존재하는 시대의 공부방법은 어때야 하는가를 찾는 작업을 꾸준히 하고 있습니다.	    정보기술이 발전하지 않았던, 낭만적인 시절에는 어떤 일을 하려고 하면 그것을 하기 위해서 필요한 거의 모든 것을 알고 있어야 했습니다. 검색할수도 없었고, 질문하기도 어려웠기 때문입니다. 한편 한번 배운 지식만으로도 평생을 살아 갈 수 있었습니다. &nbsp;</p>' +'</div>'
+        const editor = new toastui.Editor({
+            el: document.querySelector('#editor'),
+            previewStyle: 'vertical',
+            height: '500px',
+            initialEditType: 'wysiwyg',
+            initialValue: intro
+        });
+        
+        // !!여기!! editor.getHtml()을 사용해서 에디터 내용 받아오기
+		console.log(editor.getHTML());
+        
+    </script>
+    <script>
+    const viewer = toastui.Editor.factory({
+        el: document.querySelector('#viewer'),
+        viewer: true,
+        initialValue: '<h2>들어가는말</h2>    <p>    생활코딩의 세계에 오신 것을 환영합니다. 생활코딩은 <strong>일반인들에게 프로그래밍을 알려주는 무료 온라인, 오프라인 수업입니다. </strong>&nbsp;어떻게 공부할 것인가를 생각해보기 전에 왜&nbsp;프로그래밍을 공부하는 이유에 대한 이유를 함께 생각해보면 좋을 것 같습니다. 아래 영상을 한번 보시죠.</p>	<p>   입문자의 가장 큰 고충은 &#39;무엇을 모르는지 모르는 상태&#39;일 겁니다.   온라인에는 프로그래밍을 익히는 데 필요한 거의 모든 정보가 있지만, 이 지식들은 게시판이나 블로그 또는 커뮤니티에 포스팅 단위로 파편화되어 있습니다.	    그래서 최소한 무엇을 검색해야 하는지를 아는 사람들을 위해서는 더 없이 좋은 공간이지만, &#39;무엇을 모르는지 모르는 상태&#39;의 입문자에게는 그림의 떡으로 남아 있습니다.     다시말해서 전문가를 더욱 전문가답게 만드는 혁신에 머물고 있는 것이죠.</p>	<p> 생활코딩은 컴퓨터와 인터넷이 존재하는 시대의 공부방법은 어때야 하는가를 찾는 작업을 꾸준히 하고 있습니다.	    정보기술이 발전하지 않았던, 낭만적인 시절에는 어떤 일을 하려고 하면 그것을 하기 위해서 필요한 거의 모든 것을 알고 있어야 했습니다. 검색할수도 없었고, 질문하기도 어려웠기 때문입니다. 한편 한번 배운 지식만으로도 평생을 살아 갈 수 있었습니다. &nbsp;</p>'
+    });
+</script>
+    
 </body>
 </html>
