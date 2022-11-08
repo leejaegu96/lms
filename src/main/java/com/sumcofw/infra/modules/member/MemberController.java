@@ -1,6 +1,7 @@
 package com.sumcofw.infra.modules.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import com.sumcofw.infra.modules.index.Index;
 import com.sumcofw.infra.modules.index.IndexServiceImpl;
@@ -64,7 +64,15 @@ public class MemberController {
 		return "infra/main/orderView";
 	}
 	@RequestMapping(value = "purchased")
-	public String purchased(Locale locale, Model model) {
+	public String purchased(Member dto, Model model) throws Exception {
+		
+		System.out.println("purchased 실행 ");
+		
+		Member orderResult = service.orderResult(dto);
+		List<Member> orderDeatilList = service.orderDetailList(dto);
+		
+		model.addAttribute("orderResult",orderResult);
+		model.addAttribute("detailList",orderDeatilList);
 		
 		return "infra/main/purchased";
 	}
@@ -82,7 +90,7 @@ public class MemberController {
 		System.out.println(dto.getIodNumber());
 		
 		returnMap.put("rt", "success");
-		returnMap.put("iodNumber", dto.getIodNumber());
+		returnMap.put("iodSeq", dto.getIodSeq());
 
 		
 		return returnMap;
@@ -95,8 +103,8 @@ public class MemberController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		System.out.println("orderDetailInsert 실행 ");
-		System.out.println(dto.getIpmIltSeq());
-		System.out.println(dto.getIltSeq());
+		System.out.println(dto.getIodSeq());
+		System.out.println(dto.getIfmmSeq());
 		
 		int result = service.orderDetailInsert(dto);
 		

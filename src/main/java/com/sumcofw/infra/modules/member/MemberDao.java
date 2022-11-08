@@ -1,5 +1,7 @@
 package com.sumcofw.infra.modules.member;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -26,5 +28,15 @@ public class MemberDao {
     //idOrder에 추가 
     public int orderDetailInsert(Member dto) {
     	return sqlSession.insert(namespace + ".orderDetailInsert", dto);
+    }
+    
+    //idOrder에 추가 
+    public Member orderResult(Member dto) {
+    	return sqlSession.selectOne(namespace + ".orderResult", dto);
+    }
+    
+    //idOrder에 추가 
+    public List<Member> orderDetailList(Member dto) {
+    	return sqlSession.selectList(namespace + ".orderDetailList", dto);
     }
 }

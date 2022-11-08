@@ -26,9 +26,19 @@ public class Member {
 	// idLecture
 	
 	private String iltSeq;
+	private String iltTitle;
 	
 	
 	
+	
+	public String getIltTitle() {
+		return iltTitle;
+	}
+
+	public void setIltTitle(String iltTitle) {
+		this.iltTitle = iltTitle;
+	}
+
 	public String getIltSeq() {
 		return iltSeq;
 	}
@@ -101,7 +111,6 @@ public class Member {
 		this.iodTotalPrice = iodTotalPrice;
 	}
 
-	
 
 	public String getIodPayMethod() {
 		return iodPayMethod;

@@ -12,7 +12,7 @@
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<title>NEXTLEVEL</title>
+<title> 구매 완료 </title>
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
@@ -80,13 +80,15 @@ span.center {
 					<table class="table border">
 						<tr>
 							<td class="trcss">주문번호</td>
-							<td>20210504136</td>
+							<td>
+								${orderResult.iodNumber }  
+							</td>
 						</tr>
 
 						<tr>
 							<td class="trcss">결제금액</td>
 							<td>
-								171,000 <span>원 </span>
+								<fmt:formatNumber value="${orderResult.iodTotalPrice }" pattern="#,###"/> <span>원 </span>
 							</td>
 						</tr>
 
@@ -97,7 +99,7 @@ span.center {
 
 						<tr>
 							<td class="trcss">결제일시</td>
-							<td>2022.10.21 11:15:24</td>
+							<td> <fmt:formatDate value="${orderResult.iodPayDateTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						</tr>
 					</table>
 
@@ -108,6 +110,8 @@ span.center {
 							<td style="width: 10%">카테고리</td>
 
 						</tr>
+						
+						<c:forEach var="detailList" items="${detailList }" varStatus="status"> 
 						<tr style="font-size: 13px; vertical-align: middle;">
 							<td style="padding: 0;">
 								<table style="table-layout: fixed; width: 100%">
@@ -115,29 +119,15 @@ span.center {
 										<td style="width: 3em">
 											<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" style="width: 3em" style="display:inline-block;" />
 										</td>
-										<td style="padding-left: 10px;">권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리</td>
+										<td style="padding-left: 10px;"> ${detailList.iltTitle }</td>
 									</tr>
 								</table>
 							</td>
 							<td style="text-align: center;">원포인트 클래스</td>
 							<td style="text-align: center;">생활/건강</td>
-
 						</tr>
-						<tr style="font-size: 13px; vertical-align: middle;">
-							<td style="padding: 0;">
-								<table style="table-layout: fixed; width: 100%">
-									<tr>
-										<td style="width: 3em">
-											<img src="https://cdn.class101.net/images/37d8a757-0f38-4424-a58f-b71444a712f8/960xauto.webp" alt="" style="width: 3em" style="display:inline-block;" />
-										</td>
-										<td style="padding-left: 10px;">아이패드 하나로 기록하는 키츠의 아날로그 텍스처 일상</td>
-									</tr>
-								</table>
-							</td>
-							<td style="text-align: center;">원포인트 클래스</td>
-							<td style="text-align: center;">생활/취미</td>
-
-						</tr>
+						</c:forEach>
+						
 					</table>
 
 					<div style="text-align: center;">

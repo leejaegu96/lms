@@ -42,6 +42,7 @@
 <input type="hidden" name="iltSeq" id="iltSeq" value="${oneItem.iltSeq}"/>
 <input type="hidden" name="iftcSeq" id="iftcSeq" value="${oneItem.iftcSeq}"/>
 <input type="hidden" name="ifmmSeq" id="ifmmSeq" value="${sessSeq}"/>
+<input type="hidden" name="iodSeq" id="iodSeq"/>
 
 
 	<!-- include header -->
@@ -135,6 +136,7 @@
 	<script>
 		$("#payNow").click(function(){
 		
+			var iodSeq;
 			
 			$.ajax({ 
 				url : "/member/orderInsert",
@@ -150,7 +152,9 @@
 				success : function(data) {
 		
 				 	if(data.rt == "success"){			 		
-						alert(data.iodNumber);	
+						alert(data.iodSeq);
+						iodSeq = data.iodSeq;
+						$("#iodSeq").val(iodSeq);
 						
 							$.ajax({ 
 								url : "/member/orderDetailInsert",
@@ -159,15 +163,13 @@
 								
 								data : {
 									iltSeq : $("#iltSeq").val()
-									,ipmIltSeq : data.iodNumber
+									,iodSeq : data.iodSeq
+									,ifmmSeq: $("#ifmmSeq").val
 								},
 								
 								success : function(data) {
 						
 								 	if(data.rt == "success"){			 		
-										
-										alert('okay');
-										return false;	
 										form.attr("action", "/member/purchased").submit();
 									 } else {
 										 // by pass

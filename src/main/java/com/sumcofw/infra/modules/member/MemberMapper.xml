@@ -9,6 +9,33 @@
 	<resultMap id="resultMapObj" type="com.sumcofw.infra.modules.member.Member"></resultMap>
 	
 	
+	<select id = "orderResult" resultMap="resultMapObj">
+		select
+			iodSeq
+		    ,iodTotalPrice
+		    ,iodPayDateTime
+		    ,iodPayMethod
+		    ,iodNumber
+		from idOrder
+		where
+			1=1
+		    AND iodSeq = #{iodSeq}
+	</select>
+	
+	<select id = "orderDetailList" resultMap="resultMapObj">
+		select
+			a.ipmSeq
+			,a.ipmIodSeq
+		    ,a.ipmiltSeq
+		    ,b.iltTitle
+		from
+			idPayment a
+		left join idLecture b on a.ipmiltSeq = b.iltSeq
+		where
+			1=1
+		    AND a.ipmIodSeq = #{iodSeq}
+	</select>
+	
 	<insert id = "orderInsert" > 
 		insert into idOrder(
 			iodifmmSeq
@@ -37,8 +64,8 @@
 		)
 		
 		values(
-			#{iltSeq}
-			,#{ipmIltSeq}
+			#{iodSeq}
+			,#{iltSeq}
 		)
 			
 		<selectKey resultType ="String" keyProperty = "ipmSeq" order ="AFTER">

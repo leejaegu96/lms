@@ -2,6 +2,7 @@ package com.sumcofw.infra.modules.member;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,4 +36,16 @@ public class MemberServiceImpl implements MemberService{
 				
         return dao.orderDetailInsert(dto);
     }
+	
+	@Override
+	public Member orderResult(Member dto) throws Exception {
+		
+		return dao.orderResult(dto);
+	}
+	
+	@Override
+	public List<Member> orderDetailList(Member dto) throws Exception {
+		
+		return dao.orderDetailList(dto);
+	}
 }
