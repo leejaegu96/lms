@@ -26,7 +26,7 @@
 					
 					<c:otherwise>
 						<li><a href="../member/dashboard">마이페이지</a></li>
-						<li><a href="../index/login">로그아웃 </a></li>	
+						<li><a href="Javascript:logout()">로그아웃 </a></li>	
 					</c:otherwise>
 				</c:choose>
 				

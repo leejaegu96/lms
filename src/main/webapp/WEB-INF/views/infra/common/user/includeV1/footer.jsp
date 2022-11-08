@@ -78,4 +78,30 @@
 <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
 <script>
 	var form = $("form[name=form]");
+	
+	logout = function(){
+		$.ajax({
+					
+				url: "/index/logoutProc",
+				
+				type: 'post',
+				
+				async: false,
+				
+				data : {
+					
+				},
+				
+				success : function(data){
+					alert('logout');
+					form.attr("action", "/index/login").submit();
+				},
+				
+				error : function(request, status, error){
+					console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				}
+			});
+	}
 </script>

@@ -76,7 +76,7 @@ public class IndexController {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         httpSession.invalidate();
         returnMap.put("rt", "success");
-        return returnMap;
+        return returnMap; 
     }
 
     @RequestMapping(value = "signUp")
