@@ -20,12 +20,21 @@ public class Lecturer{
 	private String iltVideoCount;
 	private String iltPurchasesCount;
 	private String iltViewCount;
-	private Integer iltPirce;
+	private Integer iltPrice;
+	private Integer iltUseNy;
 	
 	
 	
 	
 	
+	
+	
+	public Integer getIltUseNy() {
+		return iltUseNy;
+	}
+	public void setIltUseNy(Integer iltUseNy) {
+		this.iltUseNy = iltUseNy;
+	}
 	public String getIltSeq() {
 		return iltSeq;
 	}
@@ -104,11 +113,12 @@ public class Lecturer{
 	public void setIltViewCount(String iltViewCount) {
 		this.iltViewCount = iltViewCount;
 	}
-	public Integer getIltPirce() {
-		return iltPirce;
+	
+	public Integer getIltPrice() {
+		return iltPrice;
 	}
-	public void setIltPirce(Integer iltPirce) {
-		this.iltPirce = iltPirce;
+	public void setIltPrice(Integer iltPrice) {
+		this.iltPrice = iltPrice;
 	}
 	public String getIftcSeq() {
 		return iftcSeq;

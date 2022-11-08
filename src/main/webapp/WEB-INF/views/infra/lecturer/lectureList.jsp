@@ -73,11 +73,12 @@
 													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 												</td>
 												<td style="width: 25%">제목</td>
-												<td style="width: 10%">상태</td>
+												<td style="width: 10%">가격</td>
+												<td >상태</td>
 												<td style="width: 8%">카테고리</td>
 												<td style="width: 15%">시청인원수</td>
 												<td style="width: 18%">생산일</td>
-												<td style="width: 8%"></td>
+												<td style="width: 10%"></td>
 											</tr>
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0}">
@@ -101,8 +102,17 @@
 																	</tr>
 																</table>
 															</td>
+															<td style="text-align: center;">${list.iltPrice }원</td>
 															<td style="text-align: center;">
-																<i class="fa-solid fa-circle-dot" style="color: green;"></i> 판매 중
+																<c:choose>
+																	<c:when test="${list.iltUseNy eq 1 }">
+																		<i class="fa-solid fa-circle-dot" style="color: green;"></i> 판매 중
+																	</c:when>
+																	<c:otherwise>
+																		<i class="fa-solid fa-circle-dot" style="color: red;"></i> 판매 중지
+																	</c:otherwise>
+																</c:choose>
+																
 															</td>
 															<td style="text-align: center;">주식</td>
 															<td style="text-align: center;">123명</td>
