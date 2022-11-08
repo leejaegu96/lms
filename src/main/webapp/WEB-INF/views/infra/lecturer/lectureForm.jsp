@@ -12,7 +12,7 @@
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<title>강의 목록 </title>
+<title>강의 목록</title>
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
@@ -21,10 +21,11 @@
 <!-- include link -->
 
 <!-- bootstrap -->
+<!-- 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+ -->
 <!-- toast css -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
 </head>
@@ -40,71 +41,34 @@
 		<section id="blog" class="blog">
 			<div class="container" data-aos="fade-up">
 				<div class="row">
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<div class="sidebar">
-							<h3 class="sidebar-title">Mypage</h3>
+							<h3 class="sidebar-title">강의 관리 페이지</h3>
 							<div class="sidebar-item categories">
 								<ul>
-									<li><a href="mypage.html">
-											강의등록 <span>(25)</span>
-										</a></li>
-									<li><a href="cart.html">
-											수강생 관리 <span>(12)</span>
-										</a></li>
-									<li><a href="profile.html">프로필</a></li>
+									<li><a href="lectureList"> 강의목록 </a></li>
+									<li><a href="memberList"> 수강생관리 </a></li>
+									<li><a href="lecturerProfile">프로필 수정 </a></li>
 								</ul>
 							</div>
 							<!-- End sidebar categories-->
 
-							<h3 class="sidebar-title">Recent Posts</h3>
-							<div class="sidebar-item recent-posts">
-								<div class="post-item clearfix">
-									<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" />
-									<h4>
-										<a href="blog-single.html">권도수의 [목,어깨 집중 프로젝트] : 망가진 자세로 하루를 보내는 나를 위한 셀프 관리</a>
-									</h4>
-									<time datetime="2020-01-01">Jan 1, 2020</time>
-								</div>
-
-								<div class="post-item clearfix">
-									<img src="https://cdn.class101.net/images/37d8a757-0f38-4424-a58f-b71444a712f8/960xauto.webp" alt="" />
-									<h4>
-										<a href="blog-single.html">아이패드 하나로 기록하는 키츠의 아날로그 텍스처 일상</a>
-									</h4>
-									<time datetime="2020-01-01">Jan 1, 2020</time>
-								</div>
-
-								<div class="post-item clearfix">
-									<img src="https://cdn.class101.net/images/10c624cc-522e-4408-9bcf-ba802596eba5/960xauto.webp" alt="" />
-									<h4>
-										<a href="blog-single.html">(2022년 전면개정판) 가장 빠르게 돈 버는 유튜브 채널 만드는 방법</a>
-									</h4>
-									<time datetime="2020-01-01">Jan 1, 2020</time>
-								</div>
-
-								<div class="post-item clearfix">
-									<img src="https://cdn.class101.net/images/c019f819-4c73-4255-a194-913107e681a8/960xauto.webp" alt="" />
-									<h4>
-										<a href="blog-single.html">[미니클래스] 내 몸은 내가 관리한다! 홈 메이드 건강 차(혈액 순환과 피로 회복)</a>
-									</h4>
-									<time datetime="2020-01-01">Jan 1, 2020</time>
-								</div>
-
-								<div class="post-item clearfix">
-									<img src="https://cdn.class101.net/images/d0b5915e-c227-484e-a0d3-16dc2c808a1a/960xauto.webp" alt="" />
-									<h4>
-										<a href="blog-single.html">20년 경력자가 알려주는 미드 번역으로 배우는 영상 번역 실무</a>
-									</h4>
-									<time datetime="2020-01-01">Jan 1, 2020</time>
-								</div>
-							</div>
+							<!-- End sidebar recent posts-->
 						</div>
-						<!-- End sidebar recent posts-->
+						<!-- End sidebar -->
 					</div>
 					<!-- End sidebar -->
-					<div class="col-lg-8">
+					<div class="col-lg-9">
 						<div class="sidebar">
-							<h4 style="font-weight:bold;">강의등록</h4><br>
+							<div class="row mb-3">
+								<div class="col-6" style="float: left;">
+									<span style="font-size: 25px; font-weight: bold;">강의등록</span> &nbsp;
+								</div>
+								<div class="col-6">
+									<button class="btn btn-secondary" style="float: right;">이전으로</button>
+									<button class="btn btn-primary" style="float: right;">저장하기</button>
+								</div>
+							</div>
 							<div class="row mb-3">
 								<label for="cate1" class="col-2 col-form-label" style="text-align: center;">카테고리</label>
 								<div class="col-10">
@@ -135,17 +99,17 @@
 							<div class="row mb-3">
 								<label for="chapter" class="col-2 col-form-label" style="text-align: center;">챕터</label>
 								<div class="col-10" id="bChapter">
-									<div class="sidebar" >
-										<div class="row" >
+									<div class="sidebar">
+										<div class="row">
 											<div class="row">
 												<label class="col-2 col-form-label">대제목</label>
 												<div class="col-10">
-													<input type="text" class="form-control" placeholder="대제목" name="bTitle" >
+													<input type="text" class="form-control" placeholder="대제목" name="bTitle">
 												</div>
 											</div>
-											<div class="row" style="padding-top:10px;" id="sChapter">
+											<div class="row" style="padding-top: 10px;" id="sChapter">
 												<label class="col-2 col-form-label">소제목</label>
-												<div class="col-9" style="padding-right:0px;">
+												<div class="col-9" style="padding-right: 0px;">
 													<input type="text" placeholder="소제목" class="form-control">
 													<input type="text" placeholder="주소" class="form-control">
 												</div>
@@ -157,15 +121,15 @@
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
 								<div>
-									<button style="width:100%" type="button" id="btnPlus" class="btn btn-primary" onclick="addBChapter()">
+									<button style="width: 100%" type="button" id="btnPlus" class="btn btn-primary" onclick="addBChapter()">
 										<i class="fa-solid fa-plus"></i> 챕터 추가하기
 									</button>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -179,116 +143,112 @@
 		<!-- End Blog Section -->
 	</main>
 	<!-- End #main -->
-	
+
 
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
-	
+
 	<!-- bootstrap -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-	
+
 	<!-- toast javascript -->
 	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-	
-	
-	<script type="text/javascript">
-	
-	var count_SmallChapter = 0;
-    function addSChapter() {
-        var listHTML = "";
-        listHTML += '';
-        listHTML += '<div class="row" id="chapterSDelete'+ count_SmallChapter +'">';
-        listHTML += '<label class="col-2 col-form-label">소제목</label>';
-        listHTML += '<div class="col-9" style="padding-right:0px;">';
-        listHTML += '<input type="text" placeholder="소제목" class="form-control">';
-        listHTML += '<input type="text" placeholder="주소" class="form-control">';
-        listHTML += '</div>';
-        listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-        listHTML += '<button type="button" class="btn btn-primary" onclick="remove(chapterSDelete' + count_SmallChapter + ')">';
-        listHTML += '<i class="fa-solid fa-minus"></i>';
-        listHTML += '</button>';
-        listHTML += '</div>';
-        listHTML += '</div>';
 
-        count_SmallChapter += 1;
-        
-        $("#sChapter").append(listHTML);
-    }
-    function remove(id) {
-        
-        $(id).remove();
-    }
-	
-	</script>
-	<script type="text/javascript">
-	
-	var count_BigChapter = 0;
-    function addBChapter() {
-        var listHTML = "";
-        listHTML += '';
-        listHTML += '<div class="sidebar" id="chapterBDelete'+ count_BigChapter +'">';
-        listHTML += '<div class="row" >';
-        listHTML += '<div class="row">';
-        listHTML += '<label class="col-2 col-form-label" >대제목</label>';
-        listHTML += '<div class="col-9" style="padding-right: 0px;">';
-        listHTML += '<input type="text" class="form-control" placeholder="대제목"  name="bTitle" >';
-        listHTML += '</div>';
-        listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-        listHTML += '<button type="button" id="btnPlus" class="btn btn-danger" onclick="remove(chapterBDelete' + count_BigChapter + ')">';
-        listHTML += '<i class="fa-solid fa-minus"></i>';
-        listHTML += '</button>';
-        listHTML += '</div>';
-        listHTML += '</div>';
-        listHTML += '<div class="row" style="padding-top:10px;" id="ssChapter">';
-        listHTML += '<label class="col-2 col-form-label">소제목</label>';
-        listHTML += '<div class="col-9" style="padding-right:0px;">';
-        listHTML += '<input type="text" placeholder="소제목" class="form-control">';
-        listHTML += '<input type="text" placeholder="주소" class="form-control">';
-        listHTML += '</div>';
-        listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-        listHTML += '<button type="button" class="btn btn-primary" onclick="addSsChapter()">';
-        listHTML += '<i class="fa-solid fa-plus"></i>';
-        listHTML += '</button>';
-        listHTML += '</div>';
-        listHTML += '</div>';
-        listHTML += '</div>';
-        listHTML += '</div>';
 
-        count_BigChapter += 1;
-        
-        $("#bChapter").append(listHTML);
-    }
-	function addSsChapter() {
-	    var listHTML = "";
-	    listHTML += '';
-	    listHTML += '<div class="row" id="chapterSDelete'+ count_SmallChapter +'">';
-	    listHTML += '<label class="col-2 col-form-label">소제목</label>';
-	    listHTML += '<div class="col-9" style="padding-right:0px;">';
-	    listHTML += '<input type="text" placeholder="소제목" class="form-control">';
-	    listHTML += '<input type="text" placeholder="주소" class="form-control">';
-	    listHTML += '</div>';
-	    listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-	    listHTML += '<button type="button" class="btn btn-primary" onclick="remove(chapterSDelete' + count_SmallChapter + ')">';
-	    listHTML += '<i class="fa-solid fa-minus"></i>';
-	    listHTML += '</button>';
-	    listHTML += '</div>';
-	    listHTML += '</div>';
-	
-	    count_SmallChapter += 1;
-	    
-	    $("#ssChapter").append(listHTML);
-	}
-    
-    function remove(id) {
-        
-        $(id).remove();
-    }
-	
-	</script>
-	
-	
-	
+	<script type="text/javascript">
+        var count_SmallChapter = 0;
+        function addSChapter() {
+            var listHTML = "";
+            listHTML += '';
+            listHTML += '<div class="row" id="chapterSDelete'+ count_SmallChapter +'">';
+            listHTML += '<label class="col-2 col-form-label">소제목</label>';
+            listHTML += '<div class="col-9" style="padding-right:0px;">';
+            listHTML += '<input type="text" placeholder="소제목" class="form-control">';
+            listHTML += '<input type="text" placeholder="주소" class="form-control">';
+            listHTML += '</div>';
+            listHTML += '<div class="col-1" style="padding: 0px 0px;">';
+            listHTML += '<button type="button" class="btn btn-primary" onclick="remove(chapterSDelete' + count_SmallChapter + ')">';
+            listHTML += '<i class="fa-solid fa-minus"></i>';
+            listHTML += '</button>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+
+            count_SmallChapter += 1;
+
+            $("#sChapter").append(listHTML);
+        }
+        function remove(id) {
+
+            $(id).remove();
+        }
+    </script>
+	<script type="text/javascript">
+        var count_BigChapter = 0;
+        function addBChapter() {
+            var listHTML = "";
+            listHTML += '';
+            listHTML += '<div class="sidebar" id="chapterBDelete'+ count_BigChapter +'">';
+            listHTML += '<div class="row" >';
+            listHTML += '<div class="row">';
+            listHTML += '<label class="col-2 col-form-label" >대제목</label>';
+            listHTML += '<div class="col-9" style="padding-right: 0px;">';
+            listHTML += '<input type="text" class="form-control" placeholder="대제목"  name="bTitle" >';
+            listHTML += '</div>';
+            listHTML += '<div class="col-1" style="padding: 0px 0px;">';
+            listHTML += '<button type="button" id="btnPlus" class="btn btn-danger" onclick="remove(chapterBDelete' + count_BigChapter + ')">';
+            listHTML += '<i class="fa-solid fa-minus"></i>';
+            listHTML += '</button>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '<div class="row" style="padding-top:10px;" id="ssChapter">';
+            listHTML += '<label class="col-2 col-form-label">소제목</label>';
+            listHTML += '<div class="col-9" style="padding-right:0px;">';
+            listHTML += '<input type="text" placeholder="소제목" class="form-control">';
+            listHTML += '<input type="text" placeholder="주소" class="form-control">';
+            listHTML += '</div>';
+            listHTML += '<div class="col-1" style="padding: 0px 0px;">';
+            listHTML += '<button type="button" class="btn btn-primary" onclick="addSsChapter()">';
+            listHTML += '<i class="fa-solid fa-plus"></i>';
+            listHTML += '</button>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+
+            count_BigChapter += 1;
+
+            $("#bChapter").append(listHTML);
+        }
+        function addSsChapter() {
+            var listHTML = "";
+            listHTML += '';
+            listHTML += '<div class="row" id="chapterSDelete'+ count_SmallChapter +'">';
+            listHTML += '<label class="col-2 col-form-label">소제목</label>';
+            listHTML += '<div class="col-9" style="padding-right:0px;">';
+            listHTML += '<input type="text" placeholder="소제목" class="form-control">';
+            listHTML += '<input type="text" placeholder="주소" class="form-control">';
+            listHTML += '</div>';
+            listHTML += '<div class="col-1" style="padding: 0px 0px;">';
+            listHTML += '<button type="button" class="btn btn-primary" onclick="remove(chapterSDelete' + count_SmallChapter + ')">';
+            listHTML += '<i class="fa-solid fa-minus"></i>';
+            listHTML += '</button>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+
+            count_SmallChapter += 1;
+
+            $("#ssChapter").append(listHTML);
+        }
+
+        function remove(id) {
+
+            $(id).remove();
+        }
+    </script>
+
+
+
 	<script>
         var arrBig = new Array();
         arrBig[0] = "";
@@ -444,20 +404,19 @@
         }
          */
     </script>
-    <script>
-		let intro = '<div id="info">'+ '<h2>들어가는말</h2>    <p>    생활코딩의 세계에 오신 것을 환영합니다. 생활코딩은 <strong>일반인들에게 프로그래밍을 알려주는 무료 온라인, 오프라인 수업입니다. </strong>&nbsp;어떻게 공부할 것인가를 생각해보기 전에 왜&nbsp;프로그래밍을 공부하는 이유에 대한 이유를 함께 생각해보면 좋을 것 같습니다. 아래 영상을 한번 보시죠.</p>	<p>   입문자의 가장 큰 고충은 &#39;무엇을 모르는지 모르는 상태&#39;일 겁니다.   온라인에는 프로그래밍을 익히는 데 필요한 거의 모든 정보가 있지만, 이 지식들은 게시판이나 블로그 또는 커뮤니티에 포스팅 단위로 파편화되어 있습니다.	    그래서 최소한 무엇을 검색해야 하는지를 아는 사람들을 위해서는 더 없이 좋은 공간이지만, &#39;무엇을 모르는지 모르는 상태&#39;의 입문자에게는 그림의 떡으로 남아 있습니다.     다시말해서 전문가를 더욱 전문가답게 만드는 혁신에 머물고 있는 것이죠.</p>	<p> 생활코딩은 컴퓨터와 인터넷이 존재하는 시대의 공부방법은 어때야 하는가를 찾는 작업을 꾸준히 하고 있습니다.	    정보기술이 발전하지 않았던, 낭만적인 시절에는 어떤 일을 하려고 하면 그것을 하기 위해서 필요한 거의 모든 것을 알고 있어야 했습니다. 검색할수도 없었고, 질문하기도 어려웠기 때문입니다. 한편 한번 배운 지식만으로도 평생을 살아 갈 수 있었습니다. &nbsp;</p>' +'</div>'
+	<script>
+        let intro = '<div id="info">' + '<h2>들어가는말</h2>    <p>    생활코딩의 세계에 오신 것을 환영합니다. 생활코딩은 <strong>일반인들에게 프로그래밍을 알려주는 무료 온라인, 오프라인 수업입니다. </strong>&nbsp;어떻게 공부할 것인가를 생각해보기 전에 왜&nbsp;프로그래밍을 공부하는 이유에 대한 이유를 함께 생각해보면 좋을 것 같습니다. 아래 영상을 한번 보시죠.</p>	<p>   입문자의 가장 큰 고충은 &#39;무엇을 모르는지 모르는 상태&#39;일 겁니다.   온라인에는 프로그래밍을 익히는 데 필요한 거의 모든 정보가 있지만, 이 지식들은 게시판이나 블로그 또는 커뮤니티에 포스팅 단위로 파편화되어 있습니다.	    그래서 최소한 무엇을 검색해야 하는지를 아는 사람들을 위해서는 더 없이 좋은 공간이지만, &#39;무엇을 모르는지 모르는 상태&#39;의 입문자에게는 그림의 떡으로 남아 있습니다.     다시말해서 전문가를 더욱 전문가답게 만드는 혁신에 머물고 있는 것이죠.</p>	<p> 생활코딩은 컴퓨터와 인터넷이 존재하는 시대의 공부방법은 어때야 하는가를 찾는 작업을 꾸준히 하고 있습니다.	    정보기술이 발전하지 않았던, 낭만적인 시절에는 어떤 일을 하려고 하면 그것을 하기 위해서 필요한 거의 모든 것을 알고 있어야 했습니다. 검색할수도 없었고, 질문하기도 어려웠기 때문입니다. 한편 한번 배운 지식만으로도 평생을 살아 갈 수 있었습니다. &nbsp;</p>' + '</div>'
         const editor = new toastui.Editor({
-            el: document.querySelector('#editor'),
-            previewStyle: 'vertical',
-            height: '500px',
-            initialEditType: 'wysiwyg',
-            initialValue: intro
+            el : document.querySelector('#editor'),
+            previewStyle : 'vertical',
+            height : '500px',
+            initialEditType : 'wysiwyg',
+            initialValue : intro
         });
-        
+
         // !!여기!! editor.getHtml()을 사용해서 에디터 내용 받아오기
-		console.log(editor.getHTML());
-        
+        console.log(editor.getHTML());
     </script>
-	
+
 </body>
 </html>

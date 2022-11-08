@@ -1,6 +1,8 @@
 package com.sumcofw.infra.modules.lecturer;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -23,6 +25,10 @@ public class LecturerDao {
 	//강사 선
     public Lecturer selectOneLecturer(Lecturer dto) {
         return sqlSession.selectOne(namespace + ".selectOneLecturer", dto);
+    }
+    
+    public List<Lecturer> selectLecture(){
+    	return sqlSession.selectList(namespace + ".selectLecture", "");
     }
 	
 }

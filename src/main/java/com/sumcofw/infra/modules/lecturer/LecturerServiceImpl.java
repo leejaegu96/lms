@@ -2,6 +2,8 @@ package com.sumcofw.infra.modules.lecturer;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +20,8 @@ public class LecturerServiceImpl implements LecturerService{
         return dao.selectOneLecturer(dto);
     }
 	
+	@Override
+	public List<Lecturer> selectLecture() throws Exception {
+		return dao.selectLecture();
+	}
 }

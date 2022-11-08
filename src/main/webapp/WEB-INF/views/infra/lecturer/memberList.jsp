@@ -12,7 +12,7 @@
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<title>강의 목록 </title>
+<title>강의 목록</title>
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
@@ -28,17 +28,6 @@
 	<!-- include header -->
 
 	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container">
-				<ol>
-					<li><a href="index.html">Home</a></li>
-					<li>Blog</li>
-				</ol>
-				<h2>Blog</h2>
-			</div>
-		</section>
-		<!-- End Breadcrumbs -->
 
 		<!-- ======= Blog Section ======= -->
 		<section id="blog" class="blog">
@@ -49,15 +38,12 @@
 							<h3 class="sidebar-title">강의 관리 페이지</h3>
 							<div class="sidebar-item categories">
 								<ul>
-									<li><a href="mypage.html"> 구매목록 </a></li>
-									<li><a href="cart.html"> 수강생관리 </a></li>
-									<li><a href="printPage.html"> 강의 등록 </a></li>
-									<li><a href="profile.html">프로필 수정 </a></li>
+									<li><a href="lectureList"> 강의목록 </a></li>
+									<li><a href="memberList"> 수강생관리 </a></li>
+									<li><a href="lecturerProfile">프로필 수정 </a></li>
 								</ul>
 							</div>
 							<!-- End sidebar categories-->
-
-
 
 							<!-- End sidebar recent posts-->
 						</div>
@@ -208,11 +194,11 @@
 		<!-- End Blog Section -->
 	</main>
 	<!-- End #main -->
-	
+
 
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
-	
+
 </body>
 </html>
