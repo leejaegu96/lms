@@ -94,13 +94,13 @@
 								</div>
 							</div>
 							<!-- 대표이미지 -->
-<!-- 							<div class="row mb-3">
+							<div class="row mb-3">
 								<label for="title" class="col-2 col-form-label" style="text-align: center;">대표이미지</label>
 								<div class="col-10">
 									<input type="file" name="" type="text" class="form-control" id="" value="">
 								</div>
 							</div>
- -->							<!-- 강의상세 -->
+							<!-- 강의상세 -->
 							<div class="row mb-3">
 								<label for="about" class="col-2 col-form-label" style="text-align: center;">강의상세</label>
 								<div class="col-10">
