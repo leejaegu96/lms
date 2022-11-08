@@ -133,7 +133,7 @@ span.center {
 						</div>
 					</div>
 
-				</div>
+				</div> 
 			</div>
 		</section>
 		<!-- End Blog Section -->
