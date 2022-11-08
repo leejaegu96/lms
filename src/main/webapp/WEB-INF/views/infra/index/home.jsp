@@ -276,7 +276,7 @@
 		
 		$("#clickimg").click(function(){
 			form.attr("action", "/index/lectureDetail").submit();
-		});
+		}); 
 	</script>
 </form>
 </body>
