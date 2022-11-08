@@ -176,7 +176,7 @@
 						"ifmmDomain" : str[1],
 						"ifmmMobile" : $("#ifmmMobile").val(),
 						"ifmmCarrier" : $("#ifmmCarrier").val(),
-						"ifmmType" : "31"
+						"ifmmType" : "22"
 					},
 					success:(res) => {
 						if (res.rt == "success") {
