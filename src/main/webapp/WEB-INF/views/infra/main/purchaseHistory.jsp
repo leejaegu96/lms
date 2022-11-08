@@ -49,6 +49,7 @@ span.center {
 <body>
 <form method="post" name= "form">
 <input type="hidden" name="ifmmSeq" id="ifmmSeq" value="${sessSeq }"/>
+<input type ="hidden" name="iltSeq" id="iltSeq"/>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -102,7 +103,7 @@ span.center {
 										</tr>
 										
 										<c:forEach var="buyList" items="${paymentList}" varStatus="status">
-										<tr class="trhover" style="font-size: 13px; vertical-align: middle;">
+										<tr onclick="goLectureView(${buyList.ipmIltSeq})" class="trhover" style="font-size: 13px; vertical-align: middle;">
 											<td style="text-align: center; padding: 0; vertical-align: middle;">
 												<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 											</td>
@@ -147,6 +148,12 @@ span.center {
 	<!-- include sidebarScript -->
 	<%@include file=".././common/user/includeV1/sidebarScript.jsp"%>
 	<!-- include sidebarScript-->
-
+<script>
+	goLectureView = function(seq){
+		alert(seq);
+		$("#iltSeq").val(seq);
+		form.attr("action", "/index/lectureView").submit();
+	}
+</script>
 </body>
 </html>
