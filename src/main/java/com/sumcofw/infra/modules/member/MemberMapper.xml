@@ -22,6 +22,21 @@
 		    AND iodSeq = #{iodSeq}
 	</select>
 	
+	<select id = "paymentList" resultMap="resultMapObj">
+		select
+			b.iodifmmSeq
+		    ,a.ipmIltSeq
+		    ,c.iltTitle
+		    ,b.iodPayDateTime
+		from
+			idPayment a
+		left join idOrder b on b.iodSeq = a.ipmIodSeq
+		left join idLecture c on a.ipmIltSeq = c.iltSeq
+		where
+			1=1
+		    AND iodifmmSeq = #{ifmmSeq}
+	</select>
+	
 	<select id = "orderDetailList" resultMap="resultMapObj">
 		select
 			a.ipmSeq

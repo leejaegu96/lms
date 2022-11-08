@@ -166,4 +166,11 @@
   	float: right;
   }
   
+  .trhover{
+  	cursor: pointer;
+  }
+  
+  .trhover:hover{
+	background-color: #f0f0f0;  
+  }
  

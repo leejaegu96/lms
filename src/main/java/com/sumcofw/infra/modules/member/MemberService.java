@@ -8,4 +8,5 @@ public interface MemberService {
 	public int orderDetailInsert(Member dto) throws Exception; 
 	public Member orderResult(Member dto) throws Exception; 
 	public List<Member> orderDetailList(Member dto) throws Exception; 
+	public List<Member> paymentList(Member dto) throws Exception; 
 }

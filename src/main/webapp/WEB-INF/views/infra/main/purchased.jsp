@@ -61,6 +61,8 @@ span.center {
 </head>
 
 <body>
+<form method="post" name="form">
+<input type="hidden" name="ifmmSeq" id="ifmmSeq" value="${sessSeq }"/>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -144,6 +146,6 @@ span.center {
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
-
+</form>
 </body>
 </html>

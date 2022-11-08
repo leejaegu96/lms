@@ -39,4 +39,9 @@ public class MemberDao {
     public List<Member> orderDetailList(Member dto) {
     	return sqlSession.selectList(namespace + ".orderDetailList", dto);
     }
+    
+    //idOrder에 추가 
+    public List<Member> paymentList(Member dto) {
+    	return sqlSession.selectList(namespace + ".paymentList", dto);
+    }
 }

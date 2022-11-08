@@ -48,4 +48,10 @@ public class MemberServiceImpl implements MemberService{
 		
 		return dao.orderDetailList(dto);
 	}
+	
+	@Override
+	public List<Member> paymentList(Member dto) throws Exception {
+		
+		return dao.paymentList(dto);
+	}
 }

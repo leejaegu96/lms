@@ -30,8 +30,10 @@ public class MemberController {
         return "infra/main/dashboard";
     }
 	@RequestMapping(value = "purchaseHistory")
-	public String purchaseHistory(Locale locale, Model model) {
+	public String purchaseHistory(Member dto, Model model) throws Exception {
 		
+		List<Member> paymentList = service.paymentList(dto);
+		model.addAttribute("paymentList",paymentList);
 		return "infra/main/purchaseHistory";
 	}
 	@RequestMapping(value = "wishlist")

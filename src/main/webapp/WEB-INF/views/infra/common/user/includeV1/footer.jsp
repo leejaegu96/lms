@@ -104,4 +104,9 @@
 				}
 			});
 	}
+	
+	goMypage = function(){
+		form.attr("action", "/member/dashboard").submit();
+	}
 </script>
+

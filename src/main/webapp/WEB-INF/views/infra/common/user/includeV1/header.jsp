@@ -25,7 +25,7 @@
 					</c:when>
 					
 					<c:otherwise>
-						<li><a href="../member/dashboard">마이페이지</a></li>
+						<li><a href="Javascript:goMypage()">마이페이지</a></li>
 						<li><a href="Javascript:logout()">로그아웃 </a></li>	
 					</c:otherwise>
 				</c:choose>
