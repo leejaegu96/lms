@@ -37,4 +37,9 @@ public class IndexServiceImpl implements IndexService {
     public List<Index> chapterlist(Index dto) throws Exception {
         return dao.chapterlist(dto);
     }
+    
+    @Override
+    public List<Index> lectureDetail(Index dto) throws Exception {
+    	return dao.lectureDetail(dto);
+    }
 }

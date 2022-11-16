@@ -36,5 +36,10 @@ public class IndexDao {
     public List<Index> chapterlist(Index dto) {
         return sqlSession.selectList(namespace + ".chapterlist", dto);
     }
+    
+    //강의 챕터
+    public List<Index> lectureDetail(Index dto) {
+    	return sqlSession.selectList(namespace + ".lectureDetail", dto);
+    }
 
 }

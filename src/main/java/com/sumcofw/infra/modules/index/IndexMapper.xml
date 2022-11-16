@@ -88,4 +88,28 @@
 			AND a.ifmmPassword = #{ifmmPassword}
 	</select>
 	
+	<select id="lectureDetail" resultMap="resultMapObj">
+		select 
+			a.ictSeq
+		    , a.ictIchSeq
+		    , a.ictSort
+		    , a.ictTitle
+		    , a.ictVideoUrl    
+		    , b.ichSeq
+		    , b.ichIltSeq
+		    , b.ichTitle
+		    , c.iltSeq
+		    , c.iltTitle
+		    , d.iftcName
+		from
+			idChapter a
+		left join idChapterHeader b on a.ictIchSeq = b.ichSeq
+		left join idLecture c on b.ichIltSeq = c.iltSeq
+		left join infrTeacher d on c.iltIftcSeq = d.iftcSeq
+		where
+			1=1
+		    AND iltSeq = #{iltSeq}
+	</select>
+	
+	
 </mapper>

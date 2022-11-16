@@ -19,6 +19,8 @@ public class Index {
     private String ictSort;
     private String ictSeq;
     private String ictTitle;
+    private String ictIchSeq;
+    private String ictVideoUrl;
     
     //ifraTeacher
     private String iftcName;
@@ -41,7 +43,23 @@ public class Index {
     
     
     
-    public String getIftcSeq() {
+    public String getIctIchSeq() {
+		return ictIchSeq;
+	}
+
+	public void setIctIchSeq(String ictIchSeq) {
+		this.ictIchSeq = ictIchSeq;
+	}
+
+	public String getIctVideoUrl() {
+		return ictVideoUrl;
+	}
+
+	public void setIctVideoUrl(String ictVideoUrl) {
+		this.ictVideoUrl = ictVideoUrl;
+	}
+
+	public String getIftcSeq() {
 		return iftcSeq;
 	}
 

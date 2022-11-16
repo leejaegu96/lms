@@ -51,16 +51,29 @@
 					<div class="col-lg-8 entries">
 						<article class="entry">
 							<div class="video-container">
-								<iframe width="100%" height="100%" src="https://www.youtube.com/embed/k9zIMn4OEu4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								<div class="video-container">
+									<div id="player"></div>
+								</div>
 							</div>
 
 							<h2 class="entry-title">
-								<a href="blog-single.html">개쩌는 웹 프로그래밍 강의</a>
+								<a href="blog-single.html">
+									<c:forEach var="list" items="${lectureDetail}" varStatus="status" begin="0" end="0">
+										${list.iltTitle}
+									</c:forEach>
+								</a>
 							</h2>
 
 							<div class="entry-meta">
 								<ul>
-									<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">김진범</a></li>
+									<li class="d-flex align-items-center">
+										<i class="bi bi-person"></i>
+										 <a href="blog-single.html">
+										 	<c:forEach var="list" items="${lectureDetail}" varStatus="status" begin="0" end="0">
+												${list.iftcName}
+											</c:forEach>
+										 </a>
+									</li>
 									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
 								</ul>
 							</div>
@@ -176,40 +189,27 @@
 							</div>
 
 							<hr />
-
-							<h3 class="sidebar-title">
-								Chapter 1 <i class="fa-solid fa-check"></i>
-							</h3>
-							<div class="sidebar-item categories">
-								<ul>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>14:26</span> <i style="float: right" class="fa-solid fa-check fa-xl"></i></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>14:26</span> <i style="float: right" class="fa-solid fa-check fa-xl"></i></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>14:26</span> <i style="float: right" class="fa-solid fa-check fa-xl"></i></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>14:26</span> <i style="float: right" class="fa-solid fa-check fa-xl"></i></a></li>
-								</ul>
-							</div>
-
-							<h3 class="sidebar-title">Chapter 2</h3>
-							<div class="sidebar-item categories">
-								<ul>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>12:26</span><i style="float: right" class="fa-solid fa-arrow-right fa-xl"></i></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>17:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>16:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>15:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>13:26</span></a></li>
-								</ul>
-							</div>
-
-							<h3 class="sidebar-title">Chapter 3</h3>
-							<div class="sidebar-item categories">
-								<ul>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>12:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>15:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>13:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>12:26</span></a></li>
-									<li><a href="#">개쩌는 웹 페이지 만들기<span>15:26</span></a></li>
-								</ul>
-							</div>
+							
+							<c:set var="checkChapterRepeat" value="0"></c:set>
+							<c:forEach var="list" items="${lectureDetail}" varStatus="status">
+								
+								<c:if test="${checkChapterRepeat ne list.ichSeq}">
+								<c:set var="checkChapterRepeat" value="${list.ichSeq }"></c:set>
+										<h3 class="sidebar-title">
+											Chapter ${status.count } - ${list.ichTitle }<i class="fa-solid fa-check"></i>
+										</h3>
+										
+										<div class="sidebar-item categories">
+											<ul>
+												<c:forEach var="list2" items="${lectureDetail}" varStatus="status">
+													<c:if test="${list.ichSeq eq list2.ichSeq}">
+														<li><a href="#">${list2.ictTitle}<span>14:26</span> <i style="float: right" class="fa-solid fa-check fa-xl"></i></a></li>
+													</c:if>
+												</c:forEach>
+											</ul>
+										</div>
+								</c:if>
+							</c:forEach>
 
 							<!-- End sidebar categories-->
 						</div>
@@ -226,6 +226,68 @@
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
+<script>
+
+var tag = document.createElement('script');
+
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+
+var playerConfig = {
+		
+		videoId : 'Sn0ublt7CWM',
+		
+		events : {
+			onReady : onPlayerReady,
+			onStateChange : onPlayerStateChange
+		},
+		playerVars: {
+		      'playsinline': 1
+		      ,'start': 800
+		    },
+};
+
+
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', playerConfig);
+}
+
+
+
+
+function onPlayerReady(event) {
+	event.target.playVideo();
+}
+
+function onPlayerStateChange(e) {
+	switch (e.data) {
+	case -1:
+		console.log('시작되지 않음');
+		console.log(player.getDuration());
+		break;
+
+	case 0:
+		console.log('재생완료');
+		console.log(player.getDuration());
+		break;
+
+	case 1:
+		console.log('재생중');
+		console.log(player.getCurrentTime());
+		break;
+		
+	case 2:
+		console.log('어디까지 들었는지 보여줌 ');
+		console.log(player.getCurrentTime());
+		break;
+	}
+}
+
+
+</script>
 
 </body>
 </html>

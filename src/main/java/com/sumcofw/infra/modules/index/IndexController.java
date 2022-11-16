@@ -137,8 +137,11 @@ public class IndexController {
     }
 
     @RequestMapping(value = "lectureView")
-    public String lectureView(Locale locale, Model model) {
-
+    public String lectureView(Index dto, Model model) throws Exception {
+    	
+    	List<Index> result = service.lectureDetail(dto);
+    	model.addAttribute("lectureDetail",result);
+    	
         return "infra/index/lectureView";
     }
 
