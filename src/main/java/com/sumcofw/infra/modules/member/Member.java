@@ -28,9 +28,77 @@ public class Member {
 	private String iltSeq;
 	private String iltTitle;
 	
+	//watchRecord
+	
+	private String wrSeq;
+	private String wrIltSeq;
+	private String wrIctSeq;
+	private String wrIfmmSeq;
+	private String wrWatchedLength;
+	
+	// idChapter
+	
+	private String ictSeq;
+	private String ictSort;
+
 	
 	
-	
+	public String getIctSeq() {
+		return ictSeq;
+	}
+
+	public void setIctSeq(String ictSeq) {
+		this.ictSeq = ictSeq;
+	}
+
+	public String getIctSort() {
+		return ictSort;
+	}
+
+	public void setIctSort(String ictSort) {
+		this.ictSort = ictSort;
+	}
+
+	public String getWrSeq() {
+		return wrSeq;
+	}
+
+	public void setWrSeq(String wrSeq) {
+		this.wrSeq = wrSeq;
+	}
+
+	public String getWrIltSeq() {
+		return wrIltSeq;
+	}
+
+	public void setWrIltSeq(String wrIltSeq) {
+		this.wrIltSeq = wrIltSeq;
+	}
+
+	public String getWrIctSeq() {
+		return wrIctSeq;
+	}
+
+	public void setWrIctSeq(String wrIctSeq) {
+		this.wrIctSeq = wrIctSeq;
+	}
+
+	public String getWrIfmmSeq() {
+		return wrIfmmSeq;
+	}
+
+	public void setWrIfmmSeq(String wrIfmmSeq) {
+		this.wrIfmmSeq = wrIfmmSeq;
+	}
+
+	public String getWrWatchedLength() {
+		return wrWatchedLength;
+	}
+
+	public void setWrWatchedLength(String wrWatchedLength) {
+		this.wrWatchedLength = wrWatchedLength;
+	}
+
 	public String getIltTitle() {
 		return iltTitle;
 	}

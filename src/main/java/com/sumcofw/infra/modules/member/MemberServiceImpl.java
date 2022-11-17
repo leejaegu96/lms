@@ -44,6 +44,18 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public Member selectOneWatch(Member dto) throws Exception {
+		
+		return dao.selectOneWatch(dto);
+	}
+	
+	@Override
+	public Member selectFirstChapter(Member dto) throws Exception {
+		
+		return dao.selectFirstChapter(dto);
+	}
+	
+	@Override
 	public List<Member> orderDetailList(Member dto) throws Exception {
 		
 		return dao.orderDetailList(dto);

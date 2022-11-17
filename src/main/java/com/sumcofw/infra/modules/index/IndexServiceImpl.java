@@ -34,6 +34,18 @@ public class IndexServiceImpl implements IndexService {
     }
     
     @Override
+    public Index watchedOne(Index dto) throws Exception {
+    	return dao.watchedOne(dto);
+    }
+    
+    @Override
+    public Index notWatched(Index dto) throws Exception {
+    	return dao.notWatched(dto);
+    }
+    
+   
+    
+    @Override
     public List<Index> chapterlist(Index dto) throws Exception {
         return dao.chapterlist(dto);
     }

@@ -238,15 +238,15 @@ var player;
 
 var playerConfig = {
 		
-		videoId : 'Sn0ublt7CWM',
+		videoId : '${video.ictVideoUrl}',
 		
 		events : {
 			onReady : onPlayerReady,
 			onStateChange : onPlayerStateChange
 		},
 		playerVars: {
-		      'playsinline': 1
-		      ,'start': 1200
+		    'playsinline': 1
+		    ,'start': ${video.wrWatchedLength} 
 		    },
 };
 

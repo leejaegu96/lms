@@ -35,6 +35,14 @@ public class MemberDao {
     	return sqlSession.selectOne(namespace + ".orderResult", dto);
     }
     
+    public Member selectOneWatch(Member dto) {
+    	return sqlSession.selectOne(namespace + ".selectOneWatch", dto);
+    }
+    
+    public Member selectFirstChapter(Member dto) {
+    	return sqlSession.selectOne(namespace + ".selectFirstChapter", dto);
+    }
+    
     //idOrder에 추가 
     public List<Member> orderDetailList(Member dto) {
     	return sqlSession.selectList(namespace + ".orderDetailList", dto);

@@ -21,6 +21,15 @@ public class IndexDao {
     public Index loginProc(Index dto) {
         return sqlSession.selectOne(namespace + ".loginProc", dto);
     }
+    
+    public Index watchedOne(Index dto) {
+    	return sqlSession.selectOne(namespace + ".watchedOne", dto);
+    }
+    
+    public Index notWatched(Index dto) {
+    	return sqlSession.selectOne(namespace + ".notWatched", dto);
+    }
+   
 
     // 회원가입
     public int signUpProc(Index dto) {

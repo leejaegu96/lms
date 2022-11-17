@@ -27,6 +27,39 @@
             ;
 	</select>
 	
+	<select id = "watchedOne" resultMap="resultMapObj">
+		select
+			a.wrSeq
+		    , a.wrIltSeq
+		    , a.wrIctSeq
+		    , a.wrIfmmSeq
+		    , a.wrWatchedLength
+		    , b.ictVideoUrl
+		from 
+			watchRecord a
+		left join idChapter b on a.wrIctSeq = b.ictSeq
+		where
+			1=1
+		    AND wrIltSeq = #{iltSeq}
+		    AND wrIfmmSeq = #{ifmmSeq}
+	</select>
+	
+	<select id = "notWatched" resultMap="resultMapObj">
+		select
+			a.ictSeq
+		    , a.ictSort
+		    , a.ictTitle
+		    , a.ictVideoUrl
+		    , c.iltSeq
+		from
+			idChapter a
+		left join idChapterHeader b on b.ichSeq = a.ictIchSeq
+		left join idLecture c on b.ichSeq = c.iltSeq
+		where
+			1=1
+		    AND a.ictSeq = #{ictSeq}
+	</select>
+	
 	<!-- 강의 챕터  -->
 	<select id="chapterlist" resultMap="resultMapObj">
 		select

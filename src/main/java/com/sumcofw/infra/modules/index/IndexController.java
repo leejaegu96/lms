@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sumcofw.infra.common.constants.Constants;
+import com.sumcofw.infra.modules.member.MemberServiceImpl;
 
 @Controller
 @RequestMapping(value = "/index/")
@@ -21,6 +22,9 @@ public class IndexController {
 
     @Autowired
     IndexServiceImpl service;
+    
+    @Autowired
+    MemberServiceImpl service2;
 
     @RequestMapping(value = "home")
     public String home(Model model) {
@@ -139,8 +143,17 @@ public class IndexController {
     @RequestMapping(value = "lectureView")
     public String lectureView(Index dto, Model model) throws Exception {
     	
+    	if(dto.getHistoryCheck() == 1) {
+    		Index result2 = service.watchedOne(dto);
+    		model.addAttribute("video",result2);
+    	} else if(dto.getHistoryCheck() == 0){
+    		Index result2 = service.notWatched(dto); 
+    		model.addAttribute("video",result2);
+    	}
+    	
     	List<Index> result = service.lectureDetail(dto);
     	model.addAttribute("lectureDetail",result);
+    
     	
         return "infra/index/lectureView";
     }

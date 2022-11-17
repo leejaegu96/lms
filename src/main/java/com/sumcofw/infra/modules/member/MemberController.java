@@ -80,6 +80,33 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "watchedCheck")
+	public Map<String, Object> watchedCheck(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member result = service.selectOneWatch(dto);
+		
+		if(result == null) {
+			System.out.println("null입니다 ");
+			
+			Member result2 = service.selectFirstChapter(dto); 
+			System.out.println(result2.getIctSeq());
+			
+			returnMap.put("chapter", result2.getIctSeq());
+			returnMap.put("rt", "fail");	
+		} else {
+			System.out.println("값을 발견했습니다 ");
+			returnMap.put("rt", "success");	
+			returnMap.put("chapter", result.getWrIctSeq());
+		}
+		
+		
+		
+		return returnMap;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "orderInsert")
 	public Map<String, Object> orderInsert(Member dto) throws Exception{
 		

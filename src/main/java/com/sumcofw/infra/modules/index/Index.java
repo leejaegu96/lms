@@ -2,6 +2,10 @@ package com.sumcofw.infra.modules.index;
 
 public class Index {
 	
+	//구매목록에서 강의 보기로 넘어올때 시청기록이 있던 강이면 1로 표시하기위한 변수
+	
+	private Integer historyCheck;
+	
 	// idLecture table
     private String iltSeq;
 
@@ -40,10 +44,68 @@ public class Index {
     private String ifmmModDateTime;
     private String ifmmType;
     
+    // watchRecord
+    
+    private String wrSeq;
+    private String wrIltSeq;
+    private String wrIfmmSeq;
+    private String wrIctSeq;
+    private String wrWatchedLength;
     
     
     
-    public String getIctIchSeq() {
+    
+    
+
+	public Integer getHistoryCheck() {
+		return historyCheck;
+	}
+
+	public void setHistoryCheck(Integer historyCheck) {
+		this.historyCheck = historyCheck;
+	}
+
+	public String getWrSeq() {
+		return wrSeq;
+	}
+
+	public void setWrSeq(String wrSeq) {
+		this.wrSeq = wrSeq;
+	}
+
+	public String getWrIltSeq() {
+		return wrIltSeq;
+	}
+
+	public void setWrIltSeq(String wrIltSeq) {
+		this.wrIltSeq = wrIltSeq;
+	}
+
+	public String getWrIfmmSeq() {
+		return wrIfmmSeq;
+	}
+
+	public void setWrIfmmSeq(String wrIfmmSeq) {
+		this.wrIfmmSeq = wrIfmmSeq;
+	}
+
+	public String getWrIctSeq() {
+		return wrIctSeq;
+	}
+
+	public void setWrIctSeq(String wrIctSeq) {
+		this.wrIctSeq = wrIctSeq;
+	}
+
+	public String getWrWatchedLength() {
+		return wrWatchedLength;
+	}
+
+	public void setWrWatchedLength(String wrWatchedLength) {
+		this.wrWatchedLength = wrWatchedLength;
+	}
+
+	public String getIctIchSeq() {
 		return ictIchSeq;
 	}
 

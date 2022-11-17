@@ -22,6 +22,37 @@
 		    AND iodSeq = #{iodSeq}
 	</select>
 	
+	<select id = "selectOneWatch" resultMap="resultMapObj">
+		select
+			wrSeq
+			,wrIltSeq
+			,wrIctSeq
+			,wrIfmmSeq
+			,wrWatchedLength
+		from watchRecord
+		where
+			1=1
+		    AND wrIltSeq = #{iltSeq}
+		   	AND wrIfmmSeq = #{ifmmSeq}
+	</select>
+	
+	<select id = "selectFirstChapter" resultMap="resultMapObj">
+		select
+			a.ictSeq
+		    ,a.icttitle
+		    ,a.ictSort
+		    ,b.ichSeq
+		    ,c.iltSeq
+		from
+			idChapter a
+		left join idChapterHeader b on a.ictIchSeq = b.ichSeq
+		left join idLecture c on b.ichIltSeq = c.iltSeq
+		where  
+			1=1
+		    AND iltSeq = #{iltSeq}
+		    AND ictSort = (select min(ictSort) from idChapter) 
+	</select>
+	
 	<select id = "paymentList" resultMap="resultMapObj">
 		select
 			b.iodifmmSeq
