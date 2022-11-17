@@ -23,12 +23,46 @@ public class Lecturer{
 	private Integer iltPrice;
 	private Integer iltUseNy;
 	
+	//카테고리
+	private String ictsSeq;
+	private String ictsItem;
+	private String ictgItem;
+	private String ictgSeq;
+	private String ictgIctsSeq;
 	
 	
 	
 	
-	
-	
+	public String getIctgSeq() {
+		return ictgSeq;
+	}
+	public void setIctgSeq(String ictgSeq) {
+		this.ictgSeq = ictgSeq;
+	}
+	public String getIctgIctsSeq() {
+		return ictgIctsSeq;
+	}
+	public void setIctgIctsSeq(String ictgIctsSeq) {
+		this.ictgIctsSeq = ictgIctsSeq;
+	}
+	public String getIctgItem() {
+		return ictgItem;
+	}
+	public void setIctgItem(String ictgItem) {
+		this.ictgItem = ictgItem;
+	}
+	public String getIctsSeq() {
+		return ictsSeq;
+	}
+	public void setIctsSeq(String ictsSeq) {
+		this.ictsSeq = ictsSeq;
+	}
+	public String getIctsItem() {
+		return ictsItem;
+	}
+	public void setIctsItem(String ictsItem) {
+		this.ictsItem = ictsItem;
+	}
 	public Integer getIltUseNy() {
 		return iltUseNy;
 	}

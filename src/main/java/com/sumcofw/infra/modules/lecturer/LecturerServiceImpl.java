@@ -24,4 +24,21 @@ public class LecturerServiceImpl implements LecturerService{
 	public List<Lecturer> selectLecture() throws Exception {
 		return dao.selectLecture();
 	}
+	@Override
+	public List<Lecturer> selectCategory() throws Exception {
+		return dao.selectCategory();
+	}
+	@Override
+	public List<Lecturer> selectCategorySub() throws Exception {
+		return dao.selectCategorySub();
+	}
+	@Override
+	public List<Lecturer> selectChapterList() throws Exception {
+		return dao.selectChapterList();
+	}
+	
+	@Override
+	public Lecturer selectLectureOne(Lecturer dto) throws Exception{
+		return dao.selectLectureOne(dto);
+	}
 }

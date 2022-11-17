@@ -28,7 +28,7 @@
 	<!-- include header -->
 
 	<main id="main">
-		<form name="formList">
+		<form name="formList" id="formList">
 			<!-- ======= Blog Section ======= -->
 			<section id="blog" class="blog">
 				<div class="container" data-aos="fade-up">
@@ -53,7 +53,8 @@
 						<div class="col-lg-9">
 							<div class="row" style="padding: 20px">
 								<h4 style="font-weight: bold">
-									<i class="fa-solid fa-id-card-clip"></i>강의목록
+									<i class="fa-solid fa-id-card-clip"></i>
+									강의목록
 									<div style="float: right;">
 										<button type="button" class="btn btn-primary" id="btnForm">+ 강의 만들기</button>
 									</div>
@@ -70,15 +71,15 @@
 										<table class="table border" style="table-layout: fixed;">
 											<tr id="tr1">
 												<td style="width: 4%">
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+													<input type="checkbox" id="checkboxAll" name="" value="" class="form-check-input">
 												</td>
-												<td style="width: 25%">제목</td>
+												<td style="width: 22%">제목</td>
 												<td style="width: 10%">가격</td>
-												<td >상태</td>
-												<td style="width: 8%">카테고리</td>
-												<td style="width: 15%">시청인원수</td>
-												<td style="width: 18%">생산일</td>
-												<td style="width: 10%"></td>
+												<td style="width: 10%">상태</td>
+												<td style="width: 15%">카테고리</td>
+												<td>시청인원수</td>
+												<td style="width: 20%">생산일</td>
+												<td style="width: 9%"></td>
 											</tr>
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0}">
@@ -90,7 +91,7 @@
 													<c:forEach items="${list}" var="list" varStatus="status">
 														<tr style="font-size: 13px; vertical-align: middle;">
 															<td style="text-align: center; padding: 0; vertical-align: middle;">
-																<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+																<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.iltSeq }"/>" class="form-check-input">
 															</td>
 															<td style="padding: 0;">
 																<table style="table-layout: fixed; width: 100%">
@@ -98,7 +99,10 @@
 																		<td style="width: 3em">
 																			<img src="https://cdn.class101.net/images/325b62f3-e531-425f-b9b8-e53fdadfc9b2/original" alt="" style="width: 3em" style="display:inline-block;" />
 																		</td>
-																		<td style="padding-left: 10px;">${list.iltTitle }</td>
+																		<td style="padding-left: 10px;">
+																			${list.iltTitle }
+																			<input type="hidden" name="iltSeq" id="iltSeq" value="${list.iltSeq }">
+																		</td>
 																	</tr>
 																</table>
 															</td>
@@ -112,21 +116,20 @@
 																		<i class="fa-solid fa-circle-dot" style="color: red;"></i> 판매 중지
 																	</c:otherwise>
 																</c:choose>
-																
 															</td>
-															<td style="text-align: center;">주식</td>
+															<td style="text-align: center;">${list.ictgItem }
+																/<br> ${list.ictsItem }
+															</td>
 															<td style="text-align: center;">123명</td>
 															<td>2021.12.26 오전 10:59</td>
 															<td>
-																<span id="writebtn"> 작성하기</span>
+																<a href="javascript:goForm(<c:out value="${list.iltSeq }"/>)" class="text-decoration-none">작성하기</a>
 															</td>
 														</tr>
 													</c:forEach>
 												</c:otherwise>
 											</c:choose>
 										</table>
-
-
 									</div>
 								</div>
 							</div>
@@ -146,8 +149,26 @@
 	<script>
         var form = $("form[name=formList]");
         var goUrlForm = "/lecturer/lectureForm";
+        var seq = $("input:hidden[name=iltSeq]");
+        
+        var checkboxSeqArray = [];
+        
         $('#btnForm').on("click", function() {
+            goForm(0);
+        });
+
+        goForm = function(keyValue) {
+            /* if(keyValue != 0) seq.val(btoa(keyValue)); */
+            seq.val(keyValue);
             form.attr("action", goUrlForm).submit();
+        }
+        
+        /* 체크박스 check */
+        $("#checkboxAll").click(function() {
+            if ($("#checkboxAll").is(":checked"))
+                $("input[name=checkboxSeq]").prop("checked", true);
+            else
+                $("input[name=checkboxSeq]").prop("checked", false);
         });
     </script>
 

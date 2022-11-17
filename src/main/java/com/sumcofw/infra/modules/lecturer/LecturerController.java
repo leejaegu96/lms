@@ -29,7 +29,15 @@ public class LecturerController {
 	}
 	
 	@RequestMapping(value = "/lectureForm")
-	public String lectureForm() throws Exception {
+	public String lectureForm(Lecturer dto, Model model) throws Exception {
+		Lecturer result = service.selectLectureOne(dto);
+		List<Lecturer> big = service.selectCategory();
+		List<Lecturer> small = service.selectCategorySub();
+		List<Lecturer> chapter = service.selectChapterList();
+		model.addAttribute("item",result);
+		model.addAttribute("big", big);
+		model.addAttribute("small", small);
+		model.addAttribute("chapter", chapter);
 		
 		return "infra/lecturer/lectureForm";
 	}

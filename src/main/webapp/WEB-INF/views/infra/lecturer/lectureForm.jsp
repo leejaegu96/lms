@@ -28,9 +28,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
+
 </head>
 
-<body onload="fnCateInit();">
+<body>
 	<!-- include header -->
 	<%@include file=".././common/user/includeV1/header.jsp"%>
 	<!-- include header -->
@@ -59,98 +60,130 @@
 					</div>
 					<!-- End sidebar -->
 					<div class="col-lg-9">
-						<div class="sidebar">
-							<div class="row mb-3">
-								<div class="col-6" style="float: left;">
-									<span style="font-size: 25px; font-weight: bold;">강의등록</span> &nbsp;
-								</div>
-								<div class="col-6">
-									<button class="btn btn-secondary" style="float: right;">이전으로</button>
-									<button class="btn btn-primary" style="float: right;">저장하기</button>
-								</div>
-							</div>
-							<div class="row mb-3">
-								<label for="cate1" class="col-2 col-form-label" style="text-align: center;">카테고리</label>
-								<div class="col-10">
-									<form name="fcate" method="post">
-										<div class="row">
-											<div class="col-6">
-												<span name="cate1" id="cate1"></span>
-											</div>
-											<div class="col-6">
-												<span id="cate2"><Select class="form-select" name='cate2'>
-														<option style="text-align: center;" value=''>=소분류=</option>
-													</select></span>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							<!-- 강의제목 -->
-							<div class="row mb-3">
-								<label for="title" class="col-2 col-form-label" style="text-align: center;">강의제목</label>
-								<div class="col-10">
-									<input name="title" type="text" class="form-control" id="title" value="">
-								</div>
-							</div>
-							<!-- 대표이미지 -->
-							<div class="row mb-3">
-								<label for="title" class="col-2 col-form-label" style="text-align: center;">대표이미지</label>
-								<div class="col-10">
-									<input type="file" name="" type="text" class="form-control" id="" value="">
-								</div>
-							</div>
-							<!-- 강의상세 -->
-							<div class="row mb-3">
-								<label for="about" class="col-2 col-form-label" style="text-align: center;">강의상세</label>
-								<div class="col-10">
-									<div id="editor"></div>
-								</div>
-							</div>
-							<!-- 챕터 -->
-							<div class="row mb-3">
-								<label for="chapter" class="col-2 col-form-label" style="text-align: center;">챕터</label>
-								<div class="col-10" id="bChapter">
-									<div class="sidebar">
-										<div class="row">
-											<div class="row">
-												<label class="col-2 col-form-label">대제목</label>
-												<div class="col-10">
-													<input type="text" class="form-control" placeholder="대제목" name="bTitle">
-												</div>
-											</div>
-											<div class="row" style="padding-top: 10px;" id="sChapter">
-												<label class="col-2 col-form-label">소제목</label>
-												<div class="col-9" style="padding-right: 0px;">
-													<input type="text" placeholder="소제목" class="form-control">
-													<input type="text" placeholder="주소" class="form-control">
-												</div>
-												<div class="col-1" style="padding: 0px 0px;">
-													<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
-														<i class="fa-solid fa-plus"></i>
-													</button>
-												</div>
-											</div>
-										</div>
+						<form name="form" id="form">
+							<div class="sidebar">
+								<div class="row mb-3">
+									<div class="col-6" style="float: left;">
+										<span style="font-size: 25px; font-weight: bold;">강의등록</span> &nbsp;
 									</div>
+									<div class="col-6">
+										<button class="btn btn-secondary" style="float: right;">이전으로</button>
+										<button type="button" onclick="btn()" class="btn btn-primary" style="float: right;">저장하기</button>
+									</div>
+								</div>
+								<br>
+								<div class="row mb-3">
+									<label for="cate1" class="col-2 col-form-label" style="text-align: center;">카테고리</label>
+									<div class="col-10">
+										<div class="row">
+											<div class="col-6">
+												<select class="form-select" name="ictgItem">
+													<option value="">전체</option>
+												</select>
+											</div>
+											<div class="col-6">
+												<select class="form-select" name="ictsItem">
+													<option value="">전체</option>
+												</select>
+											</div>
+										</div>
 
+									</div>
 								</div>
-								<div>
-									<button style="width: 100%" type="button" id="btnPlus" class="btn btn-primary" onclick="addBChapter()">
-										<i class="fa-solid fa-plus"></i> 챕터 추가하기
-									</button>
+								<!-- 강의제목 -->
+								<div class="row mb-3">
+									<label for="title" class="col-2 col-form-label" style="text-align: center;">강의제목</label>
+									<div class="col-10">
+										<input name="title" type="text" class="form-control" id="iltTitle" value="${item.iltTitle }">
+									</div>
 								</div>
+								<!-- 대표이미지 -->
+								<div class="row mb-3">
+									<label for="title" class="col-2 col-form-label" style="text-align: center;">대표이미지</label>
+									<div class="col-10">
+										<input type="file" name="" type="text" class="form-control" id="" value="">
+									</div>
+								</div>
+								<!-- 강의상세 -->
+								<div class="row mb-3">
+									<label for="about" class="col-2 col-form-label" style="text-align: center;">강의상세</label>
+									<div class="col-10">
+										<div id="editor"></div>
+									</div>
+								</div>
+								<!-- 챕터 -->
+								<div class="row mb-3">
+									<label for="chapter" class="col-2 col-form-label" style="text-align: center;">챕터</label>
+									<c:choose>
+										<c:when test="${item.iltSeq eq null }">
+											<div class="col-10" id="bChapter">
+												<div class="chapter-items">
+													<div class="row">
+														<div class="row">
+															<label class="col-2 col-form-label">대제목</label>
+															<div class="col-10">
+																<input type="text" class="form-control" placeholder="대제목"">
+															</div>
+														</div>
+														<div class="row" style="padding-top: 10px;" id="sChapter">
+															<label class="col-2 col-form-label">소제목</label>
+															<div class="col-9" style="padding-right: 0px;">
+																<input type="text" placeholder="소제목" class="form-control">
+																<input type="text" placeholder="주소" class="form-control">
+															</div>
+															<div class="col-1" style="padding: 0px 0px;">
+																<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
+																	<i class="fa-solid fa-plus"></i>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${chapter}" var="chapter" varStatus="status">
+												<div class="col-10" id="bChapter">
+													<div class="chapter-items">
+														<div class="row">
+															<div class="row">
+																<label class="col-2 col-form-label">대제목</label>
+																<div class="col-10">
+																	<input type="text" class="form-control" placeholder="대제목">
+																</div>
+															</div>
+															<div class="row" style="padding-top: 10px;" id="sChapter">
+																<label class="col-2 col-form-label">소제목</label>
+																<div class="col-9" style="padding-right: 0px;">
+																	<input type="text" placeholder="소제목" class="form-control">
+																	<input type="text" placeholder="주소" class="form-control">
+																</div>
+																<div class="col-1" style="padding: 0px 0px;">
+																	<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
+																		<i class="fa-solid fa-plus"></i>
+																	</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+
+									<div>
+										<button style="width: 100%" type="button" id="btnPlus" class="btn btn-primary" onclick="addBChapter()">
+											<i class="fa-solid fa-plus"></i> 챕터 추가하기
+										</button>
+									</div>
+								</div>
+
 							</div>
-
-						</div>
+						</form>
 					</div>
 				</div>
 				<!-- End blog sidebar -->
 			</div>
-
-
-
-
 		</section>
 		<!-- End Blog Section -->
 	</main>
@@ -167,32 +200,127 @@
 	<!-- toast javascript -->
 	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    //Main 카테고리를 선택 할때 마다 AJAX를 호출할 수 있지만 DB접속을 매번 해야 하기 때문에 main, sub카테고리 전체을 들고온다.
+	    
+	    //****************이부분은 DB로 셋팅하세요.
+	    //Main 카테고리 셋팅 (DB에서 값을 가져와 셋팅 하세요.)
+	    var mainCategoryArray = new Array();
+	    var mainCategoryObject = new Object();
+	    
+	    <c:forEach items="${big}" var="big" varStatus="status">
+		    mainCategoryObject = new Object();
+		    mainCategoryObject.main_category_id = "${big.ictgItem}";
+		    mainCategoryObject.main_category_name = "${big.ictgItem}";
+		    mainCategoryArray.push(mainCategoryObject);
+	    </c:forEach>
+	    //Sub 카테고리 셋팅 (DB에서 값을 가져와 셋팅 하세요.)
+	    var subCategoryArray = new Array();
+	    var subCategoryObject = new Object();
+	    
+	    //스포츠에 해당하는 sub category 리스트
+	    
+	    <c:forEach items="${small}" var="small" varStatus="status">
+		    subCategoryObject = new Object();
+		    subCategoryObject.main_category_id = "${small.ictgItem}";
+		    subCategoryObject.sub_category_id = "${small.ictsItem}"
+		    subCategoryObject.sub_category_name = "${small.ictsItem}"    
+		    subCategoryArray.push(subCategoryObject);
+	    </c:forEach>
+	    
+	    //메인 카테고리 셋팅
+	    var mainCategorySelectBox = $("select[name='ictgItem']");
+	    var select = ""
+	    for(var i=0;i<mainCategoryArray.length;i++){
+	        if(mainCategoryArray[i].main_category_name == "${item.ictgItem}"){
+	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_id+"' selected>"+mainCategoryArray[i].main_category_name+"</option>");
+	        } else{
+	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_id+"'>"+mainCategoryArray[i].main_category_name+"</option>");
+	        }
+	    }
+	    
+	    var subCategorySelectBox = $("select[name='ictsItem']");
+        subCategorySelectBox.children().remove(); //기존 리스트 삭제
+        
+        //선택한 첫번째 박스의 값을 가져와 일치하는 값을 두번째 셀렉트 박스에 넣는다.
+        $("option:selected", this).each(function(){
+            var selectValue = $(this).val(); //main category 에서 선택한 값
+            subCategorySelectBox.append("<option value=''>전체</option>");
+            for(var i=0;i<subCategoryArray.length;i++){
+                if(selectValue == subCategoryArray[i].main_category_id){
+                    if(subCategoryArray[i].sub_category_name == "${item.ictsItem}"){
+                        subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_id+"' selected>"+subCategoryArray[i].sub_category_name+"</option>");
+                    }else{
+	                    subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_id+"'>"+subCategoryArray[i].sub_category_name+"</option>");
+                    }
+                    
+                }
+            }
+        });
+	    
+	    
+	    //*********** 1depth카테고리 선택 후 2depth 생성 START ***********
+	    
+	    $(document).on("change","select[name='ictgItem']",function(){
+	        
+	        //두번째 셀렉트 박스를 삭제 시킨다.
+	        var subCategorySelectBox = $("select[name='ictsItem']");
+	        subCategorySelectBox.children().remove(); //기존 리스트 삭제
+	        
+	        //선택한 첫번째 박스의 값을 가져와 일치하는 값을 두번째 셀렉트 박스에 넣는다.
+	        $("option:selected", this).each(function(){
+	            var selectValue = $(this).val(); //main category 에서 선택한 값
+	            subCategorySelectBox.append("<option value=''>전체</option>");
+	            for(var i=0;i<subCategoryArray.length;i++){
+	                if(selectValue == subCategoryArray[i].main_category_id){
+	                    if(subCategoryArray[i].sub_category_name == "${item.ictsItem}"){
+	                        subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_id+"' selected>"+subCategoryArray[i].sub_category_name+"</option>");
+	                    }else{
+		                    subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_id+"'>"+subCategoryArray[i].sub_category_name+"</option>");
+	                    }
+	                    
+	                }
+	            }
+	        });
+	        
+	    });
+	    
+	    //*********** 1depth카테고리 선택 후 2depth 생성 END ***********
+	        
+	});
+	</script>
+
+	<script type="text/javascript">
+		function btn() {
+		    console.log(editor.getHTML());
+		}
+	</script>
 
 	<script type="text/javascript">
 		var count_SmallChapter = 0;
 		function addSChapter() {
 			var listHTML = "";
 			listHTML += '';
-			listHTML += '<div class="row" id="chapterSDelete'+ count_SmallChapter +'">';
+			listHTML += '<div id="chapterSDelete'+ count_SmallChapter +'">';
+			listHTML += '<div class="row" >';
 			listHTML += '<label class="col-2 col-form-label">소제목</label>';
 			listHTML += '<div class="col-9" style="padding-right:0px;">';
 			listHTML += '<input type="text" placeholder="소제목" class="form-control">';
 			listHTML += '<input type="text" placeholder="주소" class="form-control">';
 			listHTML += '</div>';
 			listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-			listHTML += '<button type="button" class="btn btn-primary" onclick="remove(chapterSDelete'
+			listHTML += '<button type="button" class="btn btn-danger" onclick="remove(chapterSDelete'
 					+ count_SmallChapter + ')">';
 			listHTML += '<i class="fa-solid fa-minus"></i>';
 			listHTML += '</button>';
 			listHTML += '</div>';
 			listHTML += '</div>';
-
+			listHTML += '</div>';
 			count_SmallChapter += 1;
-
 			$("#sChapter").append(listHTML);
 		}
 		function remove(id) {
-
 			$(id).remove();
 		}
 	</script>
@@ -201,7 +329,8 @@
 		function addBChapter() {
 			var listHTML = "";
 			listHTML += '';
-			listHTML += '<div class="sidebar" id="chapterBDelete'+ count_BigChapter +'">';
+			listHTML += '<div id="chapterBDelete'+ count_BigChapter +'">';
+			listHTML += '<div class="chapter-items">';
 			listHTML += '<div class="row" >';
 			listHTML += '<div class="row">';
 			listHTML += '<label class="col-2 col-form-label" >대제목</label>';
@@ -229,45 +358,42 @@
 			listHTML += '</div>';
 			listHTML += '</div>';
 			listHTML += '</div>';
-
+			listHTML += '</div>';
 			count_BigChapter += 1;
-
 			$("#bChapter").append(listHTML);
 		}
 		function addSsChapter() {
 			var listHTML = "";
 			listHTML += '';
-			listHTML += '<div class="row" id="chapterSDelete'+ count_SmallChapter +'">';
+			listHTML += '<div id="chapterSDelete'+ count_SmallChapter +'">';
+			listHTML += '<div class="row">';
 			listHTML += '<label class="col-2 col-form-label">소제목</label>';
 			listHTML += '<div class="col-9" style="padding-right:0px;">';
 			listHTML += '<input type="text" placeholder="소제목" class="form-control">';
 			listHTML += '<input type="text" placeholder="주소" class="form-control">';
 			listHTML += '</div>';
 			listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-			listHTML += '<button type="button" class="btn btn-primary" onclick="remove(chapterSDelete'
+			listHTML += '<button type="button" class="btn btn-danger" onclick="remove(chapterSDelete'
 					+ count_SmallChapter + ')">';
 			listHTML += '<i class="fa-solid fa-minus"></i>';
 			listHTML += '</button>';
 			listHTML += '</div>';
 			listHTML += '</div>';
-
+			listHTML += '</div>';
 			count_SmallChapter += 1;
-
 			$("#ssChapter").append(listHTML);
 		}
-
 		function remove(id) {
-
 			$(id).remove();
 		}
 	</script>
 
 
-
+	<!-- 
 	<script>
 		var arrBig = new Array();
 		arrBig[0] = "";
-		arrBig[1] = "프로그래밍";
+		arrBig[1] = "개발 프로그래밍";
 		arrBig[2] = "데이터사이언스";
 		arrBig[3] = "라이프스타일";
 
@@ -276,7 +402,7 @@
 
 		var arrMid_1 = new Array(); // var arrMid_1 = new Array("","라비타","그랜저 XG","스텔라");
 		arrMid_1[0] = "";
-		arrMid_1[1] = "IT교양";
+		arrMid_1[1] = "웹 개발";
 		arrMid_1[2] = "프로그래밍언어";
 		arrMid_1[3] = "Web 프론트엔드";
 		arrMid_1[4] = "백엔드";
@@ -425,17 +551,15 @@
 		}
 		 */
 	</script>
+	 -->
 	<script>
-		let intro = '<div id="info">'
-				+ '<h2>들어가는말</h2>    <p>    생활코딩의 세계에 오신 것을 환영합니다. 생활코딩은 <strong>일반인들에게 프로그래밍을 알려주는 무료 온라인, 오프라인 수업입니다. </strong>&nbsp;어떻게 공부할 것인가를 생각해보기 전에 왜&nbsp;프로그래밍을 공부하는 이유에 대한 이유를 함께 생각해보면 좋을 것 같습니다. 아래 영상을 한번 보시죠.</p>	<p>   입문자의 가장 큰 고충은 &#39;무엇을 모르는지 모르는 상태&#39;일 겁니다.   온라인에는 프로그래밍을 익히는 데 필요한 거의 모든 정보가 있지만, 이 지식들은 게시판이나 블로그 또는 커뮤니티에 포스팅 단위로 파편화되어 있습니다.	    그래서 최소한 무엇을 검색해야 하는지를 아는 사람들을 위해서는 더 없이 좋은 공간이지만, &#39;무엇을 모르는지 모르는 상태&#39;의 입문자에게는 그림의 떡으로 남아 있습니다.     다시말해서 전문가를 더욱 전문가답게 만드는 혁신에 머물고 있는 것이죠.</p>	<p> 생활코딩은 컴퓨터와 인터넷이 존재하는 시대의 공부방법은 어때야 하는가를 찾는 작업을 꾸준히 하고 있습니다.	    정보기술이 발전하지 않았던, 낭만적인 시절에는 어떤 일을 하려고 하면 그것을 하기 위해서 필요한 거의 모든 것을 알고 있어야 했습니다. 검색할수도 없었고, 질문하기도 어려웠기 때문입니다. 한편 한번 배운 지식만으로도 평생을 살아 갈 수 있었습니다. &nbsp;</p>'
-				+ '</div>'
 		
 		const editor = new toastui.Editor({
 			el : document.querySelector('#editor'),
 			previewStyle : 'vertical',
 			height : '500px',
 			initialEditType : 'wysiwyg',
-			initialValue : intro,
+			initialValue : '${item.iltBody}',
 			hooks : {
 				addImageBlobHook: (blob, callback) => {
 					const url = window.URL.createObjectURL(blob);
