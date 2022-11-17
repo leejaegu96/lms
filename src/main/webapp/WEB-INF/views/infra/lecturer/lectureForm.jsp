@@ -147,8 +147,9 @@
 												<div class="chapter-items">
 													<div class="row">
 														<div class="row" style="padding-top: 10px;" id="sChapter">
+															
 															<c:forEach items="${chapter}" var="chapter" varStatus="status">
-																<c:if test="">
+																<c:set var="count" value="${count+1 }"></c:set>
 																	<label class="col-2 col-form-label">소제목</label>
 																	<div class="col-9" style="padding-right: 0px;">
 																		<input type="text" placeholder="소제목" class="form-control" name="ictTitle" id="ictTitle" value="${chapter.ictTitle }">
@@ -156,10 +157,10 @@
 																	</div>
 																	<div class="col-1" style="padding: 0px 0px;">
 																		<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
-																			<i class="fa-solid fa-plus"></i>
+																			<i class="fa-solid fa-<c:if test="${count eq 1}">plus</c:if><c:if test="${count ne 1}">minus</c:if>"></i>  
 																		</button>
 																	</div>
-																</c:if>
+															
 
 															</c:forEach>
 														</div>

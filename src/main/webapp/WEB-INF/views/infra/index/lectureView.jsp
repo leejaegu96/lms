@@ -246,10 +246,9 @@ var playerConfig = {
 		},
 		playerVars: {
 		      'playsinline': 1
-		      ,'start': 800
+		      ,'start': 1200
 		    },
 };
-
 
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', playerConfig);
@@ -286,8 +285,11 @@ function onPlayerStateChange(e) {
 	}
 }
 
+$(window).on("beforeunload", function(){
+	return 'sdfsdf';
+});
+
 
 </script>
-
 </body>
 </html>
