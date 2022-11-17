@@ -1,11 +1,16 @@
 package com.sumcofw.infra.modules.lecturer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/lecturer")
@@ -40,6 +45,21 @@ public class LecturerController {
 		model.addAttribute("chapter", chapter);
 		
 		return "infra/lecturer/lectureForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/lectureArray")
+	public Map<String, Object> lectureArray(@RequestParam(value="ictTitleList[]") ArrayList<String> ictTitleList, @RequestParam(value="ictVideoUrlList[]") ArrayList<String> ictVideoUrlList ) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		for(String x : ictTitleList) {
+			System.out.println(x);
+		}
+		for(String y : ictVideoUrlList) {
+			System.out.println(y);
+		}
+		
+		return returnMap;
 	}
 	
 	@RequestMapping(value = "/lecturerProfile")

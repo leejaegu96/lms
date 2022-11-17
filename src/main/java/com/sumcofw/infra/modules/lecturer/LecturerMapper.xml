@@ -80,6 +80,7 @@
 		a.ictSeq
 	    ,a.ictTitle
 	    ,a.ictVideoUrl
+	    ,a.ictSort
 	    ,b.ichTitle
 	from idChapter a
 	inner join idChapterHeader b on b.ichSeq = a.ictIchSeq

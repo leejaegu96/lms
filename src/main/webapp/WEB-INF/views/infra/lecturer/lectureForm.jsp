@@ -146,10 +146,9 @@
 											<div class="col-10" id="bChapter">
 												<div class="chapter-items">
 													<div class="row">
-														<div class="row" style="padding-top: 10px;" id="sChapter">
-															
-															<c:forEach items="${chapter}" var="chapter" varStatus="status">
-																<c:set var="count" value="${count+1 }"></c:set>
+														<c:forEach items="${chapter}" var="chapter" varStatus="status">
+															<c:if test="${chapter.ictSort eq 1 }">
+																<div class="row" style="padding-top: 10px;" id="sChapter">
 																	<label class="col-2 col-form-label">소제목</label>
 																	<div class="col-9" style="padding-right: 0px;">
 																		<input type="text" placeholder="소제목" class="form-control" name="ictTitle" id="ictTitle" value="${chapter.ictTitle }">
@@ -157,13 +156,26 @@
 																	</div>
 																	<div class="col-1" style="padding: 0px 0px;">
 																		<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
-																			<i class="fa-solid fa-<c:if test="${count eq 1}">plus</c:if><c:if test="${count ne 1}">minus</c:if>"></i>  
+																			<i class="fa-solid fa-plus"></i>
 																		</button>
 																	</div>
-															
-
-															</c:forEach>
-														</div>
+																</div>
+															</c:if>
+															<c:if test="${chapter.ictSort ne 1 }">
+																<div class="row" id="chapterSDelete${chapter.ictSort }">
+																	<label class="col-2 col-form-label">소제목</label>
+																	<div class="col-9" style="padding-right: 0px;">
+																		<input type="text" placeholder="소제목" class="form-control" name="ictTitle" id="ictTitle" value="${chapter.ictTitle }">
+																		<input type="text" placeholder="주소" class="form-control" name="ictVideoUrl" id="ictVideoUrl" value="${chapter.ictVideoUrl }">
+																	</div>
+																	<div class="col-1" style="padding: 0px 0px;">
+																		<button type="button" id="btnPlus" class="btn btn-danger" onclick="remove(chapterSDelete${chapter.ictSort})">
+																			<i class="fa-solid fa-minus"></i>
+																		</button>
+																	</div>
+																</div>
+															</c:if>
+														</c:forEach>
 													</div>
 												</div>
 											</div>
@@ -201,8 +213,33 @@
 
 	<script type="text/javascript">
 		function btn() {
-		    console.log(editor.getHTML());
-		    console.log(document.getElementById('ictTitle').value);
+		    let ictTitleList = [];
+		    let ictVideoUrlList = [];
+			$("input[name=ictTitle]").each(function(){
+			    ictTitleList.push($(this).val());
+			});
+			$("input[name=ictVideoUrl]").each(function(){
+			    ictVideoUrlList.push($(this).val());
+			});
+			console.log(ictTitleList);
+			
+			$.ajax({
+			    url: "/lecturer/lectureArray",
+		        async : true,
+                cache : false,
+                type : "post",
+                data : {
+                    ictTitleList: ictTitleList,
+                    ictVideoUrlList: ictVideoUrlList
+                },
+                success : function(response) {
+                    console.log("성공")
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+			})
+			
 		}
 	</script>
 	<script type="text/javascript">
@@ -297,7 +334,7 @@
 	</script>
 
 	<script type="text/javascript">
-		var count_SmallChapter = 0;
+		var count_SmallChapter = 10;
 		function addSChapter() {
 			var listHTML = "";
 			listHTML += '';

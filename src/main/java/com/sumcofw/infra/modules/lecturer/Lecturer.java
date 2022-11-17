@@ -35,10 +35,17 @@ public class Lecturer{
 	private String ictTitle;
 	private String ictVideoUrl;
 	private String ichTitle;
+	private String ictSort;
 	
 	
 	
 	
+	public String getIctSort() {
+		return ictSort;
+	}
+	public void setIctSort(String ictSort) {
+		this.ictSort = ictSort;
+	}
 	public String getIctSeq() {
 		return ictSeq;
 	}
