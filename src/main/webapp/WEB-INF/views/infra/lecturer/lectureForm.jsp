@@ -64,7 +64,8 @@
 							<div class="sidebar">
 								<div class="row mb-3">
 									<div class="col-6" style="float: left;">
-										<span style="font-size: 25px; font-weight: bold;">강의등록</span> &nbsp;
+										<span style="font-size: 25px; font-weight: bold;">강의등록</span>
+										&nbsp;
 									</div>
 									<div class="col-6">
 										<button class="btn btn-secondary" style="float: right;">이전으로</button>
@@ -142,32 +143,29 @@
 											</div>
 										</c:when>
 										<c:otherwise>
-											<c:forEach items="${chapter}" var="chapter" varStatus="status">
-												<div class="col-10" id="bChapter">
-													<div class="chapter-items">
-														<div class="row">
-															<div class="row">
-																<label class="col-2 col-form-label">대제목</label>
-																<div class="col-10">
-																	<input type="text" class="form-control" placeholder="대제목">
-																</div>
-															</div>
-															<div class="row" style="padding-top: 10px;" id="sChapter">
-																<label class="col-2 col-form-label">소제목</label>
-																<div class="col-9" style="padding-right: 0px;">
-																	<input type="text" placeholder="소제목" class="form-control">
-																	<input type="text" placeholder="주소" class="form-control">
-																</div>
-																<div class="col-1" style="padding: 0px 0px;">
-																	<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
-																		<i class="fa-solid fa-plus"></i>
-																	</button>
-																</div>
-															</div>
+											<div class="col-10" id="bChapter">
+												<div class="chapter-items">
+													<div class="row">
+														<div class="row" style="padding-top: 10px;" id="sChapter">
+															<c:forEach items="${chapter}" var="chapter" varStatus="status">
+																<c:if test="">
+																	<label class="col-2 col-form-label">소제목</label>
+																	<div class="col-9" style="padding-right: 0px;">
+																		<input type="text" placeholder="소제목" class="form-control" name="ictTitle" id="ictTitle" value="${chapter.ictTitle }">
+																		<input type="text" placeholder="주소" class="form-control" name="ictVideoUrl" id="ictVideoUrl" value="${chapter.ictVideoUrl }">
+																	</div>
+																	<div class="col-1" style="padding: 0px 0px;">
+																		<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
+																			<i class="fa-solid fa-plus"></i>
+																		</button>
+																	</div>
+																</c:if>
+
+															</c:forEach>
 														</div>
 													</div>
 												</div>
-											</c:forEach>
+											</div>
 										</c:otherwise>
 									</c:choose>
 
@@ -200,6 +198,12 @@
 	<!-- toast javascript -->
 	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 
+	<script type="text/javascript">
+		function btn() {
+		    console.log(editor.getHTML());
+		    console.log(document.getElementById('ictTitle').value);
+		}
+	</script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 	    //Main 카테고리를 선택 할때 마다 AJAX를 호출할 수 있지만 DB접속을 매번 해야 하기 때문에 main, sub카테고리 전체을 들고온다.
@@ -292,12 +296,6 @@
 	</script>
 
 	<script type="text/javascript">
-		function btn() {
-		    console.log(editor.getHTML());
-		}
-	</script>
-
-	<script type="text/javascript">
 		var count_SmallChapter = 0;
 		function addSChapter() {
 			var listHTML = "";
@@ -324,234 +322,7 @@
 			$(id).remove();
 		}
 	</script>
-	<script type="text/javascript">
-		var count_BigChapter = 0;
-		function addBChapter() {
-			var listHTML = "";
-			listHTML += '';
-			listHTML += '<div id="chapterBDelete'+ count_BigChapter +'">';
-			listHTML += '<div class="chapter-items">';
-			listHTML += '<div class="row" >';
-			listHTML += '<div class="row">';
-			listHTML += '<label class="col-2 col-form-label" >대제목</label>';
-			listHTML += '<div class="col-9" style="padding-right: 0px;">';
-			listHTML += '<input type="text" class="form-control" placeholder="대제목"  name="bTitle" >';
-			listHTML += '</div>';
-			listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-			listHTML += '<button type="button" id="btnPlus" class="btn btn-danger" onclick="remove(chapterBDelete'
-					+ count_BigChapter + ')">';
-			listHTML += '<i class="fa-solid fa-minus"></i>';
-			listHTML += '</button>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '<div class="row" style="padding-top:10px;" id="ssChapter">';
-			listHTML += '<label class="col-2 col-form-label">소제목</label>';
-			listHTML += '<div class="col-9" style="padding-right:0px;">';
-			listHTML += '<input type="text" placeholder="소제목" class="form-control">';
-			listHTML += '<input type="text" placeholder="주소" class="form-control">';
-			listHTML += '</div>';
-			listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-			listHTML += '<button type="button" class="btn btn-primary" onclick="addSsChapter()">';
-			listHTML += '<i class="fa-solid fa-plus"></i>';
-			listHTML += '</button>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			count_BigChapter += 1;
-			$("#bChapter").append(listHTML);
-		}
-		function addSsChapter() {
-			var listHTML = "";
-			listHTML += '';
-			listHTML += '<div id="chapterSDelete'+ count_SmallChapter +'">';
-			listHTML += '<div class="row">';
-			listHTML += '<label class="col-2 col-form-label">소제목</label>';
-			listHTML += '<div class="col-9" style="padding-right:0px;">';
-			listHTML += '<input type="text" placeholder="소제목" class="form-control">';
-			listHTML += '<input type="text" placeholder="주소" class="form-control">';
-			listHTML += '</div>';
-			listHTML += '<div class="col-1" style="padding: 0px 0px;">';
-			listHTML += '<button type="button" class="btn btn-danger" onclick="remove(chapterSDelete'
-					+ count_SmallChapter + ')">';
-			listHTML += '<i class="fa-solid fa-minus"></i>';
-			listHTML += '</button>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			count_SmallChapter += 1;
-			$("#ssChapter").append(listHTML);
-		}
-		function remove(id) {
-			$(id).remove();
-		}
-	</script>
 
-
-	<!-- 
-	<script>
-		var arrBig = new Array();
-		arrBig[0] = "";
-		arrBig[1] = "개발 프로그래밍";
-		arrBig[2] = "데이터사이언스";
-		arrBig[3] = "라이프스타일";
-
-		var arrMid_0 = new Array(); // var arrMid_0  = new Array("");
-		arrMid_0[0] = "";
-
-		var arrMid_1 = new Array(); // var arrMid_1 = new Array("","라비타","그랜저 XG","스텔라");
-		arrMid_1[0] = "";
-		arrMid_1[1] = "웹 개발";
-		arrMid_1[2] = "프로그래밍언어";
-		arrMid_1[3] = "Web 프론트엔드";
-		arrMid_1[4] = "백엔드";
-		arrMid_1[5] = "App";
-		arrMid_1[6] = "게임";
-		arrMid_1[7] = "보안 네트워크";
-		arrMid_1[8] = "시스템 DevOpx";
-
-		var arrMid_2 = new Array(); // var arrMid_2 = new Array("","SM5");
-		arrMid_2[0] = "";
-		arrMid_2[1] = "데이터분석";
-		arrMid_2[2] = "AI 인공지능";
-		arrMid_2[3] = "딥러닝 머신러닝";
-
-		var arrMid_3 = new Array(); // var arrMid_3 = new Array("","카렌스 II","옵티마");
-		arrMid_3[0] = "";
-		arrMid_3[1] = "뷰티";
-		arrMid_3[2] = "영상";
-		arrMid_3[3] = "심리";
-		arrMid_3[4] = "타로 사주 운세";
-		arrMid_3[5] = "게임 e스포츠";
-		arrMid_3[6] = "라이프 해킹";
-		arrMid_3[7] = "댄스 무용";
-		arrMid_3[8] = "반려동물";
-		arrMid_3[9] = "인문학";
-		arrMid_3[10] = "더 새로운 라이프";
-
-		/* 
-		var arrSml_0 = new Array("");
-		arrSml_0[0] = "";
-		 
-		var arrSml_1_1 = new Array("");    // 라비타
-		arrSml_1_1[0] = "";
-		arrSml_1_1[1] = "1.5 DOHC 가솔린 TR";
-		arrSml_1_1[2] = "1.8 DOHC 가솔린 CR";
-		 
-		var arrSml_1_2 = new Array("");    // 그랜저 XG
-		arrSml_1_2[0] = "";
-		arrSml_1_2[1] = "Q20";
-		arrSml_1_2[2] = "Q30";
-		arrSml_1_2[3] = "Q40";
-		 
-		var arrSml_1_3 = new Array("");    // 스텔라
-		arrSml_1_3[0] = "";
-		arrSml_1_3[1] = "미등록";
-		 
-		var arrSml_2_1 = new Array("");    // SM5
-		arrSml_2_1[0] = "";
-		arrSml_2_1[1] = "SM525V";
-		arrSml_2_1[2] = "SM520SE";
-		 
-		var arrSml_3_1 = new Array("");    // 카렌스 II
-		arrSml_3_1[0] = "";
-		arrSml_3_1[1] = "미등록";
-		 
-		var arrSml_3_2 = new Array("");    // 옵티마
-		arrSml_3_2[0] = "";
-		arrSml_3_2[1] = "opt200";
-		 */
-
-		function fnCateInit() {
-			var arr1 = new Array();
-			arr1[0] = "<option style='text-align:center;' value=''>=대분류=</option>";
-			for (i = 1; i < arrBig.length; i++) {
-				arr1[i] = "<option value='"+ arrBig[i] +"'>" + arrBig[i]
-						+ "</option>";
-			}
-
-			cate1.innerHTML = "<select class='form-select' name='cate1' onchange='fnCate2Chg()'>"
-					+ arr1.join() + "</select>";
-		}
-
-		function fnCate2Chg() {
-			var arr2 = new Array();
-			var arr3 = new Array();
-			var gap = document.fcate.cate1.options[document.fcate.cate1.selectedIndex].value;
-			if (gap != "") {
-				for (var i = 1; i < arrBig.length; i++) {
-					if (gap == arrBig[i]) {
-						bigNum = i;
-						break;
-					}
-				}
-				arrMid = eval("arrMid_" + bigNum);
-				for (var i = 1; i < arrMid.length; i++) {
-					arr2[i] = "<option value='"+ arrMid[i] +"'>" + arrMid[i]
-							+ "</option>";
-				}
-				cate2.innerHTML = "<select class='form-select' name='cate2' >"
-						+ arr2.join() + "</select>";
-
-				arrSml = eval("arrSml_" + bigNum + "_1");
-				for (var i = 1; i < arrSml.length; i++) {
-					arr3[i] = "<option value='"+ arrSml[i] +"'>" + arrSml[i]
-							+ "</option>";
-
-				}
-				cate3.innerHTML = "<select class='form-select' name='cate3'>"
-						+ arr3.join() + "</select>";
-			} else {
-			}
-		}
-		/* 
-		function fnCate3Chg() {
-		    var arr2 = new Array();
-		    var arr3 = new Array();
-		    var gap1 = document.fcate.cate1.options[document.fcate.cate1.selectedIndex].value;
-		    var gap2 = document.fcate.cate2.options[document.fcate.cate2.selectedIndex].value;
-		    if (gap1 != "") {
-		        for (var i=1;i<arrBig.length;i++) {
-		            if (gap1 == arrBig[i]) {
-		                bigNum = i;
-		                break;
-		            }            
-		        }
-		        arrMid = eval("arrMid_" + bigNum);
-		        for (var i=1;i<arrMid.length;i++) {
-		            if (gap2 == arrMid[i]) {
-		                arr2[i] = "<option value='"+ arrMid[i] +"' selected>"+ arrMid[i] +"</option>";
-		            } else {
-		                arr2[i] = "<option value='"+ arrMid[i] +"'>"+ arrMid[i] +"</option>";                
-		            }
-		        }
-		        cate2.innerHTML = "<select name='cate2' onchange='fnCate3Chg()'>"+ arr2.join() +"</select>";
-		 
-		        for (var i=1;i<arrMid.length;i++) {
-		            if (gap2 == arrMid[i]) {
-		                midNum = i;
-		                break;
-		            }
-		        }
-		        arrSml = eval("arrSml_" + bigNum + "_" + midNum);
-		 
-		        for (var i=1;i<arrSml.length;i++) {
-		                arr3[i] = "<option value='"+ arrSml[i] +"'>"+ arrSml[i] +"</option>";
-		        }
-		 
-		        cate3.innerHTML = "<select name='cate3'>"+ arr3.join() +"</select>";
-		//        alert(cate3.innerHTML);
-		    } else {
-		        
-		        cate2.innerHTML = "<select name='cate2' ><option value=''>=모델명=</option></select>";
-		        cate3.innerHTML = "<select name='cate3' ><option value=''>=등급명=</option></select>";
-		    }
-		 
-		}
-		 */
-	</script>
-	 -->
 	<script>
 		
 		const editor = new toastui.Editor({

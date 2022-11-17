@@ -30,9 +30,39 @@ public class Lecturer{
 	private String ictgSeq;
 	private String ictgIctsSeq;
 	
+	//챕터
+	private String ictSeq;
+	private String ictTitle;
+	private String ictVideoUrl;
+	private String ichTitle;
 	
 	
 	
+	
+	public String getIctSeq() {
+		return ictSeq;
+	}
+	public void setIctSeq(String ictSeq) {
+		this.ictSeq = ictSeq;
+	}
+	public String getIctTitle() {
+		return ictTitle;
+	}
+	public void setIctTitle(String ictTitle) {
+		this.ictTitle = ictTitle;
+	}
+	public String getIctVideoUrl() {
+		return ictVideoUrl;
+	}
+	public void setIctVideoUrl(String ictVideoUrl) {
+		this.ictVideoUrl = ictVideoUrl;
+	}
+	public String getIchTitle() {
+		return ichTitle;
+	}
+	public void setIchTitle(String ichTitle) {
+		this.ichTitle = ichTitle;
+	}
 	public String getIctgSeq() {
 		return ictgSeq;
 	}
