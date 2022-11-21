@@ -69,7 +69,7 @@
 									</div>
 									<div class="col-6">
 										<button class="btn btn-secondary" style="float: right;">이전으로</button>
-										<button type="button" onclick="btn()" class="btn btn-primary" style="float: right;">저장하기</button>
+										<button type="button" onclick="onSubmit()" class="btn btn-primary" style="float: right;">저장하기</button>
 									</div>
 								</div>
 								<br>
@@ -115,6 +115,23 @@
 								<!-- 챕터 -->
 								<div class="row mb-3">
 									<label for="chapter" class="col-2 col-form-label" style="text-align: center;">챕터</label>
+									<div class="col-10">
+										<div class="chapter-items">
+											<div class="chapterH">
+												<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" style="width: 70%; display: inline-block" />
+												<button type="button" class="btn btn-primary" style="width: 12%; display: inline-block" onclick="addRow(this)">+</button>
+												<button type="button" class="btn btn-danger" style="width: 12%; display: inline-block" onClick="delRow(this)" style="background-color: red">-</button>
+												<div class="body">
+													<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" style="width: 80%; display: inline-block" />
+													<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
+													<input type="text" class="form-control innerValue url" placeholder="링크" name="ictVideoUrl" style="width: 80%; display: inline-block" />
+													<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
+												</div>
+												<hr />
+											</div>
+										</div>
+									</div>
+									<%-- 
 									<c:choose>
 										<c:when test="${item.iltSeq eq null }">
 											<div class="col-10" id="bChapter">
@@ -181,12 +198,14 @@
 											</div>
 										</c:otherwise>
 									</c:choose>
-
 									<div>
 										<button style="width: 100%" type="button" id="btnPlus" class="btn btn-primary" onclick="addBChapter()">
 											<i class="fa-solid fa-plus"></i> 챕터 추가하기
 										</button>
 									</div>
+									 --%>
+
+
 								</div>
 
 							</div>
@@ -222,6 +241,7 @@
 			    ictVideoUrlList.push($(this).val());
 			});
 			console.log(ictTitleList);
+			console.log(ictVideoUrlList);
 			
 			$.ajax({
 			    url: "/lecturer/lectureArray",
@@ -333,6 +353,74 @@
 	});
 	</script>
 
+	<script>
+	/**
+	 * 저장시 실행 되는 함수
+	 * 공백체크 -> 입렵된 값 묶기 -> 컨트롤러 요청 보내기
+	 */
+	 const onSubmit = () => {
+         // validation
+         /**
+         const header = $('input[name=header]'); // 강의 제목
+         const img = $('input[name=img]'); // 대표 이미지
+         const body = $('input[name=body]'); // 강의 설명
+
+         // 내용이 비어있으면 제출 X
+         // 피드백 메시지 노출
+         if (header.val() == '' || body.val() == '' || img.val() == '') {
+             alert('내용을 입력해주세요');
+             return false;
+         }
+         */
+
+         const title = document.querySelectorAll('.chapterH'); // 대제목 div
+         const data = []; // 컨트롤러로 보낼 데이터 만들기
+
+         // 대제목 개수 만큼 반복
+         title.forEach((title, i) => {
+             const tmp = []; // 임시로 값을 담을 변수
+
+             // 소제목 개수 만큼 반복
+             title.querySelectorAll('.body').forEach((body) => {
+                 tmp.push({
+                     subTitle: body.querySelector('.title').value,
+                     link: body.querySelector('.url').value,
+                 });
+             });
+
+             data.push({
+                 header: title.querySelector('.bigTitle').value,
+                 body: tmp,
+             });
+         });
+         console.log(data);
+         // Ajax request
+     };
+     /**
+      * 행 추가 함수
+      */
+     const addRow = (target) => {
+         const row = target.parentNode; // 부모 요소 선택
+         const cloneNode = row.cloneNode(true); // 부모 요소 복사
+
+         // 안에있는 input 값 초기화
+         cloneNode.querySelectorAll('.innerValue').forEach((header) => {
+             header.value = '';
+         });
+
+         // row 추가
+         row.after(cloneNode);
+     };
+
+     /**
+      * 행 삭제 함수
+      */
+     const delRow = (target) => {
+         const delTarget = target.parentNode; // 부모 요소 선택
+         delTarget.remove(); // 자식 요소까지 전체 삭제
+     };
+	</script>
+	<!-- 
 	<script type="text/javascript">
 		var count_SmallChapter = 10;
 		function addSChapter() {
@@ -360,7 +448,7 @@
 			$(id).remove();
 		}
 	</script>
-
+	 -->
 	<script>
 		
 		const editor = new toastui.Editor({

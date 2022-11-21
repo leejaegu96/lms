@@ -49,7 +49,7 @@ public class LecturerController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/lectureArray")
-	public Map<String, Object> lectureArray(@RequestParam(value="ictTitleList[]") ArrayList<String> ictTitleList, @RequestParam(value="ictVideoUrlList[]") ArrayList<String> ictVideoUrlList ) throws Exception {
+	public Map<String, Object> lectureArray(@RequestParam(value="ictTitleList[]") ArrayList<String> ictTitleList, @RequestParam(value="ictVideoUrlList[]") ArrayList<String> ictVideoUrlList) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		for(String x : ictTitleList) {
