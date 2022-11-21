@@ -37,10 +37,38 @@ public class Lecturer{
 	private String ichTitle;
 	private String ictSort;
 	
+	// 강의
+	private String data;
+	private String ichIltSeq;
+	private String ichIltTitle;
+	private String icTtitle;
 	
 	
-	
-	public String getIctSort() {
+	public String getIchIltSeq() {
+        return ichIltSeq;
+    }
+    public void setIchIltSeq(String ichIltSeq) {
+        this.ichIltSeq = ichIltSeq;
+    }
+    public String getIchIltTitle() {
+        return ichIltTitle;
+    }
+    public void setIchIltTitle(String ichIltTitle) {
+        this.ichIltTitle = ichIltTitle;
+    }
+    public String getIcTtitle() {
+        return icTtitle;
+    }
+    public void setIcTtitle(String icTtitle) {
+        this.icTtitle = icTtitle;
+    }
+    public String getData() {
+        return data;
+    }
+    public void setData(String data) {
+        this.data = data;
+    }
+    public String getIctSort() {
 		return ictSort;
 	}
 	public void setIctSort(String ictSort) {

@@ -12,68 +12,95 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @RequestMapping(value = "/lecturer")
 public class LecturerController {
-	
-	@Autowired
-	LecturerServiceImpl service;
-	
-	
-	@RequestMapping(value = "/lectureList")
-	public String lectureList(Model model) throws Exception {
-		List<Lecturer> list = service.selectLecture();
-		model.addAttribute("list", list);
-		return "infra/lecturer/lectureList";
-	}
-	
-	@RequestMapping(value = "/memberList")
-	public String memberList() throws Exception {
-		
-		return "infra/lecturer/memberList";
-	}
-	
-	@RequestMapping(value = "/lectureForm")
-	public String lectureForm(Lecturer dto, Model model) throws Exception {
-		Lecturer result = service.selectLectureOne(dto);
-		List<Lecturer> big = service.selectCategory();
-		List<Lecturer> small = service.selectCategorySub();
-		List<Lecturer> chapter = service.selectChapterList();
-		model.addAttribute("item",result);
-		model.addAttribute("big", big);
-		model.addAttribute("small", small);
-		model.addAttribute("chapter", chapter);
-		
-		return "infra/lecturer/lectureForm";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/lectureArray")
-	public Map<String, Object> lectureArray(@RequestParam(value="ictTitleList[]") ArrayList<String> ictTitleList, @RequestParam(value="ictVideoUrlList[]") ArrayList<String> ictVideoUrlList) throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		
-		for(String x : ictTitleList) {
-			System.out.println(x);
-		}
-		for(String y : ictVideoUrlList) {
-			System.out.println(y);
-		}
-		
-		return returnMap;
-	}
-	
-	@RequestMapping(value = "/lecturerProfile")
-	public String lecturerProfile() throws Exception {
-		
-		return "infra/lecturer/lecturerProfile";
-	}
-	
-	@RequestMapping(value = "/lecturerDetail")
-	public String lecturerDetail(Lecturer dto, Model model) throws Exception {
-		
-		Lecturer result = service.selectOneLecturer(dto);
-		model.addAttribute("ltinfo",result);
-		
-		return "infra/lecturer/lecturerDetail";
-	}
+
+    @Autowired
+    LecturerServiceImpl service;
+
+    @RequestMapping(value = "/lectureList")
+    public String lectureList(Model model) throws Exception {
+        List<Lecturer> list = service.selectLecture();
+        model.addAttribute("list", list);
+        return "infra/lecturer/lectureList";
+    }
+
+    @RequestMapping(value = "/memberList")
+    public String memberList() throws Exception {
+
+        return "infra/lecturer/memberList";
+    }
+
+    @RequestMapping(value = "/lectureForm")
+    public String lectureForm(Lecturer dto, Model model) throws Exception {
+        Lecturer result = service.selectLectureOne(dto);
+        List<Lecturer> big = service.selectCategory();
+        List<Lecturer> small = service.selectCategorySub();
+        List<Lecturer> chapter = service.selectChapterList();
+        model.addAttribute("item", result);
+        model.addAttribute("big", big);
+        model.addAttribute("small", small);
+        model.addAttribute("chapter", chapter);
+
+        return "infra/lecturer/lectureForm";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/lectureArray")
+    public Map<String, Object> lectureArray(@RequestParam(value = "ictTitleList[]") ArrayList<String> ictTitleList,
+            @RequestParam(value = "ictVideoUrlList[]") ArrayList<String> ictVideoUrlList) throws Exception {
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+
+        for (String x : ictTitleList) {
+            System.out.println(x);
+        }
+        for (String y : ictVideoUrlList) {
+            System.out.println(y);
+        }
+
+        return returnMap;
+    }
+
+    @RequestMapping(value = "/lecturerProfile")
+    public String lecturerProfile() throws Exception {
+
+        return "infra/lecturer/lecturerProfile";
+    }
+
+    @RequestMapping(value = "/lectureInst")
+    @ResponseBody
+    public String lecturerInst(Lecturer dto) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> map = objectMapper.readValue(dto.getData(), Map.class);
+
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        list = (List<Map<String, Object>>) map.get("data");
+
+        List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).get("header").toString());
+            list2 = (List<Map<String, Object>>) list.get(i).get("body");
+            System.out.println("===");
+            
+            for (int j = 0; j < list2.size(); j++) {
+                System.out.println(list2.get(j).get("subTitle").toString());
+                System.out.println(list2.get(j).get("link").toString());
+            }
+        }
+
+        return "test";
+    }
+
+    @RequestMapping(value = "/lecturerDetail")
+    public String lecturerDetail(Lecturer dto, Model model) throws Exception {
+
+        Lecturer result = service.selectOneLecturer(dto);
+        model.addAttribute("ltinfo", result);
+
+        return "infra/lecturer/lecturerDetail";
+    }
 }

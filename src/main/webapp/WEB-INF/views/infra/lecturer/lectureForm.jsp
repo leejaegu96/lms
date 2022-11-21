@@ -374,7 +374,9 @@
          */
 
          const title = document.querySelectorAll('.chapterH'); // 대제목 div
-         const data = []; // 컨트롤러로 보낼 데이터 만들기
+         const data = {
+        	data: []
+          }; // 컨트롤러로 보낼 데이터 만들기
 
          // 대제목 개수 만큼 반복
          title.forEach((title, i) => {
@@ -388,13 +390,26 @@
                  });
              });
 
-             data.push({
+             data.data.push({
                  header: title.querySelector('.bigTitle').value,
                  body: tmp,
              });
          });
          console.log(data);
          // Ajax request
+         $.ajax({
+ 			url:'./lectureInst',
+ 			type:'post',
+ 			data:{
+ 				data: JSON.stringify(data)
+ 			},
+ 			success:(res) => {
+				// handle
+ 			},
+ 			error:(jqXHR) => {
+ 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+ 			}
+ 		});
      };
      /**
       * 행 추가 함수
