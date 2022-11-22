@@ -41,8 +41,11 @@ public class LecturerDao {
     	return sqlSession.selectList(namespace + ".selectCategorySub", "");
     }
     // 챕터 리스트
-    public List<Lecturer> selectChapterList(){
-    	return sqlSession.selectList(namespace + ".selectChapterList", "");
+    public List<Lecturer> selectChapterList(Lecturer dto){
+    	return sqlSession.selectList(namespace + ".selectChapterList", dto);
+    }
+    public List<Lecturer> selectChapterHeaderList(Lecturer dto){
+    	return sqlSession.selectList(namespace + ".selectChapterHeaderList", dto);
     }
     
     //강의 목록 선택

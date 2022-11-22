@@ -78,15 +78,26 @@
 	<select id="selectChapterList" resultMap="resultMapObj">
 	select
 		a.ictSeq
+	    ,a.ictIchSeq
 	    ,a.ictTitle
 	    ,a.ictVideoUrl
 	    ,a.ictSort
 	    ,b.ichTitle
 	from idChapter a
 	inner join idChapterHeader b on b.ichSeq = a.ictIchSeq
+	inner join idLecture c on c.iltSeq = b.ichIltSeq
 	where 1=1
+		and iltSeq = #{iltSeq}
 	</select>
-	
+	<select id="selectChapterHeaderList" resultMap="resultMapObj">
+	select
+		a.ichTitle
+		,a.ichSeq
+	from idChapterHeader a
+	inner join idLecture b on b.iltSeq = a.ichIltSeq
+	where 1=1
+		and iltSeq = #{iltSeq}
+	</select>
 	
 	<!-- 강의선택 -->
 	<select id = "selectOneLecture" resultMap="resultMapObj">

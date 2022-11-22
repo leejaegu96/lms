@@ -39,12 +39,13 @@ public class LecturerController {
         Lecturer result = service.selectLectureOne(dto);
         List<Lecturer> big = service.selectCategory();
         List<Lecturer> small = service.selectCategorySub();
-        List<Lecturer> chapter = service.selectChapterList();
+        List<Lecturer> chapter = service.selectChapterList(dto);
+        List<Lecturer> head = service.selectChapterHeaderList(dto);
         model.addAttribute("item", result);
         model.addAttribute("big", big);
         model.addAttribute("small", small);
         model.addAttribute("chapter", chapter);
-
+        model.addAttribute("head", head);
         return "infra/lecturer/lectureForm";
     }
 

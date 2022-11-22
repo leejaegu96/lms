@@ -9,7 +9,8 @@ public interface LecturerService {
 	public List<Lecturer> selectLecture() throws Exception;
 	public List<Lecturer> selectCategory() throws Exception;
 	public List<Lecturer> selectCategorySub() throws Exception;
-	public List<Lecturer> selectChapterList() throws Exception;
+	public List<Lecturer> selectChapterList(Lecturer dto) throws Exception;
+	public List<Lecturer> selectChapterHeaderList(Lecturer dto) throws Exception;
 	
 	public Lecturer selectLectureOne(Lecturer dto) throws Exception;
 }

@@ -61,6 +61,7 @@
 					<!-- End sidebar -->
 					<div class="col-lg-9">
 						<form name="form" id="form">
+							<input type="hidden" value="${item.iltSeq }">
 							<div class="sidebar">
 								<div class="row mb-3">
 									<div class="col-6" style="float: left;">
@@ -117,97 +118,51 @@
 									<label for="chapter" class="col-2 col-form-label" style="text-align: center;">챕터</label>
 									<div class="col-10">
 										<div class="chapter-items">
-											<div class="chapterH">
-												<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" style="width: 70%; display: inline-block" />
-												<button type="button" class="btn btn-primary" style="width: 12%; display: inline-block" onclick="addRow(this)">+</button>
-												<button type="button" class="btn btn-danger" style="width: 12%; display: inline-block" onClick="delRow(this)" style="background-color: red">-</button>
-												<div class="body">
-													<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" style="width: 80%; display: inline-block" />
-													<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
-													<input type="text" class="form-control innerValue url" placeholder="링크" name="ictVideoUrl" style="width: 80%; display: inline-block" />
-													<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
+											<c:choose>
+												<c:when test="${item.iltSeq eq null }">
+													<div class="chapter-items">
+														<div class="chapterH">
+															<label class="col-2 col-form-label" style="text-align: center;">대제목</label>
+															<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" style="width: 55%; display: inline-block; margin-bottom:20px;" />
+															<button type="button" class="btn btn-primary" style="width: 12%; display: inline-block" onclick="addRow(this)">+</button>
+															<button type="button" class="btn btn-danger" style="width: 12%; display: inline-block" onClick="delRow(this)" style="background-color: red">-</button>
+															<div class="body">
+																<label class="col-2 col-form-label" style="text-align: center;">소제목</label>
+																<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" style="width: 65%; display: inline-block" />
+																<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
+																<label class="col-2 col-form-label" style="text-align: center;">링크</label>
+																<input type="text" class="form-control innerValue url" placeholder="링크" name="ictVideoUrl" style="width: 65%; display: inline-block; margin-bottom:10px;" />
+																<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
+															</div>
+															<hr />
+														</div>
+													</div>
+												</c:when>
+											</c:choose>
+											<c:forEach items="${head}" var="head" varStatus="status">
+												<div class="chapterH">
+													<label class="col-2 col-form-label" style="text-align: center;">대제목</label>
+													<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" value="${head.ichTitle }" style="width: 55%; display: inline-block; margin-bottom:20px;" />
+													<button type="button" class="btn btn-primary" style="width: 12%; display: inline-block" onclick="addRow(this)">+</button>
+													<button type="button" class="btn btn-danger" style="width: 12%; display: inline-block" onClick="delRow(this)" style="background-color: red">-</button>
+													<c:forEach items="${chapter}" var="chapter" varStatus="status">
+														<c:if test="${head.ichSeq == chapter.ictIchSeq }">
+															<div class="body">
+																<label class="col-2 col-form-label" style="text-align: center;">소제목</label>
+																<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" value="${chapter.ictTitle }" style="width: 65%; display: inline-block" />
+																<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
+																<label class="col-2 col-form-label" style="text-align: center;">링크</label>
+																<input type="text" class="form-control innerValue url" placeholder="링크" name="ictVideoUrl" value="${chapter.ictVideoUrl }" style="width: 65%; display: inline-block; margin-bottom:10px;" />
+																<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
+															</div>
+														</c:if>
+													</c:forEach>
+													<hr />
 												</div>
-												<hr />
-											</div>
+											</c:forEach>
 										</div>
 									</div>
-									<%-- 
-									<c:choose>
-										<c:when test="${item.iltSeq eq null }">
-											<div class="col-10" id="bChapter">
-												<div class="chapter-items">
-													<div class="row">
-														<div class="row">
-															<label class="col-2 col-form-label">대제목</label>
-															<div class="col-10">
-																<input type="text" class="form-control" placeholder="대제목"">
-															</div>
-														</div>
-														<div class="row" style="padding-top: 10px;" id="sChapter">
-															<label class="col-2 col-form-label">소제목</label>
-															<div class="col-9" style="padding-right: 0px;">
-																<input type="text" placeholder="소제목" class="form-control">
-																<input type="text" placeholder="주소" class="form-control">
-															</div>
-															<div class="col-1" style="padding: 0px 0px;">
-																<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
-																	<i class="fa-solid fa-plus"></i>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col-10" id="bChapter">
-												<div class="chapter-items">
-													<div class="row">
-														<c:forEach items="${chapter}" var="chapter" varStatus="status">
-															<c:if test="${chapter.ictSort eq 1 }">
-																<div class="row" style="padding-top: 10px;" id="sChapter">
-																	<label class="col-2 col-form-label">소제목</label>
-																	<div class="col-9" style="padding-right: 0px;">
-																		<input type="text" placeholder="소제목" class="form-control" name="ictTitle" id="ictTitle" value="${chapter.ictTitle }">
-																		<input type="text" placeholder="주소" class="form-control" name="ictVideoUrl" id="ictVideoUrl" value="${chapter.ictVideoUrl }">
-																	</div>
-																	<div class="col-1" style="padding: 0px 0px;">
-																		<button type="button" id="btnPlus" class="btn btn-primary" onclick="addSChapter()">
-																			<i class="fa-solid fa-plus"></i>
-																		</button>
-																	</div>
-																</div>
-															</c:if>
-															<c:if test="${chapter.ictSort ne 1 }">
-																<div class="row" id="chapterSDelete${chapter.ictSort }">
-																	<label class="col-2 col-form-label">소제목</label>
-																	<div class="col-9" style="padding-right: 0px;">
-																		<input type="text" placeholder="소제목" class="form-control" name="ictTitle" id="ictTitle" value="${chapter.ictTitle }">
-																		<input type="text" placeholder="주소" class="form-control" name="ictVideoUrl" id="ictVideoUrl" value="${chapter.ictVideoUrl }">
-																	</div>
-																	<div class="col-1" style="padding: 0px 0px;">
-																		<button type="button" id="btnPlus" class="btn btn-danger" onclick="remove(chapterSDelete${chapter.ictSort})">
-																			<i class="fa-solid fa-minus"></i>
-																		</button>
-																	</div>
-																</div>
-															</c:if>
-														</c:forEach>
-													</div>
-												</div>
-											</div>
-										</c:otherwise>
-									</c:choose>
-									<div>
-										<button style="width: 100%" type="button" id="btnPlus" class="btn btn-primary" onclick="addBChapter()">
-											<i class="fa-solid fa-plus"></i> 챕터 추가하기
-										</button>
-									</div>
-									 --%>
-
-
 								</div>
-
 							</div>
 						</form>
 					</div>

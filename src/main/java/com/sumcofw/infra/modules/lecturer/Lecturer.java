@@ -42,8 +42,30 @@ public class Lecturer{
 	private String ichIltSeq;
 	private String ichIltTitle;
 	private String icTtitle;
+	private String ictIchSeq;
+	private String ichSeq;
+	
+	private String mainKey;
 	
 	
+	public String getMainKey() {
+		return mainKey;
+	}
+	public void setMainKey(String mainKey) {
+		this.mainKey = mainKey;
+	}
+	public String getIctIchSeq() {
+		return ictIchSeq;
+	}
+	public void setIctIchSeq(String ictIchSeq) {
+		this.ictIchSeq = ictIchSeq;
+	}
+	public String getIchSeq() {
+		return ichSeq;
+	}
+	public void setIchSeq(String ichSeq) {
+		this.ichSeq = ichSeq;
+	}
 	public String getIchIltSeq() {
         return ichIltSeq;
     }
