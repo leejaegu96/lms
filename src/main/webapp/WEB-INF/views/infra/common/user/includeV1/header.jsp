@@ -19,14 +19,17 @@
 		<nav id="navbar" class="navbar">
 			<ul>
 				<c:choose>
-					<c:when test="${sessSeq eq null }">
+					<c:when test="${sessType eq 1 }">
+						<li><a href="Javascript:goMypage()">마이페이지</a></li>
+						<li><a href="Javascript:logout()">로그아웃 </a></li>
+					</c:when>
+					<c:when test="${sessType eq 2 }">
+						<li><a href="Javascript:goTeacherMypage()">강사 마이페이지</a></li>
+						<li><a href="Javascript:logout()">로그아웃 </a></li>
+					</c:when>
+					<c:otherwise>
 						<li><a href="/index/signUp">회원가입 </a></li>
 						<li><a href="../index/login">로그인</a></li>
-					</c:when>
-					
-					<c:otherwise>
-						<li><a href="Javascript:goMypage()">마이페이지</a></li>
-						<li><a href="Javascript:logout()">로그아웃 </a></li>	
 					</c:otherwise>
 				</c:choose>
 				

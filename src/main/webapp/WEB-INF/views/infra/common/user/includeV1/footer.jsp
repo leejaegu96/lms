@@ -108,5 +108,8 @@
 	goMypage = function(){
 		form.attr("action", "/member/dashboard").submit();
 	}
+	goTeacherMypage = function(){
+		form.attr("action", "/lecturer/lectureList").submit();
+	}
 </script>
 

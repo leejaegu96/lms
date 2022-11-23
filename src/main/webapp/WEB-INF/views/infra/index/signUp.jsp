@@ -39,21 +39,22 @@
 									<h3 class="fw-normal mb-3 pb-3" id="userHeader">사용자 회원가입</h3>
 									<h3 class="fw-normal mb-3 pb-3" style="display: none" id="teacherHeader">강사 회원가입</h3>
 									<div class="form-check form-switch form-check-reverse">
-										<input class="form-check-input" type="checkbox" id="type">
+										<input class="form-check-input" id="type" type="checkbox" value="1" id="type" >
+										<input class="form-check-input" id="type" type="hidden" value="0" id="type" >
 										<label class="form-check-label" for="type">강사이신가요?</label>
 									</div>
 								</div>
 
 								<!-- ifmmName -->
 								<div class="form-outline mb-4">
-									<label class="form-label" for="ifmmName">이름 </label>
-									<input type="text" id="ifmmName" name="ifmmName" class="form-control form-control" placeholder="홍길동" />
+									<label class="form-label" for="ifmmName">이름 </label> 
+									<input type="text" id="ifmmName" name="ifmmName" class="form-control name" placeholder="홍길동" />
 								</div>
 
 								<!-- ifmmId -->
 								<div class="form-outline mb-4">
 									<label class="form-label" for="ifmmId">ID </label>
-									<input type="text" id="ifmmId" name="ifmmId" class="form-control form-control" />
+									<input type="text" id="ifmmId" name="ifmmId" class="form-control id" />
 								</div>
 
 								<!-- ifmmEmail -->
@@ -117,7 +118,6 @@
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
-
 	<script>
 		let typeChecked = false;
 	

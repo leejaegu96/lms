@@ -29,6 +29,14 @@ public class Index {
     //ifraTeacher
     private String iftcName;
     private String iftcSeq;
+    private String iftcId;
+    private String iftcPassword;
+    private String iftcEmail;
+    private String iftcDomain;
+    private String iftcMobile;
+    private String iftcCarrier;
+    private String iftcRegDateTime;
+    private String iftcModDateTime;
  
 
     /* Member DTO */
@@ -55,254 +63,247 @@ public class Index {
     
     
     
-    
-
+	public String getIftcRegDateTime() {
+		return iftcRegDateTime;
+	}
+	public void setIftcRegDateTime(String iftcRegDateTime) {
+		this.iftcRegDateTime = iftcRegDateTime;
+	}
+	public String getIftcModDateTime() {
+		return iftcModDateTime;
+	}
+	public void setIftcModDateTime(String iftcModDateTime) {
+		this.iftcModDateTime = iftcModDateTime;
+	}
 	public Integer getHistoryCheck() {
 		return historyCheck;
 	}
-
 	public void setHistoryCheck(Integer historyCheck) {
 		this.historyCheck = historyCheck;
 	}
-
-	public String getWrSeq() {
-		return wrSeq;
+	public String getIltSeq() {
+		return iltSeq;
 	}
-
-	public void setWrSeq(String wrSeq) {
-		this.wrSeq = wrSeq;
+	public void setIltSeq(String iltSeq) {
+		this.iltSeq = iltSeq;
 	}
-
-	public String getWrIltSeq() {
-		return wrIltSeq;
+	public String getIltTitle() {
+		return iltTitle;
 	}
-
-	public void setWrIltSeq(String wrIltSeq) {
-		this.wrIltSeq = wrIltSeq;
+	public void setIltTitle(String iltTitle) {
+		this.iltTitle = iltTitle;
 	}
-
-	public String getWrIfmmSeq() {
-		return wrIfmmSeq;
+	public String getIltBody() {
+		return iltBody;
 	}
-
-	public void setWrIfmmSeq(String wrIfmmSeq) {
-		this.wrIfmmSeq = wrIfmmSeq;
+	public void setIltBody(String iltBody) {
+		this.iltBody = iltBody;
 	}
-
-	public String getWrIctSeq() {
-		return wrIctSeq;
+	public String getIltPrice() {
+		return iltPrice;
 	}
-
-	public void setWrIctSeq(String wrIctSeq) {
-		this.wrIctSeq = wrIctSeq;
+	public void setIltPrice(String iltPrice) {
+		this.iltPrice = iltPrice;
 	}
-
-	public String getWrWatchedLength() {
-		return wrWatchedLength;
-	}
-
-	public void setWrWatchedLength(String wrWatchedLength) {
-		this.wrWatchedLength = wrWatchedLength;
-	}
-
-	public String getIctIchSeq() {
-		return ictIchSeq;
-	}
-
-	public void setIctIchSeq(String ictIchSeq) {
-		this.ictIchSeq = ictIchSeq;
-	}
-
-	public String getIctVideoUrl() {
-		return ictVideoUrl;
-	}
-
-	public void setIctVideoUrl(String ictVideoUrl) {
-		this.ictVideoUrl = ictVideoUrl;
-	}
-
-	public String getIftcSeq() {
-		return iftcSeq;
-	}
-
-	public void setIftcSeq(String iftcSeq) {
-		this.iftcSeq = iftcSeq;
-	}
-
-	public String getIftcName() {
-		return iftcName;
-	}
-
-	public void setIftcName(String iftcName) {
-		this.iftcName = iftcName;
-	}
-
 	public String getIchSeq() {
 		return ichSeq;
 	}
-
 	public void setIchSeq(String ichSeq) {
 		this.ichSeq = ichSeq;
 	}
-
 	public String getIchIltSeq() {
 		return ichIltSeq;
 	}
-
 	public void setIchIltSeq(String ichIltSeq) {
 		this.ichIltSeq = ichIltSeq;
 	}
-
 	public String getIchTitle() {
 		return ichTitle;
 	}
-
 	public void setIchTitle(String ichTitle) {
 		this.ichTitle = ichTitle;
 	}
-
 	public String getIctSort() {
 		return ictSort;
 	}
-
 	public void setIctSort(String ictSort) {
 		this.ictSort = ictSort;
 	}
-
 	public String getIctSeq() {
 		return ictSeq;
 	}
-
 	public void setIctSeq(String ictSeq) {
 		this.ictSeq = ictSeq;
 	}
-
 	public String getIctTitle() {
 		return ictTitle;
 	}
-
 	public void setIctTitle(String ictTitle) {
 		this.ictTitle = ictTitle;
 	}
+	public String getIctIchSeq() {
+		return ictIchSeq;
+	}
+	public void setIctIchSeq(String ictIchSeq) {
+		this.ictIchSeq = ictIchSeq;
+	}
+	public String getIctVideoUrl() {
+		return ictVideoUrl;
+	}
+	public void setIctVideoUrl(String ictVideoUrl) {
+		this.ictVideoUrl = ictVideoUrl;
+	}
+	public String getIftcName() {
+		return iftcName;
+	}
+	public void setIftcName(String iftcName) {
+		this.iftcName = iftcName;
+	}
+	public String getIftcSeq() {
+		return iftcSeq;
+	}
+	public void setIftcSeq(String iftcSeq) {
+		this.iftcSeq = iftcSeq;
+	}
+	public String getIftcId() {
+		return iftcId;
+	}
+	public void setIftcId(String iftcId) {
+		this.iftcId = iftcId;
+	}
+	public String getIftcPassword() {
+		return iftcPassword;
+	}
+	public void setIftcPassword(String iftcPassword) {
+		this.iftcPassword = iftcPassword;
+	}
+	public String getIftcEmail() {
+		return iftcEmail;
+	}
+	public void setIftcEmail(String iftcEmail) {
+		this.iftcEmail = iftcEmail;
+	}
+	
+	public String getIftcDomain() {
+		return iftcDomain;
+	}
+	public void setIftcDomain(String iftcDomain) {
+		this.iftcDomain = iftcDomain;
+	}
+	public String getIftcMobile() {
+		return iftcMobile;
+	}
+	public void setIftcMobile(String iftcMobile) {
+		this.iftcMobile = iftcMobile;
+	}
+	public String getIftcCarrier() {
+		return iftcCarrier;
+	}
+	public void setIftcCarrier(String iftcCarrier) {
+		this.iftcCarrier = iftcCarrier;
+	}
+	public String getIfmmSeq() {
+		return ifmmSeq;
+	}
+	public void setIfmmSeq(String ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
+	}
+	public String getIfmmId() {
+		return ifmmId;
+	}
+	public void setIfmmId(String ifmmId) {
+		this.ifmmId = ifmmId;
+	}
+	public String getIfmmName() {
+		return ifmmName;
+	}
+	public void setIfmmName(String ifmmName) {
+		this.ifmmName = ifmmName;
+	}
+	public String getIfmmPassword() {
+		return ifmmPassword;
+	}
+	public void setIfmmPassword(String ifmmPassword) {
+		this.ifmmPassword = ifmmPassword;
+	}
+	public String getIfmmEmail() {
+		return ifmmEmail;
+	}
+	public void setIfmmEmail(String ifmmEmail) {
+		this.ifmmEmail = ifmmEmail;
+	}
+	public String getIfmmDomain() {
+		return ifmmDomain;
+	}
+	public void setIfmmDomain(String ifmmDomain) {
+		this.ifmmDomain = ifmmDomain;
+	}
+	public String getIfmmMobile() {
+		return ifmmMobile;
+	}
+	public void setIfmmMobile(String ifmmMobile) {
+		this.ifmmMobile = ifmmMobile;
+	}
+	public String getIfmmCarrier() {
+		return ifmmCarrier;
+	}
+	public void setIfmmCarrier(String ifmmCarrier) {
+		this.ifmmCarrier = ifmmCarrier;
+	}
+	public String getIfmmRegDateTime() {
+		return ifmmRegDateTime;
+	}
+	public void setIfmmRegDateTime(String ifmmRegDateTime) {
+		this.ifmmRegDateTime = ifmmRegDateTime;
+	}
+	public String getIfmmModDateTime() {
+		return ifmmModDateTime;
+	}
+	public void setIfmmModDateTime(String ifmmModDateTime) {
+		this.ifmmModDateTime = ifmmModDateTime;
+	}
+	public String getIfmmType() {
+		return ifmmType;
+	}
+	public void setIfmmType(String ifmmType) {
+		this.ifmmType = ifmmType;
+	}
+	public String getWrSeq() {
+		return wrSeq;
+	}
+	public void setWrSeq(String wrSeq) {
+		this.wrSeq = wrSeq;
+	}
+	public String getWrIltSeq() {
+		return wrIltSeq;
+	}
+	public void setWrIltSeq(String wrIltSeq) {
+		this.wrIltSeq = wrIltSeq;
+	}
+	public String getWrIfmmSeq() {
+		return wrIfmmSeq;
+	}
+	public void setWrIfmmSeq(String wrIfmmSeq) {
+		this.wrIfmmSeq = wrIfmmSeq;
+	}
+	public String getWrIctSeq() {
+		return wrIctSeq;
+	}
+	public void setWrIctSeq(String wrIctSeq) {
+		this.wrIctSeq = wrIctSeq;
+	}
+	public String getWrWatchedLength() {
+		return wrWatchedLength;
+	}
+	public void setWrWatchedLength(String wrWatchedLength) {
+		this.wrWatchedLength = wrWatchedLength;
+	}
+    
+    
+    
+    
+    
 
-	public String getIltSeq() {
-        return iltSeq;
-    }
-
-    public void setIltSeq(String iltSeq) {
-        this.iltSeq = iltSeq;
-    }
-
-    public String getIltTitle() {
-        return iltTitle;
-    }
-
-    public void setIltTitle(String iltTitle) {
-        this.iltTitle = iltTitle;
-    }
-
-    public String getIltBody() {
-        return iltBody;
-    }
-
-    public void setIltBody(String iltBody) {
-        this.iltBody = iltBody;
-    }
-
-    public String getIltPrice() {
-        return iltPrice;
-    }
-
-    public void setIltPrice(String iltPrice) {
-        this.iltPrice = iltPrice;
-    }
-
-    public String getIfmmName() {
-        return ifmmName;
-    }
-
-    public void setIfmmName(String ifmmName) {
-        this.ifmmName = ifmmName;
-    }
-
-    public String getIfmmSeq() {
-        return ifmmSeq;
-    }
-
-    public void setIfmmSeq(String ifmmSeq) {
-        this.ifmmSeq = ifmmSeq;
-    }
-
-    public String getIfmmId() {
-        return ifmmId;
-    }
-
-    public void setIfmmId(String ifmmId) {
-        this.ifmmId = ifmmId;
-    }
-
-    public String getIfmmPassword() {
-        return ifmmPassword;
-    }
-
-    public void setIfmmPassword(String ifmmPassword) {
-        this.ifmmPassword = ifmmPassword;
-    }
-
-    public String getIfmmEmail() {
-        return ifmmEmail;
-    }
-
-    public void setIfmmEmail(String ifmmEmail) {
-        this.ifmmEmail = ifmmEmail;
-    }
-
-    public String getIfmmDomain() {
-        return ifmmDomain;
-    }
-
-    public void setIfmmDomain(String ifmmDomain) {
-        this.ifmmDomain = ifmmDomain;
-    }
-
-    public String getIfmmMobile() {
-        return ifmmMobile;
-    }
-
-    public void setIfmmMobile(String ifmmMobile) {
-        this.ifmmMobile = ifmmMobile;
-    }
-
-    public String getIfmmCarrier() {
-        return ifmmCarrier;
-    }
-
-    public void setIfmmCarrier(String ifmmCarrier) {
-        this.ifmmCarrier = ifmmCarrier;
-    }
-
-    public String getIfmmRegDateTime() {
-        return ifmmRegDateTime;
-    }
-
-    public void setIfmmRegDateTime(String ifmmRegDateTime) {
-        this.ifmmRegDateTime = ifmmRegDateTime;
-    }
-
-    public String getIfmmModDateTime() {
-        return ifmmModDateTime;
-    }
-
-    public void setIfmmModDateTime(String ifmmModDateTime) {
-        this.ifmmModDateTime = ifmmModDateTime;
-    }
-
-    public String getIfmmType() {
-        return ifmmType;
-    }
-
-    public void setIfmmType(String ifmmType) {
-        this.ifmmType = ifmmType;
-    }
+	
 
 }

@@ -21,6 +21,10 @@ public class IndexDao {
     public Index loginProc(Index dto) {
         return sqlSession.selectOne(namespace + ".loginProc", dto);
     }
+    // 강사로그인
+    public Index teacherLoginProc(Index dto) {
+    	return sqlSession.selectOne(namespace + ".teacherLoginProc", dto);
+    }
     
     public Index watchedOne(Index dto) {
     	return sqlSession.selectOne(namespace + ".watchedOne", dto);
@@ -35,6 +39,9 @@ public class IndexDao {
     public int signUpProc(Index dto) {
         return sqlSession.insert(namespace + ".signUpProc", dto);
     }
+    public int teacherSignUpProc(Index dto) {
+    	return sqlSession.insert(namespace + ".teacherSignUpProc", dto);
+    }
     
     //강의 상세 
     public Index lecturedetail(Index dto) {
@@ -44,6 +51,9 @@ public class IndexDao {
     //강의 챕터
     public List<Index> chapterlist(Index dto) {
         return sqlSession.selectList(namespace + ".chapterlist", dto);
+    }
+    public List<Index> chapterHeadlist(Index dto) {
+    	return sqlSession.selectList(namespace + ".chapterHeadlist", dto);
     }
     
     //강의 챕터

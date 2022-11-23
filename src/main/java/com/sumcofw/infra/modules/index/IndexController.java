@@ -58,6 +58,7 @@ public class IndexController {
             httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
             httpSession.setAttribute("sessSeq", rtMember.getIfmmSeq());
             httpSession.setAttribute("sessName", rtMember.getIfmmName());
+            httpSession.setAttribute("sessType", 1);
             returnMap.put("rt", "success");
         } else {
             // 로그인 실패
@@ -65,6 +66,27 @@ public class IndexController {
         }
 
         return returnMap;
+    }
+    @RequestMapping(value = "teacherLoginProc")
+    @ResponseBody
+    public Map<String, Object> teacherLoginProc(Index dto, HttpSession httpSession) throws Exception {
+    	
+    	Map<String, Object> returnMap = new HashMap<String, Object>();
+    	Index rtMember = service.teacherLoginProc(dto);
+    	
+    	if (rtMember != null) {
+    		// 로그인 성공, 세션 부여 
+    		httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+    		httpSession.setAttribute("sessSeq", rtMember.getIftcSeq());
+    		httpSession.setAttribute("sessName", rtMember.getIftcName());
+    		httpSession.setAttribute("sessType", 2);
+    		returnMap.put("rt", "success");
+    	} else {
+    		// 로그인 실패
+    		returnMap.put("rt", "fail");
+    	}
+    	
+    	return returnMap;
     }
 
     /**
@@ -111,6 +133,21 @@ public class IndexController {
 
         return returnMap;
     }
+    @RequestMapping(value = "teacherSignUpProc")
+    @ResponseBody
+    public Map<String, Object> teacherSignUpProc(Index dto) throws Exception {
+    	
+    	Map<String, Object> returnMap = new HashMap<String, Object>();
+    	int result = service.teacherSignUpProc(dto);
+    	
+    	if (result == 1) {
+    		returnMap.put("rt", "success");
+    	} else {
+    		returnMap.put("rt", "fail");
+    	}
+    	
+    	return returnMap;
+    }
 
     @RequestMapping(value = "findPassword")
     public String findPassword(Model model) {
@@ -133,9 +170,11 @@ public class IndexController {
         
         // 렉처 시퀀스, 렉처 제목,챕터 시퀀스, 챕터 제목, 강의명
         List<Index> chapters = service.chapterlist(dto);
+        List<Index> chapterHead = service.chapterHeadlist(dto);
         
         model.addAttribute("lecturedetail", result);
         model.addAttribute("chapterlist",chapters);
+        model.addAttribute("chapterHead",chapterHead);
         
         return "infra/index/lectureDetail";
     }

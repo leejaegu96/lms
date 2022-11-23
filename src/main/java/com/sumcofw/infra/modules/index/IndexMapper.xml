@@ -69,7 +69,8 @@
 		    , a.ichTitle
 		    , b.ictSort
 		    , b.ictSeq
-		    , b. ictTitle
+		    , b.ictTitle
+		    , b.ictIchSeq
 		
 		from idChapterHeader a
 		left join idChapter b on a.ichSeq = b.ictIchSeq
@@ -79,6 +80,18 @@
 		    AND c.iltSeq = #{iltSeq}
 		order by b.ictSort asc
 		    ;
+	</select>
+	<select id="chapterHeadlist" resultMap="resultMapObj">
+		select
+			a.ichSeq
+			,a.ichIltSeq
+            ,a.ichTitle
+		from idChapterHeader a
+		left join idLecture c on a.ichIltSeq = c.iltSeq
+		where
+			1=1
+		    AND c.iltSeq = #{iltSeq}
+	    ;
 	</select>
 
 	<!-- 사용자 회원가입 -->
@@ -104,7 +117,31 @@
 			,#{ifmmCarrier}
 			,now()
 			,now()
-			,#{ifmmType}
+			,1
+		)
+	</insert>
+	<!-- 강사 회원가입 -->
+	<insert id="teacherSignUpProc">
+		INSERT INTO `infrTeacher` (
+			iftcId
+			,iftcName
+			,iftcPassword
+			,iftcEmail
+			,iftcDomain
+			,iftcMobile
+			,iftcCarrier
+			,iftcRegDateTime
+			,iftcModDateTime
+		) VALUES (
+			#{iftcId}
+			,#{iftcName}
+			,#{iftcPassword}
+			,#{iftcEmail}
+			,(select ifnull(ifcdSeq, 31) from infraCode where ifcdNameEng = #{iftcDomain})
+			,#{iftcMobile}
+			,#{iftcCarrier}
+			,now()
+			,now()
 		)
 	</insert>
 	
@@ -119,6 +156,18 @@
 		WHERE 1=1
 			AND a.ifmmId = #{ifmmId}
 			AND a.ifmmPassword = #{ifmmPassword}
+	</select>
+	<!-- 강사 로그인 -->
+	<select id="teacherLoginProc" resultMap="resultMapObj">
+		SELECT
+			a.iftcSeq
+			,a.iftcId
+			,a.iftcPassword
+			,a.iftcName
+		FROM infrTeacher a
+		WHERE 1=1
+			AND a.iftcId = #{iftcId}
+			AND a.iftcPassword = #{iftcPassword}
 	</select>
 	
 	<select id="lectureDetail" resultMap="resultMapObj">
