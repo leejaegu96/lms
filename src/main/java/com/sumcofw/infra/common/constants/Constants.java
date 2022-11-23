@@ -17,4 +17,6 @@ public class Constants {
     public static final String UPLOAD_PATH_PREFIX = "";
     public static final String UPLOAD_PATH_PREFIX_FOR_VIEW = "/resources/uploaded";
     
+    /* for login */
+    public static final String URL_LOGINFORM = "/index/login";
 }
