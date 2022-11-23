@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +21,18 @@ public class LecturerController {
 
     @Autowired
     LecturerServiceImpl service;
-
+    
+    public String sessSeq = "";
+    
     @RequestMapping(value = "/lectureList")
-    public String lectureList(Model model) throws Exception {
-        List<Lecturer> list = service.selectLecture();
+    public String lectureList(Lecturer dto, HttpServletRequest httpServletRequest ,Model model) throws Exception {
+    	
+    	HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		dto.setMainKey(sessSeq);
+    	
+    	List<Lecturer> list = service.selectLecture(dto);
         model.addAttribute("list", list);
         return "infra/lecturer/lectureList";
     }
@@ -64,8 +75,18 @@ public class LecturerController {
     }
 
     @RequestMapping(value = "/lecturerProfile")
-    public String lecturerProfile() throws Exception {
-
+    public String lecturerProfile(Lecturer dto, HttpServletRequest httpServletRequest ,Model model) throws Exception {
+    	
+    	HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		dto.setMainKey(sessSeq);
+    	
+    	Lecturer item = service.selectTeacher(dto);
+    	List<Lecturer> sns = service.selectTeacherSns(dto);
+        model.addAttribute("item", item);
+        model.addAttribute("sns", sns);
+    	
         return "infra/lecturer/lecturerProfile";
     }
 

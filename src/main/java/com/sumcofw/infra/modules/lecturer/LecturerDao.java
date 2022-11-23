@@ -28,8 +28,8 @@ public class LecturerDao {
     }
     
     //강의 목록
-    public List<Lecturer> selectLecture(){
-    	return sqlSession.selectList(namespace + ".selectLecture", "");
+    public List<Lecturer> selectLecture(Lecturer dto){
+    	return sqlSession.selectList(namespace + ".selectLecture", dto);
     }
     
     // 카테고리 대분류
@@ -51,7 +51,14 @@ public class LecturerDao {
     //강의 목록 선택
     public Lecturer selectLectureOne(Lecturer dto) {
         return sqlSession.selectOne(namespace + ".selectLectureOne", dto);
-    }
+    } 
+    //프로필
+    public Lecturer selectTeacher(Lecturer dto) {
+        return sqlSession.selectOne(namespace + ".selectTeacher", dto);
+    } 
+    public List<Lecturer> selectTeacherSns(Lecturer dto) {
+    	return sqlSession.selectList(namespace + ".selectTeacherSns", dto);
+    } 
     
     // 강의 등록
     public int insertLecture(Lecturer dto) {

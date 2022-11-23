@@ -14,7 +14,7 @@ public class Constants {
     public static final int SESSION_MINUTE = 30;        // 세션 타임아웃
     
     /* for upload */
-    public static final String UPLOAD_PATH_PREFIX = "";
+    public static final String UPLOAD_PATH_PREFIX = "D://factory/ws_sts_4151/lms/src/main/webapp/resources/uploaded";
     public static final String UPLOAD_PATH_PREFIX_FOR_VIEW = "/resources/uploaded";
     
     /* for login */

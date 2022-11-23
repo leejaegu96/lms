@@ -35,7 +35,9 @@
 			idLecture a
 		inner join idCategory b on b.ictgSeq = a.iltIctgSeq
 		inner join idCategorySub c on c.ictsSeq = b.ictgIctsSeq
-		where 1=1
+		inner join infrTeacher d on d.iftcSeq = a.iltIftcSeq
+		where 1=1 
+			and d.iftcSeq = #{mainKey}
 	</select>
 	
 	<!-- 강의목록 선택 -->
@@ -53,6 +55,27 @@
 		inner join idCategorySub c on c.ictsSeq = b.ictgIctsSeq
         WHERE 1=1
 			AND iltSeq = #{iltSeq}
+	</select>
+	<!-- 프로필 -->
+	<select id="selectTeacher" resultMap="resultMapObj">
+		SELECT
+			a.iftcSeq
+            ,a.iftcName
+			,a.iftcMobile
+		    ,a.iftcProfile
+		FROM infrTeacher a
+        WHERE 1=1
+			AND a.iftcSeq = #{mainKey}
+	</select>
+	<select id="selectTeacherSns" resultMap="resultMapObj">
+		SELECT
+		    a.iftsUrl
+		    ,a.iftsIftcSeq
+		    ,a.iftsType
+		FROM infrTeacherSns a
+        inner join infrTeacher b on a.iftsIftcSeq = b.iftcSeq
+        WHERE 1=1
+			AND b.iftcSeq = #{mainKey}
 	</select>
 	
 	<!-- 강의 등록폼 카테고리 대분류 -->
@@ -177,5 +200,31 @@
 		)
 	</insert>
 	
+	
+	<insert id="insertLecturetUploaded">
+	INSERT INTO lectureUpload (
+		luType
+		,luDefaultNy
+		,luSort
+		,luPath
+		,luOriginalName
+		,luUuidName
+		,luExt
+		,luSize
+		,luDelNy
+		,luPseq
+	) values (
+		#{luType}
+		,#{luDefaultNy}
+		,#{luSort}
+		,#{luPath}
+		,#{luOriginalName}
+		,#{luUuidName}
+		,#{luExt}
+		,#{luSize}
+		,0
+		,#{luPseq}
+	)
+	</insert>
 	
 </mapper>

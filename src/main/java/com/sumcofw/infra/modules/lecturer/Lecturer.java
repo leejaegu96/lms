@@ -3,14 +3,22 @@ package com.sumcofw.infra.modules.lecturer;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Lecturer{
-    /*
-     * 강사 테이블
-     * infrTeacher
-     */
+	/*
+	 * 강사 테이블
+	 * infrTeacher
+	 */
 	private String iftcSeq;
 	private String iftcId;
 	private String iftcName;
-	private String iftcProfile;
+	private String iftcMobile;
+	private String iftcProfile; 
+	/*
+	 * 강사 sns 테이블
+	 * infrTeacherSns
+	 */
+	private String iftsIftcSeq;
+	private String iftsUrl;
+	private String iftsType;
 	
 	/**
 	 * 강의 테이블
@@ -88,294 +96,320 @@ public class Lecturer{
 	private String luRegDateTime;
 	private String luModDatetime;
 	private MultipartFile[] uploadedImage;
-    public String getIftcSeq() {
-        return iftcSeq;
-    }
-    public void setIftcSeq(String iftcSeq) {
-        this.iftcSeq = iftcSeq;
-    }
-    public String getIftcId() {
-        return iftcId;
-    }
-    public void setIftcId(String iftcId) {
-        this.iftcId = iftcId;
-    }
-    public String getIftcName() {
-        return iftcName;
-    }
-    public void setIftcName(String iftcName) {
-        this.iftcName = iftcName;
-    }
-    public String getIftcProfile() {
-        return iftcProfile;
-    }
-    public void setIftcProfile(String iftcProfile) {
-        this.iftcProfile = iftcProfile;
-    }
-    public String getIltSeq() {
-        return iltSeq;
-    }
-    public void setIltSeq(String iltSeq) {
-        this.iltSeq = iltSeq;
-    }
-    public String getIltIctgSeq() {
-        return iltIctgSeq;
-    }
-    public void setIltIctgSeq(String iltIctgSeq) {
-        this.iltIctgSeq = iltIctgSeq;
-    }
-    public String getIltIftcSeq() {
-        return iltIftcSeq;
-    }
-    public void setIltIftcSeq(String iltIftcSeq) {
-        this.iltIftcSeq = iltIftcSeq;
-    }
-    public String getIltIfmmSeq() {
-        return iltIfmmSeq;
-    }
-    public void setIltIfmmSeq(String iltIfmmSeq) {
-        this.iltIfmmSeq = iltIfmmSeq;
-    }
-    public String getIltTitle() {
-        return iltTitle;
-    }
-    public void setIltTitle(String iltTitle) {
-        this.iltTitle = iltTitle;
-    }
-    public String getIltTitleSub() {
-        return iltTitleSub;
-    }
-    public void setIltTitleSub(String iltTitleSub) {
-        this.iltTitleSub = iltTitleSub;
-    }
-    public String getIltBody() {
-        return iltBody;
-    }
-    public void setIltBody(String iltBody) {
-        this.iltBody = iltBody;
-    }
-    public String getIltRegDateTime() {
-        return iltRegDateTime;
-    }
-    public void setIltRegDateTime(String iltRegDateTime) {
-        this.iltRegDateTime = iltRegDateTime;
-    }
-    public String getIltModDateTime() {
-        return iltModDateTime;
-    }
-    public void setIltModDateTime(String iltModDateTime) {
-        this.iltModDateTime = iltModDateTime;
-    }
-    public String getIltTotalTime() {
-        return iltTotalTime;
-    }
-    public void setIltTotalTime(String iltTotalTime) {
-        this.iltTotalTime = iltTotalTime;
-    }
-    public String getIltVideoCount() {
-        return iltVideoCount;
-    }
-    public void setIltVideoCount(String iltVideoCount) {
-        this.iltVideoCount = iltVideoCount;
-    }
-    public String getIltPurchasesCount() {
-        return iltPurchasesCount;
-    }
-    public void setIltPurchasesCount(String iltPurchasesCount) {
-        this.iltPurchasesCount = iltPurchasesCount;
-    }
-    public String getIltViewCount() {
-        return iltViewCount;
-    }
-    public void setIltViewCount(String iltViewCount) {
-        this.iltViewCount = iltViewCount;
-    }
-    public Integer getIltPrice() {
-        return iltPrice;
-    }
-    public void setIltPrice(Integer iltPrice) {
-        this.iltPrice = iltPrice;
-    }
-    public Integer getIltUseNy() {
-        return iltUseNy;
-    }
-    public void setIltUseNy(Integer iltUseNy) {
-        this.iltUseNy = iltUseNy;
-    }
-    public String getIctgItem() {
-        return ictgItem;
-    }
-    public void setIctgItem(String ictgItem) {
-        this.ictgItem = ictgItem;
-    }
-    public String getIctgSeq() {
-        return ictgSeq;
-    }
-    public void setIctgSeq(String ictgSeq) {
-        this.ictgSeq = ictgSeq;
-    }
-    public String getIctgIctsSeq() {
-        return ictgIctsSeq;
-    }
-    public void setIctgIctsSeq(String ictgIctsSeq) {
-        this.ictgIctsSeq = ictgIctsSeq;
-    }
-    public String getIctsSeq() {
-        return ictsSeq;
-    }
-    public void setIctsSeq(String ictsSeq) {
-        this.ictsSeq = ictsSeq;
-    }
-    public String getIctsItem() {
-        return ictsItem;
-    }
-    public void setIctsItem(String ictsItem) {
-        this.ictsItem = ictsItem;
-    }
-    public String getIchSeq() {
-        return ichSeq;
-    }
-    public void setIchSeq(String ichSeq) {
-        this.ichSeq = ichSeq;
-    }
-    public String getIchIltSeq() {
-        return ichIltSeq;
-    }
-    public void setIchIltSeq(String ichIltSeq) {
-        this.ichIltSeq = ichIltSeq;
-    }
-    public String getIchTitle() {
-        return ichTitle;
-    }
-    public void setIchTitle(String ichTitle) {
-        this.ichTitle = ichTitle;
-    }
-    public String getIctSeq() {
-        return ictSeq;
-    }
-    public void setIctSeq(String ictSeq) {
-        this.ictSeq = ictSeq;
-    }
-    public String getIctIchSeq() {
-        return ictIchSeq;
-    }
-    public void setIctIchSeq(String ictIchSeq) {
-        this.ictIchSeq = ictIchSeq;
-    }
-    public String getIctTitle() {
-        return ictTitle;
-    }
-    public void setIctTitle(String ictTitle) {
-        this.ictTitle = ictTitle;
-    }
-    public String getIctVideoLength() {
-        return ictVideoLength;
-    }
-    public void setIctVideoLength(String ictVideoLength) {
-        this.ictVideoLength = ictVideoLength;
-    }
-    public String getIctVideoUrl() {
-        return ictVideoUrl;
-    }
-    public void setIctVideoUrl(String ictVideoUrl) {
-        this.ictVideoUrl = ictVideoUrl;
-    }
-    public String getData() {
-        return data;
-    }
-    public void setData(String data) {
-        this.data = data;
-    }
-    public String getMainKey() {
-        return mainKey;
-    }
-    public void setMainKey(String mainKey) {
-        this.mainKey = mainKey;
-    }
-    public String getLuSeq() {
-        return luSeq;
-    }
-    public void setLuSeq(String luSeq) {
-        this.luSeq = luSeq;
-    }
-    public String getLuPath() {
-        return luPath;
-    }
-    public void setLuPath(String luPath) {
-        this.luPath = luPath;
-    }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
-    public Integer getLuDefaultNy() {
-        return luDefaultNy;
-    }
-    public void setLuDefaultNy(Integer luDefaultNy) {
-        this.luDefaultNy = luDefaultNy;
-    }
-    public Integer getLuSort() {
-        return luSort;
-    }
-    public void setLuSort(Integer luSort) {
-        this.luSort = luSort;
-    }
-    public String getLuOriginalname() {
-        return luOriginalname;
-    }
-    public void setLuOriginalname(String luOriginalname) {
-        this.luOriginalname = luOriginalname;
-    }
-    public String getLuUuidName() {
-        return luUuidName;
-    }
-    public void setLuUuidName(String luUuidName) {
-        this.luUuidName = luUuidName;
-    }
-    public String getLuExt() {
-        return luExt;
-    }
-    public void setLuExt(String luExt) {
-        this.luExt = luExt;
-    }
-    public long getLuSize() {
-        return luSize;
-    }
-    public void setLuSize(long luSize) {
-        this.luSize = luSize;
-    }
-    public String getLuDelNy() {
-        return luDelNy;
-    }
-    public void setLuDelNy(String luDelNy) {
-        this.luDelNy = luDelNy;
-    }
-    public String getLuPseq() {
-        return luPseq;
-    }
-    public void setLuPseq(String luPseq) {
-        this.luPseq = luPseq;
-    }
-    public String getLuRegDateTime() {
-        return luRegDateTime;
-    }
-    public void setLuRegDateTime(String luRegDateTime) {
-        this.luRegDateTime = luRegDateTime;
-    }
-    public String getLuModDatetime() {
-        return luModDatetime;
-    }
-    public void setLuModDatetime(String luModDatetime) {
-        this.luModDatetime = luModDatetime;
-    }
-    public MultipartFile[] getUploadedImage() {
-        return uploadedImage;
-    }
-    public void setUploadedImage(MultipartFile[] uploadedImage) {
-        this.uploadedImage = uploadedImage;
-    }
+	public String getIftcSeq() {
+		return iftcSeq;
+	}
+	public void setIftcSeq(String iftcSeq) {
+		this.iftcSeq = iftcSeq;
+	}
+	public String getIftcId() {
+		return iftcId;
+	}
+	public void setIftcId(String iftcId) {
+		this.iftcId = iftcId;
+	}
+	public String getIftcName() {
+		return iftcName;
+	}
+	public void setIftcName(String iftcName) {
+		this.iftcName = iftcName;
+	}
+	public String getIftcMobile() {
+		return iftcMobile;
+	}
+	public void setIftcMobile(String iftcMobile) {
+		this.iftcMobile = iftcMobile;
+	}
+	public String getIftcProfile() {
+		return iftcProfile;
+	}
+	public void setIftcProfile(String iftcProfile) {
+		this.iftcProfile = iftcProfile;
+	}
+	public String getIftsIftcSeq() {
+		return iftsIftcSeq;
+	}
+	public void setIftsIftcSeq(String iftsIftcSeq) {
+		this.iftsIftcSeq = iftsIftcSeq;
+	}
+	public String getIftsUrl() {
+		return iftsUrl;
+	}
+	public void setIftsUrl(String iftsUrl) {
+		this.iftsUrl = iftsUrl;
+	}
+	public String getIftsType() {
+		return iftsType;
+	}
+	public void setIftsType(String iftsType) {
+		this.iftsType = iftsType;
+	}
+	public String getIltSeq() {
+		return iltSeq;
+	}
+	public void setIltSeq(String iltSeq) {
+		this.iltSeq = iltSeq;
+	}
+	public String getIltIctgSeq() {
+		return iltIctgSeq;
+	}
+	public void setIltIctgSeq(String iltIctgSeq) {
+		this.iltIctgSeq = iltIctgSeq;
+	}
+	public String getIltIftcSeq() {
+		return iltIftcSeq;
+	}
+	public void setIltIftcSeq(String iltIftcSeq) {
+		this.iltIftcSeq = iltIftcSeq;
+	}
+	public String getIltIfmmSeq() {
+		return iltIfmmSeq;
+	}
+	public void setIltIfmmSeq(String iltIfmmSeq) {
+		this.iltIfmmSeq = iltIfmmSeq;
+	}
+	public String getIltTitle() {
+		return iltTitle;
+	}
+	public void setIltTitle(String iltTitle) {
+		this.iltTitle = iltTitle;
+	}
+	public String getIltTitleSub() {
+		return iltTitleSub;
+	}
+	public void setIltTitleSub(String iltTitleSub) {
+		this.iltTitleSub = iltTitleSub;
+	}
+	public String getIltBody() {
+		return iltBody;
+	}
+	public void setIltBody(String iltBody) {
+		this.iltBody = iltBody;
+	}
+	public String getIltRegDateTime() {
+		return iltRegDateTime;
+	}
+	public void setIltRegDateTime(String iltRegDateTime) {
+		this.iltRegDateTime = iltRegDateTime;
+	}
+	public String getIltModDateTime() {
+		return iltModDateTime;
+	}
+	public void setIltModDateTime(String iltModDateTime) {
+		this.iltModDateTime = iltModDateTime;
+	}
+	public String getIltTotalTime() {
+		return iltTotalTime;
+	}
+	public void setIltTotalTime(String iltTotalTime) {
+		this.iltTotalTime = iltTotalTime;
+	}
+	public String getIltVideoCount() {
+		return iltVideoCount;
+	}
+	public void setIltVideoCount(String iltVideoCount) {
+		this.iltVideoCount = iltVideoCount;
+	}
+	public String getIltPurchasesCount() {
+		return iltPurchasesCount;
+	}
+	public void setIltPurchasesCount(String iltPurchasesCount) {
+		this.iltPurchasesCount = iltPurchasesCount;
+	}
+	public String getIltViewCount() {
+		return iltViewCount;
+	}
+	public void setIltViewCount(String iltViewCount) {
+		this.iltViewCount = iltViewCount;
+	}
+	public Integer getIltPrice() {
+		return iltPrice;
+	}
+	public void setIltPrice(Integer iltPrice) {
+		this.iltPrice = iltPrice;
+	}
+	public Integer getIltUseNy() {
+		return iltUseNy;
+	}
+	public void setIltUseNy(Integer iltUseNy) {
+		this.iltUseNy = iltUseNy;
+	}
+	public String getIctgItem() {
+		return ictgItem;
+	}
+	public void setIctgItem(String ictgItem) {
+		this.ictgItem = ictgItem;
+	}
+	public String getIctgSeq() {
+		return ictgSeq;
+	}
+	public void setIctgSeq(String ictgSeq) {
+		this.ictgSeq = ictgSeq;
+	}
+	public String getIctgIctsSeq() {
+		return ictgIctsSeq;
+	}
+	public void setIctgIctsSeq(String ictgIctsSeq) {
+		this.ictgIctsSeq = ictgIctsSeq;
+	}
+	public String getIctsSeq() {
+		return ictsSeq;
+	}
+	public void setIctsSeq(String ictsSeq) {
+		this.ictsSeq = ictsSeq;
+	}
+	public String getIctsItem() {
+		return ictsItem;
+	}
+	public void setIctsItem(String ictsItem) {
+		this.ictsItem = ictsItem;
+	}
+	public String getIchSeq() {
+		return ichSeq;
+	}
+	public void setIchSeq(String ichSeq) {
+		this.ichSeq = ichSeq;
+	}
+	public String getIchIltSeq() {
+		return ichIltSeq;
+	}
+	public void setIchIltSeq(String ichIltSeq) {
+		this.ichIltSeq = ichIltSeq;
+	}
+	public String getIchTitle() {
+		return ichTitle;
+	}
+	public void setIchTitle(String ichTitle) {
+		this.ichTitle = ichTitle;
+	}
+	public String getIctSeq() {
+		return ictSeq;
+	}
+	public void setIctSeq(String ictSeq) {
+		this.ictSeq = ictSeq;
+	}
+	public String getIctIchSeq() {
+		return ictIchSeq;
+	}
+	public void setIctIchSeq(String ictIchSeq) {
+		this.ictIchSeq = ictIchSeq;
+	}
+	public String getIctTitle() {
+		return ictTitle;
+	}
+	public void setIctTitle(String ictTitle) {
+		this.ictTitle = ictTitle;
+	}
+	public String getIctVideoLength() {
+		return ictVideoLength;
+	}
+	public void setIctVideoLength(String ictVideoLength) {
+		this.ictVideoLength = ictVideoLength;
+	}
+	public String getIctVideoUrl() {
+		return ictVideoUrl;
+	}
+	public void setIctVideoUrl(String ictVideoUrl) {
+		this.ictVideoUrl = ictVideoUrl;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public String getMainKey() {
+		return mainKey;
+	}
+	public void setMainKey(String mainKey) {
+		this.mainKey = mainKey;
+	}
+	public String getLuSeq() {
+		return luSeq;
+	}
+	public void setLuSeq(String luSeq) {
+		this.luSeq = luSeq;
+	}
+	public String getLuPath() {
+		return luPath;
+	}
+	public void setLuPath(String luPath) {
+		this.luPath = luPath;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Integer getLuDefaultNy() {
+		return luDefaultNy;
+	}
+	public void setLuDefaultNy(Integer luDefaultNy) {
+		this.luDefaultNy = luDefaultNy;
+	}
+	public Integer getLuSort() {
+		return luSort;
+	}
+	public void setLuSort(Integer luSort) {
+		this.luSort = luSort;
+	}
+	public String getLuOriginalname() {
+		return luOriginalname;
+	}
+	public void setLuOriginalname(String luOriginalname) {
+		this.luOriginalname = luOriginalname;
+	}
+	public String getLuUuidName() {
+		return luUuidName;
+	}
+	public void setLuUuidName(String luUuidName) {
+		this.luUuidName = luUuidName;
+	}
+	public String getLuExt() {
+		return luExt;
+	}
+	public void setLuExt(String luExt) {
+		this.luExt = luExt;
+	}
+	public long getLuSize() {
+		return luSize;
+	}
+	public void setLuSize(long luSize) {
+		this.luSize = luSize;
+	}
+	public String getLuDelNy() {
+		return luDelNy;
+	}
+	public void setLuDelNy(String luDelNy) {
+		this.luDelNy = luDelNy;
+	}
+	public String getLuPseq() {
+		return luPseq;
+	}
+	public void setLuPseq(String luPseq) {
+		this.luPseq = luPseq;
+	}
+	public String getLuRegDateTime() {
+		return luRegDateTime;
+	}
+	public void setLuRegDateTime(String luRegDateTime) {
+		this.luRegDateTime = luRegDateTime;
+	}
+	public String getLuModDatetime() {
+		return luModDatetime;
+	}
+	public void setLuModDatetime(String luModDatetime) {
+		this.luModDatetime = luModDatetime;
+	}
+	public MultipartFile[] getUploadedImage() {
+		return uploadedImage;
+	}
+	public void setUploadedImage(MultipartFile[] uploadedImage) {
+		this.uploadedImage = uploadedImage;
+	}
     
+	
+	
 	
 }

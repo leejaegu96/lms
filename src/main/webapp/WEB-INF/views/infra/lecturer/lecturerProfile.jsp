@@ -178,7 +178,7 @@
 															<span>연락처</span>
 															<br />
 														</div>
-														<div class="col-md-8">010-0000-0000</div>
+														<div class="col-md-8">${item.iftcMobile }</div>
 													</div>
 													<hr />
 
