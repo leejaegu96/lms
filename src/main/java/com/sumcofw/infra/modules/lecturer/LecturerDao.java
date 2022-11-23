@@ -52,4 +52,15 @@ public class LecturerDao {
     public Lecturer selectLectureOne(Lecturer dto) {
         return sqlSession.selectOne(namespace + ".selectLectureOne", dto);
     }
+    
+    // 강의 등록
+    public int insertLecture(Lecturer dto) {
+        return sqlSession.insert(namespace + ".insertLecture", dto);
+    }
+    public int insertChapterHeader(Lecturer dto) {
+        return sqlSession.insert(namespace + ".insertChapterHeader", dto);
+    }
+    public int insertChapter(Lecturer dto) {
+        return sqlSession.insert(namespace + ".insertChapter", dto);
+    }
 }

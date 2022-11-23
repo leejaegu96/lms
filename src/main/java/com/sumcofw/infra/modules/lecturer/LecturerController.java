@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Controller
 @RequestMapping(value = "/lecturer")
 public class LecturerController {
@@ -73,27 +71,20 @@ public class LecturerController {
 
     @RequestMapping(value = "/lectureInst")
     @ResponseBody
-    public String lecturerInst(Lecturer dto) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map = objectMapper.readValue(dto.getData(), Map.class);
-
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        list = (List<Map<String, Object>>) map.get("data");
-
-        List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
-
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).get("header").toString());
-            list2 = (List<Map<String, Object>>) list.get(i).get("body");
-            System.out.println("===");
-            
-            for (int j = 0; j < list2.size(); j++) {
-                System.out.println(list2.get(j).get("subTitle").toString());
-                System.out.println(list2.get(j).get("link").toString());
-            }
+    public Map<String, Object> lecturerInst(Lecturer dto) throws Exception {
+        
+        Map<String, Object> rtMap = new HashMap<String, Object>();
+        
+        int result = service.lecturerInst(dto);
+        
+        if (result != 0) {
+            rtMap.put("rt", "success");
+            rtMap.put("key", dto.getIltSeq());
+        } else {
+            rtMap.put("rt", "fail");
         }
-
-        return "test";
+        
+        return rtMap;
     }
 
     @RequestMapping(value = "/lecturerDetail")

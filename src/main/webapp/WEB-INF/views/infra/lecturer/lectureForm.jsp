@@ -60,13 +60,12 @@
 					</div>
 					<!-- End sidebar -->
 					<div class="col-lg-9">
-						<form name="form" id="form">
-							<input type="hidden" value="${item.iltSeq }">
+						<form name="form" id="form" method="POST">
+							<input type="hidden" name="iltSeq" value="${item.iltSeq}">
 							<div class="sidebar">
 								<div class="row mb-3">
 									<div class="col-6" style="float: left;">
-										<span style="font-size: 25px; font-weight: bold;">강의등록</span>
-										&nbsp;
+										<span style="font-size: 25px; font-weight: bold;">강의등록</span> &nbsp;
 									</div>
 									<div class="col-6">
 										<button class="btn btn-secondary" style="float: right;">이전으로</button>
@@ -96,7 +95,15 @@
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;">강의제목</label>
 									<div class="col-10">
-										<input name="title" type="text" class="form-control" id="iltTitle" value="${item.iltTitle }">
+										<input name="iltTitle" type="text" class="form-control" id="iltTitle" name="iltTitle" value="${item.iltTitle }">
+									</div>
+								</div>
+								<input type="hidden" name="sessSeq" value="${sessSeq}"/>
+								<!-- 강의가격 -->
+								<div class="row mb-3">
+									<label for="title" class="col-2 col-form-label" style="text-align: center;">강의가격</label>
+									<div class="col-10">
+										<input name="iltPrice" type="text" class="form-control" id="iltPrice" name="iltPrice" value="${item.iltPrice}" style="text-align: right" placeholder="(원)">
 									</div>
 								</div>
 								<!-- 대표이미지 -->
@@ -123,15 +130,17 @@
 													<div class="chapter-items">
 														<div class="chapterH">
 															<label class="col-2 col-form-label" style="text-align: center;">대제목</label>
-															<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" style="width: 55%; display: inline-block; margin-bottom:20px;" />
+															<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" style="width: 55%; display: inline-block; margin-bottom: 20px;" />
 															<button type="button" class="btn btn-primary" style="width: 12%; display: inline-block" onclick="addRow(this)">+</button>
 															<button type="button" class="btn btn-danger" style="width: 12%; display: inline-block" onClick="delRow(this)" style="background-color: red">-</button>
 															<div class="body">
 																<label class="col-2 col-form-label" style="text-align: center;">소제목</label>
 																<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" style="width: 65%; display: inline-block" />
 																<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
+																
 																<label class="col-2 col-form-label" style="text-align: center;">링크</label>
-																<input type="text" class="form-control innerValue url" placeholder="링크" name="ictVideoUrl" style="width: 65%; display: inline-block; margin-bottom:10px;" />
+																<input type="text" class="form-control innerValue url" onChange="urlParser(this)" placeholder="유튜브 링크" name="ictVideoUrl" style="width: 65%; display: inline-block; margin-bottom: 10px;" />
+																
 																<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
 															</div>
 															<hr />
@@ -142,7 +151,7 @@
 											<c:forEach items="${head}" var="head" varStatus="status">
 												<div class="chapterH">
 													<label class="col-2 col-form-label" style="text-align: center;">대제목</label>
-													<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" value="${head.ichTitle }" style="width: 55%; display: inline-block; margin-bottom:20px;" />
+													<input type="text" class="form-control innerValue bigTitle" placeholder="대제목" name="ichTitle" value="${head.ichTitle }" style="width: 55%; display: inline-block; margin-bottom: 20px;" />
 													<button type="button" class="btn btn-primary" style="width: 12%; display: inline-block" onclick="addRow(this)">+</button>
 													<button type="button" class="btn btn-danger" style="width: 12%; display: inline-block" onClick="delRow(this)" style="background-color: red">-</button>
 													<c:forEach items="${chapter}" var="chapter" varStatus="status">
@@ -152,7 +161,7 @@
 																<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" value="${chapter.ictTitle }" style="width: 65%; display: inline-block" />
 																<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
 																<label class="col-2 col-form-label" style="text-align: center;">링크</label>
-																<input type="text" class="form-control innerValue url" placeholder="링크" name="ictVideoUrl" value="${chapter.ictVideoUrl }" style="width: 65%; display: inline-block; margin-bottom:10px;" />
+																<input type="text" class="form-control innerValue url" placeholder="링크" onInput="urlParser(this)" name="ictVideoUrl" value="${chapter.ictVideoUrl }" style="width: 65%; display: inline-block; margin-bottom: 10px;" />
 																<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
 															</div>
 														</c:if>
@@ -229,6 +238,7 @@
 	    <c:forEach items="${big}" var="big" varStatus="status">
 		    mainCategoryObject = new Object();
 		    mainCategoryObject.main_category_id = "${big.ictgItem}";
+		    mainCategoryObject.main_category_seq = "${big.ictgSeq}";
 		    mainCategoryObject.main_category_name = "${big.ictgItem}";
 		    mainCategoryArray.push(mainCategoryObject);
 	    </c:forEach>
@@ -241,7 +251,9 @@
 	    <c:forEach items="${small}" var="small" varStatus="status">
 		    subCategoryObject = new Object();
 		    subCategoryObject.main_category_id = "${small.ictgItem}";
+		    subCategoryObject.main_category_id = "${small.ictsSeq}";
 		    subCategoryObject.sub_category_id = "${small.ictsItem}"
+		    subCategoryObject.sub_category_seq = "${small.ictsSeq}"
 		    subCategoryObject.sub_category_name = "${small.ictsItem}"    
 		    subCategoryArray.push(subCategoryObject);
 	    </c:forEach>
@@ -251,9 +263,9 @@
 	    var select = ""
 	    for(var i=0;i<mainCategoryArray.length;i++){
 	        if(mainCategoryArray[i].main_category_name == "${item.ictgItem}"){
-	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_id+"' selected>"+mainCategoryArray[i].main_category_name+"</option>");
+	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_seq+"' selected>"+mainCategoryArray[i].main_category_name+"</option>");
 	        } else{
-	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_id+"'>"+mainCategoryArray[i].main_category_name+"</option>");
+	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_seq+"'>"+mainCategoryArray[i].main_category_name+"</option>");
 	        }
 	    }
 	    
@@ -267,9 +279,9 @@
             for(var i=0;i<subCategoryArray.length;i++){
                 if(selectValue == subCategoryArray[i].main_category_id){
                     if(subCategoryArray[i].sub_category_name == "${item.ictsItem}"){
-                        subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_id+"' selected>"+subCategoryArray[i].sub_category_name+"</option>");
+                        subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_seq+"' selected>"+subCategoryArray[i].sub_category_name+"</option>");
                     }else{
-	                    subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_id+"'>"+subCategoryArray[i].sub_category_name+"</option>");
+	                    subCategorySelectBox.append("<option name='ictsItem' value='"+subCategoryArray[i].sub_category_seq+"'>"+subCategoryArray[i].sub_category_name+"</option>");
                     }
                     
                 }
@@ -327,7 +339,8 @@
              return false;
          }
          */
-
+		 
+         let videoCount = 0;
          const title = document.querySelectorAll('.chapterH'); // 대제목 div
          const data = {
         	data: []
@@ -343,6 +356,7 @@
                      subTitle: body.querySelector('.title').value,
                      link: body.querySelector('.url').value,
                  });
+                 videoCount++;
              });
 
              data.data.push({
@@ -350,22 +364,37 @@
                  body: tmp,
              });
          });
-         console.log(data);
+
          // Ajax request
-         $.ajax({
+          $.ajax({
  			url:'./lectureInst',
  			type:'post',
  			data:{
- 				data: JSON.stringify(data)
+ 				data: 
+ 				JSON.stringify(data)
+ 				,iltTitle: $("input[name=iltTitle]").val()
+ 				,iltIftcSeq: $("input[name=sessSeq]").val()
+ 				,iltPrice: $("input[name=iltPrice]").val()
+ 				,iltIctgSeq: $("select[name=ictgItem]").val()
+ 				,iltBody: editor.getHTML()
+ 				,iltVideoCount: videoCount
  			},
  			success:(res) => {
-				// handle
+				if (res.rt == "success") {
+					// 업로드 성공
+					$("input[name=iltSeq]").val(res.key)
+					const goUrlForm = "/lecturer/lectureForm"
+					$("form[name=form]").attr("action", goUrlForm).submit();
+					
+				} else {
+					alert("업로드 실패!!");
+				}
  			},
  			error:(jqXHR) => {
  				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
  			}
  		});
-     };
+     }; 
      /**
       * 행 추가 함수
       */
@@ -389,6 +418,12 @@
          const delTarget = target.parentNode; // 부모 요소 선택
          delTarget.remove(); // 자식 요소까지 전체 삭제
      };
+     
+     const urlParser = (target) => {
+    	 const params = new URL(target.value).searchParams;
+    	 console.log(params.get("v"))
+    	 target.value = params.get("v");
+     }
 	</script>
 	<!-- 
 	<script type="text/javascript">

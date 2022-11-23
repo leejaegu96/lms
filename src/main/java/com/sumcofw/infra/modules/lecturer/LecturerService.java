@@ -13,4 +13,6 @@ public interface LecturerService {
 	public List<Lecturer> selectChapterHeaderList(Lecturer dto) throws Exception;
 	
 	public Lecturer selectLectureOne(Lecturer dto) throws Exception;
+	
+	public int lecturerInst(Lecturer dto) throws Exception;
 }

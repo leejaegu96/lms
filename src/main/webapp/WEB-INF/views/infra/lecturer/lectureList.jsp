@@ -154,7 +154,7 @@
         var checkboxSeqArray = [];
         
         $('#btnForm').on("click", function() {
-            goForm(0);
+            location.href="/lecturer/lectureForm"
         });
 
         goForm = function(keyValue) {

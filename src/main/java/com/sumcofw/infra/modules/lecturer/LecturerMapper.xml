@@ -69,6 +69,7 @@
 	select 
 		a.ictgSeq
 		,a.ictgItem
+		,b.ictsSeq
 	    ,b.ictsItem
 	from idCategory a
 	inner join idCategorySub b on b.ictsSeq = a.ictgIctsSeq
@@ -112,6 +113,69 @@
 		    AND a.`iftcSeq` = #{iftcSeq}
 	</select>
 	
+	<!-- 강의 등록 -->
+	<insert id="insertLecture">
+		INSERT INTO idLecture (
+			iltIctgSeq 				<!-- 카테고리 시퀀스 -->
+			,iltIftcSeq 			<!-- 강사시퀀스 -->
+			,iltTitle 				<!-- 강의 제목 -->
+			,iltBody  				<!-- 강의 본문 -->
+			,iltRegDateTime  		<!-- 등록일 -->
+			,iltModDateTime  		<!-- 수정일 -->
+			,iltTotalTime  			<!-- 총 시간 -->
+			,iltVideoCount  			<!-- 총 비디오 개수 -->
+			,iltPurchasesCount 		<!-- 총 수강생 수 -->
+			,iltViewcount 			<!-- 조회수 -->
+			,iltPrice 				<!-- 가격 -->
+			,iltUseNy  				<!-- 사용여부-->
+		) VALUES (
+			#{iltIctgSeq}       	<!-- 카테고리 시퀀스 -->                    
+			,3      	<!-- 강사시퀀스 -->
+			,#{iltTitle}        	<!-- 강의 제목 -->
+			,#{iltBody}         	<!-- 강의 본문 -->
+			,now()              	<!-- 등록일 -->
+			,now()              	<!-- 수정일 -->
+			,0 					   	<!-- 총 시간 -->
+			,#{iltVideoCount}    	<!-- 총 비디오 개수 -->
+			,0 						<!-- 총 수강생 수 -->
+			,0 				 		<!-- 조회수 -->
+			,#{iltPrice}            <!-- 가격 -->
+			,1 	           		<!-- 사용여부-->
+		)
+		<selectKey resultType="String" keyProperty="iltSeq"
+			order="AFTER">
+			SELECT last_insert_id() <!-- 마지막으로 삽입된 강의 시퀀스 -->
+		</selectKey>
+	</insert>
+	
+	<!-- 챕터 -->	
+	<insert id="insertChapterHeader">
+		INSERT INTO idChapterHeader (
+			ichIltSeq 		<!-- 강의 시퀀스 -->
+			,ichTitle 		<!-- 챕터 대제목 -->
+		) VALUES (
+	    	#{ichIltSeq} 	<!-- 강의 시퀀스 -->
+	    	,#{ichTitle} 	<!-- 강의 대제목 -->
+		)
+		<selectKey resultType="String" keyProperty="ichSeq"
+			order="AFTER">
+			SELECT last_insert_id() <!-- 마지막으로 삽입된 챕터 시퀀스 -->
+		</selectKey>
+	</insert>
+	
+	<insert id="insertChapter">
+		INSERT INTO idChapter (
+			ictIchSeq 				<!-- 챕터 대제목 시퀀스 -->
+			,ictTitle 				<!-- 챕터 소제목 -->
+			,ictVideoLength 		<!-- 영상 시간 -->
+			,ictVideoUrl 			<!-- 영상 링크 -->
+		) VALUES (
+			#{ictIchSeq}			<!-- 챕터 대제목 시퀀스 -->
+			,#{ictTitle}			<!-- 챕터 소제목 -->
+			,0 <!-- #{ictVideoLength} -->		<!-- 영상 시간 -->
+			,#{ictVideoUrl}			<!-- 영상 링크 -->
+		)
+	</insert>
 	
 	
 </mapper>
