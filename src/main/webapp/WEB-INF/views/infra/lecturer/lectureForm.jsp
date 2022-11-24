@@ -60,7 +60,7 @@
 					</div>
 					<!-- End sidebar -->
 					<div class="col-lg-9">
-						<form name="form" id="form" method="POST">
+						<form name="form" id="form" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="iltSeq" value="${item.iltSeq}">
 							<div class="sidebar">
 								<div class="row mb-3">
@@ -73,6 +73,8 @@
 									</div>
 								</div>
 								<br>
+
+								<!-- 강의 카테고리 -->
 								<div class="row mb-3">
 									<label for="cate1" class="col-2 col-form-label" style="text-align: center;">카테고리</label>
 									<div class="col-10">
@@ -91,6 +93,7 @@
 
 									</div>
 								</div>
+
 								<!-- 강의제목 -->
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;">강의제목</label>
@@ -98,7 +101,7 @@
 										<input name="iltTitle" type="text" class="form-control" id="iltTitle" name="iltTitle" value="${item.iltTitle }">
 									</div>
 								</div>
-								<input type="hidden" name="sessSeq" value="${sessSeq}"/>
+								<input type="hidden" name="sessSeq" value="${sessSeq}" />
 								<!-- 강의가격 -->
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;">강의가격</label>
@@ -106,11 +109,18 @@
 										<input name="iltPrice" type="text" class="form-control" id="iltPrice" name="iltPrice" value="${item.iltPrice}" style="text-align: right" placeholder="(원)">
 									</div>
 								</div>
+
 								<!-- 대표이미지 -->
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;">대표이미지</label>
 									<div class="col-10">
-										<input type="file" name="" type="text" class="form-control" id="" value="">
+										<img src="${path}${uuidName}" alt="" width="600" height="400" /> <br />
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="title" class="col-2 col-form-label" style="text-align: center;"></label>
+									<div class="col-10">
+										<input type="file" name="uploadedImage" class="form-control" id="getUploadedImage()" value="">
 									</div>
 								</div>
 								<!-- 강의상세 -->
@@ -137,10 +147,10 @@
 																<label class="col-2 col-form-label" style="text-align: center;">소제목</label>
 																<input type="text" class="form-control innerValue title" placeholder="소제목" name="ictTitle" style="width: 65%; display: inline-block" />
 																<button type="button" class="btn btn-primary" style="width: 15%; display: inline-block" onclick="addRow(this)">+</button>
-																
+
 																<label class="col-2 col-form-label" style="text-align: center;">링크</label>
 																<input type="text" class="form-control innerValue url" onChange="urlParser(this)" placeholder="유튜브 링크" name="ictVideoUrl" style="width: 65%; display: inline-block; margin-bottom: 10px;" />
-																
+
 																<button type="button" class="btn btn-danger" style="width: 15%; display: inline-block" onClick="delRow(this)" class="delete">-</button>
 															</div>
 															<hr />

@@ -26,12 +26,13 @@ public class UtilUpload {
 		System.out.println("save PATH : " + path);
 
 		multipartFile.transferTo(new File(path + uuidFileName));
-
-		dto.setLuPath(pathForView);
-		dto.setLuOriginalname(fileName);
-		dto.setLuUuidName(uuidFileName);
-		dto.setLuExt(ext);
-		dto.setLuSize(multipartFile.getSize());
+        /*
+         * dto.setLuPath(pathForView);
+         * dto.setLuOriginalname(fileName);
+         * dto.setLuUuidName(uuidFileName);
+         * dto.setLuExt(ext);
+         * dto.setLuSize(multipartFile.getSize());
+         */
 
 	}
 

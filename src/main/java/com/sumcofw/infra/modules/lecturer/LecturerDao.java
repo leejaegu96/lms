@@ -9,8 +9,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.sumcofw.infra.modules.index.Index;
-
 
 @Repository
 public class LecturerDao {
@@ -69,5 +67,8 @@ public class LecturerDao {
     }
     public int insertChapter(Lecturer dto) {
         return sqlSession.insert(namespace + ".insertChapter", dto);
+    }
+    public int insertUploaded(Lecturer dto) { 
+        return sqlSession.insert("Base" + ".insertUploaded", dto); 
     }
 }

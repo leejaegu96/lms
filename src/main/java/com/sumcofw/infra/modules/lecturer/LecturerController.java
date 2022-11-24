@@ -21,18 +21,18 @@ public class LecturerController {
 
     @Autowired
     LecturerServiceImpl service;
-    
+
     public String sessSeq = "";
-    
+
     @RequestMapping(value = "/lectureList")
-    public String lectureList(Lecturer dto, HttpServletRequest httpServletRequest ,Model model) throws Exception {
-    	
-    	HttpSession httpSession =  httpServletRequest.getSession();
-		sessSeq = (String) httpSession.getAttribute("sessSeq");
-		
-		dto.setMainKey(sessSeq);
-    	
-    	List<Lecturer> list = service.selectLecture(dto);
+    public String lectureList(Lecturer dto, HttpServletRequest httpServletRequest, Model model) throws Exception {
+
+        HttpSession httpSession = httpServletRequest.getSession();
+        sessSeq = (String) httpSession.getAttribute("sessSeq");
+
+        dto.setMainKey(sessSeq);
+
+        List<Lecturer> list = service.selectLecture(dto);
         model.addAttribute("list", list);
         return "infra/lecturer/lectureList";
     }
@@ -45,6 +45,7 @@ public class LecturerController {
 
     @RequestMapping(value = "/lectureForm")
     public String lectureForm(Lecturer dto, Model model) throws Exception {
+
         Lecturer result = service.selectLectureOne(dto);
         List<Lecturer> big = service.selectCategory();
         List<Lecturer> small = service.selectCategorySub();
@@ -55,6 +56,7 @@ public class LecturerController {
         model.addAttribute("small", small);
         model.addAttribute("chapter", chapter);
         model.addAttribute("head", head);
+
         return "infra/lecturer/lectureForm";
     }
 
@@ -75,36 +77,36 @@ public class LecturerController {
     }
 
     @RequestMapping(value = "/lecturerProfile")
-    public String lecturerProfile(Lecturer dto, HttpServletRequest httpServletRequest ,Model model) throws Exception {
-    	
-    	HttpSession httpSession =  httpServletRequest.getSession();
-		sessSeq = (String) httpSession.getAttribute("sessSeq");
-		
-		dto.setMainKey(sessSeq);
-    	
-    	Lecturer item = service.selectTeacher(dto);
-    	List<Lecturer> sns = service.selectTeacherSns(dto);
+    public String lecturerProfile(Lecturer dto, HttpServletRequest httpServletRequest, Model model) throws Exception {
+
+        HttpSession httpSession = httpServletRequest.getSession();
+        sessSeq = (String) httpSession.getAttribute("sessSeq");
+
+        dto.setMainKey(sessSeq);
+
+        Lecturer item = service.selectTeacher(dto);
+        List<Lecturer> sns = service.selectTeacherSns(dto);
         model.addAttribute("item", item);
         model.addAttribute("sns", sns);
-    	
+
         return "infra/lecturer/lecturerProfile";
     }
 
     @RequestMapping(value = "/lectureInst")
     @ResponseBody
     public Map<String, Object> lecturerInst(Lecturer dto) throws Exception {
-        
+
         Map<String, Object> rtMap = new HashMap<String, Object>();
         
         int result = service.lecturerInst(dto);
-        
+
         if (result != 0) {
             rtMap.put("rt", "success");
             rtMap.put("key", dto.getIltSeq());
         } else {
             rtMap.put("rt", "fail");
         }
-        
+
         return rtMap;
     }
 
