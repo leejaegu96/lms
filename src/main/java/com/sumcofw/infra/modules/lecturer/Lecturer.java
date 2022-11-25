@@ -2,7 +2,9 @@ package com.sumcofw.infra.modules.lecturer;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Lecturer {
+import com.sumcofw.infra.common.base.Base;
+
+public class Lecturer extends Base {
     /*
      * 강사 테이블
      * infrTeacher
@@ -84,17 +86,41 @@ public class Lecturer {
     private String tableName;
     private String seq;
     private String path;
-    private String type;
+    private Integer type;
     private Integer defaultNy;
     private Integer sort;
     private String originalName;
     private String uuidName;
     private String ext;
     private long size;
-    private String delNy;
+    private Integer delNy;
     private String pseq;
     private MultipartFile[] uploadedImage;
-    public String getIftcSeq() {
+    
+    /**
+     * 강사 프로필 업로드
+     * lectureUpload
+     */
+    private MultipartFile[] uploadedProfileImage;
+    private String file;
+    
+    
+    
+    
+    
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	public MultipartFile[] getUploadedProfileImage() {
+		return uploadedProfileImage;
+	}
+	public void setUploadedProfileImage(MultipartFile[] uploadedProfileImage) {
+		this.uploadedProfileImage = uploadedProfileImage;
+	}
+	public String getIftcSeq() {
         return iftcSeq;
     }
     public void setIftcSeq(String iftcSeq) {
@@ -340,13 +366,13 @@ public class Lecturer {
     public void setPath(String path) {
         this.path = path;
     }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
-    public Integer getDefaultNy() {
+    public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public Integer getDefaultNy() {
         return defaultNy;
     }
     public void setDefaultNy(Integer defaultNy) {
@@ -382,13 +408,13 @@ public class Lecturer {
     public void setSize(long size) {
         this.size = size;
     }
-    public String getDelNy() {
-        return delNy;
-    }
-    public void setDelNy(String delNy) {
-        this.delNy = delNy;
-    }
-    public String getPseq() {
+    public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	public String getPseq() {
         return pseq;
     }
     public void setPseq(String pseq) {

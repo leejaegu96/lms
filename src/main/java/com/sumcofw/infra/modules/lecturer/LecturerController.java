@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/lecturer")
@@ -82,31 +83,65 @@ public class LecturerController {
         HttpSession httpSession = httpServletRequest.getSession();
         sessSeq = (String) httpSession.getAttribute("sessSeq");
 
-        dto.setMainKey(sessSeq);
+        dto.setMainKey(sessSeq); 
 
         Lecturer item = service.selectTeacher(dto);
         List<Lecturer> sns = service.selectTeacherSns(dto);
+        List<Lecturer> image = service.teacherUploaded(dto);
         model.addAttribute("item", item);
         model.addAttribute("sns", sns);
+        model.addAttribute("image", image);
 
         return "infra/lecturer/lecturerProfile";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value= "/teacherUpdt")
+    public Map<String, Object> teacherUpdt(Lecturer dto) throws Exception {
+    	
+    	Map<String, Object> rtMap = new HashMap<String, Object>();
+    	
+    	int result = service.updateTeacher(dto);
+        
+        if (result != 0) {
+            rtMap.put("rt", "success");
+        } else {
+            rtMap.put("rt", "fail");
+        }
+    	
+    	return rtMap;
+    }
+    
+    @RequestMapping(value="/updateTeacherUploaded")
+    public String updateTeacherUploaded(Lecturer dto, Model model, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes) throws Exception {
+    	
+    	HttpSession httpSession = httpServletRequest.getSession();
+        sessSeq = (String) httpSession.getAttribute("sessSeq");
+
+        dto.setMainKey(sessSeq);
+    	
+    	int result = service.updateTeacherUploaded(dto);
+    	
+    	model.addAttribute("result", result);
+    	
+    	return "redirect:lecturer/lecturerProfile";
     }
 
     @RequestMapping(value = "/lectureInst")
     @ResponseBody
     public Map<String, Object> lecturerInst(Lecturer dto) throws Exception {
-
+    	
         Map<String, Object> rtMap = new HashMap<String, Object>();
         
         int result = service.lecturerInst(dto);
-
+        
         if (result != 0) {
             rtMap.put("rt", "success");
             rtMap.put("key", dto.getIltSeq());
         } else {
             rtMap.put("rt", "fail");
         }
-
+        
         return rtMap;
     }
 

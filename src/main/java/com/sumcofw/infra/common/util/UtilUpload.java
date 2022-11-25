@@ -35,6 +35,28 @@ public class UtilUpload {
          */
 
 	}
+	public static void uploadTeacher(MultipartFile multipartFile, String className, Lecturer dto) throws Exception {
+		String fileName = multipartFile.getOriginalFilename();
+		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+		String uuid = UUID.randomUUID().toString();
+		String uuidFileName = uuid + "." + ext;
+		String pathModule = className;
+		String nowString = UtilDateTime.nowString();
+		String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
+		String path = Constants.UPLOAD_PATH_PREFIX + "/" + "teacher" + "/" + pathDate + "/";
+		String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + "teacher" + "/" + pathDate + "/";
+		
+		createPath(path);
+		  
+		multipartFile.transferTo(new File(path + uuidFileName));
+		
+		dto.setPath(pathForView);
+		dto.setOriginalName(fileName);
+		dto.setUuidName(uuidFileName);
+		dto.setExt(ext);
+		dto.setSize(multipartFile.getSize());
+		
+	}
 
 	public static void createPath(String path) {
 		File uploadPath = new File(path);

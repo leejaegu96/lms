@@ -71,4 +71,18 @@ public class LecturerDao {
     public int insertUploaded(Lecturer dto) { 
         return sqlSession.insert("Base" + ".insertUploaded", dto); 
     }
+    
+    // 강사 프로필
+    public List<Lecturer> teacherUploaded(Lecturer dto){
+    	return sqlSession.selectList(namespace + ".teacherUploaded", dto); 
+    }
+    public int updateTeacher(Lecturer dto) { 
+    	return sqlSession.insert(namespace + ".updateTeacher", dto);
+    }
+    public int insertTeacherUploaded(Lecturer dto) { 
+    	return sqlSession.insert("Base" + ".insertTeacherUploaded", dto); 
+    }
+    public int updateTeacherUploaded(Lecturer dto) { 
+    	return sqlSession.update(namespace + ".updateTeacherUploaded", dto); 
+    }
 }

@@ -230,4 +230,48 @@
 	)
 	</insert>
 	
+	<!-- 프로필 사진 업데이트 -->
+	<update id="updateTeacherUploaded">
+		UPDATE teacherUpload
+		SET
+			type = #{type}
+			,defaultNy = #{defaultNy}
+			,sort = #{sort}
+			,path = #{path}
+			,originalName = #{originalName}
+			,uuidName = #{uuidName}
+			,ext = #{ext}
+			,size = #{size}
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{mainKey}
+	</update>
+	
+	<!-- 프로필 업데이트 -->
+	<update id="updateTeacher">
+		UPDATE infrTeacher
+		SET
+			iftcName = #{iftcName}
+			,iftcMobile = #{iftcMobile}
+			,iftcProfile = #{iftcProfile}
+		WHERE 1=1
+			AND iftcSeq = #{iftcSeq}
+	</update>
+	<!-- 프로필 불러오기 -->
+	<select id="teacherUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,path
+			,originalName
+			,uuidName
+		FROM teacherUpload
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{mainKey}
+		ORDER BY
+			type, sort
+	</select>
+	
 </mapper>

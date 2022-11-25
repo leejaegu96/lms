@@ -16,5 +16,8 @@ public interface LecturerService {
 	public Lecturer selectTeacher(Lecturer dto) throws Exception;
 	public List<Lecturer> selectTeacherSns(Lecturer dto) throws Exception;
 	
+	public List<Lecturer> teacherUploaded(Lecturer dto) throws Exception;
 	public int lecturerInst(Lecturer dto) throws Exception;
+	public int updateTeacher(Lecturer dto) throws Exception;
+	public int updateTeacherUploaded(Lecturer dto) throws Exception;
 }

@@ -62,6 +62,31 @@
 			,#{pseq}
 		)
 	</insert>
+	<insert id="insertTeacherUploaded">
+		INSERT INTO ${tableName} (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+			,pseq
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+			,#{mainKey}
+		)
+	</insert>
 	
 	<delete id="deleteUploaded">
 		DELETE FROM ${tableName}

@@ -153,7 +153,18 @@
 													<div class="row" id="rowPadding">
 														<div class="col-md-4 label" style="margin: auto" id="labelCen">프로필 사진</div>
 														<div class="col-md-8 text-center">
-															<img id="imgProfile" src="https://namu.wiki/jump/qsSNL4IcQnjBCIEEWWaKQtBZgCf1udr3dMaiMNhbF3Xkr%2BwZ1A88PU3TcxUg1Phs" class="rounded-circle mx-auto d-block" width="100" height="100" /> <br />
+															<c:choose>
+																<c:when test="${fn:length(image) eq 0 }">
+																	<img id="imgProfile1" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+																</c:when>
+																<c:otherwise>
+																	<c:forEach items="${image}" var="image" varStatus="statusUploaded">
+																		<c:if test="${image.type eq '1' }">
+																			<img id="imgProfile1" src="<c:out value="${image.path }"/><c:out value="${image.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+																		</c:if>
+																	</c:forEach>
+																</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 													<hr />
@@ -214,23 +225,36 @@
 												</div>
 
 												<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-													<!-- Profile Edit Form -->
-													<form name="form" id="form">
+													<!-- Profile Edit Form --------------------------------------------------------------------------------------------------------- -->
+													<form name="form" id="form" method="post" enctype="multipart/form-data">
 														<div class="row mb-3">
+															<input type="hidden" name="sessSeq" value="${sessSeq}" />
 															<div class="col-md-4 col-lg-3 col-form-label" id="labelCen">프로필 사진</div>
 															<div class="col-lg-9 col-md-8 text-center">
-																<img id="imgProfile" src="https://w.namu.la/s/56f350b8cd75ce735908adb8a9648cedaa30d151e48318ac5854b86a26a4fe1f64f2233e98412f56c70b3cb1a9414b6842232925c63bc5ec8f6eca9b28c331c825eaff072340e4316bbd6cc4d68a1a0da9307a93f123b2e8f8a98fe02d8c8c60" class="rounded-circle mx-auto d-block" width="100" height="100" /> <br />
-																<label for="ifmmUploadedProfileImage">
+																<c:choose>
+																	<c:when test="${fn:length(image) eq 0 }">
+																		<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+																	</c:when>
+																	<c:otherwise>
+																		<c:forEach items="${image}" var="image" varStatus="statusUploaded">
+																			<c:if test="${image.type eq '1' }">
+																				<img id="imgProfile" src="<c:out value="${image.path }"/><c:out value="${image.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+																			</c:if>
+																		</c:forEach>
+																	</c:otherwise>
+																</c:choose>
+																<br>
+																<label for="uploadedProfileImage">
 																	<span id="btn-upload" style="text-align: center; margin: auto">UPLOAD</span>
 																</label>
-																<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none" />
+																<input class="form-control form-control-sm" id="uploadedProfileImage" name="uploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('uploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 															</div>
 														</div>
 
 														<div class="row mb-3">
 															<div class="col-md-4 col-lg-3 col-form-label" id="labelCen">크리에이터 닉네임</div>
 															<div class="col-md-8 col-lg-9">
-																<input name="" type="text" class="form-control" id="" value="${item.iftcName }" />
+																<input name="iftcName" type="text" class="form-control" id="" value="${item.iftcName }" />
 															</div>
 														</div>
 
@@ -248,7 +272,7 @@
 														<div class="row mb-3">
 															<div class="col-md-4 col-lg-3 col-form-label" id="labelCen">연락처</div>
 															<div class="col-md-8 col-lg-9">
-																<input type="text" class="form-control" value="010-0000-0000" />
+																<input type="text" name="iftcMobile" class="form-control" value="${item.iftcMobile }" />
 															</div>
 														</div>
 
@@ -292,7 +316,7 @@
 															</div>
 														</div>
 														<div class="text-center">
-															<button type="button" class="btn btn-primary" onclick="btn()">Save Changes</button>
+															<button type="button" class="btn btn-primary" onclick="onSubmit()">Save Changes</button>
 														</div>
 													</form>
 													<!-- End Profile Edit Form -->
@@ -318,7 +342,7 @@
 	<!-- include footer-->
 	<!-- toast javascript -->
 	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-	
+
 	<script type="text/javascript">
 	function btn(){
 	    console.log();
@@ -361,6 +385,187 @@
         // !!여기!! editor.getHtml()을 사용해서 에디터 내용 받아오기
         console.log(editor.getHTML());
     </script>
+	<script type="text/javascript">
+	var goUrlUpdt = "/lecturer/updateTeacherUploaded";
+	var form = $("form[name = form]");
+	
+	function onSubmit(){
+	    $.ajax({
+				url:'./teacherUpdt',
+				type:'post',
+				data:{
+					iftcName: $("input[name=iftcName]").val()
+					,iftcSeq: $("input[name=sessSeq]").val()
+					,iftcMobile: $("input[name=iftcMobile]").val()
+					,iftcProfile: editor.getHTML()
+				},
+				success:(res) => {
+				if (res.rt == "success") {
+					// 업로드 성공
+					const goUrlForm = "/lecturer/lecturerProfile"
+					$("form[name=form]").attr("action", goUrlForm).submit();
+					
+				} else {
+					alert("업로드 실패!!");
+				}
+				},
+				error:(jqXHR) => {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+	    // 이미지 업로드
+	    form.attr("action", goUrlUpdt).submit();
+    }
+    </script>
+	<script type="text/javascript">
+	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		lecturerImage: 2
+//		teacherProfileImage: 3
+		
+		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
+		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
+		const MAX_TOTAL_FILE_NUMBER = 5;
+		
+		var extArray1 = new Array();
+		extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+
+		// 문서관련
+		var extArray2 = new Array();
+		extArray2 = ["txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		// 이하는 커스텀
+		var extArray3 = new Array();
+		extArray3 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray4 = new Array();
+		extArray4 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray5 = new Array();
+		extArray5 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray6 = new Array();
+		extArray6 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray7 = new Array();
+		extArray7 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray8 = new Array();
+		extArray8 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray9 = new Array();
+		extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		
+		var totalFileSize = 0;
+		var obj = $("#" + objName +"")[0].files;	
+		var fileCount = obj.length;
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+			if(allowedMaxTotalFileNumber < fileCount){
+				alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//				$("#file"+seq).val("");
+//				obj.val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedExt = function(objName, seq, div) {
+			var ext = objName.split('.').pop().toLowerCase();
+			var extArray = eval("extArray" + div);
+			
+			if(extArray.indexOf(ext) == -1) {
+				alert("허용된 확장자가 아닙니다.");
+//				$("#file"+seq).val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+			if(obj.size > allowedEachFileSize){
+				alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+			if(totalSize > allowedTotalFileSize){
+				alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+		
+		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+
+		for (var i = 0 ; i < fileCount ; i++) {
+			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+			totalFileSize += $("#" + objName +"")[0].files[i].size;
+		}
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+
+			for (var i = 0 ; i < fileCount ; i++) {
+				
+	 			var divImage = "";
+	 			divImage += '<div style="display: inline-block; height: 95px;">';
+				/* divImage += '	<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">'; */
+				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
+				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
+				divImage += '</div> ';
+				
+				$("#ifmmUploadedImage1View").append(divImage);
+				
+				var fileReader = new FileReader();
+				 fileReader.readAsDataURL($("#" + objName +"")[0].files[i]);
+				alert($("#" + objName +"")[0].files[i]);
+				 fileReader.onload = function () {
+				 /* alert(i + " : " + fileReader.result); */
+				 alert($("#aaa"+i+""));
+				 
+				 if(i == 0) {
+					 $("#aaa0").attr("src", fileReader.result);		/* #-> */
+				 } else if (i == 1) {
+					 $("#aaa0").attr("src", fileReader.result);		/* #-> */
+				 } else {
+					 
+				 }
+					 /* $("#aaa"+i+"").attr("src", fileReader.result);	 */	/* #-> */
+					 /* $("#aaa1").attr("src", fileReader.result); */		/* #-> */ 
+				 }
+			}			
+ 			
+		} else if(uiType == 2) {
+			$("#ulFile" + seq).children().remove();
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+			}
+		} else if (uiType == 3) {
+			var fileReader = new FileReader();
+			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
+			
+			 fileReader.onload = function () {
+				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+			 }
+		}else {
+			return false;
+		}
+		return false;
+	}
+	</script>
+
 
 </body>
 </html>
