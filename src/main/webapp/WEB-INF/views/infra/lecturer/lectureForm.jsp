@@ -120,7 +120,7 @@
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;"></label>
 									<div class="col-10">
-										<input type="file" name="uploadedImage" class="form-control" id="getUploadedImage()" value="">
+										<input type="file" name="uploadedImage" class="form-control" id="uploadedImage" value="">
 									</div>
 								</div>
 								<!-- 강의상세 -->
@@ -354,8 +354,9 @@
          const title = document.querySelectorAll('.chapterH'); // 대제목 div
          const data = {
         	data: []
-          }; // 컨트롤러로 보낼 데이터 만들기
+          }; 
 
+      	 // 컨트롤러로 보낼 데이터 만들기
          // 대제목 개수 만큼 반복
          title.forEach((title, i) => {
              const tmp = []; // 임시로 값을 담을 변수
@@ -379,19 +380,20 @@
           $.ajax({
  			url:'./lectureInst',
  			type:'post',
+ 			enctype: 'multipart/form-data',
  			data:{
- 				data: 
- 				JSON.stringify(data)
- 				,iltTitle: $("input[name=iltTitle]").val()
- 				,iltIftcSeq: $("input[name=sessSeq]").val()
- 				,iltPrice: $("input[name=iltPrice]").val()
- 				,iltIctgSeq: $("select[name=ictgItem]").val()
- 				,iltBody: editor.getHTML()
- 				,iltVideoCount: videoCount
- 			},
+ 				data:JSON.stringify(data) 									// 강의 챕터 + 링크
+ 				,iltTitle: $("input[name=iltTitle]").val() 					// 강의 제목
+ 				,iltIftcSeq: $("input[name=sessSeq]").val()					// 강사 시퀀스
+ 				,iltPrice: $("input[name=iltPrice]").val()					// 강의 가격
+ 				,iltIctgSeq: $("select[name=ictgItem]").val()				// 강의 카테고리
+ 				,uploadedImage : $("input[name=uploadedImage]").val()		// 강의 대표 사진
+ 				,iltBody: editor.getHTML() 									// 강의 본문
+ 				,iltVideoCount: videoCount 									// 영상 개수
+  			},
  			success:(res) => {
 				if (res.rt == "success") {
-					// 업로드 성공
+					// 업로드 성공 -> 상세보기 페이지 이동
 					$("input[name=iltSeq]").val(res.key)
 					const goUrlForm = "/lecturer/lectureForm"
 					$("form[name=form]").attr("action", goUrlForm).submit();
@@ -405,12 +407,13 @@
  			}
  		});
      }; 
+     
      /**
       * 행 추가 함수
       */
      const addRow = (target) => {
-         const row = target.parentNode; // 부모 요소 선택
-         const cloneNode = row.cloneNode(true); // 부모 요소 복사
+         const row = target.parentNode; 			// 부모 요소 선택
+         const cloneNode = row.cloneNode(true); 	// 부모 요소 복사
 
          // 안에있는 input 값 초기화
          cloneNode.querySelectorAll('.innerValue').forEach((header) => {
