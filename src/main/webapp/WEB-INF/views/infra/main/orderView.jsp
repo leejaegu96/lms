@@ -112,7 +112,7 @@
 										<li><input type="checkbox" name="" id="" />전체동의</li>
 										<li>모든 약관에 동의합니다.</li>
 										<li><input id="payNow" type="button" value="결제하기" class="btn btn-danger" style="width: 100%" /></li>
-										<li><button>카카오페이로 결제하기</button></li>
+										<li><button id="kakaoBtn">카카오페이로 결제하기</button></li>
 									</ul>
 								</div>
 							</div>
@@ -204,6 +204,27 @@
             return false;
             form.attr("action", "/member/purchased").submit();
         });
+    </script>
+    
+    <script>
+    	$("#kakaoBtn").click(function(){
+    		$.ajax({ 
+    			url : "/member/kakaopay.cls",   			
+    			dataType : 'json',			
+    			success : function(data) {
+					console.log(data);
+					var box = data.next_redirect_pc_url;
+					window.open(box);
+    		     },
+    		          
+    			error : function(request, status, error){     							
+    				  	console.log("code: " + request.status)	
+    			        console.log("message: " + request.responseText)
+    			        console.log("error: " + error);
+    				 }	     
+    		});
+    		return false;
+    	});
     </script>
 </body>
 </html>
