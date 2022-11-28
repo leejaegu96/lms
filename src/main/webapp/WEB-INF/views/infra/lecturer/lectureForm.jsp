@@ -63,6 +63,8 @@
 						<form name="form" id="form" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="iltSeq" value="${item.iltSeq}">
 							<input type="hidden" name="iltIftcSeq" value="${sessSeq}">
+							<input type="hidden" name="iltBody" />
+							<input type="hidden" name="iltVideoCount" />
 							<div class="sidebar">
 								<div class="row mb-3">
 									<div class="col-6" style="float: left;">
@@ -273,7 +275,7 @@
 	    
 	    //메인 카테고리 셋팅
 	    var mainCategorySelectBox = $("select[name='ictgItem']");
-	    var select = ""-
+	    var select = "";
 	    for(var i=0;i<mainCategoryArray.length;i++){
 	        if(mainCategoryArray[i].main_category_name == "${item.ictgItem}"){
 	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_seq+"' selected>"+mainCategoryArray[i].main_category_name+"</option>");
@@ -379,7 +381,8 @@
              });
          });
       	 
-      	
+      	$("input[name=iltBody]").val(editor.getHTML());
+      	$("input[name=iltVideoCount]").val(videoCount);
       	$("input[name=iltIctgSeq]").val($("select[name='ictgItem']").val())
       	$("input[name=data]").val(JSON.stringify(data));
       	const form = $('#form')[0];
