@@ -62,6 +62,7 @@
 					<div class="col-lg-9">
 						<form name="form" id="form" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="iltSeq" value="${item.iltSeq}">
+							<input type="hidden" name="iltIftcSeq" value="${sessSeq}">
 							<div class="sidebar">
 								<div class="row mb-3">
 									<div class="col-6" style="float: left;">
