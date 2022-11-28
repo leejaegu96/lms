@@ -118,13 +118,13 @@
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;">대표이미지</label>
 									<div class="col-10">
-										<img src="${path}${uuidName}" alt="" width="600" height="400" /> <br />
+										<img class="image-box" src="${item.path}${item.uuidName}" alt="" width="600" height="400" /> <br />
 									</div>
 								</div>
 								<div class="row mb-3">
 									<label for="title" class="col-2 col-form-label" style="text-align: center;"></label>
 									<div class="col-10">
-										<input type="file" name="uploadedImage" class="form-control" id="uploadedImage" value="">
+										<input type="file" id="file" name="uploadedImage" class="form-control" id="uploadedImage" value="">
 									</div>
 								</div>
 								<!-- 강의상세 -->
@@ -494,6 +494,18 @@
 		console.log(editor.getHTML());
 		
 		
+	</script>
+	<script type="text/javascript">
+	const fileDOM = document.querySelector('#file');
+	const preview = document.querySelector('.image-box');
+
+	fileDOM.addEventListener('change', () => {
+	  const reader = new FileReader();
+	  reader.onload = ({ target }) => {
+	    preview.src = target.result;
+	  };
+	  reader.readAsDataURL(fileDOM.files[0]);
+	});
 	</script>
 
 </body>
