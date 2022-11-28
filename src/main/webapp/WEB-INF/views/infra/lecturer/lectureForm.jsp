@@ -135,6 +135,7 @@
 									<label for="chapter" class="col-2 col-form-label" style="text-align: center;">챕터</label>
 									<div class="col-10">
 										<div class="chapter-items">
+											<input type="hidden" name="data" />
 											<c:choose>
 												<c:when test="${item.iltSeq eq null }">
 													<div class="chapter-items">
@@ -375,22 +376,20 @@
                  body: tmp,
              });
          });
+      	 
+      	$("input[name=data]").val(JSON.stringify(data));
+      	const form = $('#form')[0];
+        const formData = new FormData(form);
 
          // Ajax request
           $.ajax({
  			url:'./lectureInst',
  			type:'post',
  			enctype: 'multipart/form-data',
- 			data:{
- 				data:JSON.stringify(data) 									// 강의 챕터 + 링크
- 				,iltTitle: $("input[name=iltTitle]").val() 					// 강의 제목
- 				,iltIftcSeq: $("input[name=sessSeq]").val()					// 강사 시퀀스
- 				,iltPrice: $("input[name=iltPrice]").val()					// 강의 가격
- 				,iltIctgSeq: $("select[name=ictgItem]").val()				// 강의 카테고리
- 				,uploadedImage : $("input[name=uploadedImage]").val()		// 강의 대표 사진
- 				,iltBody: editor.getHTML() 									// 강의 본문
- 				,iltVideoCount: videoCount 									// 영상 개수
-  			},
+			processData: false,
+			contentType: false,
+			cache: false,
+ 			data: formData,
  			success:(res) => {
 				if (res.rt == "success") {
 					// 업로드 성공 -> 상세보기 페이지 이동
