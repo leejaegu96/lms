@@ -80,8 +80,9 @@
 									<label for="cate1" class="col-2 col-form-label" style="text-align: center;">카테고리</label>
 									<div class="col-10">
 										<div class="row">
+											<input type="hidden" name="iltIctgSeq" />
 											<div class="col-6">
-												<select class="form-select" name="ictgItem">
+												<select class="form-select" id="ictgItem" name="ictgItem">
 													<option value="">전체</option>
 												</select>
 											</div>
@@ -272,7 +273,7 @@
 	    
 	    //메인 카테고리 셋팅
 	    var mainCategorySelectBox = $("select[name='ictgItem']");
-	    var select = ""
+	    var select = ""-
 	    for(var i=0;i<mainCategoryArray.length;i++){
 	        if(mainCategoryArray[i].main_category_name == "${item.ictgItem}"){
 	            mainCategorySelectBox.append("<option name='ictgItem' value='"+mainCategoryArray[i].main_category_seq+"' selected>"+mainCategoryArray[i].main_category_name+"</option>");
@@ -378,6 +379,8 @@
              });
          });
       	 
+      	
+      	$("input[name=iltIctgSeq]").val($("select[name='ictgItem']").val())
       	$("input[name=data]").val(JSON.stringify(data));
       	const form = $('#form')[0];
         const formData = new FormData(form);
