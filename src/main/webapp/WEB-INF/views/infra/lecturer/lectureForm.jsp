@@ -387,10 +387,11 @@
       	$("input[name=data]").val(JSON.stringify(data));
       	const form = $('#form')[0];
         const formData = new FormData(form);
-
+		const goUrl = $("input[name=iltSeq]").val() == '' ? './lectureInst' : './lectureUpdt'
+        
          // Ajax request
           $.ajax({
- 			url:'./lectureInst',
+ 			url: goUrl,
  			type:'post',
  			enctype: 'multipart/form-data',
 			processData: false,
@@ -401,9 +402,7 @@
 				if (res.rt == "success") {
 					// 업로드 성공 -> 상세보기 페이지 이동
 					$("input[name=iltSeq]").val(res.key)
-					const goUrlForm = "/lecturer/lectureForm"
-					$("form[name=form]").attr("action", goUrlForm).submit();
-					
+					$("form[name=form]").attr("action", "/lecturer/lectureForm").submit();
 				} else {
 					alert("업로드 실패!!");
 				}

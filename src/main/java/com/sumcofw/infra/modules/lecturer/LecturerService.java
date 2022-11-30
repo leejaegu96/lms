@@ -20,4 +20,6 @@ public interface LecturerService {
 	public int lecturerInst(Lecturer dto) throws Exception;
 	public int updateTeacher(Lecturer dto) throws Exception;
 	public int updateTeacherUploaded(Lecturer dto) throws Exception;
+	
+	public int lecturerUpdt(Lecturer dto) throws Exception;
 }

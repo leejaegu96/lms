@@ -46,18 +46,25 @@ public class LecturerController {
 
     @RequestMapping(value = "/lectureForm")
     public String lectureForm(Lecturer dto, Model model) throws Exception {
-
-        Lecturer result = service.selectLectureOne(dto);
+        
+        // 카테고리 조회
         List<Lecturer> big = service.selectCategory();
         List<Lecturer> small = service.selectCategorySub();
-        List<Lecturer> chapter = service.selectChapterList(dto);
-        List<Lecturer> head = service.selectChapterHeaderList(dto);
-        model.addAttribute("item", result);
         model.addAttribute("big", big);
         model.addAttribute("small", small);
-        model.addAttribute("chapter", chapter);
-        model.addAttribute("head", head);
-
+        
+        // 강의 시퀀스가 있을때만 쿼리 날림
+        if (dto.getIltSeq() != null) {
+            Lecturer result = service.selectLectureOne(dto);
+            List<Lecturer> chapter = service.selectChapterList(dto);
+            List<Lecturer> head = service.selectChapterHeaderList(dto);
+            model.addAttribute("item", result);
+            model.addAttribute("chapter", chapter);
+            model.addAttribute("head", head);
+        } else {
+            // by pass
+        }
+        
         return "infra/lecturer/lectureForm";
     }
 
@@ -83,7 +90,7 @@ public class LecturerController {
         HttpSession httpSession = httpServletRequest.getSession();
         sessSeq = (String) httpSession.getAttribute("sessSeq");
 
-        dto.setMainKey(sessSeq); 
+        dto.setMainKey(sessSeq);
 
         Lecturer item = service.selectTeacher(dto);
         List<Lecturer> sns = service.selectTeacherSns(dto);
@@ -94,46 +101,76 @@ public class LecturerController {
 
         return "infra/lecturer/lecturerProfile";
     }
-    
+
     @ResponseBody
-    @RequestMapping(value= "/teacherUpdt")
+    @RequestMapping(value = "/teacherUpdt")
     public Map<String, Object> teacherUpdt(Lecturer dto) throws Exception {
-    	
-    	Map<String, Object> rtMap = new HashMap<String, Object>();
-    	
-    	int result = service.updateTeacher(dto);
-        
+
+        Map<String, Object> rtMap = new HashMap<String, Object>();
+
+        int result = service.updateTeacher(dto);
+
         if (result != 0) {
             rtMap.put("rt", "success");
         } else {
             rtMap.put("rt", "fail");
         }
-    	
-    	return rtMap;
+
+        return rtMap;
     }
-    
-    @RequestMapping(value="/updateTeacherUploaded")
-    public String updateTeacherUploaded(Lecturer dto, Model model, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes) throws Exception {
-    	
-    	HttpSession httpSession = httpServletRequest.getSession();
+
+    @RequestMapping(value = "/updateTeacherUploaded")
+    public String updateTeacherUploaded(Lecturer dto, Model model, HttpServletRequest httpServletRequest,
+            RedirectAttributes redirectAttributes) throws Exception {
+
+        HttpSession httpSession = httpServletRequest.getSession();
         sessSeq = (String) httpSession.getAttribute("sessSeq");
 
         dto.setMainKey(sessSeq);
-    	
-    	int result = service.updateTeacherUploaded(dto);
-    	
-    	model.addAttribute("result", result);
-    	
-    	return "redirect:lecturer/lecturerProfile";
-    }
 
+        int result = service.updateTeacherUploaded(dto);
+
+        model.addAttribute("result", result);
+
+        return "redirect:lecturer/lecturerProfile";
+    }
+    
+    
+    /**
+     * 강의 등록
+     * @param Lecturer dto
+     * @return 성공시 rt.success, 등록된 강의 시퀀스 리턴
+     * @throws Exception
+     */
     @RequestMapping(value = "/lectureInst")
     @ResponseBody
     public Map<String, Object> lecturerInst(Lecturer dto) throws Exception {
-    	
+
         Map<String, Object> rtMap = new HashMap<String, Object>();
-        
         int result = service.lecturerInst(dto);
+
+        if (result != 0) {
+            rtMap.put("rt", "success");
+            rtMap.put("key", dto.getIltSeq());
+        } else {
+            rtMap.put("rt", "fail");
+        }
+
+        return rtMap;
+    }
+    
+    /**
+     * 강의 업데이트
+     * @param Lecturer dto
+     * @return 성공시 rt.success, 수정된 강의 시퀀스 리턴
+     * @throws Exception
+     */
+    @RequestMapping(value = "/lecturerUpdt")
+    @ResponseBody
+    public Map<String, Object> lecturerUpdt(Lecturer dto) throws Exception {
+        
+        Map<String, Object> rtMap = new HashMap<String, Object>();
+        int result = service.lecturerUpdt(dto);
         
         if (result != 0) {
             rtMap.put("rt", "success");

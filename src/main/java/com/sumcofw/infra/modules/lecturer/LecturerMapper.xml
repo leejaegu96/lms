@@ -139,6 +139,8 @@
 		    AND a.`iftcSeq` = #{iftcSeq}
 	</select>
 	
+	<!-- ## 강의 등록 ## -->
+	
 	<!-- 강의 등록 -->
 	<insert id="insertLecture">
 		INSERT INTO idLecture (
@@ -173,8 +175,7 @@
 			SELECT last_insert_id() <!-- 마지막으로 삽입된 강의 시퀀스 -->
 		</selectKey>
 	</insert>
-	
-	<!-- 챕터 -->	
+	<!-- 챕터 대제목 등록 -->	
 	<insert id="insertChapterHeader">
 		INSERT INTO idChapterHeader (
 			ichIltSeq 		<!-- 강의 시퀀스 -->
@@ -188,7 +189,7 @@
 			SELECT last_insert_id() <!-- 마지막으로 삽입된 챕터 시퀀스 -->
 		</selectKey>
 	</insert>
-	
+	<!-- 챕터 등록 -->
 	<insert id="insertChapter">
 		INSERT INTO idChapter (
 			ictIchSeq 				<!-- 챕터 대제목 시퀀스 -->
@@ -202,34 +203,94 @@
 			,#{ictVideoUrl}			<!-- 영상 링크 -->
 		)
 	</insert>
-	
-	
+	<!-- 강의 대표사진 업로드 -->
 	<insert id="insertLecturetUploaded">
-	INSERT INTO lectureUpload (
-		luType
-		,luDefaultNy
-		,luSort
-		,luPath
-		,luOriginalName
-		,luUuidName
-		,luExt
-		,luSize
-		,luDelNy
-		,luPseq
-	) values (
-		#{luType}
-		,#{luDefaultNy}
-		,#{luSort}
-		,#{luPath}
-		,#{luOriginalName}
-		,#{luUuidName}
-		,#{luExt}
-		,#{luSize}
-		,0
-		,#{luPseq}
-	)
+		INSERT INTO #{tableName} (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+			,pseq
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+			,#{pseq}
+		)
 	</insert>
 	
+	<!-- ## 강의 수정 ## -->
+	
+	<!-- 강의 업데이트 -->
+	<update id="updateLecture">
+		UPDATE idLecture
+			SET
+				iltIctgSeq = #{iltIctgSeq} 				<!-- 카테고리 시퀀스 -->
+				,iltTitle = #{iltTitle} 				<!-- 강의 제목 -->
+				,iltBody = #{iltBody}  					<!-- 강의 본문 -->
+				,iltModDateTime = now()  				<!-- 수정일 -->
+				,iltTotalTime = 0 						<!-- 총 시간 -->
+				,iltVideoCount = #{iltVideoCount}		<!-- 총 비디오 개수 -->
+				,iltPurchasesCount = 0					<!-- 총 수강생 수 -->
+				,iltViewcount =	0						<!-- 조회수 -->
+				,iltPrice =	#{iltPrice} 				<!-- 가격 -->
+				,iltUseNy = 1							<!-- 사용여부 -->
+		WHERE 1=1
+			AND iltSeq = #{iltSeq}
+	</update>
+	<!-- 챕터 대제목 업데이트 -->
+	<update id="updateChapterHeader">
+		UPDATE idChapterHeader 
+			SET
+				ichTitle = #{ichTitle}		<!-- 챕터 대제목 -->
+		WHERE 1=1
+			AND ichIltSeq = #{iltSeq} 		<!-- 강의 시퀀스 -->
+	</update>
+	<!-- 챕터 업데이트 -->
+	<update id="updateChapter">
+		UPDATE idChapter 
+			SET
+				ictTitle = #{ictTitle}								<!-- 챕터 소제목 -->
+				,ictVideoLength = 0<!-- #{ictVideoLength} -->		<!-- 영상 시간 -->
+				,ictVideoUrl = #{ictVideoUrl}						<!-- 영상 링크 -->
+		WHERE 1=1
+			AND ictIchSeq = (
+								select 
+									ichSeq 
+								from idChapterHeader 
+								where ichIltSeq = #{iltSeq}
+							)
+	</update>
+	<!-- 강의 대표사진 업데이트 -->
+	<update id="updateLecturetUploaded">
+		UPDATE #{tableName}
+			SET
+				type = #{type}
+				,defaultNy = #{defaultNy}
+				,sort = #{sort}
+				,path = #{path}
+				,originalName = #{originalName}
+				,uuidName = #{uuidName}
+				,ext = #{ext}
+				,size = #{size}
+				,delNy = 0
+		WHERE 1=1
+			AND pseq = #{iltSeq}
+		</update>
+
+
+
 	<!-- 프로필 사진 업데이트 -->
 	<update id="updateTeacherUploaded">
 		UPDATE teacherUpload
@@ -246,7 +307,6 @@
 			AND delNy = 0
 			AND pseq = #{mainKey}
 	</update>
-	
 	<!-- 프로필 업데이트 -->
 	<update id="updateTeacher">
 		UPDATE infrTeacher
