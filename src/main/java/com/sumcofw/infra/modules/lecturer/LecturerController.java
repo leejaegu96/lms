@@ -165,9 +165,9 @@ public class LecturerController {
      * @return 성공시 rt.success, 수정된 강의 시퀀스 리턴
      * @throws Exception
      */
-    @RequestMapping(value = "/lecturerUpdt")
+    @RequestMapping(value = "/lectureUpdt")
     @ResponseBody
-    public Map<String, Object> lecturerUpdt(Lecturer dto) throws Exception {
+    public Map<String, Object> lectureUpdt(Lecturer dto) throws Exception {
         
         Map<String, Object> rtMap = new HashMap<String, Object>();
         int result = service.lecturerUpdt(dto);

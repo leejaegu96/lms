@@ -401,6 +401,7 @@
  			success:(res) => {
 				if (res.rt == "success") {
 					// 업로드 성공 -> 상세보기 페이지 이동
+					alert('저장 되었습니다.')
 					$("input[name=iltSeq]").val(res.key)
 					$("form[name=form]").attr("action", "/lecturer/lectureForm").submit();
 				} else {

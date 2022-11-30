@@ -270,6 +270,7 @@
 									ichSeq 
 								from idChapterHeader 
 								where ichIltSeq = #{iltSeq}
+								limit 1
 							)
 	</update>
 	<!-- 강의 대표사진 업데이트 -->
@@ -277,7 +278,7 @@
 		UPDATE #{tableName}
 			SET
 				type = #{type}
-				,defaultNy = #{defaultNy}
+				,defaultNy = 1
 				,sort = #{sort}
 				,path = #{path}
 				,originalName = #{originalName}

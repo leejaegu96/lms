@@ -86,7 +86,7 @@ public class LecturerDao {
     }
     
     public int updateLecturetUploaded(Lecturer dto) { 
-        return sqlSession.update("Base" + ".updateLecturetUploaded", dto); 
+        return sqlSession.update(namespace + ".updateLecturetUploaded", dto); 
     }
     
     // 강사 프로필
