@@ -27,8 +27,9 @@ public class IndexController {
     MemberServiceImpl service2;
 
     @RequestMapping(value = "home")
-    public String home(Model model) {
-
+    public String home(Index dto, Model model) throws Exception {
+    	List<Index> Rand = service.lectureRand(dto);
+    	model.addAttribute("Rand", Rand);
         return "infra/index/home";
     }
 

@@ -14,5 +14,6 @@ public interface IndexService {
     public List<Index> chapterlist(Index dto) throws Exception;
     public List<Index> chapterHeadlist(Index dto) throws Exception;
     public List<Index> lectureDetail(Index dto) throws Exception;
+    public List<Index> lectureRand(Index dto) throws Exception;
     
 }

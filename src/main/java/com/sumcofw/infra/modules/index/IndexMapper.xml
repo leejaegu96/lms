@@ -193,5 +193,19 @@
 		    AND iltSeq = #{iltSeq}
 	</select>
 	
+	<select id="lectureRand" resultMap="resultMapObj">
+	select
+		a.iltTitle
+	    ,a.iltPrice
+	    ,b.iftcName
+	    ,c.path
+	    ,c.uuidName
+	from idLecture a
+	inner join infrTeacher b on b.iftcSeq = a.iltIftcSeq
+	inner join lectureUpload c on c.pseq = a.iltSeq
+	where 1=1
+	order by rand()
+	limit 3
+	</select>
 	
 </mapper>

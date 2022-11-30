@@ -70,4 +70,9 @@ public class IndexServiceImpl implements IndexService {
     public List<Index> lectureDetail(Index dto) throws Exception {
     	return dao.lectureDetail(dto);
     }
+    
+    @Override
+    public List<Index> lectureRand(Index dto) throws Exception {
+    	return dao.lectureRand(dto);
+    }
 }
