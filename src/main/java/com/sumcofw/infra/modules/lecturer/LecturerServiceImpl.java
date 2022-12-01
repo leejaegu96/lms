@@ -161,7 +161,7 @@ public class LecturerServiceImpl implements LecturerService {
         int j = 0;
         for (MultipartFile multipartFile : dto.getUploadedImage()) {
             if (!multipartFile.isEmpty()) {
-                uploadImg(multipartFile, dto, "lectureUpload");
+				uploadImg(multipartFile, dto, "lectureUpload");
                 dto.setSort(j);
                 dao.updateLecturetUploaded(dto);
             }

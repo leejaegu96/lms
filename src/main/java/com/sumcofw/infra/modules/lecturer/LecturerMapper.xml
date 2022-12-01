@@ -276,19 +276,19 @@
 	<!-- 강의 대표사진 업데이트 -->
 	<update id="updateLecturetUploaded">
 		UPDATE #{tableName}
-			SET
-				type = #{type}
-				,defaultNy = 1
-				,sort = #{sort}
-				,path = #{path}
-				,originalName = #{originalName}
-				,uuidName = #{uuidName}
-				,ext = #{ext}
-				,size = #{size}
-				,delNy = 0
+		SET
+			type = #{type}
+			,defaultNy = 1
+			,sort = #{sort}
+			,path = #{path}
+			,originalName = #{originalName}
+			,uuidName = #{uuidName}
+			,ext = #{ext}
+			,size = #{size}
 		WHERE 1=1
+			AND delNy = 0
 			AND pseq = #{iltSeq}
-		</update>
+	</update>
 
 
 

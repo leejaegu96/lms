@@ -72,9 +72,25 @@ public class Index {
     private String size;
     private String pseq;
     
+    //홈화면
+    private Integer count;
+    private Float random;
     
     
     
+    
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	public Float getRandom() {
+		return random;
+	}
+	public void setRandom(Float random) {
+		this.random = random;
+	}
 	public String getSeq() {
 		return seq;
 	}

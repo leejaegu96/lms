@@ -50,8 +50,8 @@
 					<div class="row">
 						<div class="col-lg-8 entries">
 							<article class="entry entry-single">
-								<div class="entry-img">
-									<img src="../../../../resources/template/user_Eterna/assets/img/blog/blog-1.jpg" alt="" class="img-fluid" />
+								<div class="entry-img" style="margin:auto;">
+									<img src="${lecturedetail.path }${lecturedetail.uuidName}" alt="" class="img-fluid" style="height:100%;width:100%" />
 								</div>
 
 								<h2 class="entry-title">
@@ -94,6 +94,7 @@
 								<div class="accordion" id="accordionPanelsStayOpenExample">
 									<div class="accordion-item">
 										<c:forEach var="chapterHead" items="${chapterHead}" varStatus="status">
+											<c:set var="i" value="${i+1 }" />
 											<h2 class="accordion-header" id="panelsStayOpen-headingOne">
 												<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">${chapterHead.ichTitle }</button>
 											</h2>
@@ -102,7 +103,7 @@
 													<div class="list-group">
 														<c:forEach var="chapterlist" items="${chapterlist}" varStatus="status">
 															<c:if test="${chapterHead.ichSeq == chapterlist.ictIchSeq }">
-																<a href="#" class="list-group-item list-group-item-action">${chapterlist.ictSort}. &nbsp; ${chapterlist.ictTitle}</a>
+																<a href="#" class="list-group-item list-group-item-action">${i}. &nbsp; ${chapterlist.ictTitle}</a>
 															</c:if>
 														</c:forEach>
 													</div>

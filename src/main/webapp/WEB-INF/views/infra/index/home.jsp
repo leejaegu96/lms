@@ -116,60 +116,55 @@
 			<section id="services" class="services">
 				<div class="container">
 					<div class="row">
-						<p id="totalstudent">누적 수강생 TOP 3</p>
-
+						<p id="totalstudent">떠오르고 있는 강좌! 추천!</p>
+						<%-- 
+						<a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none">
+						 --%>
 						<c:forEach items="${Rand}" var="Rand" varStatus="status">
+							<input type="hidden" name="iftcSeq">
+							<input type="hidden" name="iltSeq">
 							<div class="col-lg-4 col-md-6 d-flex ">
 								<div class="border" style="width: 100%;">
-									<div id="clickimg" class="border" style="text-align: center;  cursor: pointer;">
-										<img src="${Rand.path }${Rand.uuidName }" alt="" style="width: 100%;" />
+									<div id="clickimg" class="border" style="text-align: center; cursor: pointer;">
+										<a href="javascript:goDetail(<c:out value="${Rand.iltSeq }"/>)" class="text-decoration-none">
+											<img src="${Rand.path }${Rand.uuidName }" alt="" style="width: 100%;" />
+										</a>
 									</div>
-									<p id="name" style="padding-left: 10px; margin-bottom: 0;">${Rand.iftcName }</p>
-									<h4 id="title" style="padding-left: 10px;">${Rand.iltTitle }
+									<p id="name" style="padding-left: 10px; margin-bottom: 0;">
+										<a style="color:black;" href="javascript:goForm(<c:out value="${Rand.iftcSeq }"/>)" class="text-decoration-none">${Rand.iftcName }</a>
+									</p>
+									<h4 id="title" style="padding-left: 10px;">
+										<a style="color:black;" href="javascript:goDetail(<c:out value="${Rand.iltSeq }"/>)" class="text-decoration-none"> ${Rand.iltTitle } </a>
 										<!-- 수준 높은 백엔드 개발자가 되고 싶은 당신을 위해 -->
 									</h4>
 									<p style="padding-left: 10px">
-										<i class="fa-solid fa-star fa-xs" id="star"></i>
-										<i class="fa-solid fa-star fa-xs" id="star"></i>
-										<i class="fa-solid fa-star fa-xs" id="star"></i>
-										<i class="fa-solid fa-star fa-xs" id="star"></i>
-										<i class="fa-solid fa-star fa-xs" id="star"></i>
-										<span id="reviewnum" style="margin-left: 3px">(63)</span>
+										<c:if test="${Rand.random eq 4 || Rand.random > 4 || Rand.random < 5 }">
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+										</c:if>
+										<c:if test="${Rand.random eq 5 }">
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+											<i class="fa-solid fa-star fa-xs" id="star"></i>
+										</c:if>
+										<span id="reviewnum" style="margin-left: 3px;">(${Rand.random })</span>
 									</p>
 
-									<p id="homepirce">₩ <fmt:formatNumber value="${Rand.iltPrice}" pattern="#,###"/></p>
-									
+									<p id="homepirce" style="color:black;">
+										₩
+										<fmt:formatNumber value="${Rand.iltPrice}" pattern="#,###" />
+									</p>
+
 									<div id="box1">
 										<span id="box1span">+1600명</span>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
-						<!-- 
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-file"></i>
-								</div>
-								<h4>
-									<a href="">Sed ut perspiciatis</a>
-								</h4>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-tachometer"></i>
-								</div>
-								<h4>
-									<a href="">Magni Dolores</a>
-								</h4>
-								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-							</div>
-						</div>
-						 -->
 					</div>
 					<div class="row" style="padding-top: 48px;">
 						<p id="totalstudent">기본부터 실무까지 제시해주는 로드맵</p>
@@ -181,11 +176,7 @@
 								<p id="name" style="padding-left: 10px; margin-bottom: 0;">주언규PD</p>
 								<h4 id="title" style="padding-left: 10px;">최신 개정판! 스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드는 비법</h4>
 								<p style="padding-left: 10px">
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
+									<i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i>
 									<span id="reviewnum" style="margin-left: 3px">(63)</span>
 								</p>
 
@@ -232,11 +223,7 @@
 								<p id="name" style="padding-left: 10px; margin-bottom: 0;">주언규PD</p>
 								<h4 id="title" style="padding-left: 10px;">최신 개정판! 스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드는 비법</h4>
 								<p style="padding-left: 10px">
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
-									<i class="fa-solid fa-star fa-xs" id="star"></i>
+									<i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i>
 									<span id="reviewnum" style="margin-left: 3px">(63)</span>
 								</p>
 
@@ -295,14 +282,31 @@
 		<!-- include footer-->
 		<script>
             var form = $("form[name=form]");
+            var goUrlForm = "/lecturer/lecturerDetail";
+            var goDetailForm = "/index/lectureDetail";
+            var iftcSeq = $("input:hidden[name=iftcSeq]");
+            var iltSeq = $("input:hidden[name=iltSeq]");
 
+            goForm = function(keyValue) {
+                /* if(keyValue != 0) seq.val(btoa(keyValue)); */
+                iftcSeq.val(keyValue);
+                form.attr("action", goUrlForm).submit();
+            }
+            goDetail = function(keyValue) {
+                /* if(keyValue != 0) seq.val(btoa(keyValue)); */
+                iltSeq.val(keyValue);
+                form.attr("action", goDetailForm).submit();
+            }
+            /* 
             $("#name").click(function() {
                 form.attr("action", "/index/home").submit();
             });
-
             $("#clickimg").click(function() {
                 form.attr("action", "/index/lectureDetail").submit();
             });
+             */
+             
+            
         </script>
 	</form>
 </body>

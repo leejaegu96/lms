@@ -17,13 +17,18 @@
 			,a.iltBody
 			,a.iltPrice
             ,b.iftcName
-            ,b.iftcSeq   
+            ,b.iftcSeq
+            ,c.pseq
+            ,c.path
+            ,c.uuidName
 		from
 			idLecture a
 		 left join infrTeacher b on a.iltIftcSeq = b.iftcSeq
+		 left join lectureUpload c on c.pseq = a.iltSeq
 		where
 			1=1
 			AND a.iltSeq = #{iltSeq}
+			AND c.pseq = #{iltSeq}
             ;
 	</select>
 	
@@ -71,7 +76,6 @@
 		    , b.ictSeq
 		    , b.ictTitle
 		    , b.ictIchSeq
-		
 		from idChapterHeader a
 		left join idChapter b on a.ichSeq = b.ictIchSeq
 		left join idLecture c on a.ichIltSeq = c.iltSeq
@@ -196,13 +200,20 @@
 	<select id="lectureRand" resultMap="resultMapObj">
 	select
 		a.iltTitle
+	    ,a.iltSeq
 	    ,a.iltPrice
+	    ,b.iftcSeq
 	    ,b.iftcName
 	    ,c.path
 	    ,c.uuidName
+	    ,(select count(*) from idPayment f where f.ipmIltSeq = "1") as count
+	    ,(select TRUNCATE(RAND()*(5-4)+4, 1)) as random
 	from idLecture a
 	inner join infrTeacher b on b.iftcSeq = a.iltIftcSeq
-	inner join lectureUpload c on c.pseq = a.iltSeq
+	inner join lectureUpload c on c.pseq =  a.iltSeq
+	left join infrMember d on d.ifmmSeq = a.iltIfmmSeq
+	left join idOrder e on e.iodIfmmSeq = d.ifmmSeq
+	left join idPayment f on f.ipmIodSeq = e.iodSeq
 	where 1=1
 	order by rand()
 	limit 3
