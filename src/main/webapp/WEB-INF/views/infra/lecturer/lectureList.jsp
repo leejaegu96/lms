@@ -28,7 +28,8 @@
 	<!-- include header -->
 
 	<main id="main">
-		<form name="formList" id="formList">
+		<form name="formList" id="formList" method="POST">
+			<input type="hidden" name="iltSeq" id="iltSeq">
 			<!-- ======= Blog Section ======= -->
 			<section id="blog" class="blog">
 				<div class="container" data-aos="fade-up">
@@ -101,7 +102,6 @@
 																		</td>
 																		<td style="padding-left: 10px;">
 																			${list.iltTitle }
-																			<input type="hidden" name="iltSeq" id="iltSeq" value="${list.iltSeq }">
 																		</td>
 																	</tr>
 																</table>

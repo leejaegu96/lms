@@ -50,10 +50,12 @@
 					<div class="row">
 						<div class="col-lg-8 entries">
 							<article class="entry entry-single">
-								<div class="entry-img" style="margin:auto;">
-									<img src="${lecturedetail.path }${lecturedetail.uuidName}" alt="" class="img-fluid" style="height:100%;width:100%" />
+								<div class="" style="margin: auto;">
+									<img src="${lecturedetail.path }${lecturedetail.uuidName}" alt="" style="height: 100%; width: 100%" />
 								</div>
-
+								
+								<br />
+								
 								<h2 class="entry-title">
 									<a href="blog-single.html">${lecturedetail.iltTitle}</a>
 								</h2>
@@ -61,9 +63,8 @@
 								<div class="entry-meta">
 									<ul>
 										<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="javascript:goTeacher(${lecturedetail.iftcSeq })">${lecturedetail.iftcName}</a></li>
-										<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html">
-												<time datetime="2020-01-01">Jan 1, 2020</time>
-											</a></li>
+										<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"> <time datetime="2020-01-01">Jan 1, 2020</time>
+										</a></li>
 										<li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
 									</ul>
 								</div>
@@ -91,7 +92,19 @@
 									<a href="blog-single.html">상세 커리큘럼</a>
 								</h2>
 
-								<div class="accordion" id="accordionPanelsStayOpenExample">
+								<c:forEach var="chapterHead" items="${chapterHead}" varStatus="status">
+									<h4>${chapterHead.ichTitle}</h4>
+									<hr />
+									<ol>
+										<c:forEach var="chapterlist" items="${chapterlist}" varStatus="status">
+											<c:if test="${chapterHead.ichSeq == chapterlist.ictIchSeq }">
+												<li>${chapterlist.ictTitle}</li>
+											</c:if>
+										</c:forEach>
+									</ol>
+								</c:forEach>
+
+								<%-- 								<div class="accordion" id="accordionPanelsStayOpenExample">
 									<div class="accordion-item">
 										<c:forEach var="chapterHead" items="${chapterHead}" varStatus="status">
 											<c:set var="i" value="${i+1 }" />
@@ -111,52 +124,25 @@
 											</div>
 										</c:forEach>
 									</div>
+								</div> --%>
 
-									<!-- <div class="accordion-item">
-									<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">Chapter #2</button>
-									</h2>
-									<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-										<div class="accordion-body">
-											<div class="list-group">
-												<a href="#" class="list-group-item list-group-item-action">The current link item </a> <a href="#" class="list-group-item list-group-item-action">A second link item</a> <a href="#" class="list-group-item list-group-item-action">A third link item</a> <a href="#" class="list-group-item list-group-item-action">A fourth link item</a> <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-											</div>
-										</div>
-									</div>
-								</div> -->
-									<!-- <div class="accordion-item">
-									<h2 class="accordion-header" id="panelsStayOpen-headingThree">
-										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">Chapter #3</button>
-									</h2>
-									<div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-										<div class="accordion-body">
-											<div class="list-group">
-												<a href="#" class="list-group-item list-group-item-action"> The current link item </a> <a href="#" class="list-group-item list-group-item-action">A second link item</a> <a href="#" class="list-group-item list-group-item-action">A third link item</a> <a href="#" class="list-group-item list-group-item-action">A fourth link item</a> <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-											</div>
-										</div>
-									</div>
-								</div> -->
-								</div>
 							</article>
 							<!-- End blog entry -->
 
 							<!-- blog author bio -->
 							<div class="blog-author d-flex align-items-center">
-								<img src="../template/user_Eterna/assets/img/blog/blog-author.jpg" class="rounded-circle float-left" alt="" />
+								<img src="${lecturedetail.teacherPath }${lecturedetail.teacherUuidName}" class="rounded-circle float-left" alt="" />
 								<div>
-									<h4>김진범</h4>
+									<h3>
+										<a href="javascript:goTeacher(${lecturedetail.iftcSeq })" style="color: black">${lecturedetail.iftcName}</a>
+									</h3>
+									<hr />
 									<div class="social-links">
-										<a href="https://twitters.com/#">
-											<i class="bi bi-twitter"></i>
-										</a>
-										<a href="https://facebook.com/#">
-											<i class="bi bi-facebook"></i>
-										</a>
-										<a href="https://instagram.com/#">
-											<i class="biu bi-instagram"></i>
+										<a href="https://twitters.com/#"> <i class="bi bi-twitter fa-2xl"></i>
+										</a> <a href="https://facebook.com/#"> <i class="bi bi-facebook fa-2xl"></i>
+										</a> <a href="https://instagram.com/#"> <i class="biu bi-instagram fa-2xl"></i>
 										</a>
 									</div>
-									<p>강사 소개글</p>
 								</div>
 							</div>
 							<!-- End blog author bio -->
@@ -168,7 +154,7 @@
 									<div class="d-flex">
 										<div>
 											<h5>
-												<a href="">김진범</a>
+												<a href="">${lecturedetail.iftcName}</a>
 											</h5>
 											<time datetime="2020-01-01">01 Jan, 2020</time>
 											<p>이거 들으면 너도 네카라쿠배</p>
@@ -242,11 +228,10 @@
 									<span>원</span>
 								</h3>
 
-								<input type="button" value="신청하기" class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
 								<div style="display: table; width: 100%; margin-top: 5px;">
 									<div style="display: table-row; text-align: center;">
 										<div style="display: table-cell; padding-right: 5px;">
-											<input id="buynow" type="button" value="구매하기 " class="btn btn-danger" style="width: 100%; color: black; background-color: white;" />
+											<input id="buynow" type="button" value="구매하기 " class="btn btn-danger" style="width: 100%;" />
 										</div>
 										<div style="display: table-cell; padding-right: 5px;">
 											<input type="button" value="찜하기 " class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
@@ -270,17 +255,17 @@
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
 	<script>
-        var form = $("form[name=form]");
+	var form = $("form[name=form]");
 
-        goTeacher = function(seq) {
-            $("#iftcSeq").val(seq);
+	goTeacher = function(seq) {
+	    $("#iftcSeq").val(seq);
 
-            form.attr("action", "/lecturer/lecturerDetail").submit();
-        }
+	    form.attr("action", "/lecturer/lecturerDetail").submit();
+	}
 
-        $("#buynow").click(function() {
-            form.attr("action", "/member/orderView").submit();
-        });
+	$("#buynow").click(function() {
+	    form.attr("action", "/member/orderView").submit();
+	});
     </script>
 
 </body>

@@ -76,10 +76,27 @@ public class Index {
     private Integer count;
     private Float random;
     
+    // 강사 프로필
+    private String teacherPath;
+    private String teacherUuidName;
     
     
     
-	public Integer getCount() {
+    
+    
+	public String getTeacherPath() {
+        return teacherPath;
+    }
+    public void setTeacherPath(String teacherPath) {
+        this.teacherPath = teacherPath;
+    }
+    public String getTeacherUuidName() {
+        return teacherUuidName;
+    }
+    public void setTeacherUuidName(String teacherUuidName) {
+        this.teacherUuidName = teacherUuidName;
+    }
+    public Integer getCount() {
 		return count;
 	}
 	public void setCount(Integer count) {

@@ -130,6 +130,8 @@ public class LecturerServiceImpl implements LecturerService {
         
         // idLecture update
         int result = dao.updateLecture(dto);
+        
+        
 
         // jsp에서 받은 array string -> Java List
         ObjectMapper objectMapper = new ObjectMapper();
@@ -140,33 +142,27 @@ public class LecturerServiceImpl implements LecturerService {
 
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 
-        // 챕터 개수만큼 반복
+     // 챕터 개수만큼 반복
         for (int i = 0; i < dataList.size(); i++) {
 
             // 챕터 제목 삽입
+            dto.setIchIltSeq(dto.getIltSeq());
             dto.setIchTitle(dataList.get(i).get("header").toString());
-            dao.updateChapterHeader(dto);
+            dao.insertChapterHeader(dto);
 
             data = (List<Map<String, Object>>) dataList.get(i).get("body");
 
             for (int j = 0; j < data.size(); j++) {
-                // 챕터 소제목, 링크 삽입
+                dao.deleteChapter(dto);
+                // 챕토 소제목, 링크 삽입
+                dto.setIctIchSeq(dto.getIchSeq());
                 dto.setIctTitle(data.get(j).get("subTitle").toString());
                 dto.setIctVideoUrl(data.get(j).get("link").toString());
-                dao.updateChapter(dto);
-            }
-        }
+                dao.insertChapter(dto);
 
-        // 이미지 업로드
-        int j = 0;
-        for (MultipartFile multipartFile : dto.getUploadedImage()) {
-            if (!multipartFile.isEmpty()) {
-				uploadImg(multipartFile, dto, "lectureUpload");
-                dto.setSort(j);
-                dao.updateLecturetUploaded(dto);
             }
-            j++;
         }
+        dao.deleteChapterHeader(dto);
         return result;
     }
 

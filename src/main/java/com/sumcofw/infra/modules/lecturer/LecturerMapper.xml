@@ -151,7 +151,7 @@
 			,iltRegDateTime  		<!-- 등록일 -->
 			,iltModDateTime  		<!-- 수정일 -->
 			,iltTotalTime  			<!-- 총 시간 -->
-			,iltVideoCount  			<!-- 총 비디오 개수 -->
+			,iltVideoCount  		<!-- 총 비디오 개수 -->
 			,iltPurchasesCount 		<!-- 총 수강생 수 -->
 			,iltViewcount 			<!-- 조회수 -->
 			,iltPrice 				<!-- 가격 -->
@@ -289,7 +289,23 @@
 			AND delNy = 0
 			AND pseq = #{iltSeq}
 	</update>
-
+	<!-- 기존에 등록된 챕터 삭제 -->
+	<delete id="deleteChapterHeader">
+		DELETE FROM idChapterHeader
+		WHERE 1=1
+			AND ichIltSeq = #{iltSeq}
+	</delete>
+	<delete id="deleteChapter">
+		DELETE FROM idChapter
+		WHERE 1=1
+			AND ictIchSeq = (
+								select 
+									ichSeq 
+								from idChapterHeader 
+								where ichIltSeq = #{iltSeq}
+								limit 1
+							)	
+	</delete>
 
 
 	<!-- 프로필 사진 업데이트 -->

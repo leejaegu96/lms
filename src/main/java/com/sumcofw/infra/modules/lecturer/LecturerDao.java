@@ -88,6 +88,12 @@ public class LecturerDao {
     public int updateLecturetUploaded(Lecturer dto) { 
         return sqlSession.update(namespace + ".updateLecturetUploaded", dto); 
     }
+    public int deleteChapterHeader(Lecturer dto) {
+        return sqlSession.delete(namespace + ".deleteChapterHeader", dto);
+    }
+    public int deleteChapter(Lecturer dto) {
+        return sqlSession.delete(namespace + ".deleteChapter", dto);
+    }
     
     // 강사 프로필
     public List<Lecturer> teacherUploaded(Lecturer dto){

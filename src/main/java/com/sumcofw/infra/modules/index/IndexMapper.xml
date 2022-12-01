@@ -10,7 +10,7 @@
 	
 	<!-- 강의 상세보기 페이지에서 강의 정보 불러오기  -->
 	<select id = "lecturedetail" resultMap="resultMapObj">
-		select
+		SELECT
 			a.iltSeq
             ,a.iltIftcSeq
 			,a.iltTitle
@@ -21,11 +21,14 @@
             ,c.pseq
             ,c.path
             ,c.uuidName
-		from
+            ,d.path as teacherPath
+            ,d.uuidName as teacherUuidName
+		FROM
 			idLecture a
-		 left join infrTeacher b on a.iltIftcSeq = b.iftcSeq
-		 left join lectureUpload c on c.pseq = a.iltSeq
-		where
+		 LEFT JOIN infrTeacher b on a.iltIftcSeq = b.iftcSeq
+		 LEFT JOIN lectureUpload c on c.pseq = a.iltSeq
+		 LEFT JOIN teacherUpload d on d.pseq = b.iftcSeq
+		WHERE
 			1=1
 			AND a.iltSeq = #{iltSeq}
 			AND c.pseq = #{iltSeq}
