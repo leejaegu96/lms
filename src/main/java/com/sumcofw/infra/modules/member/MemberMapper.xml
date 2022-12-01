@@ -119,4 +119,13 @@
         </selectKey>
         
 	</insert>
+	
+	<select id="printPreview" resultMap="resultMapObj">
+	select
+		a.iltTitle
+		,b.ifmmName
+	from idLecture a
+	left join infrMember b on b.ifmmSeq = a.iltIfmmSeq
+	where 1=1
+	</select>
 </mapper>

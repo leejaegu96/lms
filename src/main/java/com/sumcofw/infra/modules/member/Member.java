@@ -16,6 +16,7 @@ public class Member {
 	// infrMember
 	
 	private String ifmmSeq;
+	private String ifmmName;
 
 	// idPayment
 	
@@ -47,6 +48,14 @@ public class Member {
 	private String pg;
 	
 	
+	public String getIfmmName() {
+		return ifmmName;
+	}
+
+	public void setIfmmName(String ifmmName) {
+		this.ifmmName = ifmmName;
+	}
+
 	public String getTid() {
 		return tid;
 	}

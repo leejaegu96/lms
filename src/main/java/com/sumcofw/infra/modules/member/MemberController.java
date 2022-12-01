@@ -54,9 +54,14 @@ public class MemberController {
 		return "infra/main/wishlist";
 	}
 	@RequestMapping(value = "print")
-	public String print(Locale locale, Model model) {
+	public String print(Member dto, Model model) {
 		
 		return "infra/main/print";
+	}
+	@RequestMapping(value = "printPreview")
+	public String printPreview(Member dto, Model model) {
+		
+		return "infra/main/printPreview";
 	}
 	@RequestMapping(value = "profile")
 	public String profile(Locale locale, Model model) {

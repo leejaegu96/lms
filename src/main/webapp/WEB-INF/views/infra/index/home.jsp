@@ -131,10 +131,10 @@
 										</a>
 									</div>
 									<p id="name" style="padding-left: 10px; margin-bottom: 0;">
-										<a style="color:black;" href="javascript:goForm(<c:out value="${Rand.iftcSeq }"/>)" class="text-decoration-none">${Rand.iftcName }</a>
+										<a style="color: black;" href="javascript:goForm(<c:out value="${Rand.iftcSeq }"/>)" class="text-decoration-none">${Rand.iftcName }</a>
 									</p>
 									<h4 id="title" style="padding-left: 10px;">
-										<a style="color:black;" href="javascript:goDetail(<c:out value="${Rand.iltSeq }"/>)" class="text-decoration-none"> ${Rand.iltTitle } </a>
+										<a style="color: black;" href="javascript:goDetail(<c:out value="${Rand.iltSeq }"/>)" class="text-decoration-none"> ${Rand.iltTitle } </a>
 										<!-- 수준 높은 백엔드 개발자가 되고 싶은 당신을 위해 -->
 									</h4>
 									<p style="padding-left: 10px">
@@ -154,7 +154,7 @@
 										<span id="reviewnum" style="margin-left: 3px;">(${Rand.random })</span>
 									</p>
 
-									<p id="homepirce" style="color:black;">
+									<p id="homepirce" style="color: black;">
 										₩
 										<fmt:formatNumber value="${Rand.iltPrice}" pattern="#,###" />
 									</p>
@@ -166,110 +166,34 @@
 							</div>
 						</c:forEach>
 					</div>
-					<div class="row" style="padding-top: 48px;">
-						<p id="totalstudent">기본부터 실무까지 제시해주는 로드맵</p>
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-							<div class="border" style="width: 100%;">
-								<div class="border" style="text-align: center; background-color: green;">
-									<img src="https://cdn.class101.net/images/325b62f3-e531-425f-b9b8-e53fdadfc9b2/original" alt="" style="width: 80%;" />
-								</div>
-								<p id="name" style="padding-left: 10px; margin-bottom: 0;">주언규PD</p>
-								<h4 id="title" style="padding-left: 10px;">최신 개정판! 스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드는 비법</h4>
-								<p style="padding-left: 10px">
-									<i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i>
-									<span id="reviewnum" style="margin-left: 3px">(63)</span>
-								</p>
-
-								<p id="homepirce">₩77,000</p>
-
-								<div id="box1">
-									<span id="box1span">+1600명</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-file"></i>
-								</div>
-								<h4>
-									<a href="">Sed ut perspiciatis</a>
-								</h4>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-tachometer"></i>
-								</div>
-								<h4>
-									<a href="">Magni Dolores</a>
-								</h4>
-								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-							</div>
-						</div>
-					</div>
 
 					<div class="row" style="padding-top: 48px;">
 						<p id="totalstudent">따끈따끈, 신규 강의를 만나보세요!</p>
-						<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-							<div class="border" style="width: 100%;">
-								<div class="border" style="text-align: center; background-color: green;">
-									<img src="https://cdn.class101.net/images/325b62f3-e531-425f-b9b8-e53fdadfc9b2/original" alt="" style="width: 80%;" />
-								</div>
-								<p id="name" style="padding-left: 10px; margin-bottom: 0;">주언규PD</p>
-								<h4 id="title" style="padding-left: 10px;">최신 개정판! 스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드는 비법</h4>
-								<p style="padding-left: 10px">
-									<i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i> <i class="fa-solid fa-star fa-xs" id="star"></i>
-									<span id="reviewnum" style="margin-left: 3px">(63)</span>
-								</p>
+						<c:forEach items="${New}" var="New" varStatus="status">
+							<input type="hidden" name="iftcSeq">
+							<input type="hidden" name="iltSeq">
+							<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+								<div class="border" style="width: 100%;">
+									<div class="border" style="text-align: center;">
+										<a href="javascript:goDetail(<c:out value="${New.iltSeq }"/>)" class="text-decoration-none">
+											<img src="${New.path }${New.uuidName }" alt="" style="width: 100%;" />
+										</a>
+									</div>
+									<p id="name" style="padding-left: 10px; margin-bottom: 0;">
+										<a style="color: black;" href="javascript:goForm(<c:out value="${New.iftcSeq }"/>)" class="text-decoration-none">${New.iftcName }</a>
+									</p>
+									<h4 id="title" style="padding-left: 10px;">
+										<a style="color: black; font-weight: bold;" href="javascript:goDetail(<c:out value="${New.iltSeq }"/>)" class="text-decoration-none"> ${New.iltTitle } </a>
+									</h4>
+									<p id="homepirce">
+										₩
+										<fmt:formatNumber value="${New.iltPrice}" pattern="#,###" />
+									</p>
 
-								<p id="homepirce">₩77,000</p>
-
-								<div id="box1">
-									<span id="box1span">+1600명</span>
 								</div>
 							</div>
-						</div>
+						</c:forEach>
 
-						<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-file"></i>
-								</div>
-								<h4>
-									<a href="">Sed ut perspiciatis</a>
-								</h4>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-tachometer"></i>
-								</div>
-								<h4>
-									<a href="">Magni Dolores</a>
-								</h4>
-								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-							<div class="icon-box">
-								<div class="icon">
-									<i class="bx bx-tachometer"></i>
-								</div>
-								<h4>
-									<a href="">Magni Dolores</a>
-								</h4>
-								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-							</div>
-						</div>
 					</div>
 				</div>
 			</section>
@@ -305,8 +229,6 @@
                 form.attr("action", "/index/lectureDetail").submit();
             });
              */
-             
-            
         </script>
 	</form>
 </body>
