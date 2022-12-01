@@ -104,6 +104,7 @@ public class LecturerServiceImpl implements LecturerService {
             for (int j = 0; j < data.size(); j++) {
 
                 // 챕토 소제목, 링크 삽입
+                dto.setIctIltSeq(dto.getIltSeq());
                 dto.setIctIchSeq(dto.getIchSeq());
                 dto.setIctTitle(data.get(j).get("subTitle").toString());
                 dto.setIctVideoUrl(data.get(j).get("link").toString());
@@ -124,15 +125,14 @@ public class LecturerServiceImpl implements LecturerService {
         }
         return result;
     }
-    
+
     @Override
     public int lecturerUpdt(Lecturer dto) throws Exception {
-        
+
         // idLecture update
         int result = dao.updateLecture(dto);
+        dao.deleteChapter(dto);
         
-        
-
         // jsp에서 받은 array string -> Java List
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = objectMapper.readValue(dto.getData(), Map.class);
@@ -142,7 +142,7 @@ public class LecturerServiceImpl implements LecturerService {
 
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 
-     // 챕터 개수만큼 반복
+        // 챕터 개수만큼 반복
         for (int i = 0; i < dataList.size(); i++) {
 
             // 챕터 제목 삽입
@@ -153,16 +153,16 @@ public class LecturerServiceImpl implements LecturerService {
             data = (List<Map<String, Object>>) dataList.get(i).get("body");
 
             for (int j = 0; j < data.size(); j++) {
-                dao.deleteChapter(dto);
+
                 // 챕토 소제목, 링크 삽입
                 dto.setIctIchSeq(dto.getIchSeq());
                 dto.setIctTitle(data.get(j).get("subTitle").toString());
                 dto.setIctVideoUrl(data.get(j).get("link").toString());
                 dao.insertChapter(dto);
-
             }
+            dao.deleteChapterHeader(dto);
         }
-        dao.deleteChapterHeader(dto);
+
         return result;
     }
 
@@ -253,9 +253,10 @@ public class LecturerServiceImpl implements LecturerService {
         System.out.println(result);
         return result;
     }
-    
+
     /**
      * 업로드 함수
+     * 
      * @param multipartFile
      * @param dto
      * @param tableName

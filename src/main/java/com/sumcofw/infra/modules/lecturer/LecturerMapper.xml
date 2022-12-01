@@ -168,7 +168,7 @@
 			,0 						<!-- 총 수강생 수 -->
 			,0 				 		<!-- 조회수 -->
 			,#{iltPrice}            <!-- 가격 -->
-			,1 	           		<!-- 사용여부-->
+			,1 	           			<!-- 사용여부-->
 		)
 		<selectKey resultType="String" keyProperty="iltSeq"
 			order="AFTER">
@@ -196,11 +196,13 @@
 			,ictTitle 				<!-- 챕터 소제목 -->
 			,ictVideoLength 		<!-- 영상 시간 -->
 			,ictVideoUrl 			<!-- 영상 링크 -->
+			,ictIltSeq 				<!-- 강의 시퀀스 -->
 		) VALUES (
 			#{ictIchSeq}			<!-- 챕터 대제목 시퀀스 -->
 			,#{ictTitle}			<!-- 챕터 소제목 -->
 			,0 <!-- #{ictVideoLength} -->		<!-- 영상 시간 -->
 			,#{ictVideoUrl}			<!-- 영상 링크 -->
+			,#{ictIltSeq} 			<!-- 강의 시퀀스 -->
 		)
 	</insert>
 	<!-- 강의 대표사진 업로드 -->
@@ -290,21 +292,15 @@
 			AND pseq = #{iltSeq}
 	</update>
 	<!-- 기존에 등록된 챕터 삭제 -->
-	<delete id="deleteChapterHeader">
+	<delete id="deleteChapterHeader" parameterType="String">
 		DELETE FROM idChapterHeader
 		WHERE 1=1
-			AND ichIltSeq = #{iltSeq}
+			AND ichIltSeq = #{target}
 	</delete>
 	<delete id="deleteChapter">
 		DELETE FROM idChapter
 		WHERE 1=1
-			AND ictIchSeq = (
-								select 
-									ichSeq 
-								from idChapterHeader 
-								where ichIltSeq = #{iltSeq}
-								limit 1
-							)	
+			AND ictIltSeq = #{iltSeq} 
 	</delete>
 
 
