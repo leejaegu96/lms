@@ -33,7 +33,7 @@ td {
 		padding-top: 72px;
 		padding-bottom: 72px;
 	}
-}
+}  
 </style>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false" onkeydown="return false">
 	<form method="post" name="form" action="#" id="printJS-form">
