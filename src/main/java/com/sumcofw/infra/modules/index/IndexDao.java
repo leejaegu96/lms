@@ -65,5 +65,8 @@ public class IndexDao {
     public List<Index> lectureRand(Index dto) {
     	return sqlSession.selectList(namespace + ".lectureRand", dto);
     }
+    public List<Index> lectureNew(Index dto) {
+    	return sqlSession.selectList(namespace + ".lectureNew", dto);
+    }
 
 }

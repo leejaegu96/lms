@@ -29,7 +29,9 @@ public class IndexController {
     @RequestMapping(value = "home")
     public String home(Index dto, Model model) throws Exception {
     	List<Index> Rand = service.lectureRand(dto);
+    	List<Index> New = service.lectureNew(dto);
     	model.addAttribute("Rand", Rand);
+    	model.addAttribute("New", New);
         return "infra/index/home";
     }
 
