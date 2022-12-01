@@ -132,6 +132,7 @@ public class LecturerServiceImpl implements LecturerService {
         // idLecture update
         int result = dao.updateLecture(dto);
         dao.deleteChapter(dto);
+        dao.deleteChapterHeader(dto);
         
         // jsp에서 받은 array string -> Java List
         ObjectMapper objectMapper = new ObjectMapper();
@@ -155,12 +156,12 @@ public class LecturerServiceImpl implements LecturerService {
             for (int j = 0; j < data.size(); j++) {
 
                 // 챕토 소제목, 링크 삽입
+                dto.setIctIltSeq(dto.getIltSeq());
                 dto.setIctIchSeq(dto.getIchSeq());
                 dto.setIctTitle(data.get(j).get("subTitle").toString());
                 dto.setIctVideoUrl(data.get(j).get("link").toString());
                 dao.insertChapter(dto);
             }
-            dao.deleteChapterHeader(dto);
         }
 
         return result;

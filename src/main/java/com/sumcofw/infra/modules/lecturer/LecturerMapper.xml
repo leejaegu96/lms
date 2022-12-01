@@ -295,7 +295,7 @@
 	<delete id="deleteChapterHeader" parameterType="String">
 		DELETE FROM idChapterHeader
 		WHERE 1=1
-			AND ichIltSeq = #{target}
+			AND ichIltSeq = #{iltSeq}
 	</delete>
 	<delete id="deleteChapter">
 		DELETE FROM idChapter
