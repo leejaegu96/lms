@@ -114,7 +114,42 @@ span.center {
 	성공성공성공!!!!!!!!!
 	http://localhost:8080/member/successKakao
 	
+	${tid}
+	
+	<input type="hidden" id="pg" value="<%= request.getParameter("pg_token") %>"/>	
 </form>
+<script>
+	
+</script>
+
+ <script>
+	$(document).ready(function(){
+	   
+		var pg1 = $("#pg").val();
+		alert(pg1);
+		
+		$.ajax({ 
+			url : "/member/kakaopay.approve",   			
+			dataType : 'json',
+			type:"POST",
+			data : {
+				pg:  pg1,
+				tid: "${tid}"
+			},
+			success : function(data) {
+				console.log(data);
+		     },
+		          
+			error : function(request, status, error){     							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});
+		return false;
+	});
+</script> 
+
 
 </body>
 </html>

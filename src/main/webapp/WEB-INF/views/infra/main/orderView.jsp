@@ -210,11 +210,13 @@
     	$("#kakaoBtn").click(function(){
     		$.ajax({ 
     			url : "/member/kakaopay.cls",   			
-    			dataType : 'json',			
+    			dataType : 'json',
     			success : function(data) {
 					console.log(data);
 					var box = data.next_redirect_pc_url;
-					window.open(box);
+					var name =" popup_test";
+					var option = "width =500, height= 500, top = 100, left = 200, location = no ";
+					location.href=box;
     		     },
     		          
     			error : function(request, status, error){     							
@@ -225,6 +227,10 @@
     		});
     		return false;
     	});
+    </script>
+    
+    <script>
+    
     </script>
 </body>
 </html>

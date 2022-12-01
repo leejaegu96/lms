@@ -40,9 +40,29 @@ public class Member {
 	
 	private String ictSeq;
 	private String ictSort;
+	
+	// tid and pg
+	
+	private String tid;
+	private String pg;
+	
+	
+	public String getTid() {
+		return tid;
+	}
 
-	
-	
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
+
+	public String getPg() {
+		return pg;
+	}
+
+	public void setPg(String pg) {
+		this.pg = pg;
+	}
+
 	public String getIctSeq() {
 		return ictSeq;
 	}

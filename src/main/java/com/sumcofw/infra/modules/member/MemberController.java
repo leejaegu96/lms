@@ -14,12 +14,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sumcofw.infra.modules.index.Index;
 import com.sumcofw.infra.modules.index.IndexServiceImpl;
 
@@ -172,8 +175,8 @@ public class MemberController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "kakaopay.cls")
-	public String kakaopay(Member dto) throws Exception{
+	@RequestMapping(value = "kakaopay.cls")	
+	public String kakaopay(Member dto, HttpSession httpSession) throws Exception{
 	
 		System.out.println("카카카카카카카캌카오 실행@@@@@@@@@@@@@@@@@@@@@@");
 	
@@ -185,7 +188,90 @@ public class MemberController {
 			serverConnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			serverConnection.setDoOutput(true); //dooutput은 연결을 통해 넣어줄게 있냐 없냐여서 있다라고 하고싶기에 트루를 넣음; 인풋은 안넣어도됨,커넥션 생성되면 기본적으로 인풋생성됨;
 			 
-			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/member/successKakao&fail_url=http://localhost:8080/member/failKakao&cancel_url=http://localhost:8080/member/cancelKakao";
+			//String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/member/successKakao&fail_url=http://localhost:8080/member/failKakao&cancel_url=http://localhost:8080/member/cancelKakao";
+			String cid = "cid=TC0ONETIME";
+			String partnerOrder = "partner_order_id=partner_order_id";
+			String partnerUser = "partner_user_id=partner_user_id";
+			String itemName = "item_name=초코파이";
+			String quantity = "quantity=1";
+			String totalAmount = "total_amount=2200";
+			String vatAmount = "vat_amount=200";
+			String taxFree = "tax_free_amount=0";
+			String approvalUrl = "approval_url=http://localhost:8080/member/successKakao";
+			String failUrl = "fail_url=http://localhost:8080/member/failKakao";
+			String cancelUrl = "cancel_url=http://localhost:8080/member/cancelKakao";
+			String n = "&";
+			
+			String param = cid + n + partnerOrder + n + partnerUser + n + itemName + n + quantity + 
+					n + totalAmount + n + vatAmount + n + taxFree + n + approvalUrl + n + failUrl + n + cancelUrl;
+			
+			
+			OutputStream iwillgive = serverConnection.getOutputStream();			
+			DataOutputStream iwillgiveudata = new DataOutputStream(iwillgive);			
+			iwillgiveudata.writeBytes(param);
+			iwillgiveudata.close(); // 그만 쓸꺼다 그리고 플러쉬 알아서 플러쉬			
+			int result = serverConnection.getResponseCode();
+			
+			
+			InputStream receiveData;
+			
+			if(result == 200) {
+				receiveData = serverConnection.getInputStream();
+			} else {
+				receiveData = serverConnection.getErrorStream();
+			}
+			
+			InputStreamReader iwillread = new InputStreamReader(receiveData);  // 바이트로 데이터를 주고받음, 문자열로 형변환해야함 
+			BufferedReader iwillcast = new BufferedReader(iwillread);
+			
+			String str = iwillcast.readLine();									//생긴게 json같은 문자열; json같다 라는 말이 결국 map이냐 list냐???; map이랑 가장 가까움;
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			Map<String, Object> map = mapper.readValue(str, Map.class);
+			
+			
+			System.out.println(map.get("tid"));
+			
+			String tid = (String) map.get("tid");
+			httpSession.setAttribute("tid", tid );
+			
+			return str;
+		} catch (MalformedURLException e) { 
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			
+		return "{\"result\":\"NO\"}";									// json 문법 스트링??  -> json 객체를 문자열로 표현하면 이렇게 나옴;
+	}	
+	
+	@ResponseBody
+	@RequestMapping(value = "kakaopay.approve")
+	public String approve(Member dto) throws Exception{
+	
+		System.out.println("@@@@@@@@@approve 실행@@@@@@@@@@@@@@@@@@@@@@" + dto.getTid() + "@@@@@" + dto.getPg());
+	
+		try {
+			URL address = new URL("https://kapi.kakao.com/v1/payment/approve");
+			HttpURLConnection serverConnection = (HttpURLConnection) address.openConnection();
+			serverConnection.setRequestMethod("POST");
+			serverConnection.setRequestProperty("Authorization", "KakaoAK 93a8dee403775eafaa0c0fa084046986");
+			serverConnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			serverConnection.setDoOutput(true); //dooutput은 연결을 통해 넣어줄게 있냐 없냐여서 있다라고 하고싶기에 트루를 넣음; 인풋은 안넣어도됨,커넥션 생성되면 기본적으로 인풋생성됨;
+			 
+			//String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/member/successKakao&fail_url=http://localhost:8080/member/failKakao&cancel_url=http://localhost:8080/member/cancelKakao";
+			String cid = "cid=TC0ONETIME";
+			String tid = "tid="+dto.getTid();
+			System.out.println(tid);
+			String partnerOrder = "partner_order_id=partner_order_id";
+			String partnerUser = "partner_user_id=partner_user_id";
+			String pgToekn = "pg_token="+dto.getPg();
+			
+			String n = "&";
+			
+			String param = cid + n + tid + n + partnerOrder + n + partnerUser + n + pgToekn;
+			
 			OutputStream iwillgive = serverConnection.getOutputStream();			
 			DataOutputStream iwillgiveudata = new DataOutputStream(iwillgive);			
 			iwillgiveudata.writeBytes(param);
@@ -211,5 +297,5 @@ public class MemberController {
 		}
 			
 		return "{\"result\":\"NO\"}";
-	}	
+	}
 }
