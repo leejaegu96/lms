@@ -74,6 +74,7 @@ public class Lecturer extends Base {
     private String ictTitle;
     private String ictVideoLength;
     private String ictVideoUrl;
+    private String ictIltSeq;
 
     private String data;
 
@@ -107,7 +108,13 @@ public class Lecturer extends Base {
     
     
     
-    
+    public String getIctIltSeq() {
+        return ictIltSeq;
+    }
+    public void setIctIltSeq(String ictIltSeq) {
+        this.ictIltSeq = ictIltSeq;
+    }
+
 	public String getFile() {
 		return file;
 	}
