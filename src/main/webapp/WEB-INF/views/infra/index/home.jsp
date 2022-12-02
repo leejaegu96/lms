@@ -103,7 +103,6 @@
 					</div>
 					<div style="display: table-row; text-align: center;">
 						<div class="search" style="display: table-cell; text-align: center; padding-top: 30px;">
-
 							<input class="inputx" type="text" placeholder="배우고 싶은 지식을 입력해보세요 ">
 							<img class="imgx" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 
