@@ -5,6 +5,7 @@ import java.util.List;
 public interface LecturerService {
 	
 	public Lecturer selectOneLecturer(Lecturer dto) throws Exception; 
+	public List<Lecturer> selectOneLecturerSns(Lecturer dto) throws Exception; 
 	
 	public List<Lecturer> selectLecture(Lecturer dto) throws Exception;
 	public List<Lecturer> selectCategory() throws Exception;

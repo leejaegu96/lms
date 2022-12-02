@@ -186,7 +186,9 @@ public class LecturerController {
     public String lecturerDetail(Lecturer dto, Model model) throws Exception {
 
         Lecturer result = service.selectOneLecturer(dto);
+        List<Lecturer> sns = service.selectOneLecturerSns(dto);
         model.addAttribute("ltinfo", result);
+        model.addAttribute("sns", sns);
 
         return "infra/lecturer/lecturerDetail";
     }

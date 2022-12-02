@@ -44,7 +44,7 @@
 										나에게 딱 맞는
 										<span>자바 스크립트 강의</span>
 									</h2>
-									<p class="animate__animated animate__fadeInUp" style="text-align: left; position: relative; right: 250px;">무료, 입문, 중급까지 다! 강의 선택 시간을 줄여드릴게요. 마이크로소프트 개발자 백기선 님과 함께 쉽고 완벽하게 학습하세요!</p>
+									<p class="animate__animated animate__fadeInUp" style="text-align: left; position: relative; right: 250px;">무료, 입문, 중급까지 다!<br> 강의 선택 시간을 줄여드릴게요.<br> 생활코딩님과 함께 쉽고 완벽하게 학습하세요!</p>
 									<a href="javascript:goDetail(1)" class="btn-get-started animate__animated animate__fadeInUp"> 지금 바로 수강하기</a>
 								</div>
 							</div>

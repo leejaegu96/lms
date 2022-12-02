@@ -14,11 +14,29 @@
 			a.`iftcSeq`
 		    , a.`iftcName`
 		    , a.`iftcProfile`
+		    ,b.pseq
+		    ,b.path
+		    ,b.uuidName
 		from
 			infrTeacher a
+		left join teacherUpload b on b.pseq = a.iftcSeq
 		where
 			1=1
 		    AND a.`iftcSeq` = #{iftcSeq}
+		    AND not b. path is null
+	</select>
+	<select id = "selectOneLecturerSns" resultMap="resultMapObj">
+		select
+			a.iftsIftcSeq
+		    ,a.iftsUrl
+		    ,a.iftsType
+		    ,b.iftcSeq
+		    ,b.iftcName
+		from infrTeacherSns a
+		left join infrTeacher b on b.iftcSeq = a.iftsIftcSeq
+		where
+			1=1
+		    AND a.iftsIftcSeq = #{iftcSeq}
 	</select>
 	
 	<!-- 강의목록 -->
@@ -129,14 +147,14 @@
 	<!-- 강의선택 -->
 	<select id = "selectOneLecture" resultMap="resultMapObj">
 		select
-			a.`iftcSeq`
-		    , a.`iftcName`
-		    , a.`iftcProfile`
+			a.iftcSeq
+		    ,a.iftcName
+		    ,a.iftcProfile
 		from
 			infrTeacher a
 		where
 			1=1
-		    AND a.`iftcSeq` = #{iftcSeq}
+		    AND a.iftcSeq = 1
 	</select>
 	
 	<!-- ## 강의 등록 ## -->

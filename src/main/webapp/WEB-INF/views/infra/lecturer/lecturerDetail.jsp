@@ -49,34 +49,41 @@
 					<div class="col-lg-8 entries">
 						<article class="entry entry-single">
 							<div class="entry-img" style="text-align: center; padding-top: 50px;">
-								<img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/course/94.png" alt="" class="img-fluid" />
+								<img src=${ltinfo.path }${ltinfo.uuidName } alt="" class="img-fluid" style="width: 300px;" />
 							</div>
-
 							<h2 class="entry-title">
-								<span style="font-size:22px;">크리에이터 </span><br>
-								<span style="font-weight:bold; font-size:22px;">${ltinfo.iftcName }</span> 
-								<span style="font-size:22px;">입니다.</span><br>
-								<a href="https://www.youtube.com/c/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A91">
-									<span style="font-weight:bold; font-size:15px; color:gray;"><i class="fa-brands fa-youtube" style="color:red;"></i>&nbsp;생활코딩 </span>
-								</a>
+								<span style="font-size: 22px;">크리에이터 </span>
+								<br>
+								<span style="font-weight: bold; font-size: 22px;">${ltinfo.iftcName }</span>
+								<span style="font-size: 22px;">입니다.</span>
+								<br>
 							</h2>
-							
+							<c:forEach items="${sns}" var="sns" varStatus="status">
+								<a href="${sns.iftsUrl }" style="color:black; ">
+									<c:choose>
+										<c:when test="${sns.iftsType eq 1 }">
+											<i class="fa-brands fa-facebook"></i>
+										</c:when>
+										<c:when test="${sns.iftsType eq 2 }">
+											<i class="fa-brands fa-square-instagram"></i>
+										</c:when>
+										<c:when test="${sns.iftsType eq 3 }">
+											<i class="fa-brands fa-youtube"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="fa-solid fa-comment"></i>
+										</c:otherwise>
+									</c:choose>
+									&nbsp;
+								</a>
+							</c:forEach>
 
 							<div class="entry-meta">
-								<span style="font-size:13px; color:black;">
-									마지막 활동 
-								</span>
-								<span style="font-weight:bold; font-size:13px; color:black;">
-									4일 전 커뮤니티 답글 작성 
-								</span>
+								<span style="font-size: 13px; color: black;"> 마지막 활동 </span>
+								<span style="font-weight: bold; font-size: 13px; color: black;"> 4일 전 커뮤니티 답글 작성 </span>
 							</div>
-							<hr>	
-							<div class="entry-content" style="line-height: 200%;">
-								
-									${ltinfo.iftcProfile}									
-									
-							</div>
-
+							<hr>
+							<div class="entry-content" style="line-height: 200%;">${ltinfo.iftcProfile}</div>
 							<div class="entry-footer">
 								<i class="bi bi-folder"></i>
 								<ul class="cats">
@@ -94,10 +101,10 @@
 						<!-- End blog entry -->
 
 					</div>
-					<div class="col-lg-2 entries"></div> 
+					<div class="col-lg-2 entries"></div>
 					<!-- End blog entries list -->
 
-					
+
 				</div>
 			</div>
 		</section>

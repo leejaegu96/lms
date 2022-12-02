@@ -24,6 +24,9 @@ public class LecturerDao {
     public Lecturer selectOneLecturer(Lecturer dto) {
         return sqlSession.selectOne(namespace + ".selectOneLecturer", dto);
     }
+    public List<Lecturer> selectOneLecturerSns(Lecturer dto) {
+    	return sqlSession.selectList(namespace + ".selectOneLecturerSns", dto);
+    }
     
     //강의 목록
     public List<Lecturer> selectLecture(Lecturer dto){
