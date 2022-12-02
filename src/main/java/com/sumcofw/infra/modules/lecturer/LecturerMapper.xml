@@ -55,7 +55,7 @@
 		FROM idLecture a
         	INNER JOIN idCategory b on b.ictgSeq = a.iltIctgSeq
 			INNER JOIN idCategorySub c on c.ictsSeq = b.ictgIctsSeq
-			INNER JOIN lectureUpload d on d.pseq = a.iltSeq
+			LEFT JOIN lectureUpload d on d.pseq = a.iltSeq 
         WHERE 1=1
 			AND iltSeq = #{iltSeq}
 	</select>

@@ -316,6 +316,7 @@
 	        $("option:selected", this).each(function(){
 	            var selectValue = $(this).val(); //main category 에서 선택한 값
 	            subCategorySelectBox.append("<option value=''>전체</option>");
+	            console.log(subCategoryArray.length)
 	            for(var i=0;i<subCategoryArray.length;i++){
 	                if(selectValue == subCategoryArray[i].main_category_id){
 	                    if(subCategoryArray[i].sub_category_name == "${item.ictsItem}"){

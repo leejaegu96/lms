@@ -45,7 +45,7 @@
 										<span>자바 스크립트 강의</span>
 									</h2>
 									<p class="animate__animated animate__fadeInUp" style="text-align: left; position: relative; right: 250px;">무료, 입문, 중급까지 다! 강의 선택 시간을 줄여드릴게요. 마이크로소프트 개발자 백기선 님과 함께 쉽고 완벽하게 학습하세요!</p>
-									<a href="" class="btn-get-started animate__animated animate__fadeInUp"> 지금 바로 수강하기</a>
+									<a href="javascript:goDetail(1)" class="btn-get-started animate__animated animate__fadeInUp"> 지금 바로 수강하기</a>
 								</div>
 							</div>
 						</div>
@@ -56,13 +56,12 @@
 								<div class="carousel-content">
 									<h2 class="animate__animated fanimate__adeInDown" style="position: relative; top: 20px;">
 										입문자를 위한
-										<span style="color: white;">유저 리서치</span>
+										<span style="color: white;">Github 강의!</span>
 									</h2>
 									<p class="animate__animated animate__fadeInUp" style="position: relative; top: 20px;">
-										기획자/ 디자이너/ CX 담당자 취준생까지 모두 주목~~!<br>
-
+										협업을 하고 싶은 사람들! 모두 주목~~!<br>
 									</p>
-									<a href="" class="btn-get-started animate__animated animate__fadeInUp" style="background: #8d65c5; border-color: #8d65c5">지금 바로 수강하기</a>
+									<a href="javascript:goDetail(38)" class="btn-get-started animate__animated animate__fadeInUp" style="background: #8d65c5; border-color: #8d65c5">지금 바로 수강하기</a>
 								</div>
 							</div>
 						</div>
@@ -72,13 +71,13 @@
 							<div class="carousel-container">
 								<div class="carousel-content">
 									<h2 class="animate__animated animate__fadeInDown" style="color: white; position: relative; top: 25px; right: 250px;">
-										당신을 함께 일하고 싶은 개발자로 <Br>만들어 줄
-										<span style="color: white;">클린코드 작성법 </span>
+										<span style="color: yellow;">Ajax</span>는 리로드 없이! <Br>웹서버에게 정보 요청하여 부분적으로<br>
+										<span style="color: yellow;">정보를 갱신해주는 기술!</span>
 									</h2>
 									<p class="animate__animated animate__fadeInUp" style="color: white; position: relative; right: 300px; top: 20px;">
 										이론 + 실습 + 활용을 한번에! <br> 중급 개발자로 한 걸음 더 성장하세요!
 									</p>
-									<a href="" class="btn-get-started animate__animated animate__fadeInUp" style="position: relative; right: 300px; background-color: #E50CBE; border-color: #E50CBE;">Read More</a>
+									<a href="javascript:goDetail(37)" class="btn-get-started animate__animated animate__fadeInUp" style="position: relative; right: 300px; background-color: #E50CBE; border-color: #E50CBE;">Read More</a>
 								</div>
 							</div>
 						</div>
@@ -127,7 +126,7 @@
 								<div class="border" style="width: 100%;">
 									<div id="clickimg" class="border" style="text-align: center; cursor: pointer;">
 										<a href="javascript:goDetail(<c:out value="${Rand.iltSeq }"/>)" class="text-decoration-none">
-											<img src="${Rand.path }${Rand.uuidName }" alt="" style="width: 100%;" />
+											<img src="${Rand.path }${Rand.uuidName }" alt="" style="width: 100%; height:240px;" />
 										</a>
 									</div>
 									<p id="name" style="padding-left: 10px; margin-bottom: 0;">
@@ -176,7 +175,7 @@
 								<div class="border" style="width: 100%;">
 									<div class="border" style="text-align: center;">
 										<a href="javascript:goDetail(<c:out value="${New.iltSeq }"/>)" class="text-decoration-none">
-											<img src="${New.path }${New.uuidName }" alt="" style="width: 100%;" />
+											<img src="${New.path }${New.uuidName }" alt="" style="width: 100%; height:180px;" />
 										</a>
 									</div>
 									<p id="name" style="padding-left: 10px; margin-bottom: 0;">
