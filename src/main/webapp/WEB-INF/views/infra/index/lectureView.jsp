@@ -264,7 +264,7 @@ var playerConfig = {
 		    },
 };
 
-function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady() { 
 	player = new YT.Player('player', playerConfig);
 }
  
