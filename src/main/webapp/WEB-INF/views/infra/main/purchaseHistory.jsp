@@ -152,7 +152,7 @@ span.center {
 	<%@include file=".././common/user/includeV1/sidebarScript.jsp"%>
 	<!-- include sidebarScript-->
 <script>
-	goLectureView = function(seq){
+/*  goLectureView = function(seq){
 		$("#iltSeq").val(seq);
 		
 		$.ajax({
@@ -182,11 +182,47 @@ span.center {
 			error : function(jqXHR, status, error) {
 				alert("알 수 없는 에러 [ " + error + " ]");
 			}
-		});
-		
-		return false;
-		
-	}
+		});		
+		return false;		
+	}  */ 
+</script>
+
+<script>
+goLectureView = function(seq){
+	alert(seq);
+	$("#iltSeq").val(seq);
+	
+	$.ajax({
+		async: true
+		,cache: false
+		,type:"POST"
+		,url: "/member/watchedCheck"
+		,data: {
+				iltSeq: $("#iltSeq").val(),
+				ifmmSeq: $("#ifmmSeq").val()				
+				}
+		,success : function(response) {
+			if (response.rt == "fail") {
+				alert("no data");
+				alert(response.chapter);
+				$("#ictSeq").val(response.chapter);
+				$("#historyCheck").val(0);
+				form.attr("action", "/index/lectureView").submit();
+			} else {
+				alert("yes data");
+				alert(response.chapter);
+				$("#ictSeq").val(response.chapter);
+				$("#historyCheck").val(1);
+				form.attr("action", "/index/lectureView").submit();
+			}
+		},
+		error : function(jqXHR, status, error) {
+			alert("알 수 없는 에러 [ " + error + " ]");
+		}
+	});		
+	
+	return false;
+}
 </script>
 </body>
 </html>

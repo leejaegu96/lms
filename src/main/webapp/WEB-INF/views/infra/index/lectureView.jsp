@@ -16,6 +16,7 @@
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
+
 <!-- include link -->
 <%@include file=".././common/user/includeV1/link.jsp"%>
 <!-- include link -->
@@ -226,6 +227,19 @@
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
+	
+	<input type="hidden" id=url value="${video.ictVideoUrl}"/>
+	
+	<c:choose>
+		<c:when test="${video.wrWatchedLength eq null || video.wrWatchedLength == ''}">
+			<input id="length" type="hidden" value="0"/>
+		</c:when>
+		
+		<c:otherwise>
+			<input id="length" type="hidden" value="${video.wrWatchedLength}"/>
+		</c:otherwise>
+	</c:choose>
+	
 <script>
 
 var tag = document.createElement('script');
@@ -238,7 +252,7 @@ var player;
 
 var playerConfig = {
 		
-		videoId : '${video.ictVideoUrl}',
+		videoId : $("#url").val(),
 		
 		events : {
 			onReady : onPlayerReady,
@@ -246,7 +260,7 @@ var playerConfig = {
 		},
 		playerVars: {
 		    'playsinline': 1
-		    ,'start': ${video.wrWatchedLength} 
+		    ,'start':  $("#length").val()
 		    },
 };
 
@@ -254,9 +268,6 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', playerConfig);
 }
  
-
-
-
 function onPlayerReady(event) {
 	event.target.playVideo();
 }

@@ -126,8 +126,8 @@ public class MemberController {
 			System.out.println("null입니다 ");
 			
 			Member result2 = service.selectFirstChapter(dto); 
-			System.out.println(result2.getIctSeq());
 			
+			 
 			returnMap.put("chapter", result2.getIctSeq());
 			returnMap.put("rt", "fail");	
 		} else {
