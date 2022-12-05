@@ -226,7 +226,7 @@ span.center {
     </script>
     <script type="text/javascript">
     var form = $("form[name=form]");
-    var goPrintForm = "/member/printPreview";
+    var goPrintForm = "/member/print";
     var ifmmSeq = $("input:hidden[name=ifmmSeq]");
 
     goPrint = function(keyValue) {
