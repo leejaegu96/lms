@@ -134,7 +134,15 @@ public class MemberController {
 			System.out.println("값을 발견했습니다 ");
 			returnMap.put("rt", "success");	
 			returnMap.put("chapter", result.getWrIctSeq());
-		}
+		}	
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "updateLength")
+	public Map<String, Object> updateLength(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		
 		

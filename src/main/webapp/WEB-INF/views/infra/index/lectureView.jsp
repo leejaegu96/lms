@@ -45,6 +45,7 @@
 	<!-- include header -->
 
 	<!-- ======= Main ======= -->
+	<form name="form" id="form" method="post">
 	<main id="main">
 		<section id="blog" class="blog">
 			<div class="container" data-aos="fade-up">
@@ -223,6 +224,9 @@
 		<!-- End Blog Section -->
 	</main>
 	<!-- End #main -->
+	<input id="iltSeq" value="${video.iltSeq}"/>
+	
+	</form>
 
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
@@ -292,6 +296,28 @@ function onPlayerStateChange(e) {
 	case 2:
 		console.log('어디까지 들었는지 보여줌 ');
 		console.log(player.getCurrentTime());
+		alert( $("#iltSeq").val() );
+		/* $.ajax({
+			async: true
+			,cache: false
+			,type:"POST"
+			,url: "/member/updateLength"
+			,data: {
+					iltSeq: $("#iltSeq").val(),
+					ifmmSeq: $("#ifmmSeq").val()				
+					}
+			,success : function(response) {
+				if (response.rt == "fail") {
+					alert("no data");
+				} else {
+					alert("yes data");
+				}
+			},
+			error : function(jqXHR, status, error) {
+				alert("알 수 없는 에러 [ " + error + " ]");
+			}
+		});	 */
+		
 		break;
 	}
 }
