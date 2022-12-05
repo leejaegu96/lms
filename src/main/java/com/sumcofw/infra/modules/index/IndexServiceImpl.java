@@ -79,4 +79,19 @@ public class IndexServiceImpl implements IndexService {
     public List<Index> lectureNew(Index dto) throws Exception {
     	return dao.lectureNew(dto);
     }
+    
+    // 강의 댓글
+    @Override
+    public List<Index> selectComment(IndexVo vo) throws Exception {
+        return dao.selectComment(vo);
+    }
+    @Override
+    public int regComment(Index dto) throws Exception {
+        return dao.regComment(dto);
+    }
+    @Override
+    public int selectCommentCount(IndexVo vo) throws Exception {
+        return dao.selectCommentCount(vo);
+    }
+    
 }

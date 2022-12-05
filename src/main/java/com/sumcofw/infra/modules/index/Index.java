@@ -80,11 +80,52 @@ public class Index {
     private String teacherPath;
     private String teacherUuidName;
     
+    // 강의 댓글
+    private String ilrSeq;
+    private String ilrIltseq;
+    private String ilrRegdateTime;
+    private String ilrModDateTime;
+    private String ilrBody;
+    private String ilrIfmmSeq;
     
     
-    
-    
-	public String getTeacherPath() {
+	public String getIlrSeq() {
+        return ilrSeq;
+    }
+    public void setIlrSeq(String ilrSeq) {
+        this.ilrSeq = ilrSeq;
+    }
+    public String getIlrIltseq() {
+        return ilrIltseq;
+    }
+    public void setIlrIltseq(String ilrIltseq) {
+        this.ilrIltseq = ilrIltseq;
+    }
+    public String getIlrRegdateTime() {
+        return ilrRegdateTime;
+    }
+    public void setIlrRegdateTime(String ilrRegdateTime) {
+        this.ilrRegdateTime = ilrRegdateTime;
+    }
+    public String getIlrModDateTime() {
+        return ilrModDateTime;
+    }
+    public void setIlrModDateTime(String ilrModDateTime) {
+        this.ilrModDateTime = ilrModDateTime;
+    }
+    public String getIlrBody() {
+        return ilrBody;
+    }
+    public void setIlrBody(String ilrBody) {
+        this.ilrBody = ilrBody;
+    }
+    public String getIlrIfmmSeq() {
+        return ilrIfmmSeq;
+    }
+    public void setIlrIfmmSeq(String ilrIfmmSeq) {
+        this.ilrIfmmSeq = ilrIfmmSeq;
+    }
+    public String getTeacherPath() {
         return teacherPath;
     }
     public void setTeacherPath(String teacherPath) {

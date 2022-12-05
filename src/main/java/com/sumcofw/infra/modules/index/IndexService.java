@@ -16,5 +16,8 @@ public interface IndexService {
     public List<Index> lectureDetail(Index dto) throws Exception;
     public List<Index> lectureRand(Index dto) throws Exception;
     public List<Index> lectureNew(Index dto) throws Exception;
+    public List<Index> selectComment(IndexVo vo) throws Exception;
+    public int regComment(Index dto) throws Exception;
+    public int selectCommentCount (IndexVo vo) throws Exception;
     
 }

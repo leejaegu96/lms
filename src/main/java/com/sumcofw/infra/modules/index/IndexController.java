@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -180,6 +181,15 @@ public class IndexController {
         model.addAttribute("chapterHead",chapterHead);
         
         return "infra/index/lectureDetail";
+    }
+    @RequestMapping(value = "lectureCommentAjaxLita")
+    public String lectureCommentAjaxLita(@ModelAttribute("vo") IndexVo vo, Index dto, Model model) throws Exception {
+        
+        vo.setParamsPaging(service.selectCommentCount(vo));
+        List<Index> commentList = service.selectComment(vo);
+        model.addAttribute("commentList", commentList);
+        
+        return "infra/index/lectureCommentAjaxLita";
     }
 
     @RequestMapping(value = "lectureView")

@@ -243,4 +243,43 @@
 	limit 4
 	</select>
 	
+	<!-- 댓글조회 -->
+	<select id="selectComment" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.ilrSeq
+			    ,a.ilrIltSeq
+			    ,a.ilrRegDateTime
+			    ,a.ilrModDateTime
+			    ,a.ilrBody
+			    ,a.ilrIfmmSeq
+			    ,b.ifmmName
+			FROM idLectureReview a
+			JOIN infrMember b on b.ifmmSeq = a.ilrIfmmSeq
+			WHERE ilrIltSeq = #{mainKey}
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	<!-- 댓글 카운트 -->
+	<select id="selectCommentCount" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM idLectureReview
+		WHERE ilrIltSeq = #{mainKey}
+	</select>
+	<!-- 댓글등록 -->
+	<insert id="regComment">
+		INSERT INTO idLectureReview (
+			ilrIltSeq
+		    ,ilrRegDateTime
+		    ,ilrModDateTime
+		    ,ilrBody
+		) VALUES (
+			#{iltSeq}
+		    ,now()
+		    ,now()
+		    ,#{ilrBody}
+		)
+	</insert>
+	
+	
 </mapper>
