@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 
-<!-- 링크모음 -->
+<!-- 링크모음 --> 
 
 <!-- Favicons -->
 <link href="../../../../resources/template/user_Eterna/assets/img/favicon.png" rel="icon" />
