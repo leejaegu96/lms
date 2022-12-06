@@ -68,5 +68,19 @@ public class IndexDao {
     public List<Index> lectureNew(Index dto) {
     	return sqlSession.selectList(namespace + ".lectureNew", dto);
     }
+    
+    // 댓글
+    public List<Index> selectComment(IndexVo vo) {
+        return sqlSession.selectList(namespace + ".selectComment", vo);
+    }
+    public int regComment(Index dto) {
+        return sqlSession.insert(namespace + ".regComment", dto);
+    }
+    public int selectCommentCount (IndexVo vo) {
+        return sqlSession.selectOne(namespace + ".selectCommentCount", vo);
+    }
+    public int deleteComment(IndexVo vo) {
+        return sqlSession.delete(namespace + ".deleteComment", vo);
+    }
 
 }

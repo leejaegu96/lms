@@ -27,51 +27,52 @@
 
 		<input type="hidden" name="iltSeq" id="iltSeq" value="${lecturedetail.iltSeq}" />
 		<input type="hidden" name="iftcSeq" id="iftcSeq" value="${lecturedetail.iftcSeq}" />
-		<!-- include header -->
-		<%@include file=".././common/user/includeV1/header.jsp"%>
-		<!-- include header -->
+	</form>
+	<!-- include header -->
+	<%@include file=".././common/user/includeV1/header.jsp"%>
+	<!-- include header -->
 
-		<main id="main">
-			<!-- ======= Breadcrumbs ======= -->
-			<section id="breadcrumbs" class="breadcrumbs">
-				<div class="container">
-					<ol>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="blog.html">Blog</a></li>
-					</ol>
-					<h2>${lecturedetail.iltTitle}</h2>
-				</div>
-			</section>
-			<!-- End Breadcrumbs -->
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container">
+				<ol>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="blog.html">Blog</a></li>
+				</ol>
+				<h2>${lecturedetail.iltTitle}</h2>
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
 
-			<!-- ======= Blog Single Section ======= -->
-			<section id="blog" class="blog">
-				<div class="container" data-aos="fade-up">
-					<div class="row">
-						<div class="col-lg-8 entries">
-							<article class="entry entry-single">
-								<div class="" style="margin: auto;">
-									<img src="${lecturedetail.path }${lecturedetail.uuidName}" alt="" style="height: 100%; width: 100%" />
-								</div>
-								
-								<br />
-								
-								<h2 class="entry-title">
-									<a href="blog-single.html">${lecturedetail.iltTitle}</a>
-								</h2>
+		<!-- ======= Blog Single Section ======= -->
+		<section id="blog" class="blog">
+			<div class="container" data-aos="fade-up">
+				<div class="row">
+					<div class="col-lg-8 entries">
+						<article class="entry entry-single">
+							<div class="" style="margin: auto;">
+								<img src="${lecturedetail.path }${lecturedetail.uuidName}" alt="" style="height: 100%; width: 100%" />
+							</div>
 
-								<div class="entry-meta">
-									<ul>
-										<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="javascript:goTeacher(${lecturedetail.iftcSeq })">${lecturedetail.iftcName}</a></li>
-										<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"> <time datetime="2020-01-01">Jan 1, 2020</time>
-										</a></li>
-										<li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-									</ul>
-								</div>
+							<br />
 
-								<div class="entry-content">${lecturedetail.iltBody}</div>
+							<h2 class="entry-title">
+								<a href="blog-single.html">${lecturedetail.iltTitle}</a>
+							</h2>
 
-								<!-- <div class="entry-footer">
+							<div class="entry-meta">
+								<ul>
+									<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="javascript:goTeacher(${lecturedetail.iftcSeq })">${lecturedetail.iftcName}</a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"> <time datetime="2020-01-01">Jan 1, 2020</time>
+									</a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+								</ul>
+							</div>
+
+							<div class="entry-content">${lecturedetail.iltBody}</div>
+
+							<!-- <div class="entry-footer">
 								<i class="bi bi-folder"></i>
 								<ul class="cats">
 									<li><a href="#">Business</a></li>
@@ -84,27 +85,27 @@
 									<li><a href="#">Marketing</a></li>
 								</ul>
 							</div> -->
-							</article>
-							<!-- End blog entry -->
+						</article>
+						<!-- End blog entry -->
 
-							<article class="entry">
-								<h2 class="entry-title">
-									<a href="blog-single.html">상세 커리큘럼</a>
-								</h2>
+						<article class="entry">
+							<h2 class="entry-title">
+								<a href="blog-single.html">상세 커리큘럼</a>
+							</h2>
 
-								<c:forEach var="chapterHead" items="${chapterHead}" varStatus="status">
-									<h4>${chapterHead.ichTitle}</h4>
-									<hr />
-									<ol>
-										<c:forEach var="chapterlist" items="${chapterlist}" varStatus="status">
-											<c:if test="${chapterHead.ichSeq == chapterlist.ictIchSeq }">
-												<li>${chapterlist.ictTitle}</li>
-											</c:if>
-										</c:forEach>
-									</ol>
-								</c:forEach>
+							<c:forEach var="chapterHead" items="${chapterHead}" varStatus="status">
+								<h4>${chapterHead.ichTitle}</h4>
+								<hr />
+								<ol>
+									<c:forEach var="chapterlist" items="${chapterlist}" varStatus="status">
+										<c:if test="${chapterHead.ichSeq == chapterlist.ictIchSeq }">
+											<li>${chapterlist.ictTitle}</li>
+										</c:if>
+									</c:forEach>
+								</ol>
+							</c:forEach>
 
-								<%-- 								<div class="accordion" id="accordionPanelsStayOpenExample">
+							<%-- 								<div class="accordion" id="accordionPanelsStayOpenExample">
 									<div class="accordion-item">
 										<c:forEach var="chapterHead" items="${chapterHead}" varStatus="status">
 											<c:set var="i" value="${i+1 }" />
@@ -126,135 +127,99 @@
 									</div>
 								</div> --%>
 
-							</article>
-							<!-- End blog entry -->
+						</article>
+						<!-- End blog entry -->
 
-							<!-- blog author bio -->
-							<div class="blog-author d-flex align-items-center">
-								<img src="${lecturedetail.teacherPath }${lecturedetail.teacherUuidName}" class="rounded-circle float-left" alt="" />
-								<div>
-									<h3>
-										<a href="javascript:goTeacher(${lecturedetail.iftcSeq })" style="color: black">${lecturedetail.iftcName}</a>
-									</h3>
-									<hr />
-									<div class="social-links">
-										<a href="https://twitters.com/#"> <i class="bi bi-twitter fa-2xl"></i>
-										</a> <a href="https://facebook.com/#"> <i class="bi bi-facebook fa-2xl"></i>
-										</a> <a href="https://instagram.com/#"> <i class="biu bi-instagram fa-2xl"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<!-- End blog author bio -->
-
-							<div class="blog-comments">
-								<h4 class="comments-count">3 Review</h4>
-
-								<div id="comment-1" class="comment">
-									<div class="d-flex">
-										<div>
-											<h5>
-												<a href="">${lecturedetail.iftcName}</a>
-											</h5>
-											<time datetime="2020-01-01">01 Jan, 2020</time>
-											<p>이거 들으면 너도 네카라쿠배</p>
-										</div>
-									</div>
-								</div>
-								<!-- End comment #1 -->
-
-								<div id="comment-1" class="comment">
-									<div class="d-flex">
-										<div>
-											<h5>
-												<a href="">김진범</a>
-											</h5>
-											<time datetime="2020-01-01">01 Jan, 2020</time>
-											<p>이거 들으면 너도 네카라쿠배</p>
-										</div>
-									</div>
-								</div>
-								<!-- End comment #1 -->
-
-								<div id="comment-1" class="comment">
-									<div class="d-flex">
-										<div>
-											<h5>
-												<a href="">김진범</a>
-											</h5>
-											<time datetime="2020-01-01">01 Jan, 2020</time>
-											<p>이거 들으면 너도 네카라쿠배</p>
-										</div>
-									</div>
-								</div>
-								<!-- End comment #1 -->
-
-								<!-- pagination -->
-								<div class="blog-pagination">
-									<ul class="justify-content-center">
-										<li><a href="#">1</a></li>
-										<li class="active"><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-									</ul>
-								</div>
-								<!--End pagination -->
-
-								<!-- comment form -->
-								<div class="reply-form">
-									<h4>리뷰작성</h4>
-									<form action="">
-										<div class="row">
-											<div class="col form-group">
-												<textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-											</div>
-										</div>
-										<button type="submit" class="btn btn-primary">Post Comment</button>
-									</form>
-								</div>
-								<!-- End comment form -->
-							</div>
-							<!-- End blog comments -->
-						</div>
-						<!-- End blog entries list -->
-
-						<div class="col-lg-4 box">
-							<div class="sidebar">
-								<h3 class="sidebar-title">${lecturedetail.iltTitle}</h3>
-
-								<br />
-
-
-								<h3 class="sidebar-title" style="text-align: right">${lecturedetail.iltPrice }
-									<span>원</span>
+						<!-- blog author bio -->
+						<div class="blog-author d-flex align-items-center">
+							<img src="${lecturedetail.teacherPath }${lecturedetail.teacherUuidName}" class="rounded-circle float-left" alt="" />
+							<div>
+								<h3>
+									<a href="javascript:goTeacher(${lecturedetail.iftcSeq })" style="color: black">${lecturedetail.iftcName}</a>
 								</h3>
+								<hr />
+								<div class="social-links">
+									<a href="https://twitters.com/#"> <i class="bi bi-twitter fa-2xl"></i>
+									</a> <a href="https://facebook.com/#"> <i class="bi bi-facebook fa-2xl"></i>
+									</a> <a href="https://instagram.com/#"> <i class="biu bi-instagram fa-2xl"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- End blog author bio -->
 
-								<div style="display: table; width: 100%; margin-top: 5px;">
-									<div style="display: table-row; text-align: center;">
-										<div style="display: table-cell; padding-right: 5px;">
-											<input id="buynow" type="button" value="구매하기 " class="btn btn-danger" style="width: 100%;" />
-										</div>
-										<div style="display: table-cell; padding-right: 5px;">
-											<input type="button" value="찜하기 " class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
-										</div>
-										<div style="display: table-cell">
-											<input id="cart" type="button" value="장바구니 " class="btn btn-danger" style="width: 100%" />
-										</div>
+						<div class="blog-comments">
+							<h4 class="comments-count">Comment</h4>
+
+							<div id="lita"></div>
+
+							<!-- Comment Area -->
+							<form id="commentForm" name="commentForm">
+								<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>" />
+								<input type="hidden" name="mainKey" value="<c:out value="${lecturedetail.iltSeq}"/>" />
+							</form>
+							<!-- End comment Area -->
+
+							<!-- comment form -->
+							<div class="reply-form">
+								<h4>리뷰작성</h4>
+
+								<div class="row">
+									<div class="col form-group">
+										<input type="text" name="ilrBody" id="ilrBody" class="form-control" placeholder="댓글을 작성해 주세요" />
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary" onclick="regComment()">등록하기</button>
+
+							</div>
+							<!-- End comment form -->
+						</div>
+						<!-- End blog comments -->
+					</div>
+					<!-- End blog entries list -->
+
+					<div class="col-lg-4 box">
+						<div class="sidebar">
+							<h3 class="sidebar-title">${lecturedetail.iltTitle}</h3>
+
+							<br />
+
+
+							<h3 class="sidebar-title" style="text-align: right">${lecturedetail.iltPrice }
+								<span>원</span>
+							</h3>
+
+							<div style="display: table; width: 100%; margin-top: 5px;">
+								<div style="display: table-row; text-align: center;">
+									<div style="display: table-cell; padding-right: 5px;">
+										<input id="buynow" type="button" value="구매하기 " class="btn btn-danger" style="width: 100%;" />
+									</div>
+									<div style="display: table-cell; padding-right: 5px;">
+										<input type="button" value="찜하기 " class="btn btn-danger" style="width: 100%" onclick="location.href = 'lecture.html'" />
+									</div>
+									<div style="display: table-cell">
+										<input id="cart" type="button" value="장바구니 " class="btn btn-danger" style="width: 100%" />
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-			<!-- End Blog Single Section -->
-		</main>
-	</form>
+			</div>
+		</section>
+		<!-- End Blog Single Section -->
+	</main>
+
 	<!-- End #main -->
 
 	<!-- include footer -->
 	<%@include file=".././common/user/includeV1/footer.jsp"%>
 	<!-- include footer-->
 	<script>
+	$(document).ready(function() {
+	    setLita();
+	});
+
 	var form = $("form[name=form]");
 
 	goTeacher = function(seq) {
@@ -266,6 +231,61 @@
 	$("#buynow").click(function() {
 	    form.attr("action", "/member/orderView").submit();
 	});
+
+	goList = function(thisPage) {
+	    $("input:hidden[name=thisPage]").val(thisPage);
+	    setLita();
+	}
+
+	// 댓글 리스트
+	function setLita() {
+	    $.ajax({
+			async : true,
+			cache : false,
+			type : "post"
+			/* ,dataType:"json" */
+			,
+			url : "/index/lectureCommentAjaxLita",
+			data : $("#commentForm").serialize()
+			/* ,data : {  } */
+			,
+			success : function(response) {
+			    $("#lita").empty();
+			    $("#lita").append(response);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+			    alert("ajaxUpdate " + jqXHR.textStatus + " : "
+				    + jqXHR.errorThrown);
+			}
+	    });
+	}
+	
+	function regComment() {
+ 	    $.ajax({
+			async : true,
+			cache : false,
+			type : "post",
+			url : "/index/lectureCommentInst",
+			data : {
+			    iltSeq : $("#iltSeq").val(),
+			    ilrBody : $("#ilrBody").val(),
+			    ilrIfmmSeq : ${sessSeq}
+			},
+			success : (res) => {
+			    if (res.rt === "success") {
+					$("#ilrBody").val("");
+					setLita();
+			    } else {
+					alert("댓글 등록에 실패하였습니다.")
+			    }
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+			    alert("ajaxUpdate " + jqXHR.textStatus + " : "
+				    + jqXHR.errorThrown);
+			}
+	    }); 
+	}
+	
     </script>
 
 </body>

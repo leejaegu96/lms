@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -180,6 +181,64 @@ public class IndexController {
         model.addAttribute("chapterHead",chapterHead);
         
         return "infra/index/lectureDetail";
+    }
+    /**
+     * 댓글 조회
+     * @param vo
+     * @param dto
+     * @param model
+     * @return 댓글 조회한 리스트
+     * @throws Exception
+     */
+    @RequestMapping(value = "lectureCommentAjaxLita")
+    public String lectureCommentAjaxLita(@ModelAttribute("vo") IndexVo vo, Model model) throws Exception {
+        
+        vo.setParamsPaging(service.selectCommentCount(vo));
+        List<Index> commentList = service.selectComment(vo);
+        model.addAttribute("commentList", commentList);
+        
+        return "infra/index/commentAjaxLita";
+    }
+    @RequestMapping(value = "lectureCommentInst")
+    @ResponseBody
+    public  Map<String, Object> regComment(Index dto, Model model) throws Exception {
+        
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        /*
+         * int result = service.regComment(dto);
+         * 
+         * if (result != 0) {
+         * returnMap.put("rt", "success");
+         * } else {
+         * returnMap.put("rt", "fail");
+         * }
+         */
+        returnMap.put("rt", (service.regComment(dto) != 0) ? "success" : "fail");
+        
+        return returnMap;
+    }
+    
+    /**
+     * 댓글 삭제
+     * @param vo
+     * @param model
+     * @return 삭제 결과
+     * @throws Exception
+     */
+    @RequestMapping(value = "lectureCommentDele")
+    @ResponseBody
+    public Map<String, Object> deleteComment(@ModelAttribute("vo") IndexVo vo, Model model) throws Exception {
+        
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        int result = service.deleteComment(vo);
+
+        if (result != 0) {
+            returnMap.put("rt", "success");
+        } else {
+            returnMap.put("rt", "fail");
+        }
+        
+        return returnMap;
     }
 
     @RequestMapping(value = "lectureView")
