@@ -80,18 +80,27 @@ public class IndexServiceImpl implements IndexService {
     	return dao.lectureNew(dto);
     }
     
-    // 강의 댓글
+    // ## 강의 댓글
+
+    /* 댓글 조회 */
     @Override
     public List<Index> selectComment(IndexVo vo) throws Exception {
         return dao.selectComment(vo);
     }
+    /* 댓글 등록 */
     @Override
     public int regComment(Index dto) throws Exception {
         return dao.regComment(dto);
     }
+    /* 댓글 카운트 */
     @Override
     public int selectCommentCount(IndexVo vo) throws Exception {
         return dao.selectCommentCount(vo);
+    }
+    /* 댓글 삭제 */
+    @Override
+    public int deleteComment(IndexVo vo) throws Exception {
+        return dao.deleteComment(vo);
     }
     
 }

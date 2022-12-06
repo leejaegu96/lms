@@ -5,7 +5,6 @@
 
 <c:choose>
 	<c:when test="${fn:length(commentList) eq 0 }">
-		
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${commentList}" var="commentList" varStatus="status">
@@ -15,14 +14,14 @@
 						<h5>
 							<a href="">${commentList.ifmmName}</a>
 						</h5>
-						<time datetime="${commentList.ifmmName}">${commentList.ifmmName}</time>
+						<time datetime="${commentList.ilrRegDateTime}">${commentList.ilrRegDateTime}</time>
 						<p>${commentList.ilrBody}</p>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
+		<!-- pagination s -->
+		<%@include file="../common/user/includeV1/pagination.jsp"%>
+		<!-- pagination e -->
 	</c:otherwise>
 </c:choose>
-<!-- pagination s -->
-<%@include file="../common/user/includeV1/pagination.jsp"%>
-<!-- pagination e -->

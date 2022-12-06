@@ -151,25 +151,26 @@
 						<div class="blog-comments">
 							<h4 class="comments-count">Comment</h4>
 
+							<div id="lita"></div>
+
 							<!-- Comment Area -->
 							<form id="commentForm" name="commentForm">
 								<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>" />
 								<input type="hidden" name="mainKey" value="<c:out value="${lecturedetail.iltSeq}"/>" />
-								<div id="lita"></div>
 							</form>
 							<!-- End comment Area -->
 
 							<!-- comment form -->
 							<div class="reply-form">
 								<h4>리뷰작성</h4>
-								<form action="">
-									<div class="row">
-										<div class="col form-group">
-											<textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-										</div>
+
+								<div class="row">
+									<div class="col form-group">
+										<input type="text" name="ilrBody" id="ilrBody" class="form-control" placeholder="댓글을 작성해 주세요" />
 									</div>
-									<button type="submit" class="btn btn-primary">Post Comment</button>
-								</form>
+								</div>
+								<button type="button" class="btn btn-primary" onclick="regComment()">등록하기</button>
+
 							</div>
 							<!-- End comment form -->
 						</div>
@@ -230,34 +231,61 @@
 	$("#buynow").click(function() {
 	    form.attr("action", "/member/orderView").submit();
 	});
-	
+
 	goList = function(thisPage) {
-		$("input:hidden[name=thisPage]").val(thisPage);
-		setLita();
+	    $("input:hidden[name=thisPage]").val(thisPage);
+	    setLita();
 	}
 
 	// 댓글 리스트
 	function setLita() {
 	    $.ajax({
-		async : true,
-		cache : false,
-		type : "post"
-		/* ,dataType:"json" */
-		,
-		url : "/index/lectureCommentAjaxLita",
-		data : $("#commentForm").serialize()
-		/* ,data : {  } */
-		,
-		success : function(response) {
-		    $("#lita").empty();
-		    $("#lita").append(response);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-		    alert("ajaxUpdate " + jqXHR.textStatus + " : "
-			    + jqXHR.errorThrown);
-		}
+			async : true,
+			cache : false,
+			type : "post"
+			/* ,dataType:"json" */
+			,
+			url : "/index/lectureCommentAjaxLita",
+			data : $("#commentForm").serialize()
+			/* ,data : {  } */
+			,
+			success : function(response) {
+			    $("#lita").empty();
+			    $("#lita").append(response);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+			    alert("ajaxUpdate " + jqXHR.textStatus + " : "
+				    + jqXHR.errorThrown);
+			}
 	    });
 	}
+	
+	function regComment() {
+ 	    $.ajax({
+			async : true,
+			cache : false,
+			type : "post",
+			url : "/index/lectureCommentInst",
+			data : {
+			    iltSeq : $("#iltSeq").val(),
+			    ilrBody : $("#ilrBody").val(),
+			    ilrIfmmSeq : ${sessSeq}
+			},
+			success : (res) => {
+			    if (res.rt === "success") {
+					$("#ilrBody").val("");
+					setLita();
+			    } else {
+					alert("댓글 등록에 실패하였습니다.")
+			    }
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+			    alert("ajaxUpdate " + jqXHR.textStatus + " : "
+				    + jqXHR.errorThrown);
+			}
+	    }); 
+	}
+	
     </script>
 
 </body>

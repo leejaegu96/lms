@@ -269,17 +269,25 @@
 	<!-- 댓글등록 -->
 	<insert id="regComment">
 		INSERT INTO idLectureReview (
-			ilrIltSeq
-		    ,ilrRegDateTime
-		    ,ilrModDateTime
-		    ,ilrBody
+			ilrIltSeq 			<!-- 강의 시퀀스 -->
+		    ,ilrRegDateTime 	<!-- 등록일 -->
+		    ,ilrModDateTime 	<!-- 수정일 -->
+		    ,ilrBody 			<!-- 본문 -->
+		    ,ilrIfmmSeq 		<!-- 등록자 -->
 		) VALUES (
 			#{iltSeq}
 		    ,now()
 		    ,now()
 		    ,#{ilrBody}
+		    ,#{ilrIfmmSeq}
 		)
 	</insert>
+	<!-- 댓글삭제 -->
+	<delete id="deleteComment">
+		DELETE FROM idLectureReview
+		WHERE 1=1
+			AND ilrSeq = #{mainKey}
+	</delete>
 	
 	
 </mapper>

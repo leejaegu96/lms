@@ -19,5 +19,6 @@ public interface IndexService {
     public List<Index> selectComment(IndexVo vo) throws Exception;
     public int regComment(Index dto) throws Exception;
     public int selectCommentCount (IndexVo vo) throws Exception;
+    public int deleteComment(IndexVo vo) throws Exception;
     
 }

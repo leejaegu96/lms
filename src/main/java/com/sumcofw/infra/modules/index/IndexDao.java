@@ -79,5 +79,8 @@ public class IndexDao {
     public int selectCommentCount (IndexVo vo) {
         return sqlSession.selectOne(namespace + ".selectCommentCount", vo);
     }
+    public int deleteComment(IndexVo vo) {
+        return sqlSession.delete(namespace + ".deleteComment", vo);
+    }
 
 }
