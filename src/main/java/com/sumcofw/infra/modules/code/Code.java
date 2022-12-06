@@ -10,10 +10,23 @@ public class Code extends Base {
 	private String ifcdNameKor;
 	private String ifcdNameEng;
 	private String ifcdUseNy;
+	private String ifcdDelNy;
 	
 	// infraCodeGroup
 	private String ifcgSeq;
 	private String ifcgNameKor;
+	
+	
+	
+	
+	
+	
+	public String getIfcdDelNy() {
+		return ifcdDelNy;
+	}
+	public void setIfcdDelNy(String ifcdDelNy) {
+		this.ifcdDelNy = ifcdDelNy;
+	}
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}

@@ -10,19 +10,19 @@
 	
 	<select id="codeGroupList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql" />
-		select
+		select distinct
 			a.ifcgSeq
 			,a.ifcgNameKor
 			,a.ifcgNameEng
-			,(select count(ifcdNameKor) from infraCode aa where 1=1 and aa.ifcdIfcgSeq = a.ifcgSeq) as count
+			,(select count(ifcdSeq) from infraCode aa where 1=1 and aa.ifcdIfcgSeq = a.ifcgSeq) as count
 		from infraCodeGroup a
-		inner join infraCode b on a.ifcgSeq = b.ifcdIfcgSeq
+		left join infraCode b on a.ifcgSeq = b.ifcdIfcgSeq
 		where 1=1
-			<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifmmDelNy = #{shDelNy}</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifcgDelNy = #{shDelNy}</if>
 				<choose>
-					<when test="shOption == 1">AND a.ifcdSeq = #{shValue}</when>
-					<when test="shOption == 2">AND a.ifcdNameKor LIKE CONCAT('%',#{shValue},'%')</when>
-					<when test="shOption == 3">AND a.ifcdNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 1">AND a.ifcgSeq = #{shValue}</when>
+					<when test="shOption == 2">AND a.ifcgNameKor LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND a.ifcgNameEng LIKE CONCAT('%',#{shValue},'%')</when>
 				</choose>
 			ORDER BY a.ifcgSeq DESC
 		<include refid="Base.orderByLimitForMysql" />
@@ -33,7 +33,6 @@
 		SELECT 
 			COUNT(*)
 		from infraCodeGroup a
-		inner join infraCode b on a.ifcgSeq = b.ifcdIfcgSeq
 		where 1=1
 	</select>
 	

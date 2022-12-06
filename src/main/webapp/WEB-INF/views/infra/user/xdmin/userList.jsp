@@ -60,13 +60,13 @@
 						<div class="px-6 py-4">
 							<div class="card card-default">
 								<div class="card-header">
-									<h2>CodeGroupList</h2>
+									<h2>User</h2>
 								</div>
 
 								<div class="card-body">
 									<form method="post" name="formList" id="formList">
 										<span>Total: ${vo.totalRows }</span>
-										<input type="hidden" name="ifcdSeq">
+										<input type="hidden" name="ifmmSeq">
 										<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 										<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 										<input type="hidden" name="checkboxSeqArray">
@@ -95,9 +95,9 @@
 											<div class="col-3" style="margin-bottom: 10px;">
 												<select id="shOption" name="shOption" class="form-control rounded-0" id="exampleFormControlSelect14">
 													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영문)</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>Seq</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>Name</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>ID</option>
 												</select>
 											</div>
 											<div class="col-3" style="margin-bottom: 10px;">
@@ -121,10 +121,16 @@
 														</div>
 													</th>
 													<th scope="col">#</th>
-													<th scope="col">코드그룹 코드</th>
-													<th scope="col">코드그룹 이름(한글)</th>
-													<th scope="col">코드그룹 이름(영문)</th>
-													<th scope="col">코드 갯수</th>
+													<th scope="col">Seq</th>
+													<th scope="col">Id</th>
+													<th scope="col">Name</th>
+													<th scope="col">Email</th>
+													<th scope="col">Domain</th>
+													<th scope="col">Mobile</th>
+													<th scope="col">Carrier</th>
+													<th scope="col">RegDate</th>
+													<th scope="col">ModDate</th>
+													<th scope="col">Type</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -132,14 +138,20 @@
 													<tr>
 														<td scope="row">
 															<div class="form-check">
-																<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.ifcgSeq }"/>" class="form-check-input">
+																<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.ifmmSeq }"/>" class="form-check-input">
 															</div>
 														</td>
 														<td><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }" /></td>
-														<td>${list.ifcgSeq }</td>
-														<td>${list.ifcgNameKor }</td>
-														<td>${list.ifcgNameEng }</td>
-														<td>${list.count }</td>
+														<td>${list.ifmmSeq }</td>
+														<td>${list.ifmmId }</td>
+														<td>${list.ifmmName }</td>
+														<td>${list.ifmmEmail }</td>
+														<td>${list.ifmmDomain }</td>
+														<td>${list.ifmmMobile }</td>
+														<td>${list.ifmmCarrier }</td>
+														<td>${list.ifmmRegDateTime }</td>
+														<td>${list.ifmmModDateTime }</td>
+														<td>${list.ifmmType }</td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -158,8 +170,8 @@
 			</div>
 			<%@include file="../../common/user/includeV1/footerXdmin.jsp"%>
 			<script type="text/javascript">
-                var goUrlList = "/codeGroup/codeGroupList";
-                var seq = $("input:hidden[name=ifcgSeq]");
+                var goUrlList = "/user/userList";
+                var seq = $("input:hidden[name=ifmmSeq]");
                 var form = $("form[name=formList]");
                 var checkboxSeqArray = [];
 

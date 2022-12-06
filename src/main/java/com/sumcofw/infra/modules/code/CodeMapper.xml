@@ -19,7 +19,7 @@
 		from infraCode a
 		inner join infraCodeGroup b on b.ifcgSeq = a.ifcdIfcgSeq
 		where 1=1
-			<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifmmDelNy = #{shDelNy}</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifcdUseNy = #{shDelNy}</if>
 				<choose>
 					<when test="shOption == 1">AND a.ifcdSeq = #{shValue}</when>
 					<when test="shOption == 2">AND a.ifcdNameKor LIKE CONCAT('%',#{shValue},'%')</when>

@@ -1,11 +1,22 @@
 package com.sumcofw.infra.modules.codegroup;
 
-public class CodeGroup {
+import com.sumcofw.infra.common.base.Base;
+
+public class CodeGroup extends Base {
 	
 	private String ifcgSeq;
 	private String ifcgNameKor;
 	private String ifcgNameEng;
 	private String count;
+	private String ifcgDelNy;
+	
+	
+	public String getIfcgDelNy() {
+		return ifcgDelNy;
+	}
+	public void setIfcgDelNy(String ifcgDelNy) {
+		this.ifcgDelNy = ifcgDelNy;
+	}
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}

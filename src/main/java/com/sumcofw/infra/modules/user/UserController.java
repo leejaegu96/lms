@@ -1,4 +1,4 @@
-package com.sumcofw.infra.modules.codegroup;
+package com.sumcofw.infra.modules.user;
 
 import java.util.List;
 
@@ -8,16 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
 @Controller
-@RequestMapping(value = "/codeGroup")
-public class CodeGroupController {
-	
+@RequestMapping(value = "/user")
+public class UserController {
+
 	@Autowired
-	CodeGroupServiceImpl service;
-	
-	public void setSearchAndPaging(CodeGroupVo vo) throws Exception {
+	UserServiceImpl service;
+
+	public void setSearchAndPaging(UserVo vo) throws Exception {
 
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
 //		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
@@ -25,13 +23,14 @@ public class CodeGroupController {
 
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
-	
-	@RequestMapping(value = "/codeGroupList")
-    public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+
+	@RequestMapping(value = "/userList")
+	public String userList(@ModelAttribute("vo") UserVo vo, Model model) throws Exception {
+		
 		setSearchAndPaging(vo);
-		List<CodeGroup> list = service.codeGroupList(vo);
+		List<User> list = service.userList(vo);
 		model.addAttribute("list", list);
-        return "infra/codegroup/xdmin/codeGroupList";
-    }
-	
+		return "infra/user/xdmin/userList";
+	}
+
 }

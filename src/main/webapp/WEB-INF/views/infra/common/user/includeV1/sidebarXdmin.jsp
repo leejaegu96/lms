@@ -29,9 +29,9 @@
 					</a>
 				</li>
 				<li>
-					<a class="sidenav-item-link" href="../code/codeList">
+					<a class="sidenav-item-link" href="../user/userList">
 						<i class="fa-solid fa-user-graduate"></i>
-						<span class="nav-text">Member</span>
+						<span class="nav-text">User</span>
 					</a>
 				</li>
 				<li>
