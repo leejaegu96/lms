@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sumcofw.infra.modules.code.CodeMapper">
+
+	<resultMap id="resultMapObj" type="com.sumcofw.infra.modules.code.Code"></resultMap>
+	
+	<select id="codeList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+		select
+			b.ifcgSeq
+			,b.ifcgNameKor
+			,a.ifcdSeq
+			,a.ifcdNameKor
+			,a.ifcdNameEng
+		from infraCode a
+		inner join infraCodeGroup b on b.ifcgSeq = a.ifcdIfcgSeq
+		where 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifmmDelNy = #{shDelNy}</if>
+				<choose>
+					<when test="shOption == 1">AND a.ifcdSeq = #{shValue}</when>
+					<when test="shOption == 2">AND a.ifcdNameKor LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND a.ifcdNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+				</choose>
+			ORDER BY a.ifcdSeq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT 
+			COUNT(*)
+		from infraCode a
+		inner join infraCodeGroup b on b.ifcgSeq = a.ifcdIfcgSeq
+		where 1=1
+	</select>
+	
+</mapper>

@@ -63,88 +63,94 @@
 									<h2>Code</h2>
 								</div>
 								<div class="card-body">
-									<div class="row gx-3 gy-2">
-										<div class="col-3" style="margin-bottom: 10px;">
-											<select class="form-control rounded-0" id="exampleFormControlSelect14">
-												<option selected>사용여부</option>
-												<option value="1">Y</option>
-												<option value="2">N</option>
-											</select>
-										</div>
-										<div class="col-3" style="margin-bottom: 10px;">
-											<select class="form-control rounded-0" id="exampleFormControlSelect14">
-												<option selected>수정일</option>
-												<option value="1"></option>
-												<option value="2"></option>
-												<option value="3"></option>
-												<option value="4"></option>
-											</select>
-										</div>
-										<div class="col-3" style="margin-bottom: 10px;">
-											<input type="text" class="form-control" placeholder="시작일">
-										</div>
-										<div class="col-3" style="margin-bottom: 10px;">
-											<input type="text" class="form-control" placeholder="종료일">
-										</div>
-										<div class="col-3" style="margin-bottom: 10px;">
-											<select class="form-control rounded-0" id="exampleFormControlSelect14">
-												<option selected>검색구분</option>
-												<option value="1">--</option>
-												<option value="2">--</option>
-												<option value="3">--</option>
-												<option value="4">--</option>
-											</select>
-										</div>
-										<div class="col-3" style="margin-bottom: 10px;">
-											<form class="d-flex" role="search">
-												<input class="form-control" type="text" id="searchInput" placeholder="검색어" onkeyup="myFunction()" title="Type in a name">
-											</form>
-										</div>
-										<div class="col-3" style="margin-bottom: 10px;">
-											<form class="d-flex" role="search">
+									<form method="post" name="formList" id="formList">
+										<span>Total: ${vo.totalRows }</span>
+										<input type="hidden" name="ifcdSeq">
+										<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+										<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+										<input type="hidden" name="checkboxSeqArray">
+										<div class="row gx-3 gy-2">
+											<div id="shDelNy" name="shDelNy" class="col-3" style="margin-bottom: 10px;">
+												<select class="form-control rounded-0" id="exampleFormControlSelect14">
+													<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>사용여부</option>
+													<option value="1" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>Y</option>
+													<option value="0" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>N</option>
+												</select>
+											</div>
+											<div id="shOptionDate" name="shOptionDate" class="col-3" style="margin-bottom: 10px;">
+												<select class="form-control rounded-0" id="exampleFormControlSelect14">
+													<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+													<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+													<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>날짜</option>
+												</select>
+											</div>
+											<div class="col-3" style="margin-bottom: 10px;">
+												<input type="text" class="form-control" id="shDateStart" placeholder="시작일" <fmt:formatDate  value="${vo.shDateStart}" />>
+											</div>
+											<div class="col-3" style="margin-bottom: 10px;">
+												<input type="text" class="form-control" id="shDateEnd" placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
+											</div>
+											<div class="col-3" style="margin-bottom: 10px;">
+												<select id="shOption" name="shOption" class="form-control rounded-0" id="exampleFormControlSelect14">
+													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드이름(한글)</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드이름(영문)</option>
+												</select>
+											</div>
+											<div class="col-3" style="margin-bottom: 10px;">
+												<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>">
+											</div>
+											<div class="col-3" style="margin-bottom: 10px;">
 												<button class="btn btn-outline-primary" type="submit" style="margin-right: 5px;">
 													<i class="fa-solid fa-magnifying-glass"></i>
 												</button>
 												<button class="btn btn-outline-danger" type="submit">
 													<i class="fa-solid fa-arrow-rotate-left"></i>
 												</button>
-											</form>
+											</div>
 										</div>
-									</div>
-									<table class="table ">
-										<thead class="thead-light">
-											<tr>
-												<th scope="col">
-													<div class="form-check" id="" style="height: 20px;">
-														<input type="checkbox" id="checkboxAll" name="" value="" class="form-check-input">
-													</div>
-												</th>
-												<th scope="col">#</th>
-												<th scope="col">코드그룹 코드</th>
-												<th scope="col">코드그룹 이름(한글)</th>
-												<th scope="col">코드</th>
-												<th scope="col">코드 이름(한글)</th>
-												<th scope="col">코드 이름(영문)</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="list" items="${list }" varStatus="status">
+										<table class="table ">
+											<thead class="thead-light">
 												<tr>
-													<td scope="row">
-														<div class="form-check">
-															<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.ifcdSeq }"/>" class="form-check-input">
+													<th scope="col">
+														<div class="form-check" id="" style="height: 20px;">
+															<input type="checkbox" id="checkboxAll" name="" value="" class="form-check-input">
 														</div>
-													</td>
-													<td>{index.status}</td>
-													<td>{list.ifcgSeq}</td>
-													<td>{list.ifcgName}</td>
-													<td>{list.ifcdSeq}</td>
-													<td>{list.ifcdName}</td>
-													<td>{list.ifcdNameEng}</td>
+													</th>
+													<th scope="col">#</th>
+													<th scope="col">코드그룹 코드</th>
+													<th scope="col">코드그룹 이름(한글)</th>
+													<th scope="col">코드</th>
+													<th scope="col">코드 이름(한글)</th>
+													<th scope="col">코드 이름(영문)</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+											</thead>
+											<tbody>
+												<c:forEach var="list" items="${list }" varStatus="status">
+													<tr>
+														<td scope="row">
+															<div class="form-check">
+																<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.ifcdSeq }"/>" class="form-check-input">
+															</div>
+														</td>
+														<td><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }" /></td>
+														<td>${list.ifcgSeq}</td>
+														<td>${list.ifcgNameKor}</td>
+														<td>${list.ifcdSeq}</td>
+														<td>${list.ifcdNameKor}</td>
+														<td>${list.ifcdNameEng}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<div class="row">
+											<!-- pagination s -->
+											<%@include file="../../common/user/includeV1/pagination.jsp"%>
+											<!-- pagination e -->
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -152,5 +158,43 @@
 				</div>
 			</div>
 			<%@include file="../../common/user/includeV1/footerXdmin.jsp"%>
+			<script type="text/javascript">
+                var goUrlList = "/code/codeList";
+                var seq = $("input:hidden[name=ifcdSeq]");
+                var form = $("form[name=formList]");
+                var checkboxSeqArray = [];
+
+                goForm = function(keyValue) {
+                    /* if(keyValue != 0) seq.val(btoa(keyValue)); */
+                    seq.val(keyValue);
+                    form.attr("action", goUrlForm).submit();
+                }
+
+                goList = function(thisPage) {
+                    $("input:hidden[name=thisPage]").val(thisPage);
+                    form.attr("action", goUrlList).submit();
+                }
+
+                $("btnReset").on("click", function() {
+                    $(location).attr("href", goUrlList)
+                })
+
+                $("#checkboxAll").click(function() {
+                    if ($("#checkboxAll").is(":checked"))
+                        $("input[name=checkboxSeq]").prop("checked", true);
+                    else
+                        $("input[name=checkboxSeq]").prop("checked", false);
+                });
+
+                $("input[name=checkboxSeq]").click(function() {
+                    var total = $("input[name=checkboxSeq]").length;
+                    var checked = $("input[name=checkboxSeq]:checked").length;
+
+                    if (total != checked)
+                        $("#checkboxAll").prop("checked", false);
+                    else
+                        $("#checkboxAll").prop("checked", true);
+                });
+            </script>
 </body>
 </html>

@@ -28,6 +28,24 @@
 						<span class="nav-text">Code</span>
 					</a>
 				</li>
+				<li>
+					<a class="sidenav-item-link" href="../code/codeList">
+						<i class="fa-solid fa-user-graduate"></i>
+						<span class="nav-text">Member</span>
+					</a>
+				</li>
+				<li>
+					<a class="sidenav-item-link" href="../code/codeList">
+						<i class="fa-regular fa-user"></i>
+						<span class="nav-text">Teacher</span>
+					</a>
+				</li>
+				<li>
+					<a class="sidenav-item-link" href="../code/codeList">
+						<i class="fa-regular fa-bookmark"></i>
+						<span class="nav-text">Lecture</span>
+					</a>
+				</li>
 				<li class="section-title">Apps</li>
 				<li>
 					<a class="sidenav-item-link" href="chat.html">
