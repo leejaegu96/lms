@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sumcofw.infra.common.util.UtilDateTime;
 import com.sumcofw.infra.modules.index.Index;
 import com.sumcofw.infra.modules.index.IndexServiceImpl;
 
@@ -46,7 +47,7 @@ public class MemberController {
 		
 		List<Member> paymentList = service.paymentList(dto);
 		model.addAttribute("paymentList",paymentList);
-		return "infra/main/purchaseHistory";
+		return "infra/main/purchaseHistory"; 
 	}
 	@RequestMapping(value = "wishlist")
 	public String wishlist(Locale locale, Model model) {
@@ -97,7 +98,26 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "successKakao")
-	public String successKakao(Member dto, Model model) throws Exception {
+	public String successKakao(Member dto, Model model, HttpSession httpSession) throws Exception {
+		 
+		String ifmmSeq = (String) httpSession.getAttribute("sessSeq");
+		String order = (String) httpSession.getAttribute("tid");
+		String total = (String) httpSession.getAttribute("total");
+		String lecture = (String) httpSession.getAttribute("iltSeq");
+		String date = (String) httpSession.getAttribute("date");
+		String iltSeq = (String) httpSession.getAttribute("iltSeq");
+						
+		dto.setIfmmSeq(ifmmSeq);
+		dto.setIodTotalPrice(total);
+		dto.setIodPayDateTime(UtilDateTime.nowDate());
+		dto.setIodNumber(order);
+		dto.setIltSeq(iltSeq);
+		
+		int result = service.orderInsert(dto);		
+		int result2 = service.orderDetailInsert(dto);
+		
+		List<Member> orderDeatilList = service.orderDetailList(dto);
+		model.addAttribute("detailList",orderDeatilList);
 		
 		return "infra/main/successKakao";
 	}
@@ -143,9 +163,7 @@ public class MemberController {
 	public Map<String, Object> updateLength(Member dto) throws Exception{
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		
-		
-		
+				
 		return returnMap;
 	}
 	
@@ -192,6 +210,9 @@ public class MemberController {
 	public String kakaopay(Member dto, HttpSession httpSession) throws Exception{
 	
 		System.out.println("카카카카카카카캌카오 실행@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(dto.getIodTotalPrice());
+		System.out.println(dto.getIltSeq());
+		System.out.println(dto.getIfmmSeq());
 	
 		try {
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
@@ -203,11 +224,11 @@ public class MemberController {
 			 
 			//String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/member/successKakao&fail_url=http://localhost:8080/member/failKakao&cancel_url=http://localhost:8080/member/cancelKakao";
 			String cid = "cid=TC0ONETIME";
-			String partnerOrder = "partner_order_id=partner_order_id";
+			String partnerOrder = "partner_order_id=" + dto.getIfmmSeq();
 			String partnerUser = "partner_user_id=partner_user_id";
-			String itemName = "item_name=초코파이";
+			String itemName = "item_name=" + dto.getIltSeq();
 			String quantity = "quantity=1";
-			String totalAmount = "total_amount=2200";
+			String totalAmount = "total_amount="+dto.getIodTotalPrice();
 			String vatAmount = "vat_amount=200";
 			String taxFree = "tax_free_amount=0";
 			String approvalUrl = "approval_url=http://localhost:8080/member/successKakao";
@@ -247,7 +268,13 @@ public class MemberController {
 			System.out.println(map.get("tid"));
 			
 			String tid = (String) map.get("tid");
+			String date = (String) map.get("created_at");
 			httpSession.setAttribute("tid", tid );
+			httpSession.setAttribute("total", dto.getIodTotalPrice());
+			httpSession.setAttribute("iltSeq", dto.getIltSeq());
+			httpSession.setAttribute("sessSeq", dto.getIfmmSeq());
+			httpSession.setAttribute("date", date);
+			
 			
 			return str;
 		} catch (MalformedURLException e) { 
@@ -261,7 +288,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value = "kakaopay.approve")
-	public String approve(Member dto) throws Exception{
+	public String approve(Member dto, HttpSession httpSession) throws Exception{
 	
 		System.out.println("@@@@@@@@@approve 실행@@@@@@@@@@@@@@@@@@@@@@" + dto.getTid() + "@@@@@" + dto.getPg());
 	
@@ -277,7 +304,7 @@ public class MemberController {
 			String cid = "cid=TC0ONETIME";
 			String tid = "tid="+dto.getTid();
 			System.out.println(tid);
-			String partnerOrder = "partner_order_id=partner_order_id";
+			String partnerOrder = "partner_order_id=" + httpSession.getAttribute("sessSeq"); 
 			String partnerUser = "partner_user_id=partner_user_id";
 			String pgToekn = "pg_token="+dto.getPg();
 			

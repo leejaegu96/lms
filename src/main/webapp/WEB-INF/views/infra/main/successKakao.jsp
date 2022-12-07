@@ -12,7 +12,7 @@
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<title>성공페이</title>
+<title> 구매 완료 </title>
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
@@ -20,15 +20,6 @@
 <%@include file=".././common/user/includeV1/link.jsp"%>
 <!-- include link -->
 <style>
-.pie-chart {
-	position: relative;
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	transition: 0.3s;
-}
-
 span.center {
 	background: #fff;
 	display: block;
@@ -44,77 +35,117 @@ span.center {
 	transform: translate(-50%, -50%);
 }
 
-.topTitle {
-	font-weight: bold;
-	font-size: 14px;
-	float: left;
+.containersize {
+	max-width: 100%;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.subTitle {
-	font-weight: bold;
-	font-size: 12px;
-	color: gray;
-	float: right;
+.btncss {
+	border: 1px solid #a6a39d;
+	font-size: 18px;
+	font-weight: 700;
+	border-radius: 4px;
+	line-height: 5px;
+	padding: 20px;
+	background-color: #da715d;
+	color: #75736f;
 }
 
-#cardSize {
-	height: 220px;
-}
-
-#colPad {
-	padding-bottom: 10px;
-}
-
-.cardContents {
-	font-size: 13px;
-}
-
-.cardNoContents {
-	text-align: center;
-	font-size: 13px;
-	color: gray;
-}
-
-.progressDetailL {
-	font-size: 10px;
-	float: left;
-}
-
-.progressDetailR {
-	font-size: 10px;
-	float: right;
-}
-
-#stTitle {
-	font-size: 50px;
-	font-weight: bold;
-	text-align: center;
-}
-
-#stContents {
-	font-size: 13px;
-	font-weight: bold;
-	text-align: center;
-}
-
-.lectureL {
-	font-size: 13px;
-	float: left;
-}
-
-.lectureR {
-	font-size: 10px;
-	float: right;
+.trcss {
+	color: #595751;
+	font-weight: 600;
 }
 </style>
 </head>
 
 <body>
 <form method="post" name= "form">
-	성공성공성공!!!!!!!!!
-	http://localhost:8080/member/successKakao
-	
-	${tid}
+	<input type="hidden" name="ifmmSeq" id="ifmmSeq" value="${sessSeq }"/>
+	<!-- include header -->
+	<%@include file=".././common/user/includeV1/header.jsp"%>
+	<!-- include header -->
+
+	<!-- ======= Hero Section ======= -->
+	<!-- End Hero -->
+	<!-- End Header -->
+	<main id="main">
+
+		<section id="services" class="services">
+			<div class="container containersize">
+				<div class="row" style="padding-top: 100px;">
+					<p style="text-align: center; font-size: 20px;">
+						결제가 완료되었습니다. <br> 결제내역은 마이페이지에서 조회 가능합니다.
+					</p>
+
+					<table class="table border">
+						<tr>
+							<td class="trcss">주문번호</td>
+							<td>
+								<span id="tid"> ${tid }</span>  
+							</td>
+						</tr>
+
+						<tr>
+							<td class="trcss">결제금액</td>
+							<td>
+								<span id="total"> ${total }</span> <span>원 </span>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="trcss">결제수단</td>
+							<td>신용카드</td>
+						</tr>
+
+						<tr>
+							<td class="trcss">결제일시</td>
+							<td> <span id = "date">${date}</span>	</td>
+						</tr>
+					</table>
+
+					<table class="table border" style="table-layout: fixed;">
+						<tr id="tr1">
+							<td style="width: 30%">제목</td>
+							<td style="width: 15%">상품군</td>
+							<td style="width: 10%">카테고리</td>
+
+						</tr>
+						
+						<c:forEach var="detailList" items="${detailList }" varStatus="status"> 
+						<tr style="font-size: 13px; vertical-align: middle;">
+							<td style="padding: 0;">
+								<table style="table-layout: fixed; width: 100%">
+									<tr>
+										<td style="width: 3em">
+											<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" style="width: 3em" style="display:inline-block;" />
+										</td>
+										<td style="padding-left: 10px;"> ${detailList.iltTitle }</td>
+									</tr>
+								</table>
+							</td>
+							<td style="text-align: center;">원포인트 클래스</td>
+							<td style="text-align: center;">생활/건강</td>
+						</tr>
+						</c:forEach>
+						
+					</table>
+
+					<div style="text-align: center;">
+						<button class="btncss" style="color: white;">주문서로</button>
+						<button class="btncss" type="button" style="background-color: white;" onclick="location.href=member/dashboard"> 마이페이지</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<!-- End #main -->
+
+	<!-- include footer -->
+	<%@include file=".././common/user/includeV1/footer.jsp"%>
+	<!-- include footer-->
 	
 	<input type="hidden" id="pg" value="<%= request.getParameter("pg_token") %>"/>	
 </form>
@@ -126,8 +157,7 @@ span.center {
 	$(document).ready(function(){
 	   
 		var pg1 = $("#pg").val();
-		alert(pg1);
-		
+				
 		$.ajax({ 
 			url : "/member/kakaopay.approve",   			
 			dataType : 'json',
@@ -138,6 +168,13 @@ span.center {
 			},
 			success : function(data) {
 				console.log(data);
+				/* alert(data.created_at);
+				alert(data.item_name);
+				alert(data.tid);
+				alert(data.amount.total); */
+				/* $("#date").text(data.created_at);
+				$("#tid").text(data.tid);
+				$("#total").text(data.amount.total); */
 		     },
 		          
 			error : function(request, status, error){     							

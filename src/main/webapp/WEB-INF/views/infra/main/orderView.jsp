@@ -37,7 +37,7 @@
 </head>
 
 <body>
-	<form method="post" name="form" action="/kakaoPay">
+	<form method="post" name="form" id="form">
 
 		<input type="hidden" name="iltSeq" id="iltSeq" value="${oneItem.iltSeq}" />
 		<input type="hidden" name="iftcSeq" id="iftcSeq" value="${oneItem.iftcSeq}" />
@@ -94,7 +94,7 @@
 										<hr />
 										<li>총 결제 금액
 											<p style="float: right">
-												<span id="iodTotalPrice"> ${oneItem.iltPrice }</span>
+												<span id="iodTotalPrice">${oneItem.iltPrice }</span>
 												<span>원</span>
 											</p>
 										</li>
@@ -211,10 +211,15 @@
     		$.ajax({ 
     			url : "/member/kakaopay.cls",   			
     			dataType : 'json',
+    			data: {
+    				 iltSeq : $("#iltSeq").val(),
+                     ifmmSeq : $("#ifmmSeq").val(),
+                     iodTotalPrice : $("#iodTotalPrice").text()
+    			},
     			success : function(data) {
 					console.log(data);
 					var box = data.next_redirect_pc_url;
-					var name =" popup_test";
+					var name ="popup_test";
 					var option = "width =500, height= 500, top = 100, left = 200, location = no ";
 					location.href=box;
     		     },
@@ -229,8 +234,6 @@
     	});
     </script>
     
-    <script>
-    
-    </script>
+   
 </body>
 </html>
