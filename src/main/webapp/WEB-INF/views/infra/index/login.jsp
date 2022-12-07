@@ -50,12 +50,12 @@
 
 								<div class="form-outline mb-4">
 									<label class="form-label" for="ifmmId">ID</label>
-									<input type="email" id="ifmmId" name="ifmmId" class="form-control form-control-lg" style="color: gray; font-size: 12px" />
+									<input type="email" id="ifmmId" name="ifmmId" value="xdmin" class="form-control form-control-lg" style="color: gray; font-size: 12px" />
 								</div>
 
 								<div class="form-outline mb-4">
 									<label class="form-label" for="ifmmPassword">PW</label>
-									<input type="password" id="ifmmPassword" name="ifmmPassword" class="form-control form-control-lg" style="color: gray; font-size: 12px" />
+									<input type="password" id="ifmmPassword" value="1234" name="ifmmPassword" class="form-control form-control-lg" style="color: gray; font-size: 12px" />
 								</div>
 
 								<div class="d-grid gap-2 col-12 mx-auto">
@@ -72,10 +72,10 @@
 
 								<div style="margin-top: 20px">
 									<p class="small mb-5 pb-lg-2">
-										<a class="text-muted" href="./pwd.html">비밀번호를 잊어버리셨습니까?</a>
+										<a class="text-muted" >비밀번호를 잊어버리셨습니까?</a>
 									</p>
 									<p class="small mb-5 pb-lg-2">
-										<a class="text-muted" href="./signup.html">회원가입하기</a>
+										<a class="text-muted" href="/index/signUp">회원가입하기</a>
 									</p>
 								</div>
 							</form>
@@ -137,8 +137,13 @@
 				},
 				success:(res) => {
 					if (res.rt == "success") {
-						alert("로그인 성공!");
-						location.href="/index/home";
+					    if($("#ifmmId").val() == "xdmin"){
+					        alert("로그인 성공!");
+					        location.href="/";
+					    }else{
+					        alert("로그인 성공!");
+							location.href="/index/home";
+					    }
 					} else {
 						alert("회원가입 실패");
 					}

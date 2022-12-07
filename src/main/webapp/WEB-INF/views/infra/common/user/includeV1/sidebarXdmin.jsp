@@ -49,7 +49,7 @@
 				
 				
 				
-				<li class="section-title">Apps</li>
+				<li class="section-title">ETC</li>
 				<li>
 					<a class="sidenav-item-link" href="../index/home">
 						<i class="mdi mdi-wechat"></i>

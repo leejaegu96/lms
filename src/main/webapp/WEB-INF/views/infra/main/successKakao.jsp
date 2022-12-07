@@ -134,7 +134,7 @@ span.center {
 
 					<div style="text-align: center;">
 						<button class="btncss" style="color: white;">주문서로</button>
-						<button class="btncss" type="button" style="background-color: white;" onclick="location.href=member/dashboard"> 마이페이지</button>
+						<button class="btncss" type="button" style="background-color: white;" onclick="location.href='/member/dashboard'"> 마이페이지</button>
 					</div>
 				</div>
 			</div>

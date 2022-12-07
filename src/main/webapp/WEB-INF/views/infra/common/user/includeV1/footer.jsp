@@ -111,5 +111,8 @@
 	goTeacherMypage = function(){
 		form.attr("action", "/lecturer/lectureList").submit();
 	}
+	goXdminpage = function(){
+		form.attr("action", "/lecture/lectureList").submit();
+	}
 </script>
 

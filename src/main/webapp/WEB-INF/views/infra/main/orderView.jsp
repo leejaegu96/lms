@@ -5,6 +5,7 @@
 <%@ page session="true"%>
 
 
+
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -64,13 +65,18 @@
 									<div class="sidebar">
 										<div class="sidebar-item recent-posts">
 											<div class="post-item clearfix">
-												<img src="https://cdn.class101.net/images/0f25f15c-dfba-4ba1-979f-24a88809e665/960xauto.webp" alt="" />
+												<img src="${oneItem.teacherPath }${oneItem.teacherUuidName}" alt="" />
 												<h4>
 													<a href="blog-single.html">${oneItem.iltTitle}</a>
 												</h4>
 												<h3 style="float: right">${oneItem.iltPrice }<span>원</span>
 												</h3>
-												<time datetime="2020-01-01">Jan 1, 2020</time>
+												<br>
+												<h4>
+													<jsp:useBean id="now" class="java.util.Date" />
+													<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+													구매일자 : <c:out value="${today}" />
+												</h4>
 											</div>
 										</div>
 									</div>
@@ -85,14 +91,16 @@
 								<h3 class="sidebar-title">최종 결제 금액</h3>
 								<div class="sidebar-item categories">
 									<ul>
-										<li>상품 금액
+										<li>
+											상품 금액
 											<p style="float: right">
 												${oneItem.iltPrice }
 												<span>원</span>
 											</p>
 										</li>
 										<hr />
-										<li>총 결제 금액
+										<li>
+											총 결제 금액
 											<p style="float: right">
 												<span id="iodTotalPrice">${oneItem.iltPrice }</span>
 												<span>원</span>
@@ -106,13 +114,23 @@
 								<h3 class="sidebar-title">이용약관</h3>
 								<div class="sidebar-item categories">
 									<ul>
-										<li><input type="checkbox" name="" id="" />상품 이용 약관</li>
-										<li><input type="checkbox" name="" id="" />환불 규정</li>
+										<li>
+											<input type="checkbox" name="" id="" />
+											상품 이용 약관
+										</li>
+										<li>
+											<input type="checkbox" name="" id="" />
+											환불 규정
+										</li>
 										<hr />
-										<li><input type="checkbox" name="" id="" />전체동의</li>
+										<li>
+											<input type="checkbox" name="" id="" />
+											전체동의
+										</li>
 										<li>모든 약관에 동의합니다.</li>
-										<li><input id="payNow" type="button" value="결제하기" class="btn btn-danger" style="width: 100%" /></li>
-										<li><button id="kakaoBtn">카카오페이로 결제하기</button></li>
+										<li>
+											<button class="btn btn-warning" style="color:white; font-weight:bold; width: 100%" id="kakaoBtn">카카오페이로 결제하기</button>
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -135,7 +153,7 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<!-- 카카오페이 -->
-	
+
 	<script>
         $("#payNow").click(function() {
 
@@ -205,35 +223,35 @@
             form.attr("action", "/member/purchased").submit();
         });
     </script>
-    
-    <script>
-    	$("#kakaoBtn").click(function(){
-    		$.ajax({ 
-    			url : "/member/kakaopay.cls",   			
-    			dataType : 'json',
-    			data: {
-    				 iltSeq : $("#iltSeq").val(),
-                     ifmmSeq : $("#ifmmSeq").val(),
-                     iodTotalPrice : $("#iodTotalPrice").text()
-    			},
-    			success : function(data) {
-					console.log(data);
-					var box = data.next_redirect_pc_url;
-					var name ="popup_test";
-					var option = "width =500, height= 500, top = 100, left = 200, location = no ";
-					location.href=box;
-    		     },
-    		          
-    			error : function(request, status, error){     							
-    				  	console.log("code: " + request.status)	
-    			        console.log("message: " + request.responseText)
-    			        console.log("error: " + error);
-    				 }	     
-    		});
-    		return false;
-    	});
+
+	<script>
+        $("#kakaoBtn").click(function() {
+            $.ajax({
+                url : "/member/kakaopay.cls",
+                dataType : 'json',
+                data : {
+                    iltSeq : $("#iltSeq").val(),
+                    ifmmSeq : $("#ifmmSeq").val(),
+                    iodTotalPrice : $("#iodTotalPrice").text()
+                },
+                success : function(data) {
+                    console.log(data);
+                    var box = data.next_redirect_pc_url;
+                    var name = "popup_test";
+                    var option = "width =500, height= 500, top = 100, left = 200, location = no ";
+                    location.href = box;
+                },
+
+                error : function(request, status, error) {
+                    console.log("code: " + request.status)
+                    console.log("message: " + request.responseText)
+                    console.log("error: " + error);
+                }
+            });
+            return false;
+        });
     </script>
-    
-   
+
+
 </body>
 </html>

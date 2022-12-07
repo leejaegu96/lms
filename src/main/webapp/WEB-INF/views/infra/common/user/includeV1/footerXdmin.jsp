@@ -41,5 +41,45 @@
 <script src="../resources/assets/js/map.js"></script>
 <script src="../resources/assets/js/custom.js"></script>
 
+<script>
+var formX = $("form[name=form]");
+
+logout = function(){
+	$.ajax({
+				
+			url: "/index/logoutProc",
+			
+			type: 'post',
+			
+			async: false,
+			
+			data : {
+				
+			},
+			
+			success : function(data){
+				alert('logout');
+				formX.attr("action", "/index/login").submit();
+			},
+			
+			error : function(request, status, error){
+				console.log("code: " + request.status)	
+		        console.log("message: " + request.responseText)
+		        console.log("error: " + error);
+			}
+		});
+}
+
+goMypage = function(){
+	form.attr("action", "/member/dashboard").submit();
+}
+goTeacherMypage = function(){
+	form.attr("action", "/lecturer/lectureList").submit();
+}
+goXdminpage = function(){
+	form.attr("action", "/lecture/lectureList").submit();
+}
+</script>
+
 <!--  -->
 

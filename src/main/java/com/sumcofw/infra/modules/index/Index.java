@@ -80,6 +80,10 @@ public class Index {
     private String teacherPath;
     private String teacherUuidName;
     
+    // 강의 사진
+    private String lecturePath;
+    private String lectureUuidName;
+    
     // 강의 댓글
     private String ilrSeq;
     private String ilrIltseq;
@@ -442,5 +446,18 @@ public class Index {
     public void setIlrIfmmSeq(String ilrIfmmSeq) {
         this.ilrIfmmSeq = ilrIfmmSeq;
     }
+	public String getLecturePath() {
+		return lecturePath;
+	}
+	public void setLecturePath(String lecturePath) {
+		this.lecturePath = lecturePath;
+	}
+	public String getLectureUuidName() {
+		return lectureUuidName;
+	}
+	public void setLectureUuidName(String lectureUuidName) {
+		this.lectureUuidName = lectureUuidName;
+	}
+    
     
 }

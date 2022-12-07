@@ -52,7 +52,7 @@
 					<div class="col-lg-8 entries">
 						<article class="entry entry-single">
 							<div class="" style="margin: auto;">
-								<img src="${lecturedetail.path }${lecturedetail.uuidName}" alt="" style="height: 100%; width: 100%" />
+								<img src="${lecturedetail.lecturePath }${lecturedetail.lectureUuidName}" alt="" style="height: 100%; width: 100%" />
 							</div>
 
 							<br />

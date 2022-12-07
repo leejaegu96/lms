@@ -19,11 +19,19 @@
 		<nav id="navbar" class="navbar">
 			<ul>
 				<c:choose>
+					<c:when test="${sessType eq 1 && sessSeq eq 5 }">
+						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
+						<li><a href="Javascript:goXdminpage()">관리자페이지</a></li>
+						<li><a href="Javascript:goMypage()">마이페이지</a></li>
+						<li><a href="Javascript:logout()">로그아웃 </a></li>
+					</c:when>
 					<c:when test="${sessType eq 1 }">
+						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
 						<li><a href="Javascript:goMypage()">마이페이지</a></li>
 						<li><a href="Javascript:logout()">로그아웃 </a></li>
 					</c:when>
 					<c:when test="${sessType eq 2 }">
+						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
 						<li><a href="Javascript:goTeacherMypage()">강사 마이페이지</a></li>
 						<li><a href="Javascript:logout()">로그아웃 </a></li>
 					</c:when>

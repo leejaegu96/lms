@@ -19,8 +19,8 @@
             ,b.iftcName
             ,b.iftcSeq
             ,c.pseq
-            ,c.path
-            ,c.uuidName
+            ,c.path as lecturePath
+            ,c.uuidName as lectureUuidName
             ,d.path as teacherPath
             ,d.uuidName as teacherUuidName
 		FROM
