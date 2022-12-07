@@ -257,6 +257,7 @@
 			FROM idLectureReview a
 			JOIN infrMember b on b.ifmmSeq = a.ilrIfmmSeq
 			WHERE ilrIltSeq = #{mainKey}
+			ORDER BY a.ilrRegDateTime DESC
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	<!-- 댓글 카운트 -->

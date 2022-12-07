@@ -9,6 +9,10 @@
 	<c:otherwise>
 		<c:forEach items="${commentList}" var="commentList" varStatus="status">
 			<div id="comment-1" class="comment">
+				<c:set var="ilrIfmmSeq" value="${commentList.ilrIfmmSeq}"/> 
+				<c:if test="${sessType eq ilrIfmmSeq}">
+					<a style="float: right; cursor: pointer" onclick="deleteComment(<c:out value="${commentList.ilrSeq}"/>)">삭제</a>
+				</c:if>
 				<div class="d-flex">
 					<div>
 						<h5>

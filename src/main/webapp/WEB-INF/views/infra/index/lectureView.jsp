@@ -326,7 +326,6 @@ $(window).on("beforeunload", function(){
 	return 'sdfsdf';
 });
 
-
 </script>
 </body>
 </html>

@@ -169,7 +169,7 @@
 										<input type="text" name="ilrBody" id="ilrBody" class="form-control" placeholder="댓글을 작성해 주세요" />
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary" onclick="regComment()">등록하기</button>
+								<button type="button" class="btn btn-primary" onclick="regComment()" >등록하기</button>
 
 							</div>
 							<!-- End comment form -->
@@ -236,6 +236,14 @@
 	    $("input:hidden[name=thisPage]").val(thisPage);
 	    setLita();
 	}
+	
+	document.getElementById("ilrBody").addEventListener("keyup", (e) => {
+		if (e.keyCode == 13) {
+		    regComment()
+		} else {
+			// by pass
+		}
+	})
 
 	// 댓글 리스트
 	function setLita() {
@@ -286,6 +294,28 @@
 	    }); 
 	}
 	
+	function deleteComment(key) {
+  	    $.ajax({
+			async : true,
+			cache : false,
+			type : "post",
+			url : "/index/lectureCommentDele",
+			data : {
+			    mainKey: key
+			},
+			success : (res) => {
+			    if (res.rt === "success") {
+					setLita();
+			    } else {
+					alert("댓글 삭제에 실패하였습니다.")
+			    }
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+			    alert("ajaxUpdate " + jqXHR.textStatus + " : "
+				    + jqXHR.errorThrown);
+			}
+	    });
+	}
     </script>
 
 </body>
