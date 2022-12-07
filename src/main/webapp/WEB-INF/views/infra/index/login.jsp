@@ -70,11 +70,11 @@
 								<div class="d-grid gap-2 col-12 mx-auto">
 									<button type="button" id="kakaoBtn" class="btn btn-warning" style="font-weight: bold; height: 40px">카카오로 3초 만에 시작하기</button>
 									<button type="button" id="naverBtn" class="btn btn-success" style="font-weight: bold; color: white; height: 40px">네이버로 시작하기</button>
-									
+									<!-- 
 									<button type="button" class="btn btn-primary" style="font-weight: bold; color: white; height: 40px">페이스북으로 시작하기</button>
 									<button type="button" class="btn btn-light" style="font-weight: bold; height: 40px">구글로 시작하기</button>
 									<button type="button" class="btn btn-dark" style="font-weight: bold; height: 40px">애플로 시작하기</button>
-									
+									 -->
 								</div>
 
 								<div style="margin-top: 20px">
