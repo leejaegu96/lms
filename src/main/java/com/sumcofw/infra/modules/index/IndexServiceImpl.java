@@ -54,6 +54,20 @@ public class IndexServiceImpl implements IndexService {
 		return result;
 	}
     // 네이버 로그인, 회원가입 e
+    // 카카오 로그인, 회원가입 s
+    @Override
+	public Index snsLoginCheckKakao(Index dto) throws Exception {
+    	Index result = dao.snsLoginCheckKakao(dto);
+		System.out.println("service snsLoginCheck result: " + result);
+		return result;
+	}
+    @Override
+	public int kakaoInst(Index dto) throws Exception {
+		int result = dao.kakaoInst(dto);
+		System.out.println("service insert result: " + result);
+		return result;
+	}
+    // 카카오 로그인, 회원가입 e
     
     @Override
     public Index lecturedetail(Index dto) throws Exception {

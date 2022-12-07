@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public class IndexDao {
 
@@ -54,7 +56,18 @@ public class IndexDao {
 	public Index snsLoginCheckNaver(Index dto) {
 		return sqlSession.selectOne(namespace + ".snsLoginCheckNaver", dto);
 	}
+
 	// 네이버 로그인, 회원가입 e
+	// 카카오 로그인, 회원가입 s
+	public Index snsLoginCheckKakao(Index dto) {
+		return sqlSession.selectOne(namespace + ".snsLoginCheckKakao", dto);
+	}
+	public int kakaoInst(Index dto) {
+		int result = sqlSession.insert(namespace + ".kakaoInst", dto);
+		System.out.println("dao insert result: " + result);
+		return result;
+	}
+	// 카카오 로그인, 회원가입 e
 
 	// 강의 상세
 	public Index lecturedetail(Index dto) {

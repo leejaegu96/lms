@@ -157,15 +157,13 @@
 			ifmmName
 			,ifmmID
 			,ifmmEmail
-			,ifmmPhone
-			,ifmmSnsLogin
+			,ifmmMobile
 		)
 		VALUES (
 			#{name}
 			,#{snsId}
 			,#{email}
 			,#{phone}
-			,3
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -177,13 +175,38 @@
 			,ifmmName
 			,ifmmSeq
 			,ifmmId
-			,ifmmSnsLogin
+		FROM infrMember a
+		WHERE 1=1  
+			AND ifmmEmail = #{email}
+	</select>
+	<!-- 네이버 로그인, 회원가입 e -->
+	<!-- 카카오 로그인, 회원가입 s -->
+	<insert id="kakaoInst">
+		INSERT INTO infrMember (
+			ifmmEmail
+			,ifmmName
+			,ifmmId
+		)
+		VALUES (
+			#{email}
+			,#{name}
+			,#{snsId}
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	<select id="snsLoginCheckKakao" resultMap="resultMapObj">
+		SELECT
+			ifmmEmail
+			,ifmmName
+			,ifmmSeq
+			,ifmmId
 		FROM infrMember a
 		WHERE 1=1 
 			AND ifmmEmail = #{email}
-			AND ifmmSnsLogin = 3
 	</select>
-	<!-- 네이버 로그인, 회원가입 e -->
+	<!-- 카카오 로그인, 회원가입 e -->
 	
 	<!-- 사용자 로그인 -->
 	<select id="loginProc" resultMap="resultMapObj">

@@ -33,6 +33,8 @@
 			<exclude-mapping path="/index/signUpProc" />
 			<exclude-mapping path="/index/teacherLoginProc" />
 			<exclude-mapping path="/index/teacherSignUpProc" />
+			<exclude-mapping path="/index/kakaoLoginProc" />
+			<exclude-mapping path="/index/naverLoginProc" />
 			<beans:bean id="checkLoginSessionInterception" class="com.sumcofw.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

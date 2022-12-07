@@ -3,6 +3,7 @@ package com.sumcofw.infra.modules.index;
 import java.util.List;
 
 
+
 public interface IndexService {
 
     public Index lecturedetail(Index dto) throws Exception;
@@ -17,6 +18,10 @@ public interface IndexService {
     public int naverInst(Index dto) throws Exception;
     public Index snsLoginCheckNaver(Index dto) throws Exception;
     // 네이버 로그인, 회원가입 e
+    // 카카오 로그인, 회원가입 s
+    public int kakaoInst(Index dto) throws Exception;
+    public Index snsLoginCheckKakao(Index dto) throws Exception;
+    // 카카오 로그인, 회원가입 e
     
     public List<Index> chapterlist(Index dto) throws Exception;
     public List<Index> chapterHeadlist(Index dto) throws Exception;

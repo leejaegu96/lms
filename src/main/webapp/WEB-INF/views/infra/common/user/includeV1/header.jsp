@@ -20,19 +20,28 @@
 			<ul>
 				<c:choose>
 					<c:when test="${sessType eq 1 && sessSeq eq 5 }">
+						<li>${sessName }님</li>
 						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
 						<li><a href="Javascript:goXdminpage()">관리자페이지</a></li>
 						<li><a href="Javascript:goMypage()">마이페이지</a></li>
 						<li><a href="Javascript:logout()">로그아웃 </a></li>
 					</c:when>
 					<c:when test="${sessType eq 1 }">
+						<li>${sessName }님</li>
 						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
 						<li><a href="Javascript:goMypage()">마이페이지</a></li>
 						<li><a href="Javascript:logout()">로그아웃 </a></li>
 					</c:when>
 					<c:when test="${sessType eq 2 }">
+						<li>${sessName }님</li>
 						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
 						<li><a href="Javascript:goTeacherMypage()">강사 마이페이지</a></li>
+						<li><a href="Javascript:logout()">로그아웃 </a></li>
+					</c:when>
+					<c:when test="${sessType eq 3 }">
+						<li>${sessName }님</li>
+						<li><a href="http://baeyu.jin7942.co.kr/">실시간수업</a></li>
+						<li><a href="Javascript:goMypage()">마이페이지</a></li>
 						<li><a href="Javascript:logout()">로그아웃 </a></li>
 					</c:when>
 					<c:otherwise>
@@ -40,7 +49,6 @@
 						<li><a href="../index/login">로그인</a></li>
 					</c:otherwise>
 				</c:choose>
-				
 				
 				
 			</ul>

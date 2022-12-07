@@ -70,9 +70,11 @@
 								<div class="d-grid gap-2 col-12 mx-auto">
 									<button type="button" id="kakaoBtn" class="btn btn-warning" style="font-weight: bold; height: 40px">카카오로 3초 만에 시작하기</button>
 									<button type="button" id="naverBtn" class="btn btn-success" style="font-weight: bold; color: white; height: 40px">네이버로 시작하기</button>
+									<!-- 
 									<button type="button" class="btn btn-primary" style="font-weight: bold; color: white; height: 40px">페이스북으로 시작하기</button>
 									<button type="button" class="btn btn-light" style="font-weight: bold; height: 40px">구글로 시작하기</button>
 									<button type="button" class="btn btn-dark" style="font-weight: bold; height: 40px">애플로 시작하기</button>
+									 -->
 								</div>
 
 								<div style="margin-top: 20px">
@@ -179,21 +181,11 @@
 
                         console.log(response)
                         console.log("email : " + account.email);
-                        console.log("picture : " + account.gender);
-                        console.log("picture : " + account.birthday);
-                        console.log("picture : " + account.birthday.substring(0, 2) + "-" + account.birthday.substring(2, account.birthday.length));
 
                         $("input[name=snsId]").val("카카오로그인");
                         $("input[name=name]").val(account.profile.nickname);
                         $("input[name=email]").val(account.email);
-                        $("input[name=dob]").val(account.birthday.substring(0, 2) + "-" + account.birthday.substring(2, account.birthday.length));
                         $("input[name=token]").val(accessToken);
-
-                        if (account.gender === "male") {
-                            $("input[name=gender]").val(1);
-                        } else {
-                            $("input[name=gender]").val(2);
-                        }
 
                         /*  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit(); */
 
@@ -206,8 +198,6 @@
                                 "name" : $("input[name=name]").val(),
                                 "snsId" : $("input[name=snsId]").val(),
                                 "email" : $("input[name=email]").val(),
-                                "gender" : $("input[name=gender]").val(),
-                                "dob" : $("input[name=dob]").val(),
                                 "token" : $("input[name=token]").val()
                             },
                             success : function(response) {
@@ -250,7 +240,7 @@
     ); */
     $("#naverBtn").on("click", function() {
         var naverLogin = new naver.LoginWithNaverId({
-            clientId : "8B39nCp0YjSVrS3h2K_G",
+            clientId : "4JOr4ik1m49VZEf6PHR7",
             callbackUrl : "http://localhost:8080/index/login",
             isPopup : true
         });
@@ -296,10 +286,7 @@
                         alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
                         return false;
                     } else {
-                        alert(response.rt);
-                        /* 
-                        location.href = "/index/login";
-                         */
+                        location.href = "/index/home";
                     }
                 },
                 error : function(jqXHR, status, error) {

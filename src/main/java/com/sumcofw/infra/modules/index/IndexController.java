@@ -101,7 +101,7 @@ public class IndexController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		Index naverLogin = service.snsLoginCheckNaver(dto);
 		System.out.println("test : " + dto.getToken());
-		
+		System.out.println(naverLogin);
 		if (naverLogin == null) {
 			service.naverInst(dto);
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
@@ -126,6 +126,37 @@ public class IndexController {
 	     httpSession.setAttribute("sessType", 3);
 	}
     /* 네이버 로그인 e */
+    /* 카카오 로그인 s */
+    @ResponseBody
+	@RequestMapping(value = "kakaoLoginProc")
+	public Map<String, Object> kakaoLoginProc(Index dto, HttpSession httpSession) throws Exception {
+	    Map<String, Object> returnMap = new HashMap<String, Object>();
+	    
+	    Index kakaoLogin = service.snsLoginCheckKakao(dto);
+		
+		System.out.println("test : " + dto.getToken());
+		
+		if (kakaoLogin == null) {
+			service.kakaoInst(dto);
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			// session(dto.getSeq(), dto.getId(), dto.getName(), dto.getEmail(), dto.getUser_div(), dto.getSnsImg(), dto.getSns_type(), httpSession);
+            session(dto, httpSession); 
+			returnMap.put("rt", "success");
+		} else {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			
+			// session(kakaoLogin.getSeq(), kakaoLogin.getId(), kakaoLogin.getName(), kakaoLogin.getEmail(), kakaoLogin.getUser_div(), kakaoLogin.getSnsImg(), kakaoLogin.getSns_type(), httpSession);
+			session(kakaoLogin, httpSession);
+			System.out.println(kakaoLogin.getIfmmSeq());
+			System.out.println(kakaoLogin.getIfmmName());
+			System.out.println(kakaoLogin.getIfmmId());
+			System.out.println(kakaoLogin.getIfmmEmail());
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+    /* 카카오 로그인 e */
     /**
      * 로그아웃 프로세스(할당된 세션 해제)
      * 
