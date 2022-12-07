@@ -92,7 +92,60 @@ public class Index {
     private String ilrBody;
     private String ilrIfmmSeq;
     
-    public Integer getHistoryCheck() {
+//	카카오 로그인
+	private String token;
+	private String email;
+	private String snsId;
+	private String name;
+	private String id;
+	private String phone;
+	private String sns_id;
+    
+	
+	
+    public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getSns_id() {
+		return sns_id;
+	}
+	public void setSns_id(String sns_id) {
+		this.sns_id = sns_id;
+	}
+	public Integer getHistoryCheck() {
         return historyCheck;
     }
     public void setHistoryCheck(Integer historyCheck) {

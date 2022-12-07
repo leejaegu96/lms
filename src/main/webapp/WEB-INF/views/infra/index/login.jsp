@@ -37,13 +37,18 @@
 						</div>
 
 						<div class="d-flex align-items-center ">
-							<form style="width: 23rem; margin-left: 200px">
-								<div class="row" style="margin-top:100px;">
+							<form id="form" name="form" method="post" style="width: 23rem; margin-left: 200px">
+								<input type="hidden" name="name" />
+								<input type="hidden" name="snsId" />
+								<input type="hidden" name="phone" />
+								<input type="hidden" name="email" />
+								<input type="hidden" name="token" />
+								<div class="row" style="margin-top: 100px;">
 									<h3 class="fw-normal mb-3 pb-3" id="userHeader">사용자 로그인</h3>
 									<h3 class="fw-normal mb-3 pb-3" style="display: none" id="teacherHeader">강사 로그인</h3>
 									<div class="form-check form-switch form-check-reverse">
-										<input class="form-check-input" id="type" type="checkbox" value="1" id="type" >
-										<input class="form-check-input" id="type" type="hidden" value="0" id="type" >
+										<input class="form-check-input" id="type" type="checkbox" value="1" id="type">
+										<input class="form-check-input" id="type" type="hidden" value="0" id="type">
 										<label class="form-check-label" for="type">강사이신가요?</label>
 									</div>
 								</div>
@@ -63,8 +68,8 @@
 								</div>
 								<hr />
 								<div class="d-grid gap-2 col-12 mx-auto">
-									<button type="button" class="btn btn-warning" style="font-weight: bold; height: 40px">카카오로 3초 만에 시작하기</button>
-									<button type="button" class="btn btn-success" style="font-weight: bold; color: white; height: 40px">네이버로 시작하기</button>
+									<button type="button" id="kakaoBtn" class="btn btn-warning" style="font-weight: bold; height: 40px">카카오로 3초 만에 시작하기</button>
+									<button type="button" id="naverBtn" class="btn btn-success" style="font-weight: bold; color: white; height: 40px">네이버로 시작하기</button>
 									<button type="button" class="btn btn-primary" style="font-weight: bold; color: white; height: 40px">페이스북으로 시작하기</button>
 									<button type="button" class="btn btn-light" style="font-weight: bold; height: 40px">구글로 시작하기</button>
 									<button type="button" class="btn btn-dark" style="font-weight: bold; height: 40px">애플로 시작하기</button>
@@ -72,7 +77,7 @@
 
 								<div style="margin-top: 20px">
 									<p class="small mb-5 pb-lg-2">
-										<a class="text-muted" >비밀번호를 잊어버리셨습니까?</a>
+										<a class="text-muted">비밀번호를 잊어버리셨습니까?</a>
 									</p>
 									<p class="small mb-5 pb-lg-2">
 										<a class="text-muted" href="/index/signUp">회원가입하기</a>
@@ -154,7 +159,158 @@
 			});
 	    }
 	};
+	
+	/* kakao login test s */
+	Kakao.init('b9cf1eafc801ea58dba76198cda5831f'); // test 용
+    console.log(Kakao.isInitialized());
+
+    $("#kakaoBtn").on("click", function() {
+
+        Kakao.Auth.login({
+            success : function(response) {
+                Kakao.API.request({
+                    url : '/v2/user/me',
+                    success : function(response) {
+
+                        var accessToken = Kakao.Auth.getAccessToken();
+                        Kakao.Auth.setAccessToken(accessToken);
+
+                        var account = response.kakao_account;
+
+                        console.log(response)
+                        console.log("email : " + account.email);
+                        console.log("picture : " + account.gender);
+                        console.log("picture : " + account.birthday);
+                        console.log("picture : " + account.birthday.substring(0, 2) + "-" + account.birthday.substring(2, account.birthday.length));
+
+                        $("input[name=snsId]").val("카카오로그인");
+                        $("input[name=name]").val(account.profile.nickname);
+                        $("input[name=email]").val(account.email);
+                        $("input[name=dob]").val(account.birthday.substring(0, 2) + "-" + account.birthday.substring(2, account.birthday.length));
+                        $("input[name=token]").val(accessToken);
+
+                        if (account.gender === "male") {
+                            $("input[name=gender]").val(1);
+                        } else {
+                            $("input[name=gender]").val(2);
+                        }
+
+                        /*  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit(); */
+
+                        $.ajax({
+                            async : true,
+                            cache : false,
+                            type : "POST",
+                            url : "/index/kakaoLoginProc",
+                            data : {
+                                "name" : $("input[name=name]").val(),
+                                "snsId" : $("input[name=snsId]").val(),
+                                "email" : $("input[name=email]").val(),
+                                "gender" : $("input[name=gender]").val(),
+                                "dob" : $("input[name=dob]").val(),
+                                "token" : $("input[name=token]").val()
+                            },
+                            success : function(response) {
+                                if (response.rt == "fail") {
+                                    alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+                                    return false;
+                                } else {
+                                    window.location.href = "/index/home";
+                                }
+                            },
+                            error : function(jqXHR, status, error) {
+                                alert("알 수 없는 에러 [ " + error + " ]");
+                            }
+                        });
+                    },
+                    fail : function(error) {
+                        console.log(error)
+                    },
+                })
+            },
+            fail : function(error) {
+                console.log(error)
+            },
+        })
+    });
+    /* kakao login test e */
+    
+    
 	</script>
+	<script type="text/javascript">
+	/* naver login test s */
+
+    /* var naverLogin = new naver.LoginWithNaverId(
+    {
+    	clientId: "b8EhDTV3tvvAE_gRRBoJ",
+    	callbackUrl: "http://localhost:8080/userLogin",
+    	isPopup: false,
+    	loginButton: {color: "green", type: 3, height: 70} 
+    }
+    ); */
+    $("#naverBtn").on("click", function() {
+        var naverLogin = new naver.LoginWithNaverId({
+            clientId : "8B39nCp0YjSVrS3h2K_G",
+            callbackUrl : "http://localhost:8080/index/login",
+            isPopup : true
+        });
+
+        naverLogin.init();
+		
+        naverLogin.getLoginStatus(function(status) {
+            if (!status) {
+                naverLogin.authorize();
+            } else {
+                setLoginStatus(); //하늘님 메소드 실행 -> Ajax
+            }
+        });
+
+        console.log(naverLogin);
+
+        window.addEventListener('load', function() {
+            if (naverLogin.accessToken != null) {
+                naverLogin.getLoginStatus(function(status) {
+                    if (status) {
+                        /* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+                        setLoginStatus();
+                    }
+                });
+            }
+
+        });
+        
+        function setLoginStatus() {
+            $.ajax({
+                async : true,
+                cache : false,
+                type : "POST",
+                url : "/index/naverLoginProc",
+                data : {
+                    "name" : naverLogin.user.name,
+                    "snsId" : "네이버로그인",
+                    "phone" : naverLogin.user.mobile,
+                    "email" : naverLogin.user.email
+                },
+                success : function(response) {
+                    if (response.rt == "fail") {
+                        alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+                        return false;
+                    } else {
+                        alert(response.rt);
+                        /* 
+                        location.href = "/index/login";
+                         */
+                    }
+                },
+                error : function(jqXHR, status, error) {
+                    alert("알 수 없는 에러 [ " + error + " ]");
+                }
+            });
+        }
+        
+    });
+	</script>
+    
 
 </body>
 </html>

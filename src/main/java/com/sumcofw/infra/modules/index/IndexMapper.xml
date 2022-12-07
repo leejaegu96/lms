@@ -151,6 +151,39 @@
 			,now()
 		)
 	</insert>
+	<!-- 네이버 로그인, 회원가입 s -->
+	<insert id="naverInst">
+		INSERT INTO infrMember (
+			ifmmName
+			,ifmmID
+			,ifmmEmail
+			,ifmmPhone
+			,ifmmSnsLogin
+		)
+		VALUES (
+			#{name}
+			,#{snsId}
+			,#{email}
+			,#{phone}
+			,3
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	<select id="snsLoginCheckNaver" resultMap="resultMapObj">
+		SELECT
+			ifmmEmail
+			,ifmmName
+			,ifmmSeq
+			,ifmmId
+			,ifmmSnsLogin
+		FROM infrMember a
+		WHERE 1=1 
+			AND ifmmEmail = #{email}
+			AND ifmmSnsLogin = 3
+	</select>
+	<!-- 네이버 로그인, 회원가입 e -->
 	
 	<!-- 사용자 로그인 -->
 	<select id="loginProc" resultMap="resultMapObj">

@@ -92,7 +92,40 @@ public class IndexController {
     	
     	return returnMap;
     }
-
+    
+	/* 네이버 로그인 s */
+	@RequestMapping(value = "naverLoginProc")
+	@ResponseBody
+	public Map<String, Object> naverLoginProc(Index dto, HttpSession httpSession) throws Exception {
+    	System.out.println("네이버로그인시작");
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Index naverLogin = service.snsLoginCheckNaver(dto);
+		System.out.println("test : " + dto.getToken());
+		
+		if (naverLogin == null) {
+			service.naverInst(dto);
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			// session(dto.getSeq(), dto.getId(), dto.getName(), dto.getEmail(), dto.getUser_div(), dto.getSnsImg(), dto.getSns_type(), httpSession);
+			session(dto, httpSession); 
+			returnMap.put("rt", "success");
+		} else {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			// session(kakaoLogin.getSeq(), kakaoLogin.getId(), kakaoLogin.getName(), kakaoLogin.getEmail(), kakaoLogin.getUser_div(), kakaoLogin.getSnsImg(), kakaoLogin.getSns_type(), httpSession);
+			session(naverLogin, httpSession);
+			System.out.println(naverLogin.getIfmmSeq());
+			System.out.println(naverLogin.getIfmmName());
+			System.out.println(naverLogin.getIfmmId());
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+    public void session(Index dto, HttpSession httpSession) {
+		 httpSession.setAttribute("sessSeq", dto.getIfmmSeq());    
+	     httpSession.setAttribute("sessName", dto.getIfmmName());
+	     httpSession.setAttribute("sessId", dto.getIfmmId());
+	     httpSession.setAttribute("sessType", 3);
+	}
+    /* 네이버 로그인 e */
     /**
      * 로그아웃 프로세스(할당된 세션 해제)
      * 

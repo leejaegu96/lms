@@ -39,7 +39,22 @@ public class IndexServiceImpl implements IndexService {
     	dto.setIftcPassword(UtilSecurity.encryptSha256(dto.getIftcPassword()));
     	return dao.teacherSignUpProc(dto);
     }
-
+    
+    // 네이버 로그인, 회원가입 s
+    @Override
+	public int naverInst(Index dto) throws Exception {
+		int result = dao.naverInst(dto);
+		System.out.println("service insert result: " + result);
+		return result;
+	}
+    @Override
+	public Index snsLoginCheckNaver(Index dto) throws Exception {
+    	Index result = dao.snsLoginCheckNaver(dto);
+		System.out.println("service snsLoginCheck result: " + result);
+		return result;
+	}
+    // 네이버 로그인, 회원가입 e
+    
     @Override
     public Index lecturedetail(Index dto) throws Exception {
         return dao.lecturedetail(dto);
