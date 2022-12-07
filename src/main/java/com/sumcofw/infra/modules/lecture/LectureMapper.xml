@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sumcofw.infra.modules.lecture.LectureMapper">
+
+	<resultMap id="resultMapObj" type="com.sumcofw.infra.modules.lecture.Lecture"></resultMap>
+	
+	<select id="lectureList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+		select
+			a.iltSeq
+		    ,c.ictgItem
+		    ,d.ictsItem
+		    ,b.iftcName
+		    ,a.iltTitle
+		    ,a.iltVideoCount
+		    ,a.iltPrice
+		    ,a.iltUseNy
+		    ,a.iltBody
+		from idLecture a
+		inner join infrTeacher b on b.iftcSeq = a.iltIftcSeq
+		inner join idCategory c on c.ictgSeq = a.iltIctgSeq
+		inner join idCategorySub d on d.ictsSeq = c.ictgIctsSeq
+		where 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.iltUseNy = #{shDelNy}</if>
+				<choose>
+					<when test="shOption == 1">AND a.iltSeq = #{shValue}</when>
+					<when test="shOption == 2">AND b.iftcName LIKE CONCAT('%',#{shValue},'%')</when>
+					<when test="shOption == 3">AND d.ictsItem LIKE CONCAT('%',#{shValue},'%')</when>
+				</choose>
+			ORDER BY a.iltSeq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT 
+			COUNT(*)
+		from idLecture a
+		where 1=1
+	</select>
+	
+</mapper>

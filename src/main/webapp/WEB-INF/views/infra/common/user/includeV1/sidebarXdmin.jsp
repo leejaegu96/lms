@@ -8,7 +8,7 @@
 	<div id="sidebar" class="sidebar sidebar-with-footer">
 		<!-- Aplication Brand -->
 		<div class="app-brand">
-			<a href="../codeGroup/codeGroupList" >
+			<a href="../lecture/lectureList" >
 				<span id="nextlevel" class="brand-name">LEXTLEVEL</span>
 			</a>
 		</div>
@@ -16,6 +16,24 @@
 		<div class="sidebar-left" data-simplebar style="height: 100%;">
 			<!-- sidebar menu -->
 			<ul class="nav sidebar-inner" id="sidebar-menu">
+				<li>
+					<a class="sidenav-item-link" href="../lecture/lectureList">
+						<i class="fa-regular fa-bookmark"></i>
+						<span class="nav-text">Lecture</span>
+					</a>
+				</li>
+				<li>
+					<a class="sidenav-item-link" href="../teacher/teacherList">
+						<i class="fa-regular fa-user"></i>
+						<span class="nav-text">Teacher</span>
+					</a>
+				</li>
+				<li>
+					<a class="sidenav-item-link" href="../user/userList">
+						<i class="fa-solid fa-user-graduate"></i>
+						<span class="nav-text">User</span>
+					</a>
+				</li>
 				<li>
 					<a class="sidenav-item-link" href="../codeGroup/codeGroupList">
 						<i class="mdi mdi-briefcase-account-outline"></i>
@@ -28,29 +46,14 @@
 						<span class="nav-text">Code</span>
 					</a>
 				</li>
-				<li>
-					<a class="sidenav-item-link" href="../user/userList">
-						<i class="fa-solid fa-user-graduate"></i>
-						<span class="nav-text">User</span>
-					</a>
-				</li>
-				<li>
-					<a class="sidenav-item-link" href="../code/codeList">
-						<i class="fa-regular fa-user"></i>
-						<span class="nav-text">Teacher</span>
-					</a>
-				</li>
-				<li>
-					<a class="sidenav-item-link" href="../code/codeList">
-						<i class="fa-regular fa-bookmark"></i>
-						<span class="nav-text">Lecture</span>
-					</a>
-				</li>
+				
+				
+				
 				<li class="section-title">Apps</li>
 				<li>
-					<a class="sidenav-item-link" href="chat.html">
+					<a class="sidenav-item-link" href="../index/home">
 						<i class="mdi mdi-wechat"></i>
-						<span class="nav-text">Chat</span>
+						<span class="nav-text">Home</span>
 					</a>
 				</li>
 			</ul>
