@@ -26,6 +26,7 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/" />
 			<exclude-mapping path="/index/home" />
 			<exclude-mapping path="/index/login" />
 			<exclude-mapping path="/index/loginProc" />
