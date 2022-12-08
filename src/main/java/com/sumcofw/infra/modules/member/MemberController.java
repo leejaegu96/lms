@@ -212,7 +212,7 @@ public class MemberController {
 		System.out.println("카카카카카카카캌카오 실행@@@@@@@@@@@@@@@@@@@@@@");
 		System.out.println(dto.getIodTotalPrice());
 		System.out.println(dto.getIltSeq());
-		System.out.println(dto.getIfmmSeq());
+		System.out.println(dto.getIfmmSeq()); 
 	
 		try {
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
@@ -231,9 +231,9 @@ public class MemberController {
 			String totalAmount = "total_amount="+dto.getIodTotalPrice();
 			String vatAmount = "vat_amount=200";
 			String taxFree = "tax_free_amount=0";
-			String approvalUrl = "approval_url=http://localhost:8080/member/successKakao";
-			String failUrl = "fail_url=http://localhost:8080/member/failKakao";
-			String cancelUrl = "cancel_url=http://localhost:8080/member/cancelKakao";
+			String approvalUrl = "approval_url=http://lkl.nextlevel.pe.kr/member/successKakao";
+			String failUrl = "fail_url=http://lkl.nextlevel.pe.kr/member/failKakao";
+			String cancelUrl = "cancel_url=http://lkl.nextlevel.pe.kr/member/cancelKakao";
 			String n = "&";
 			
 			String param = cid + n + partnerOrder + n + partnerUser + n + itemName + n + quantity + 
