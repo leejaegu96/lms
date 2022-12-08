@@ -218,7 +218,7 @@ public class MemberController {
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection serverConnection = (HttpURLConnection) address.openConnection();
 			serverConnection.setRequestMethod("POST");
-			serverConnection.setRequestProperty("Authorization", "KakaoAK 93a8dee403775eafaa0c0fa084046986");
+			serverConnection.setRequestProperty("Authorization", "KakaoAK 950b8907943f760f72e65a70043e6726");
 			serverConnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			serverConnection.setDoOutput(true); //dooutput은 연결을 통해 넣어줄게 있냐 없냐여서 있다라고 하고싶기에 트루를 넣음; 인풋은 안넣어도됨,커넥션 생성되면 기본적으로 인풋생성됨;
 			 
